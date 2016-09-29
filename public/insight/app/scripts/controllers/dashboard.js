@@ -8,15 +8,24 @@
  * Controller of yapp
  */
 angular.module('yapp')
-  .controller('DashboardCtrl', function($scope, $state) {
+  .controller('DashboardCtrl', function($scope, $state,$timeout) {
     $scope.loading = true;
     var index = 0;
     $scope.research = false;
     $scope.user = false;
     $scope.AI = false;
-    setTimeout(function(){ $scope.research = true; }, 1000);
-    setTimeout(function(){ $scope.user = true }, 1000);
-    setTimeout(function(){ $scope.research = true }, 1000);
+    $timeout(function(){
+        $scope.research = true;
+        $timeout(function(){
+           $scope.user = true;
+          $timeout(function(){ $scope.AI = true }, 1000);
+        }, 1000);
+
+      },
+
+      1000);
+
+
     $scope.run = function(){
       alert('running');
     };
