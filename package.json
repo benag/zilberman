@@ -1,0 +1,15 @@
+{
+  "name": "application-name",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "2.5.8",
+    "jade": ">= 0.0.1"
+  },
+  "devDependencies": {
+    "config": "^1.21.0",
+    "mongoose": "^4.6.1",
+    "node-restful": "^0.2.5",
+    "winston": "^2.2.0"
+  }
+}
