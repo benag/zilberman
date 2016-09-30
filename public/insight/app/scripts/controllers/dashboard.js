@@ -10,6 +10,7 @@
 angular.module('yapp')
   .controller('DashboardCtrl', function($scope, $state,$timeout) {
     $scope.loading = true;
+    $scope.recommend = false;
     var index = 0;
     $scope.research = false;
     $scope.user = false;
@@ -18,7 +19,11 @@ angular.module('yapp')
         $scope.research = true;
         $timeout(function(){
            $scope.user = true;
-          $timeout(function(){ $scope.AI = true }, 1000);
+          $timeout(function(){
+            $scope.AI = true;
+            $scope.loading = false;
+            $scope.recommend = true;
+          }, 1000);
         }, 1000);
 
       },
