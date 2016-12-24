@@ -4,7 +4,7 @@
  */
 
 var express = require('express'),
-    models = require('./models/user'),
+    models = require('./models/participants.model'),
     winston = require('winston'),
     mongoose = require('mongoose'),
     config = require('config')
@@ -24,7 +24,7 @@ db.once('open', function (callback) {
   console.log('yay!');
 });
 var app = module.exports = express.createServer();
-models.initUser(app);
+
 // Configuration
 
 app.configure(function(){
