@@ -6,7 +6,8 @@
 var express = require('express'),
     winston = require('winston'),
     mongoose = require('mongoose'),
-    config = require('config')
+    config = require('config'),
+    cors = require('cors')
   , routes = require('./routes');
 
 
@@ -29,6 +30,7 @@ var app = module.exports = express.createServer();
 app.configure(function(){
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
+  app.use(cors());
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(app.router);
