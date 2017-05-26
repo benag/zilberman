@@ -5,6 +5,6 @@ module.exports = {
 
     database: {
         path: 'mongodb://localhost/',
-        name: 'lifeopt'
+        name: 'ganim'
     }
 };

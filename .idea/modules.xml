@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/lifeServer.iml" filepath="$PROJECT_DIR$/.idea/lifeServer.iml" />
+      <module fileurl="file://$USER_HOME$/projects/ganim/ganim/.idea/lifeServer.iml" filepath="$USER_HOME$/projects/ganim/ganim/.idea/lifeServer.iml" />
     </modules>
   </component>
 </project>

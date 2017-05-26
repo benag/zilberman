@@ -4,7 +4,6 @@
  */
 
 var express = require('express'),
-    models = require('./models/participants.model'),
     winston = require('winston'),
     mongoose = require('mongoose'),
     config = require('config')
