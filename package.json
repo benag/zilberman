@@ -3,8 +3,11 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
+    "auth0-js": "^8.7.0",
     "express": "2.5.8",
-    "jade": ">= 0.0.1"
+    "jade": ">= 0.0.1",
+    "passport": "^0.3.2",
+    "passport-auth0": "^0.6.0"
   },
   "devDependencies": {
     "config": "^1.21.0",
