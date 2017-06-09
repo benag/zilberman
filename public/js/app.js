@@ -10,7 +10,7 @@ var app = angular.module('ganim', ['ui.router'])
 
     var welcome = {
         name: 'welcome',
-        url: 'welcome',
+        url: '/welcome',
         templateUrl: 'templates/welcome.html'
     };
 
@@ -22,6 +22,7 @@ var app = angular.module('ganim', ['ui.router'])
 
     $stateProvider.state(welcome);
     $stateProvider.state(aboutState);
+    $stateProvider.state(addState);
     $urlRouterProvider.otherwise('/welcome');
 
 
