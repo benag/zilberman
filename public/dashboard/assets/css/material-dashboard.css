@@ -587,7 +587,6 @@ h2.title {
   left: 0;
   z-index: 2;
 }
-
 .sidebar:before,
 .off-canvas-sidebar:before {
   opacity: .33;

@@ -1,39 +1,38 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <link rel="apple-touch-icon" sizes="76x76" href="dashboard/assets/img/apple-icon.png" />
-        <link rel="icon" type="image/png" href="dashboard/assets/img/favicon.png" />
+        <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png" />
+        <link rel="icon" type="image/png" href="../assets/img/favicon.png" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-        <title>גנים ושושנים</title>
-
+        <title>Material Dashboard by Creative Tim</title>
 
         <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-        <meta name="viewport" content="width=device-width" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!-- Bootstrap core CSS     -->
         <link href="dashboard/assets/css/bootstrap.min.css" rel="stylesheet" />
 
-        <!-- rtl -->
-        <link rel="stylesheet" href="//cdn.rawgit.com/morteza/bootstrap-rtl/v3.3.4/dist/css/bootstrap-rtl.min.css">
-
-
         <!--  Material Dashboard CSS    -->
         <link href="dashboard/assets/css/material-dashboard.css" rel="stylesheet"/>
+
+        <!--  CSS for Demo Purpose, don't include it in your project     -->
+        <link href="dashboard/assets/css/demo.css" rel="stylesheet" />
 
         <!--     Fonts and icons     -->
         <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
 
-        <link href="css/style.css" rel="stylesheet"/>
-
+        <link href="css/style.css" rel="stylesheet" />
     </head>
     <body ng-app="ganim">
     <!-- start html -->
 
 
         <div class="wrapper ">
-            <div class="sidebar flip pull-right sidebarhb" data-color="blue" data-image="../assets/img/sidebar-1.jpg">
+
+            <div class="sidebar sidebarhb" data-color="blue" data-image="../assets/img/sidebar-1.jpg">
                 <!--
                     Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
 
@@ -48,22 +47,28 @@
 
                 <div class="sidebar-wrapper">
                     <ul class="nav">
-                        <li class="active">
-                            <a class="flip" sref="enter">
+                        <li class="active pos">
+                            <a ui-sref="welcome">
                                 <i class="material-icons icon-hb">dashboard</i>
-                                <p>הכנס לקוח</p>
+                                <p class="paragraph">כללי</p>
                             </a>
                         </li>
-                        <li>
+                        <li class="pos">
+                            <a ui-sref="add">
+                                <i class="material-icons icon-hb">dashboard</i>
+                                <p class="paragraph">לקוחות</p>
+                            </a>
+                        </li>
+                        <li class="pos">
                             <a href="user.html">
                                 <i class="material-icons icon-hb">person</i>
-                                <p>הכנס מוצר</p>
+                                <p class="paragraph">מוצרים</p>
                             </a>
                         </li>
-                        <li>
+                        <li class="pos">
                             <a href="table.html">
                                 <i class="material-icons icon-hb">content_paste</i>
-                                <p>בינה עסקית</p>
+                                <p class="paragraph">תובנות</p>
                             </a>
                         </li>
                         <!--<li>-->
@@ -99,12 +104,13 @@
                     </ul>
                 </div>
             </div>
-            <div class="main-panel main-panel-hb">
-                <div style="float:left">
-                    sdsdfsdfsd
-                </div>
 
-                <ui-view ></ui-view>
+            <div class="main-panel main-panel-hb">
+
+                    <ui-view ></ui-view>
+
+
+
             </div>
 
         </div>
@@ -142,12 +148,22 @@
     <!--  Google Maps Plugin    -->
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
 
+    <script>
+        $(window).resize(function() {
+            var docWidth = $(window).width();
+            var left = $('.sidebarhb').position().left;
+            var newLeft = left - difference;
+                $(this).css({ 'left' : newLeft });
+            });
+
+        });
+    </script>
 
     <script src="js/app.js"></script>
 
-    <script src="lib/auth0-lock/build/lock.js"></script>
-    <script src="lib/auth0.js/build/auth0.js"></script>
-    <script src="lib/angular-lock/dist/angular-lock.js"></script>
+    <!--<script src="lib/auth0-lock/build/lock.js"></script>-->
+    <!--<script src="lib/auth0.js/build/auth0.js"></script>-->
+    <!--<script src="lib/angular-lock/dist/angular-lock.js"></script>-->
 
     </body>
 </html>
