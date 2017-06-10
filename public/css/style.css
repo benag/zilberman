@@ -89,3 +89,8 @@
 .pagination-row{
     margin-top:40px;
 }
+.pagination-pos{
+    margin-top:10px!important;
+    margin-bottom: 0px!important;
+    margin-left:calc((100% - 200px)/2)
+}
