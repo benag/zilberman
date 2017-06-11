@@ -1,5 +1,5 @@
-angular.module('venus').controller('loginCtrl', ['$scope', '$stateParams', '$location', 'lock',
-    function($scope, $stateParams, $location, lock) {
+angular.module('ganim').controller('loginCtrl', ['$scope', '$stateParams', '$location',
+    function($scope, $stateParams, $location) {
 
     }
 ]);

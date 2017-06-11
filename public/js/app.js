@@ -5,6 +5,7 @@ var app = angular.module('ganim', ['ui.router'])
     var addState = {
         name: 'add',
         url: '/add',
+        controller:'addClientCtrl',
         templateUrl: 'templates/addClient.html'
     };
 

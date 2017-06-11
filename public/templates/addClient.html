@@ -2,61 +2,234 @@
 
 
 
-<div class="row">
-    <div class="card card-nav-tabs">
-        <div class="card-header" data-background-color="purple">
-            <div class="nav-tabs-navigation">
-                <div class="nav-tabs-wrapper">
-                    <!--<span class="nav-tabs-title">Tasks:</span>-->
-                    <!--<ul class="nav nav-tabs" data-tabs="tabs">-->
-                        <!--<li class="active">-->
-                            <!--<a href="#profile" data-toggle="tab">-->
-                                <!--<i class="material-icons">bug_report</i>-->
-                                <!--First-->
-                                <!--<div class="ripple-container"></div></a>-->
-                        <!--</li>-->
-                        <!--<li class="">-->
-                            <!--<a href="#messages" data-toggle="tab">-->
-                                <!--<i class="material-icons">code</i>-->
-                                <!--Second-->
-                                <!--<div class="ripple-container"></div></a>-->
-                        <!--</li>-->
-                        <!--<li class="">-->
-                            <!--<a href="#settings" data-toggle="tab">-->
-                                <!--<i class="material-icons">cloud</i>-->
-                                <!--Third-->
-                                <!--<div class="ripple-container"></div></a>-->
-                        <!--</li>-->
-                        <!--<li>-->
-                            <!--<ul class="pagination pagination-info">-->
-                                <!--<li><a href="#"><</a></li>-->
-                                <!--<li><a href="#">1</a></li>-->
-                                <!--<li><a href="#">2</a></li>-->
-                                <!--<li class="active"><a href="#">3</a></li>-->
-                                <!--<li><a href="#">4</a></li>-->
-                                <!--<li><a href="#">5</a></li>-->
-                                <!--<li><a href="#">></a></li>-->
-                            <!--</ul>-->
-                        <!--</li>-->
+<!--<div class="row">-->
+    <!--<div class="card card-nav-tabs">-->
+        <!--<div class="card-header" data-background-color="purple">-->
+            <!--<div class="nav-tabs-navigation">-->
+                <!--<div class="nav-tabs-wrapper">-->
+                    <!--&lt;!&ndash;<span class="nav-tabs-title">Tasks:</span>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<ul class="nav nav-tabs" data-tabs="tabs">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<li class="active">&ndash;&gt;-->
+                            <!--&lt;!&ndash;<a href="#profile" data-toggle="tab">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<i class="material-icons">bug_report</i>&ndash;&gt;-->
+                                <!--&lt;!&ndash;First&ndash;&gt;-->
+                                <!--&lt;!&ndash;<div class="ripple-container"></div></a>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</li>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<li class="">&ndash;&gt;-->
+                            <!--&lt;!&ndash;<a href="#messages" data-toggle="tab">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<i class="material-icons">code</i>&ndash;&gt;-->
+                                <!--&lt;!&ndash;Second&ndash;&gt;-->
+                                <!--&lt;!&ndash;<div class="ripple-container"></div></a>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</li>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<li class="">&ndash;&gt;-->
+                            <!--&lt;!&ndash;<a href="#settings" data-toggle="tab">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<i class="material-icons">cloud</i>&ndash;&gt;-->
+                                <!--&lt;!&ndash;Third&ndash;&gt;-->
+                                <!--&lt;!&ndash;<div class="ripple-container"></div></a>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</li>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<li>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<ul class="pagination pagination-info">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<li><a href="#"><</a></li>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<li><a href="#">1</a></li>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<li><a href="#">2</a></li>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<li class="active"><a href="#">3</a></li>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<li><a href="#">4</a></li>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<li><a href="#">5</a></li>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<li><a href="#">></a></li>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</li>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+                    <!--<ul class="pagination pagination-info pagination-pos">-->
+                        <!--<li><a href="#"><</a></li>-->
+                        <!--<li><a href="#">1</a></li>-->
+                        <!--<li><a href="#">2</a></li>-->
+                        <!--<li class="active"><a href="#">3</a></li>-->
+                        <!--<li><a href="#">4</a></li>-->
+                        <!--<li><a href="#">5</a></li>-->
+                        <!--<li><a href="#">></a></li>-->
                     <!--</ul>-->
-                    <ul class="pagination pagination-info pagination-pos">
-                        <li><a href="#"><</a></li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li class="active"><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">></a></li>
-                    </ul>
 
 
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <div ng-show="selectClient()">
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="card">
+                                <div class="card-header" data-background-color="purple">
+                                    <h4 class="title">Edit Profile</h4>
+                                    <p class="category">Complete your profile</p>
+                                </div>
+                                <div class="card-content">
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Company (disabled)</label>
+                                                    <input type="text" class="form-control" disabled>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Username</label>
+                                                    <input type="text" class="form-control" >
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Email address</label>
+                                                    <input type="email" class="form-control" >
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Fist Name</label>
+                                                    <input type="text" class="form-control" >
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Last Name</label>
+                                                    <input type="text" class="form-control" >
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Adress</label>
+                                                    <input type="text" class="form-control" >
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">City</label>
+                                                    <input type="text" class="form-control" >
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Country</label>
+                                                    <input type="text" class="form-control" >
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Postal Code</label>
+                                                    <input type="text" class="form-control" >
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>About Me</label>
+                                                    <div class="form-group label-floating">
+                                                        <label class="control-label"> Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</label>
+                                                        <textarea class="form-control" rows="5"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <button type="submit" class="btn btn-primary pull-right">Update Profile</button>
+                                        <div class="clearfix"></div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card card-profile">
+                                <div class="card-avatar">
+                                    <a href="#pablo">
+                                        <img class="img" src="../assets/img/faces/marc.jpg" />
+                                    </a>
+                                </div>
+
+                                <div class="content">
+                                    <h6 class="category text-gray">CEO / Co-Founder</h6>
+                                    <h4 class="card-title">Alec Thompson</h4>
+                                    <p class="card-content">
+                                        Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+                                    </p>
+                                    <a href="#pablo" class="btn btn-primary btn-round">Follow</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <!--<div class="row">-->
+                <!--<div class="col-md-3">-->
+                    <!--<div class="card">-->
+                        <!--<div class="card-header" data-background-color="blue">-->
+                            <!--<span class="flip">פרטים אישיים</span>-->
+                        <!--</div>-->
+                        <!--<div class="card-content">-->
+
+                                <!--<div class="form-group">-->
+                                    <!--<input type="text" value="" placeholder="שם" class="form-control" />-->
+
+                                <!--</div>-->
+                            <!--<div class="checkbox">-->
+                                <!--<label>-->
+                                    <!--<input type="checkbox" name="optionsCheckboxes">-->
+                                    <!--זכר-->
+                                <!--</label>-->
+                            <!--</div>-->
+                            <!--<div class="checkbox">-->
+                                <!--<label>-->
+                                    <!--<input type="checkbox" name="optionsCheckboxes" checked>-->
+                                    <!--נקבה-->
+                                <!--</label>-->
+                            <!--</div>-->
+
+                        <!--</div>-->
+                        <!--<div class="card-footer">-->
+                            <!--<div class="stats">-->
+
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="col-md-3">-->
+
+                <!--</div>-->
+                <!--<div class="col-md-3">-->
+
+                <!--</div>-->
+                <!--<div class="col-md-3">-->
+
+                <!--</div>-->
+            <!--</div>-->
         </div>
 
-       <div>
 
-       </div>
-    </div>
+       <!--<div>-->
 
-</div>
+       <!--</div>-->
+    <!--</div>-->
+
+<!--</div>-->
+
+<!--שם-->
+<!--מין-->
+<!--תאריך לידה-->
+<!--סטטוס משפחתי-->
+<!--השכלה : מוסדות-->
+<!--השלכה, שנים-->
+<!--היסטוריה תעסוקתית-->
+<!--כתובת-->
+<!--טלפון-->
+<!--שפות-->
