@@ -1,5 +1,5 @@
 
-var app = angular.module('ganim', ['ui.router'])
+var app = angular.module('ganim', ['ui.router','angularSlideables'])
 
 .config(function($stateProvider, $urlRouterProvider) {
     var addState = {
