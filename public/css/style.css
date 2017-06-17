@@ -94,3 +94,7 @@
     margin-bottom: 0px!important;
     margin-left:calc((100% - 200px)/2)
 }
+.card-flex{
+    display: flex;
+    justify-content: flex-end;
+}
