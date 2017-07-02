@@ -1,7 +1,4 @@
-
-/**
- * Module dependencies.
- */
+"use strict";
 
 var express = require('express'),
     winston = require('winston'),
@@ -10,7 +7,7 @@ var express = require('express'),
     cors = require('cors'),
     passport = require('passport'),
     LocalStrategy    = require('passport-local').Strategy,
-    FacebookStrategy = require('passport-facebook').Strategy
+    FacebookStrategy = require('passport-facebook').Strategy,
     routes = require('./routes');
 
 
@@ -52,6 +49,10 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function (callback) {
   console.log('yay!');
 });
+
+require('./models/users.model.js');
+let userCtrl = require('./controllers/userController.js');
+
 var app = module.exports = express.createServer();
 
 // Configuration
@@ -79,6 +80,25 @@ app.configure('production', function(){
 // Routes
 
 app.get('/', routes.index);
+
+app.get('/users/:page/:limit', (req, res)=>{
+
+    userCtrl.getUsers(req.params.page, req.params.limit)
+    .then((users)=>{
+        res.json({status:'ok', payload:users});
+    }).catch((err)=>{
+
+    })
+});
+app.post('/users', (req, res)=>{
+
+    userCtrl.setUsers(req.body.user)
+        .then((user)=>{
+            res.json({status:'ok', payload:user});
+        }).catch((err)=>{
+
+        })
+});
 
 app.get('/callback',
     passport.authenticate('auth0', { failureRedirect: '/' }),

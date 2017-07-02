@@ -40,8 +40,9 @@ Tip 3: you can change the color of the sidebar with data-background-color="white
             </div>
         </div>
         <ul class="nav">
-            <li class="active">
-                <a>
+
+            <li >
+                <a ng-class="{'active-menu':isActive('users')}">
                     <i class="material-icons">dashboard</i>
                     <p>Manage Users</p>
                 </a>

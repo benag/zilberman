@@ -10,6 +10,10 @@ var userSchema = new Schema({
     lastName: String,
     password: String,
     userName: String,
+    about:String,
+    title: String,
+    img: String,
+    address:String,
     phone: { type : String , unique : true, required : true },
     role: String,
     status: String,// register,verified
@@ -19,4 +23,4 @@ var userSchema = new Schema({
     socketId: String,
     os: String
 });
-mongoose.model('User', clientSchema);
+mongoose.model('User', userSchema);

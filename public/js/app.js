@@ -29,7 +29,7 @@ var app = angular.module('ganim', ['ui.router'])
         name: 'main',
         url: '/main',
         views: {
-            "left-pane": { templateUrl: "templates/left-pane.html", controller: 'LeftPaneController'},
+            "left-pane": { templateUrl: "templates/left-pane.html", controller: 'leftPaneController'},
             "main": { templateUrl: "templates/main.html", controller: 'mainCtrl' }
         }
     };
