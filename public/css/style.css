@@ -127,25 +127,34 @@
 
 }
 .cool-button{
-    background: linear-gradient(60deg, black, black);
+    background: linear-gradient(60deg, #03a9f4, #03a9f4);
     box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(192, 192, 192, 0.4);
     /* width: 50px; */
     /* height: 51px; */
     text-align: center;
     line-height: 15px;
-    border-radius: 3px;
-    padding: 10px;
+    /*border-radius: 50%;*/
+    padding: 9px;
     color: white;
     display: inline;
     position: relative;
     top: -10px;
+    cursor: pointer;
 
 }
 .btn-black{
     background-color: black!important;
 }
 .form-group.is-focused .form-control {
-
     background-image: linear-gradient(black, black), linear-gradient(black, black)!important;
+}
+.minus-pos{
+    position: relative;
+    top: -28px;
+
+}
+.plus-pos{
+    position: relative;
+    top: -28px;
 
 }

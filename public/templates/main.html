@@ -3,19 +3,28 @@
     <div class="content">
         <div class="container-fluid">
             <div class="row">
-                <ul class="pagination pagination-info pagination-pos">
-                    <li><a href="#"><</a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li class="active"><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">></a></li>
-                </ul>
 
-                    <div class="cool-button" >
+
+                <div class="pagination-pos">
+                    <div class="cool-button minus-pos" >
+                        <i class="fa fa-minus" aria-hidden="true"></i>
+                    </div>
+                    <ul class="pagination pagination-info ">
+                        <li><a href="#"><</a></li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li class="active"><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">></a></li>
+                    </ul>
+                    <div class="cool-button plus-pos" >
                         <i class="fa fa-plus" aria-hidden="true"></i>
                     </div>
+                </div>
+
+
+
 
 
             </div>
@@ -34,7 +43,7 @@
                                     <div class="col-md-5">
                                         <div class="form-group label-floating">
                                             <label class="control-label">Company </label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" ng-model="users[currentUser].company">
                                         </div>
                                     </div>
                                     <div class="col-md-3">
@@ -73,7 +82,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group label-floating">
                                             <label class="control-label">Address</label>
-                                            <input type="text" class="form-control">
+                                            <input g-places-autocomplet type="text" ng-model="address" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -102,7 +111,7 @@
                                         <div class="form-group">
                                             <label>About Me</label>
                                             <div class="form-group label-floating">
-                                                <label class="control-label"> Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</label>
+
                                                 <textarea class="form-control" rows="5"></textarea>
                                             </div>
                                         </div>

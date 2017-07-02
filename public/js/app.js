@@ -1,5 +1,5 @@
 
-var app = angular.module('ganim', ['ui.router'])
+var app = angular.module('ganim', ['ui.router','google.places'])
 
 
 .config(function($stateProvider, $urlRouterProvider) {
