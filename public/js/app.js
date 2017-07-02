@@ -1,5 +1,5 @@
 
-var app = angular.module('ganim', ['ui.router','google.places'])
+var app = angular.module('ganim', ['ui.router','vsGoogleAutocomplete'])
 
 
 .config(function($stateProvider, $urlRouterProvider) {
