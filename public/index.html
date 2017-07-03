@@ -117,6 +117,8 @@
         <script src="lib/vsGoogleAutocomplete/dist/vs-google-autocomplete.min.js"></script>
 
 
+        <script src="lib/ng-file-upload/ng-file-upload.min.js"></script>
+
         <script src="https://cdn.auth0.com/js/auth0/8.7/auth0.min.js"></script>
 
         <script type="text/javascript" src="lib/angular-auth0/dist/angular-auth0.js"></script>
@@ -125,7 +127,12 @@
         <script src="js/controllers/mainCtrl.js"></script>
         <script src="js/controllers/leftPaneController.js"></script>
         <script src="js/services/authService.js"></script>
-
+        <script src="js/services/global.js"></script>
+        <script>
+            $(document).ready(function(){
+                $('[data-toggle="tooltip"]').tooltip();
+            });
+        </script>
     
         <!--<script src="lib/auth0-lock/build/lock.js"></script>-->
         <!--<script src="lib/auth0.js/build/auth0.js"></script>-->

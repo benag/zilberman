@@ -13,9 +13,14 @@ userController.getUsers = (page, limit)=>{
     .limit(limit)
 };
 
-userController.setUsers = (user)=>{
+userController.setUser = (user)=>{
 
-    return User.insert()
+
+    let newUser  = new User(user);
+    return newUser.save()
+    .catch((err)=>{
+        console.log(err);
+    })
 
 };
 

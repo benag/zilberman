@@ -8,6 +8,9 @@ var express = require('express'),
     passport = require('passport'),
     LocalStrategy    = require('passport-local').Strategy,
     FacebookStrategy = require('passport-facebook').Strategy,
+    multer  = require('multer'),
+    upload = multer({ dest: 'public/uploads/' }),
+
     routes = require('./routes');
 
 
@@ -90,15 +93,22 @@ app.get('/users/:page/:limit', (req, res)=>{
 
     })
 });
-app.post('/users', (req, res)=>{
+app.post('/user', (req, res)=>{
 
-    userCtrl.setUsers(req.body.user)
+    userCtrl.setUser(req.body.user)
         .then((user)=>{
             res.json({status:'ok', payload:user});
         }).catch((err)=>{
 
         })
 });
+
+app.post('/profile', upload.single('file'), function (req, res, next) {
+    // req.file is the `avatar` file
+    // req.body will hold the text fields, if there were any
+    res.json({status:'ok', payload:'uploads/'+req.file.filename});
+});
+
 
 app.get('/callback',
     passport.authenticate('auth0', { failureRedirect: '/' }),

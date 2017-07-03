@@ -1,5 +1,5 @@
 
-var app = angular.module('ganim', ['ui.router','vsGoogleAutocomplete'])
+var app = angular.module('ganim', ['ui.router','vsGoogleAutocomplete','ngFileUpload'])
 
 
 .config(function($stateProvider, $urlRouterProvider) {

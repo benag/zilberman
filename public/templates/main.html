@@ -16,9 +16,7 @@
                         <li><a href="#">5</a></li>
                         <li><a href="#">></a></li>
                     </ul>
-                    <div class="cool-button plus-pos" >
-                        <i class="fa fa-plus" aria-hidden="true"></i>
-                    </div>
+
                 </div>
 
 
@@ -28,17 +26,24 @@
             </div>
             <div class="row">
                 <div class="col-md-8">
+
                     <div class="card">
+                        <div ng-click="insertUser()" class="cool-button pull-right plus-left" >
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                        </div>
+                        <div class="cool-button pull-right" >
+                            <i class="fa fa-minus" aria-hidden="true"></i>
+                        </div>
                         <div class="card-header card-header-icon btn-black" data-background-color="black">
                             <i class="material-icons"></i>
                         </div>
+
                         <div class="card-content">
-                            <h4 class="card-title">Edit User -
+
+                            <h4 class="card-title">{{mode}} -
                                 <small class="category"></small>
                             </h4>
-                            <div class="cool-button pull-right" >
-                                <i class="fa fa-minus" aria-hidden="true"></i>
-                            </div>
+
                             <form>
                                 <div class="row">
                                     <div class="col-md-5">
@@ -49,11 +54,10 @@
                                     </div>
                                     <div class="col-md-3">
                                         <!--selectpicker-->
-                                        <select class="" data-style="select-with-transition" multiple title="Choose City" data-size="7">
+                                        <select class="" ng-model="users[currentUser].profession" data-style="select-with-transition" multiple title="Choose Profession" data-size="7">
                                             <option disabled> Profession</option>
                                             <option value="2">Architect </option>
                                             <option value="3">Carpenter</option>
-
 
                                         </select>
 
@@ -61,7 +65,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group label-floating">
                                             <label class="control-label">Email address</label>
-                                            <input type="email" class="form-control">
+                                            <input type="email" ng-model="users[currentUser].email" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -69,13 +73,13 @@
                                     <div class="col-md-6">
                                         <div class="form-group label-floating">
                                             <label class="control-label">Fist Name</label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" ng-model="users[currentUser].firstName" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group label-floating">
                                             <label class="control-label">Last Name</label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" ng-model="users[currentUser].lastName" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -83,7 +87,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group label-floating">
                                             <label class="control-label">Address</label>
-                                            <input vs-google-autocomplete type="text" ng-model="address" class="form-control">
+                                            <input vs-google-autocomplete type="text" ng-model="users[currentUser].address" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -113,28 +117,28 @@
                                             <label>About Me</label>
                                             <div class="form-group label-floating">
 
-                                                <textarea class="form-control" rows="5"></textarea>
+                                                <textarea class="form-control" ng-model="users[currentUser].about" rows="5"></textarea>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-5 col-md-6 col-sm-3">
-                                        <select class="selectpicker" data-style="btn btn-primary btn-round" title="Single Select" data-size="7">
-                                            <option disabled selected>Choose city</option>
-                                            <option value="2">Foobar</option>
-                                            <option value="3">Is great</option>
-                                        </select>
+                                        <!--<select class="selectpicker" data-style="btn btn-primary btn-round" title="Single Select" data-size="7">-->
+                                            <!--<option disabled selected>Choose city</option>-->
+                                            <!--<option value="2">Foobar</option>-->
+                                            <!--<option value="3">Is great</option>-->
+                                        <!--</select>-->
                                     </div>
                                     <div class="col-lg-5 col-md-6 col-sm-3">
-                                        <select class="selectpicker" data-style="select-with-transition" multiple title="Choose City" data-size="7">
-                                            <option disabled> Choose city</option>
-                                            <option value="2">Paris </option>
+                                        <!--<select class="selectpicker" data-style="select-with-transition" multiple title="Choose City" data-size="7">-->
+                                            <!--<option disabled> Choose city</option>-->
+                                            <!--<option value="2">Paris </option>-->
 
-                                        </select>
+                                        <!--</select>-->
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-black pull-right">Update Profile</button>
+                                <button type="submit" ng-click="submitUser()" class="btn btn-black pull-right">{{mode}}</button>
                                 <div class="clearfix"></div>
                             </form>
                         </div>
@@ -143,24 +147,44 @@
                 <div class="col-md-4">
                     <div class="card card-profile">
                         <div class="card-avatar">
-                            <a href="#pablo">
-                                <img class="img" src="../../assets/img/faces/marc.jpg" />
+                            <a ngf-select="uploadFiles($file, $invalidFiles)"
+                               accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
+                                <img class="img" src="{{users[currentUser].img}}" />
                             </a>
                         </div>
                         <div class="card-content">
-                            <h6 class="category text-gray">CEO / Co-Founder</h6>
-                            <h4 class="card-title">Alec Thompson</h4>
+                            <h6 class="category text-gray">{{users[currentUser].profession}}</h6>
+                            <h4 class="card-title">{{users[currentUser].firstName}} {{users[currentUser].lastName}}</h4>
                             <p class="description">
-                                Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+                                {{users[currentUser].about}}
                             </p>
-                            <a href="#pablo" class="btn btn-round">Follow</a>
+                            <a class="btn btn-round">{{points}} points</a>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row">
+                <div class="pagination-pos">
+
+                    <ul class="pagination pagination-info ">
+                        <li><a href="#"><</a></li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li class="active"><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">></a></li>
+                    </ul>
+
+                </div>
                 <div class="col-md-8">
                     <div class="card">
+                        <div data-toggle="tooltip" title="Hooray!" class="cool-button pull-right plus-left" >
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                        </div>
+                        <div class="cool-button pull-right" >
+                            <i class="fa fa-minus" aria-hidden="true"></i>
+                        </div>
                         <div class="card-header card-header-icon btn-black" data-background-color="black">
                             <i class="material-icons"></i>
                         </div>
@@ -179,13 +203,13 @@
                                     <div class="col-md-3">
 
 
-                                        <select class="selectpicker" data-style="select-with-transition" multiple title="Choose City" data-size="7">
-                                            <option disabled> Choose city</option>
-                                            <option value="2">Paris </option>
-                                            <option value="3">Bucharest</option>
+                                        <!--<select class="selectpicker" data-style="select-with-transition" multiple title="Choose City" data-size="7">-->
+                                            <!--<option disabled> Choose city</option>-->
+                                            <!--<option value="2">Paris </option>-->
+                                            <!--<option value="3">Bucharest</option>-->
 
 
-                                        </select>
+                                        <!--</select>-->
 
                                     </div>
                                     <div class="col-md-4">
