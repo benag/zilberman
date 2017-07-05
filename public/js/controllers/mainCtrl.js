@@ -4,13 +4,19 @@ angular.module('ganim').controller('mainCtrl', ['$scope', '$stateParams', '$loca
         // get first 5
         $scope.page = 0;
         $scope.limit = 5;
-        $scope.currentUser = 3;
+        $scope.currentUser = 1;
         $scope.users = [{},{},{},{},{}];
         $scope.newUser = {};
         $scope.newProject= {};
         $scope.mode = 'Edit User';
+        $scope.projectMode = 'Update Project';
+        $scope.project = {};
 
 
+        $scope.newProject = function(){
+            $scope.projectMode = 'Add Project';
+
+        }
         $scope.insertUser = function(){
 
             $scope.currentUser = 0;
@@ -46,22 +52,28 @@ angular.module('ganim').controller('mainCtrl', ['$scope', '$stateParams', '$loca
                         evt.loaded / evt.total));
                 });
             }
-        }
+        };
 
 
-        $http.get('/users/'+$scope.page + '/' + $scope.limit, function(users){
-            $scope.users = users;
-            if (users.length < 5){
-                var length = users.length;
-                for (var i = 0; i < 5 - length; i++){
-                    $scope.users.push(
-                        {
+        $scope.page = function(number){
 
-                        }
-                    )
-                }
-            }
+            if(number > $scope.users.length) return;
+            $scope.currentUser = number;
+        };
 
+        $scope.disabled = function(number){
+            if(number > $scope.users.length) return true;
+            return false;
+        };
+
+        $scope.addProject = function(){
+          $http.post('/project/' + $scope.users[$scope.currentUser]._id , {project:$scope.project})
+        };
+
+        $http.get('/users/'+$scope.page + '/' + $scope.limit)
+        .then(function(data){
+            $scope.users = data.data.payload;
+            $scope.currentUser = 1;
 
         });
 

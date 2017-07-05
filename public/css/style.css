@@ -32,7 +32,7 @@
     line-height: 30px;
     color: #999999;
     font-weight: 400;
-    font-size: 12px;
+    font-size: 16px;
     text-transform: uppercase;
     background: transparent;
 }
@@ -164,4 +164,11 @@
 }
 .pagination-projects{
     margin: 20px 20px -15px 0!important;
+}
+.pagination-user{
+    cursor: pointer;
+}
+.disabled{
+    color:whitesmoke;
+    cursor: not-allowed;
 }

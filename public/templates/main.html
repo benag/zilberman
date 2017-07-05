@@ -9,12 +9,12 @@
 
                     <ul class="pagination pagination-info ">
                         <li><a href="#"><</a></li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li class="active"><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">></a></li>
+                        <li ng-class="{'active':currentUser === 1}"><a ng-click="page(1)" class="pagination-user" ng-class = "{'disabled':disabled(1)}">1</a></li>
+                        <li ng-class="{'active':currentUser === 2}"><a ng-click="page(2)" class="pagination-user" ng-class = "{'disabled':disabled(2)}">2</a></li>
+                        <li ng-class="{'active':currentUser === 3}"> <a ng-click="page(3)" class="pagination-user" ng-class = "{'disabled':disabled(3)}" >3</a></li>
+                        <li ng-class="{'active':currentUser === 4}"><a ng-click="page(4)" class="pagination-user" ng-class = "{'disabled':disabled(4)}">4</a></li>
+                        <li ng-class="{'active':currentUser === 5}"><a ng-click="page(5)" class="pagination-user" ng-class = "{'disabled':disabled(5)}">5</a></li>
+                        <li><a>></a></li>
                     </ul>
 
                 </div>
@@ -53,13 +53,17 @@
                                         </div>
                                     </div>
                                     <div class="col-md-3">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Profession </label>
+                                            <input type="text" class="form-control" ng-model="users[currentUser].profession">
+                                        </div>
                                         <!--selectpicker-->
-                                        <select class="" ng-model="users[currentUser].profession" data-style="select-with-transition" multiple title="Choose Profession" data-size="7">
-                                            <option disabled> Profession</option>
-                                            <option value="2">Architect </option>
-                                            <option value="3">Carpenter</option>
+                                        <!--<select class="" ng-model="users[currentUser].profession" data-style="select-with-transition" multiple title="Choose Profession" data-size="7">-->
+                                            <!--<option disabled> Profession</option>-->
+                                            <!--<option value="2">Architect </option>-->
+                                            <!--<option value="3">Carpenter</option>-->
 
-                                        </select>
+                                        <!--</select>-->
 
                                     </div>
                                     <div class="col-md-4">
@@ -179,7 +183,7 @@
                 </div>
                 <div class="col-md-8">
                     <div class="card">
-                        <div data-toggle="tooltip" title="Hooray!" class="cool-button pull-right plus-left" >
+                        <div ng-click="newProject();" data-toggle="tooltip" title="Hooray!" class="cool-button pull-right plus-left" >
                             <i class="fa fa-plus" aria-hidden="true"></i>
                         </div>
                         <div class="cool-button pull-right" >
@@ -263,7 +267,7 @@
                                 </div>
 
 
-                                <button type="submit" class="btn btn-black pull-right">Update Profile</button>
+                                <button type="submit" ng-click="addProject()" class="btn btn-black pull-right">{{projectMode}}</button>
                                 <div class="clearfix"></div>
                             </form>
                         </div>

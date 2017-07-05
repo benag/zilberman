@@ -3,6 +3,7 @@
 
 let mongoose = require('mongoose');
 let User = mongoose.model('User');
+let Project = mongoose.model('User');
 
 let userController ={};
 
@@ -13,8 +14,8 @@ userController.getUsers = (page, limit)=>{
     .limit(limit)
 };
 
-userController.setUser = (user)=>{
 
+userController.setUser = (user)=>{
 
     let newUser  = new User(user);
     return newUser.save()
@@ -23,6 +24,19 @@ userController.setUser = (user)=>{
     })
 
 };
+userController.setProject = (id, project)=>{
+
+    let newProject  = new Project(project);
+    newProject.save()
+    .then((project)=>{
+        User.
+    })
+    .catch((err)=>{
+        console.log(err);
+    })
+
+};
+
 
 
 

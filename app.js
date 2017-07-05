@@ -1,4 +1,4 @@
-"use strict";
+//"use strict";
 
 var express = require('express'),
     winston = require('winston'),
@@ -16,35 +16,6 @@ var express = require('express'),
 
 
 var dbConfig = config.get('database');
-winston.add(winston.transports.File, {
-  filename: 'public/logs/bulldog.log',
-  handleExceptions: true,
-  humanReadableUnhandledException: true
-});
-
-//require('models/users.model.js');
-//var User = mongoose.model('User');
-
-//let strategy = new Auth0Strategy({
-//    domain:       'ganim.auth0.com',
-//    clientID:     'wrHwIUz1KJE9NxE86oiyB7cE9zqSanO2',
-//    clientSecret: 'fz6Pjvn6NY7qtdqicQBizJ3fQkHPbxhlYaQbhMt6XqXIjv38eTYjQqxJ4vB3wCi_',
-//    callbackURL:  'http://localhost:4000/callback'
-//}, function(accessToken, refreshToken, extraParams, profile, done) {
-//    // profile has all the information from the user
-//    return done(null, profile);
-//});
-
-//passport.use(strategy);
-//
-//passport.serializeUser(function(user, done) {
-//    done(null, user);
-//});
-//
-//passport.deserializeUser(function(user, done) {
-//    done(null, user);
-//});
-
 
 mongoose.connect(dbConfig.get('path') + dbConfig.get('name'));
 var db = mongoose.connection;
@@ -54,7 +25,7 @@ db.once('open', function (callback) {
 });
 
 require('./models/users.model.js');
-let userCtrl = require('./controllers/userController.js');
+var userCtrl = require('./controllers/userController.js');
 
 var app = module.exports = express.createServer();
 
@@ -84,10 +55,10 @@ app.configure('production', function(){
 
 app.get('/', routes.index);
 
-app.get('/users/:page/:limit', (req, res)=>{
+app.get('/users/:page/:limit', function(req, res){
 
     userCtrl.getUsers(req.params.page, req.params.limit)
-    .then((users)=>{
+    .then(function(users){
         res.json({status:'ok', payload:users});
     }).catch((err)=>{
 
@@ -96,9 +67,19 @@ app.get('/users/:page/:limit', (req, res)=>{
 app.post('/user', (req, res)=>{
 
     userCtrl.setUser(req.body.user)
-        .then((user)=>{
+        .then(function(user){
             res.json({status:'ok', payload:user});
-        }).catch((err)=>{
+        }).catch(function(err){
+
+        })
+});
+
+app.post('/project/:userId', (req, res)=>{
+
+    userCtrl.setProject(req,params.userId, req.body.project)
+        .then(function(project){
+            res.json({status:'ok', payload:project});
+        }).catch(function(err){
 
         })
 });

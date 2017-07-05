@@ -11,7 +11,7 @@
     "passport-auth0": "^0.6.0"
   },
   "devDependencies": {
-    "config": "^1.21.0",
+    "config": "^1.26.1",
     "cors": "^2.8.3",
     "mongoose": "^4.6.1",
     "node-restful": "^0.2.5",
