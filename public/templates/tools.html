@@ -13,8 +13,8 @@
                     </div>
                     <div class="card-content">
                         <div class="row">
-                            <label class="col-sm-2 label-on-left">Enter Facebook Id (http://getuserid.com/)</label>
-                            <div class="col-sm-4">
+                            <label class="col-sm-2 label-on-left">Enter URL</label>
+                            <div class="col-sm-7">
                                 <div class="form-group label-floating is-empty ">
                                     <label class="control-label"></label>
                                     <input type="text" class="form-control" placeholder="id" ng-model="faceBookId" value="">
@@ -31,19 +31,114 @@
                                         <li><a ng-click="options('User')">User</a></li>
                                     </ul>
                                 </div>
+                                <button ng-click="scan()" class="btn btn-primary btn-black">Scan</button>
 
                             </div>
-                            <div class="col-sm-3">
-                                <button ng-click="scan()" class="btn btn-primary btn-black">Scan</button>
-                            </div>
+
                         </div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+
     <div class="row" ng-show="dataArrived">
+        <div class="col-md-8">
+
+            <div class="card">
+
+                <div class="card-content">
+
+                    <h4 class="card-title">{{}} -
+                        <small class="category"></small>
+                    </h4>
+
+                    <form>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="form-group label-floating">
+                                    <label class="control-label">About </label>
+                                    <input type="text" class="form-control" ng-model="facebookData.about">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Company Overview </label>
+                                    <input type="text" class="form-control" ng-model="facebookData.company_overview">
+                                </div>
+
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group label-floating">
+                                    <label class="control-label">General Info</label>
+                                    <input type="email" ng-model="facebookData.general_info" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Email</label>
+                                    <input type="text" ng-model="facebookData.emails[0]" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Link</label>
+                                    <input type="text" ng-model="facebookData.link" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Contact Address</label>
+                                    <input vs-google-autocomplete type="text" ng-model="facebookData.contact_address" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Contact Address</label>
+                                    <input type="text" ng-model="facebookData.mission" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Phone</label>
+                                    <input type="text" ng-model="facebookData.phone" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Website</label>
+                                    <input type="text" ng-model="facebookData.website" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Description</label>
+                                    <div class="form-group label-floating">
+
+                                        <textarea class="form-control" ng-model="facebookData.description" rows="5"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" ng-click="Upload()" class="btn btn-black pull-right">Upload to the system</button>
+                        <div class="clearfix"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
 
     </div>
+
+
 
 </div>

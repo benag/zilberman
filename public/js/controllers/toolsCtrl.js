@@ -24,36 +24,30 @@ angular.module('ganim').controller('toolsCtrl', ['$scope', '$stateParams', '$loc
 
 
         $scope.options='Page';
-        $scope.getIFromURL= function(user){
-            return $http.get('https://graph.facebook.com/' + user + '?access_token='+$scope.token);
+
+        $scope.Upload = function(){
 
         };
         $scope.scan = function(){
-            $scope.getIFromURL($scope.faceBookUser)
-            .then((userObj)=>{
-                FB.login(function(response) {
-                    if (response.authResponse) {
-                        FB.api(
-                            userObj.id,{fields: ['about', 'company_overview','contact_address','description','emails','general_info','link','mission','phone','website']},
-                            function (response) {
-                                if (response && !response.error) {
-                                    /* handle the result */
-                                }
+            FB.login(function(response) {
+                if (response.authResponse) {
+                    //website
+                    FB.api(
+                        $scope.faceBookUser
+                        ,{fields: ['about', 'company_overview','contact_address','description','emails','general_info','link','mission','phone']},
+                        function (response) {
+                            if (response && !response.error) {
+                                $scope.dataArrived = true;
+                                $scope.facebookData = response;
+
                             }
-                        );
-                    } else {
-                        //login cancelled or not every permission accepted
-                    }
-                }, {scope: 'manage_pages'}); //additional permissions
-            });
-        //'261984437274381'
+                        }
+                    );
+                } else {
+                    //login cancelled or not every permission accepted
+                }
+            }, {scope: 'manage_pages'}); //additional permissions
 
-
-
-            //$http.post('scan',{facebookId:$scope.id})
-            //.then((result)=>{
-            //    $scope.result = result;
-            //})
         }
     }
 ]);
