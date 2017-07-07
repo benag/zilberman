@@ -90,6 +90,12 @@ app.post('/profile', upload.single('file'), function (req, res, next) {
     res.json({status:'ok', payload:'uploads/'+req.file.filename});
 });
 
+app.post('/scan', (req, res)=>{
+
+})
+app.post('/auth/facebook/callback', (req, res)=>{
+
+})
 
 app.get('/callback',
     passport.authenticate('auth0', { failureRedirect: '/' }),
@@ -100,3 +106,9 @@ app.get('/callback',
 app.listen(4000, function(){
   console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
 });
+//var graph = require('fbgraph');
+//var authUrl = graph.getOauthUrl({
+//    "client_id":     '107630506476024'
+//    , "redirect_uri":  'http://localhost:4000/auth/facebook/callback'
+//});
+//res.redirect(authUrl);

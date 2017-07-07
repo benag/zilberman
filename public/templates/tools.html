@@ -1,0 +1,49 @@
+
+
+<br/><br/><br/><br/><br/>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <form method="get" action="/" class="form-horizontal">
+                    <div class="card-header card-header-text btn-black" data-background-color="black">
+                        <h4 class="card-title">Scan Facebook Pages</h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="row">
+                            <label class="col-sm-2 label-on-left">Enter Facebook Id (http://getuserid.com/)</label>
+                            <div class="col-sm-4">
+                                <div class="form-group label-floating is-empty ">
+                                    <label class="control-label"></label>
+                                    <input type="text" class="form-control" placeholder="id" ng-model="faceBookId" value="">
+                                    <span class="material-icons form-control-feedback">done</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="dropdown">
+                                    <button class="btn btn-primary dropdown-toggle btn-black" type="button" data-toggle="dropdown">{{options}}
+                                        <span class="caret"></span></button>
+                                    <ul class="dropdown-menu">
+                                        <li><a ng-click="options('Page')">Page</a></li>
+                                        <li><a ng-click="options('Group')">Group</a></li>
+                                        <li><a ng-click="options('User')">User</a></li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                            <div class="col-sm-3">
+                                <button ng-click="scan()" class="btn btn-primary btn-black">Scan</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-show="dataArrived">
+
+    </div>
+
+</div>

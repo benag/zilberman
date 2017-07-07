@@ -29,7 +29,7 @@ userController.setProject = (id, project)=>{
     let newProject  = new Project(project);
     newProject.save()
     .then((project)=>{
-        User.
+        //User.
     })
     .catch((err)=>{
         console.log(err);

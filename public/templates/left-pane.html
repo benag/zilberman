@@ -42,7 +42,7 @@ Tip 3: you can change the color of the sidebar with data-background-color="white
         <ul class="nav">
 
             <li >
-                <a ng-class="{'active-menu':isActive('users')}">
+                <a ng-click="goto('main')" ng-class="{'active-menu':isActive('users')}">
                     <i class="material-icons">dashboard</i>
                     <p>Manage Users</p>
                 </a>
@@ -69,6 +69,12 @@ Tip 3: you can change the color of the sidebar with data-background-color="white
                 <a>
                     <i class="material-icons">dashboard</i>
                     <p>Scheduling</p>
+                </a>
+            </li>
+            <li >
+                <a ng-click="goto('tools')" ng-class="{'active-menu':isActive('tools')}">
+                    <i class="material-icons">dashboard</i>
+                    <p>Tools</p>
                 </a>
             </li>
             <!--<li>-->
