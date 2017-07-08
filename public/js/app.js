@@ -41,6 +41,14 @@ var app = angular.module('ganim', ['ui.router','vsGoogleAutocomplete','ngFileUpl
             "main": { templateUrl: "templates/tools.html", controller: 'toolsCtrl' }
         }
     };
+    var search = {
+        name: 'search',
+        url: '/search',
+        views: {
+            "left-pane": { templateUrl: "templates/left-pane.html", controller: 'leftPaneController'},
+            "main": { templateUrl: "templates/search.html", controller: 'searchCtrl' }
+        }
+    };
 
     var login = {
         name: 'login',
@@ -53,6 +61,7 @@ var app = angular.module('ganim', ['ui.router','vsGoogleAutocomplete','ngFileUpl
     };
 
     $stateProvider.state(login);
+    $stateProvider.state(search);
     $stateProvider.state(main);
     $stateProvider.state(tools);
     $urlRouterProvider.otherwise('/login');

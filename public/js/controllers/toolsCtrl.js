@@ -1,10 +1,10 @@
-angular.module('ganim').controller('toolsCtrl', ['$scope', '$stateParams', '$location', '$state',
-    function($scope, $stateParams, $location, $state) {
+angular.module('ganim').controller('toolsCtrl', ['$scope', '$stateParams', '$location', '$state','$http',
+    function($scope, $stateParams, $location, $state, $http) {
 
         $scope.token = 'EAABh464bAfgBABoJ0xB3jiNldZArxBGfbE9S88d0wFJSY2ZCTNqtFGMO9btGflis6jE9ZAZC1PtKURR8AERuTbF2ecucwLan56BlRtdfgRw50lPMJQuDT0zrJ4zX3giLuvd69RhTblZA3zgyJLxYAVUvmYr0hJjij356lBzEyO1iwqO3dsyDJxezEdgRf7yoZD';
         $scope.faceBookUser ='';
         $scope.dataArrived = false;
-
+        $scope.facebookData = {};
         window.fbAsyncInit = function() {
             FB.init({
                 appId      : '107630506476024',
@@ -26,20 +26,35 @@ angular.module('ganim').controller('toolsCtrl', ['$scope', '$stateParams', '$loc
         $scope.options='Page';
 
         $scope.Upload = function(){
-
+            $http.post('/scan/upload',{facebookData:$scope.facebookData})
+            .then(function(){
+                alert('User added');
+            })
         };
         $scope.scan = function(){
             FB.login(function(response) {
                 if (response.authResponse) {
-                    //website
+                    //website,'link','description','emails','general_info','mission','phone', 'company_overview','contact_address'
+                    //'link','description','emails','general_info','mission','phone', 'company_overview','contact_address','website'
                     FB.api(
                         $scope.faceBookUser
-                        ,{fields: ['about', 'company_overview','contact_address','description','emails','general_info','link','mission','phone']},
+                        ,{fields: ['about','link','description','emails','general_info','mission','phone', 'company_overview','contact_address','website']},
                         function (response) {
                             if (response && !response.error) {
-                                $scope.dataArrived = true;
-                                $scope.facebookData = response;
-
+                                $scope.$applyAsync(function(){
+                                    $scope.dataArrived = true;
+                                    $scope.facebookData = response;
+                                })
+                            }
+                        }
+                    );
+                    FB.api(
+                        $scope.faceBookUser+'/picture'
+                        ,function (response) {
+                            if (response && !response.error) {
+                                $scope.$applyAsync(function(){
+                                    $scope.facebookData.img = response;
+                                })
                             }
                         }
                     );

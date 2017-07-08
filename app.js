@@ -1,4 +1,4 @@
-//"use strict";
+"use strict";
 
 var express = require('express'),
     winston = require('winston'),
@@ -25,6 +25,7 @@ db.once('open', function (callback) {
 });
 
 require('./models/users.model.js');
+require('./models/projects.model.js');
 var userCtrl = require('./controllers/userController.js');
 
 var app = module.exports = express.createServer();
@@ -76,11 +77,11 @@ app.post('/user', (req, res)=>{
 
 app.post('/project/:userId', (req, res)=>{
 
-    userCtrl.setProject(req,params.userId, req.body.project)
+    userCtrl.setProject(req.params.userId, req.body.project)
         .then(function(project){
             res.json({status:'ok', payload:project});
         }).catch(function(err){
-
+            console.log(err);
         })
 });
 
@@ -90,9 +91,31 @@ app.post('/profile', upload.single('file'), function (req, res, next) {
     res.json({status:'ok', payload:'uploads/'+req.file.filename});
 });
 
-app.post('/scan', (req, res)=>{
+app.post('/scan/upload', (req, res)=>{
 
-})
+    let user = {};
+    let facebookData = req.body.facebookData;
+    facebookData.about ? user.about = facebookData.about : user.about = undefined;
+    facebookData.phone ? user.phone = facebookData.phone : user.phone = undefined;
+    user.role = 'user';
+    facebookData.description ? user.description = facebookData.description: user.description = undefined;
+    facebookData.emails[0] ? user.email = facebookData.emails[0]: user.email = undefined;
+    facebookData.contact_address ? user.address = facebookData.contact_address : user.address = undefined;
+    facebookData.website ? user.website = facebookData.website: user.website = undefined;
+    user.company = facebookData.company;
+    user.firstName =  facebookData.firstName;
+    user.lastName =  facebookData.lastName;
+    user.profession = facebookData.profession;
+
+    userCtrl.setUser(user)
+    .then(function(user){
+        res.json({status:'ok', payload:user});
+    }).catch(function(err){
+
+    })
+
+});
+
 app.post('/auth/facebook/callback', (req, res)=>{
 
 })

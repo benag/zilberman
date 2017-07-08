@@ -5,6 +5,7 @@ angular.module('ganim').controller('leftPaneController', ['$scope', '$stateParam
             $scope.currenet = state;
             $state.go(state);
         }
+
         $scope.isActive = function(menu){
             return (menu === $scope.currenet);
         }

@@ -1,23 +1,23 @@
-<div class="main-panel">
+<div class="main-panel" ng-init="init()">
    <div ng-include="'templates/header.html'"></div>
     <div class="content">
         <div class="container-fluid">
             <div class="row">
 
 
-                <div class="pagination-pos">
+                <!--<div class="pagination-pos">-->
 
-                    <ul class="pagination pagination-info ">
-                        <li><a href="#"><</a></li>
-                        <li ng-class="{'active':currentUser === 1}"><a ng-click="page(1)" class="pagination-user" ng-class = "{'disabled':disabled(1)}">1</a></li>
-                        <li ng-class="{'active':currentUser === 2}"><a ng-click="page(2)" class="pagination-user" ng-class = "{'disabled':disabled(2)}">2</a></li>
-                        <li ng-class="{'active':currentUser === 3}"> <a ng-click="page(3)" class="pagination-user" ng-class = "{'disabled':disabled(3)}" >3</a></li>
-                        <li ng-class="{'active':currentUser === 4}"><a ng-click="page(4)" class="pagination-user" ng-class = "{'disabled':disabled(4)}">4</a></li>
-                        <li ng-class="{'active':currentUser === 5}"><a ng-click="page(5)" class="pagination-user" ng-class = "{'disabled':disabled(5)}">5</a></li>
-                        <li><a>></a></li>
-                    </ul>
+                    <!--<ul class="pagination pagination-info ">-->
+                        <!--<li><a ng-click="loadBack()"><</a></li>-->
+                        <!--<li ng-class="{'active':currentUser === 1}"><a ng-click="getPage(1)" class="pagination-user" class="pag-class" ng-class = "{'disabled':disabled(1)}">1</a></li>-->
+                        <!--<li ng-class="{'active':currentUser === 2}"><a ng-click="getPage(2)" class="pagination-user" ng-class = "{'disabled':disabled(2)}">2</a></li>-->
+                        <!--<li ng-class="{'active':currentUser === 3}"> <a ng-click="getPage(3)" class="pagination-user" ng-class = "{'disabled':disabled(3)}" >3</a></li>-->
+                        <!--<li ng-class="{'active':currentUser === 4}"><a ng-click="getPage(4)" class="pagination-user" ng-class = "{'disabled':disabled(4)}">4</a></li>-->
+                        <!--<li ng-class="{'active':currentUser === 5}"><a ng-click="getPage(5)" class="pagination-user" ng-class = "{'disabled':disabled(5)}">5</a></li>-->
+                        <!--<li><a ng-click="loadNext()">></a></li>-->
+                    <!--</ul>-->
 
-                </div>
+                <!--</div>-->
 
 
 
@@ -28,15 +28,25 @@
                 <div class="col-md-8">
 
                     <div class="card">
-                        <div ng-click="insertUser()" class="cool-button pull-right plus-left" >
-                            <i class="fa fa-plus" aria-hidden="true"></i>
-                        </div>
-                        <div class="cool-button pull-right" >
-                            <i class="fa fa-minus" aria-hidden="true"></i>
-                        </div>
-                        <div class="card-header card-header-icon btn-black" data-background-color="black">
-                            <i class="material-icons"></i>
-                        </div>
+                        <!--<div class="dropdown edit-pos">-->
+                            <!--<button class="btn btn-primary dropdown-toggle btn-black " type="button" data-toggle="dropdown">{{options}}-->
+                                <!--<span class="caret"></span></button>-->
+                            <!--<ul class="dropdown-menu">-->
+                                <!--<li><a ng-click="setOptions('Edit')">Edit User</a></li>-->
+                                <!--<li><a ng-click="setOptions('New')">New User</a></li>-->
+                                <!--<li><a ng-click="setOptions('Remove')">Remove User</a></li>-->
+                            <!--</ul>-->
+                        <!--</div>-->
+                        <!--<button class="btn btn-round edit-pos btn-black pull-right">{{mode}}</button>-->
+                        <!--<div ng-click="insertUser()" class="cool-button pull-right plus-left" >-->
+                            <!--<i class="fa fa-plus" aria-hidden="true"></i>-->
+                        <!--</div>-->
+                        <!--<div class="cool-button pull-right" >-->
+                            <!--<i class="fa fa-minus" aria-hidden="true"></i>-->
+                        <!--</div>-->
+                        <!--<div class="card-header card-header-icon btn-black" data-background-color="black">-->
+                            <!--<i class="material-icons"></i>-->
+                        <!--</div>-->
 
                         <div class="card-content">
 
@@ -49,13 +59,13 @@
                                     <div class="col-md-5">
                                         <div class="form-group label-floating">
                                             <label class="control-label">Company </label>
-                                            <input type="text" class="form-control" ng-model="users[currentUser].company">
+                                            <input type="text" class="form-control" ng-model="userMng[state][currentUser].company">
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group label-floating">
                                             <label class="control-label">Profession </label>
-                                            <input type="text" class="form-control" ng-model="users[currentUser].profession">
+                                            <input type="text" class="form-control" ng-model="userMng[state][currentUser].profession">
                                         </div>
                                         <!--selectpicker-->
                                         <!--<select class="selectpicker" data-style="btn btn-primary btn-round" title="Single Select" data-size="7">-->
@@ -68,7 +78,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group label-floating">
                                             <label class="control-label">Email address</label>
-                                            <input type="email" ng-model="users[currentUser].email" class="form-control">
+                                            <input type="email" ng-model="userMng[state][currentUser].email" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -76,13 +86,13 @@
                                     <div class="col-md-6">
                                         <div class="form-group label-floating">
                                             <label class="control-label">Fist Name</label>
-                                            <input type="text" ng-model="users[currentUser].firstName" class="form-control">
+                                            <input type="text" ng-model="userMng[state][currentUser].firstName" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group label-floating">
                                             <label class="control-label">Last Name</label>
-                                            <input type="text" ng-model="users[currentUser].lastName" class="form-control">
+                                            <input type="text" ng-model="userMng[state][currentUser].lastName" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -90,7 +100,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group label-floating">
                                             <label class="control-label">Address</label>
-                                            <input vs-google-autocomplete type="text" ng-model="users[currentUser].address" class="form-control">
+                                            <input vs-google-autocomplete type="text" ng-model="userMng[state][currentUser].address" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -120,25 +130,16 @@
                                             <label>About Me</label>
                                             <div class="form-group label-floating">
 
-                                                <textarea class="form-control" ng-model="users[currentUser].about" rows="5"></textarea>
+                                                <textarea class="form-control" ng-model="userMng[state][currentUser].about" rows="5"></textarea>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-5 col-md-6 col-sm-3">
-                                        <!--<select class="selectpicker" data-style="btn btn-primary btn-round" title="Single Select" data-size="7">-->
-                                            <!--<option disabled selected>Choose city</option>-->
-                                            <!--<option value="2">Foobar</option>-->
-                                            <!--<option value="3">Is great</option>-->
-                                        <!--</select>-->
+
                                     </div>
                                     <div class="col-lg-5 col-md-6 col-sm-3">
-                                        <!--<select class="selectpicker" data-style="select-with-transition" multiple title="Choose City" data-size="7">-->
-                                            <!--<option disabled> Choose city</option>-->
-                                            <!--<option value="2">Paris </option>-->
-
-                                        <!--</select>-->
                                     </div>
                                 </div>
                                 <button type="submit" ng-click="submitUser()" class="btn btn-black pull-right">{{mode}}</button>
@@ -152,42 +153,43 @@
                         <div class="card-avatar">
                             <a ngf-select="uploadFiles($file, $invalidFiles)"
                                accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
-                                <img class="img" src="{{users[currentUser].img}}" />
+                                <img class="img" src="{{userMng[state][currentUser].img}}" />
                             </a>
                         </div>
                         <div class="card-content">
-                            <h6 class="category text-gray">{{users[currentUser].profession}}</h6>
-                            <h4 class="card-title">{{users[currentUser].firstName}} {{users[currentUser].lastName}}</h4>
+                            <h6 class="category text-gray">{{userMng[state][currentUser].profession}}</h6>
+                            <h4 class="card-title">{{userMng[state][currentUser].firstName}} {{userMng[state][currentUser].lastName}}</h4>
                             <p class="description">
-                                {{users[currentUser].about}}
+                                {{userMng[state][currentUser].about}}
                             </p>
-                            <a class="btn btn-round">{{points}} points</a>
+                            <a class="btn btn-round">{{userMng[state][currentUser].points}} points</a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <!--ng-show="userMng[state][currentUser].projects.length >0"-->
+            <div class="row" >
                 <div class="pagination-pos">
 
                     <ul class="pagination pagination-info ">
-                        <li><a href="#"><</a></li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li class="active"><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">></a></li>
+                        <li><a ><</a></li>
+                        <li><a >1</a></li>
+                        <li><a >2</a></li>
+                        <li class="active"><a >3</a></li>
+                        <li><a >4</a></li>
+                        <li><a >5</a></li>
+                        <li><a >></a></li>
                     </ul>
 
                 </div>
                 <div class="col-md-8">
                     <div class="card">
-                        <div ng-click="newProject();" data-toggle="tooltip" title="Hooray!" class="cool-button pull-right plus-left" >
-                            <i class="fa fa-plus" aria-hidden="true"></i>
-                        </div>
-                        <div class="cool-button pull-right" >
-                            <i class="fa fa-minus" aria-hidden="true"></i>
-                        </div>
+                        <!--<div ng-click="insertProject();" data-toggle="tooltip" title="Hooray!" class="cool-button pull-right plus-left" >-->
+                            <!--<i class="fa fa-plus" aria-hidden="true"></i>-->
+                        <!--</div>-->
+                        <!--<div class="cool-button pull-right" >-->
+                            <!--<i class="fa fa-minus" aria-hidden="true"></i>-->
+                        <!--</div>-->
                         <div class="card-header card-header-icon btn-black" data-background-color="black">
                             <i class="material-icons"></i>
                         </div>
@@ -200,7 +202,7 @@
                                     <div class="col-md-5">
                                         <div class="form-group label-floating">
                                             <label class="control-label">Project Name </label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" ng-model="projectMng.newProject[currentProject].name">
                                         </div>
                                     </div>
                                     <div class="col-md-3">
@@ -216,57 +218,26 @@
 
                                     </div>
                                     <div class="col-md-4">
-                                        <!--<div class="form-group label-floating">-->
-                                            <!--<label class="control-label">Email address</label>-->
-                                            <!--<input type="email" class="form-control">-->
-                                        <!--</div>-->
+
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <!--<div class="col-md-6">-->
-                                        <!--<div class="form-group label-floating">-->
-                                            <!--<label class="control-label">Fist Name</label>-->
-                                            <!--<input type="text" class="form-control">-->
-                                        <!--</div>-->
-                                    <!--</div>-->
-                                    <!--<div class="col-md-6">-->
-                                        <!--<div class="form-group label-floating">-->
-                                            <!--<label class="control-label">Last Name</label>-->
-                                            <!--<input type="text" class="form-control">-->
-                                        <!--</div>-->
-                                    <!--</div>-->
+
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group label-floating">
                                             <label class="control-label">Adress</label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" ng-model="projectMng.newProject[currentProject].address" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <!--<div class="col-md-4">-->
-                                        <!--<div class="form-group label-floating">-->
-                                            <!--<label class="control-label">City</label>-->
-                                            <!--<input type="text" class="form-control">-->
-                                        <!--</div>-->
-                                    <!--</div>-->
-                                    <!--<div class="col-md-4">-->
-                                        <!--<div class="form-group label-floating">-->
-                                            <!--<label class="control-label">Country</label>-->
-                                            <!--<input type="text" class="form-control">-->
-                                        <!--</div>-->
-                                    <!--</div>-->
-                                    <!--<div class="col-md-4">-->
-                                        <!--<div class="form-group label-floating">-->
-                                            <!--<label class="control-label">Postal Code</label>-->
-                                            <!--<input type="text" class="form-control">-->
-                                        <!--</div>-->
-                                    <!--</div>-->
+
                                 </div>
 
 
-                                <button type="submit" ng-click="addProject()" class="btn btn-black pull-right">{{projectMode}}</button>
+                                <button type="submit" ng-click="submitProject()" class="btn btn-black pull-right">{{projectMode}}</button>
                                 <div class="clearfix"></div>
                             </form>
                         </div>

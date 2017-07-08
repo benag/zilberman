@@ -1,0 +1,70 @@
+
+<div class="search-pane" ng-init="init()">
+    <div ng-include="'templates/header.html'"></div>
+    <div class="container">
+
+        <div class="row search-content">
+            <div class="col-md-4">
+                <div class="form-group form-search is-empty">
+                    <input type="text" ng-model="searchUserParam" class="form-control" placeholder="Filter By Company Name">
+                    <span class="material-input"></span>
+                </div>
+
+            </div>
+            <div class="col-md-4">
+                <div class="form-group form-search is-empty">
+                    <input type="text" ng-model="searchPointsParam" class="form-control" placeholder="Filter By Points">
+                    <span class="material-input"></span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <button ng-click="" type="submit" class="btn btn-white btn-round btn-just-icon">
+                    <i class="material-icons">search</i>
+                    <div class="ripple-container"></div>
+                </button>
+            </div>
+
+
+        </div>
+        <div class="row ">
+
+            <div class="card">
+                <div class="card-header card-header-icon btn-black" data-background-color="black">
+                    <i class="material-icons">assignment</i>
+                </div>
+                <div class="card-content">
+                    <h4 class="card-title"></h4>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class="text-primary">
+
+                            <th>Company</th>
+                            <th>first Name</th>
+                            <th>Last Name</th>
+                            <th>points</th>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="user in users track by $index" ng-click="gotoUser($index)">
+
+                                <td >{{user.company}}</td>
+                                <td>{{user.firstName}}</td>
+                                <td>{{user.lastName}}</td>
+                                <td>{{user.points}}</td>
+                            </tr>
+                            <!-- -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+

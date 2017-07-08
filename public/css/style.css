@@ -172,3 +172,19 @@
     color:whitesmoke;
     cursor: not-allowed;
 }
+.drop-pos{
+    display:inline-block;
+}
+.pag-class{
+    cursor: pointer;
+}
+.search-content{
+    margin-top:70px;
+}
+
+.nav li a {
+    cursor: pointer;
+}
+.search-pane table tr{
+    cursor: pointer;
+}

@@ -9,7 +9,7 @@
             <div class="card">
                 <form method="get" action="/" class="form-horizontal">
                     <div class="card-header card-header-text btn-black" data-background-color="black">
-                        <h4 class="card-title">Scan Facebook Pages</h4>
+                        <h4 class="card-title">Import Facebook Pages</h4>
                     </div>
                     <div class="card-content">
                         <div class="row">
@@ -17,12 +17,12 @@
                             <div class="col-sm-7">
                                 <div class="form-group label-floating is-empty ">
                                     <label class="control-label"></label>
-                                    <input type="text" class="form-control" placeholder="id" ng-model="faceBookId" value="">
+                                    <input type="text" class="form-control" placeholder="id" ng-model="faceBookUser" value="">
                                     <span class="material-icons form-control-feedback">done</span>
                                 </div>
                             </div>
                             <div class="col-sm-3">
-                                <div class="dropdown">
+                                <div class="dropdown drop-pos">
                                     <button class="btn btn-primary dropdown-toggle btn-black" type="button" data-toggle="dropdown">{{options}}
                                         <span class="caret"></span></button>
                                     <ul class="dropdown-menu">
@@ -31,7 +31,7 @@
                                         <li><a ng-click="options('User')">User</a></li>
                                     </ul>
                                 </div>
-                                <button ng-click="scan()" class="btn btn-primary btn-black">Scan</button>
+                                <button ng-click="scan()" class="btn btn-primary btn-black">Import</button>
 
                             </div>
 
@@ -42,8 +42,8 @@
         </div>
     </div>
 
-    <div class="row" ng-show="dataArrived">
-        <div class="col-md-8">
+    <div class="row" >
+        <div class="col-md-12">
 
             <div class="card">
 
@@ -55,23 +55,49 @@
 
                     <form>
                         <div class="row">
-                            <div class="col-md-5">
+                            <div class="col-md-3">
                                 <div class="form-group label-floating">
-                                    <label class="control-label">About </label>
-                                    <input type="text" class="form-control" ng-model="facebookData.about">
+                                    <label class="control-label">Company Name</label>
+                                    <input type="text" ng-model="facebookData.company" class="form-control">
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group label-floating">
+                                    <label class="control-label">First Name</label>
+                                    <input type="text" ng-model="facebookData.firstName" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Last Name</label>
+                                    <input type="text" ng-model="facebookData.lastName" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Profession</label>
+                                    <input type="text" ng-model="facebookData.profession" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group label-floating">
+                                    <label class="control-label">About </label>
+                                    <textarea class="form-control" ng-model="facebookData.about" rows="3"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group label-floating">
                                     <label class="control-label">Company Overview </label>
-                                    <input type="text" class="form-control" ng-model="facebookData.company_overview">
+                                    <textarea class="form-control" ng-model="facebookData.company_overview" rows="3"></textarea>
                                 </div>
 
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group label-floating">
                                     <label class="control-label">General Info</label>
-                                    <input type="email" ng-model="facebookData.general_info" class="form-control">
+                                    <textarea class="form-control" ng-model="facebookData.general_info" rows="3"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -98,12 +124,6 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group label-floating">
-                                    <label class="control-label">Contact Address</label>
-                                    <input type="text" ng-model="facebookData.mission" class="form-control">
-                                </div>
-                            </div>
                             <div class="col-md-4">
                                 <div class="form-group label-floating">
                                     <label class="control-label">Phone</label>
