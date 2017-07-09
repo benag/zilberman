@@ -1,5 +1,5 @@
 
-<div class="search-pane" ng-init="init()">
+<div class="main-panel search-pane" ng-init="init()">
     <div ng-include="'templates/header.html'"></div>
     <div class="container">
 
@@ -38,18 +38,22 @@
                         <table class="table">
                             <thead class="text-primary">
 
-                            <th>Company</th>
+                            <th class="table-header">Company</th>
                             <th>first Name</th>
                             <th>Last Name</th>
                             <th>points</th>
+                            <th>Action</th>
                             </thead>
                             <tbody>
-                            <tr ng-repeat="user in users track by $index" ng-click="gotoUser($index)">
+                            <tr ng-repeat="user in users track by $index" >
 
                                 <td >{{user.company}}</td>
                                 <td>{{user.firstName}}</td>
                                 <td>{{user.lastName}}</td>
                                 <td>{{user.points}}</td>
+                                <td><button ng-click= "remove()" class="btn btn-black btn-sm">Remove</button>
+                                    <button ng-click="gotoUser($index)" class="btn btn-black btn-sm">Edit</button>
+                                </td>
                             </tr>
                             <!-- -->
                             </tbody>

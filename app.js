@@ -74,6 +74,15 @@ app.post('/user', (req, res)=>{
 
         })
 });
+app.put('/user', (req, res)=>{
+
+    userCtrl.updateUser(req.body.user)
+    .then(function(user){
+        res.json({status:'ok', payload:user});
+    }).catch(function(err){
+        console.log(err);
+    })
+});
 
 app.post('/project/:userId', (req, res)=>{
 

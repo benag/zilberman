@@ -188,3 +188,42 @@
 .search-pane table tr{
     cursor: pointer;
 }
+.facebook-add-icon{
+    font-size: 45px;
+    cursor: pointer;
+    display: inline;
+}
+.jk-rating-stars a{
+    color:yellow!important;
+}
+.gender-btn{
+    font-size:10px;
+    padding: 10px 25px;
+}
+.genderAnchor:hover{
+    background-color: black!important;
+}
+.input-drop{
+    margin-top: 35px;
+    border-bottom: 1px solid lightgray;
+}
+.input-btn{
+    color: black!important;
+    font-size: 15px;
+    cursor: pointer;
+}
+.project-img{
+    width: 80% !important;
+    height: 250px !important;
+}
+.project-map{
+    width:80%;
+    height : 200px;
+    border:1px solid black;
+}
+.search-panel .table-header{
+    color:black;
+}
+.products-image{
+    height: 30%!important;
+}

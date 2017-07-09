@@ -1,29 +1,10 @@
 
-var app = angular.module('ganim', ['ui.router','vsGoogleAutocomplete','ngFileUpload'])
+var app = angular.module('ganim', ['ui.router','vsGoogleAutocomplete','ngFileUpload', 'ui.bootstrap'])
 
 
 .config(function($stateProvider, $urlRouterProvider) {
 
-        //angularAuth0Provider.init({
-        //    clientID: 'wrHwIUz1KJE9NxE86oiyB7cE9zqSanO2',
-        //    domain: 'ganim.auth0.com',
-        //    responseType: 'token id_token',
-        //    audience: 'https://ganim.auth0.com/userinfo',
-        //    redirectUri: 'http://localhost:4000/callback',
-        //    scope: 'openid'
-        //});
-        //
-        //$urlRouterProvider.otherwise('/');
-        //
-        //$locationProvider.hashPrefix('');
 
-    //
-    //    var addState = {
-    //    name: 'add',
-    //    url: '/add',
-    //    controller:'addClientCtrl',
-    //    templateUrl: 'templates/addClient.html'
-    //};
 
     var main = {
         name: 'main',
@@ -50,6 +31,23 @@ var app = angular.module('ganim', ['ui.router','vsGoogleAutocomplete','ngFileUpl
         }
     };
 
+    var products = {
+        name: 'products',
+        url: '/products',
+        views: {
+            "left-pane": { templateUrl: "templates/left-pane.html", controller: 'leftPaneController'},
+            "main": { templateUrl: "templates/products.html", controller: 'productsCtrl' }
+        }
+    };
+    var drinks = {
+        name: 'drinks',
+        url: '/drinks',
+        views: {
+            "left-pane": { templateUrl: "templates/left-pane.html", controller: 'leftPaneController'},
+            "main": { templateUrl: "templates/drinks.html", controller: 'drinksCtrl' }
+        }
+    };
+
     var login = {
         name: 'login',
         url: '/login',
@@ -62,6 +60,8 @@ var app = angular.module('ganim', ['ui.router','vsGoogleAutocomplete','ngFileUpl
 
     $stateProvider.state(login);
     $stateProvider.state(search);
+    $stateProvider.state(products);
+    $stateProvider.state(drinks);
     $stateProvider.state(main);
     $stateProvider.state(tools);
     $urlRouterProvider.otherwise('/login');
