@@ -10,7 +10,7 @@ let userController ={};
 userController.getUsers = (page, limit)=>{
 
     return User.find()
-    .skip(page*limit)
+    .skip(Number(page)*Number(limit))
     .limit(limit)
     .populate('projects')
 };
