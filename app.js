@@ -62,7 +62,7 @@ app.get('/users/:page/:limit', function(req, res){
     .then(function(users){
         res.json({status:'ok', payload:users});
     }).catch((err)=>{
-
+        console.log(err);
     })
 });
 app.post('/user', (req, res)=>{
