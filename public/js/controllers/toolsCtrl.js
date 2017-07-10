@@ -1,10 +1,11 @@
 angular.module('ganim').controller('toolsCtrl', ['$scope', '$stateParams', '$location', '$state','$http',
     function($scope, $stateParams, $location, $state, $http) {
 
-        $scope.token = 'EAABh464bAfgBABoJ0xB3jiNldZArxBGfbE9S88d0wFJSY2ZCTNqtFGMO9btGflis6jE9ZAZC1PtKURR8AERuTbF2ecucwLan56BlRtdfgRw50lPMJQuDT0zrJ4zX3giLuvd69RhTblZA3zgyJLxYAVUvmYr0hJjij356lBzEyO1iwqO3dsyDJxezEdgRf7yoZD';
+        $scope.token = '';
         $scope.faceBookUser ='';
         $scope.dataArrived = false;
         $scope.facebookData = {};
+        $scope.userType = 'Page';
         window.fbAsyncInit = function() {
             FB.init({
                 appId      : '107630506476024',
@@ -25,39 +26,85 @@ angular.module('ganim').controller('toolsCtrl', ['$scope', '$stateParams', '$loc
 
         $scope.options='Page';
 
+        $scope.setOption = function(option){
+            $scope.options = option;
+        };
+
+        $scope.getIDFromURL= function(user){
+            return $http.get('https://graph.facebook.com/' + user + '?access_token='+$scope.token);
+        };
+
+
         $scope.Upload = function(){
             $http.post('/scan/upload',{facebookData:$scope.facebookData})
             .then(function(){
                 alert('User added');
             })
         };
+
+        $scope.getFacebookUserData = function(userId){
+            FB.api(
+                userId
+                ,{fields: ['about','link','description','emails','general_info','mission','phone', 'company_overview','contact_address','website']},
+                function (response) {
+                    if (response && !response.error) {
+                        $scope.$applyAsync(function(){
+                            $scope.dataArrived = true;
+                            $scope.facebookData = response;
+                        })
+                    }
+                }
+            );
+            FB.api(
+                userId+'/picture'
+                ,function (response) {
+                    if (response && !response.error) {
+                        $scope.$applyAsync(function(){
+                            $scope.facebookData.img = response;
+                        })
+                    }
+                }
+            );
+        };
+
+        $scope.getFacebookCompanyData = function(){
+            FB.api(
+                $scope.faceBookUser
+                ,{fields: ['about','email','first_name','last_name','gender','website']},
+                function (response) {
+                    if (response && !response.error) {
+                        $scope.$applyAsync(function(){
+                            $scope.dataArrived = true;
+                            $scope.facebookData = response;
+                        })
+                    }
+                }
+            );
+            FB.api(
+                $scope.faceBookUser+'/picture'
+                ,function (response) {
+                    if (response && !response.error) {
+                        $scope.$applyAsync(function(){
+                            $scope.facebookData.img = response;
+                        })
+                    }
+                }
+            );
+        }
         $scope.scan = function(){
             FB.login(function(response) {
                 if (response.authResponse) {
-                    //website,'link','description','emails','general_info','mission','phone', 'company_overview','contact_address'
-                    //'link','description','emails','general_info','mission','phone', 'company_overview','contact_address','website'
-                    FB.api(
-                        $scope.faceBookUser
-                        ,{fields: ['about','link','description','emails','general_info','mission','phone', 'company_overview','contact_address','website']},
-                        function (response) {
-                            if (response && !response.error) {
-                                $scope.$applyAsync(function(){
-                                    $scope.dataArrived = true;
-                                    $scope.facebookData = response;
-                                })
-                            }
-                        }
-                    );
-                    FB.api(
-                        $scope.faceBookUser+'/picture'
-                        ,function (response) {
-                            if (response && !response.error) {
-                                $scope.$applyAsync(function(){
-                                    $scope.facebookData.img = response;
-                                })
-                            }
-                        }
-                    );
+                    $scope.token = response.authResponse.accessToken;
+                    //if ($scope.options === 'User'){
+                    //    let array = $scope.faceBookUser.split('/');
+                    //    let userName = array.pop();
+                    //    $scope.getIDFromURL(userName)
+                    //    .then(function(userObj){
+                    //        $scope.getFacebookUserData(userObj.id)
+                    //    })
+                    //}else{
+                        $scope.getFacebookCompanyData();
+                    //}
                 } else {
                     //login cancelled or not every permission accepted
                 }

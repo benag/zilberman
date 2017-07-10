@@ -7,6 +7,7 @@ var mongoose = require('mongoose'),
 
 var projectSchema = new Schema({
     projectName: String,
+    name:String,
     address: String,
     Date: Date,
     Type: String

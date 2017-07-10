@@ -203,6 +203,9 @@
 .genderAnchor:hover{
     background-color: black!important;
 }
+.pageAnchor:hover{
+    background-color: black!important;
+}
 .input-drop{
     margin-top: 35px;
     border-bottom: 1px solid lightgray;
@@ -226,4 +229,7 @@
 }
 .products-image{
     height: 30%!important;
+}
+.color-heading{
+    color:black!important;
 }

@@ -1,15 +1,12 @@
 angular.module('ganim').controller('mainCtrl', ['$scope', '$stateParams', '$location','$http', 'Upload','global',
     function($scope, $stateParams, $location,$http, Upload, global) {
 
-        // get first 5
-        //$scope.page = 0;
-        //$scope.limit = 5;
 
-        //$scope.newUser = {};
         $scope.currentUser = 0;
         $scope.currentProject = 0;
         $scope.mode = 'Insert User';
         $scope.state='newUser';
+        $scope.projectMode = ''
 
 
         $scope.userMng = {
@@ -30,12 +27,6 @@ angular.module('ganim').controller('mainCtrl', ['$scope', '$stateParams', '$loca
                 $scope.mode = 'Insert User';
                 $scope.state = 'newUser';
 
-
-                //$http.get('/users/' + $scope.page + '/' + $scope.limit)
-                //.then(function(data){
-                //    $scope.userMng.users = data.data.payload;
-                //    $scope.currentUser = 0;
-                //});
             }
 
         };
@@ -73,8 +64,6 @@ angular.module('ganim').controller('mainCtrl', ['$scope', '$stateParams', '$loca
             })
         };
 
-
-
         $scope.submitUser = function(){
             if ($scope.mode === 'Edit User'){
                 $http.put('/user',{user: $scope.userMng.users[0]})
@@ -101,16 +90,20 @@ angular.module('ganim').controller('mainCtrl', ['$scope', '$stateParams', '$loca
 
         $scope.setProfession = function(){
             return $scope.userMng[$scope.state][$scope.currentUser].profession ? $scope.userMng[$scope.state][$scope.currentUser].profession : 'Architect'
-        }
+        };
         $scope.getType = function(){
             return $scope.userMng[$scope.state][$scope.currentUser].type ? $scope.userMng[$scope.state][$scope.currentUser].type: 'Offices';
+        };
+        $scope.getGender = function(){
+            return $scope.userMng[$scope.state][$scope.currentUser].gender ? $scope.userMng[$scope.state][$scope.currentUser].gender: 'Male';
         }
         $scope.uploadFiles = function(file, errFiles) {
             $scope.f = file;
             $scope.errFile = errFiles && errFiles[0];
             if (file) {
+                let url = 'http://' + global.getMachine() + '/profile';
                 file.upload = Upload.upload({
-                    url: 'http://localhost:4000/profile',
+                    url: url,
                     data: {file: file}
                 });
 
@@ -132,7 +125,7 @@ angular.module('ganim').controller('mainCtrl', ['$scope', '$stateParams', '$loca
             $scope.errFile = errFiles && errFiles[0];
             if (file) {
                 file.upload = Upload.upload({
-                    url: 'http://localhost:4000/map',
+                    url: 'http://' + global.getMachine() + '/map',
                     data: {file: file}
                 });
 

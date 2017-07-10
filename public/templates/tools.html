@@ -29,9 +29,9 @@
                                         <button class="btn btn-primary dropdown-toggle btn-black" type="button" data-toggle="dropdown">{{options}}
                                             <span class="caret"></span></button>
                                         <ul class="dropdown-menu">
-                                            <li><a ng-click="options('Page')">Page</a></li>
-                                            <li><a ng-click="options('Group')">Group</a></li>
-                                            <li><a ng-click="options('User')">User</a></li>
+                                            <li><a class="pageAnchor" ng-click="setOption('Page')">Page</a></li>
+                                            <li><a class="pageAnchor" ng-click="setOption('Group')">Group</a></li>
+                                            <li><a class="pageAnchor" ng-click="setOption('User')">User</a></li>
                                         </ul>
                                     </div>
                                     <button ng-click="scan()" class="btn btn-primary btn-black">Import</button>
