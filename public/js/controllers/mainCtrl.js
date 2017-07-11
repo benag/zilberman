@@ -68,14 +68,14 @@ angular.module('ganim').controller('mainCtrl', ['$scope', '$stateParams', '$loca
             if ($scope.mode === 'Edit User'){
                 $http.put('/user',{user: $scope.userMng.users[0]})
                 .then(function(user){
-                    alert('user updated');
+                    alert('Member updated');
                     $scope.mode = 'Edit User';
                     $scope.state = 'users';
                 });
             }else{
                 $http.post('/user',{user: $scope.userMng.newUser[0]})
                 .then(function(data){
-                    alert('users added');
+                    alert('Member added');
                     $scope.userMng.users[0] = data.data.payload;
                     $scope.currentUser = 0;
                     $scope.currentProject = 0;
