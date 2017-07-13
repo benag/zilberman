@@ -8,6 +8,7 @@ var express = require('express'),
     passport = require('passport'),
     LocalStrategy    = require('passport-local').Strategy,
     FacebookStrategy = require('passport-facebook').Strategy,
+    fs = require('fs'),
     multer  = require('multer');
     //upload = multer({ dest: 'public/uploads/' });
 
