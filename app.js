@@ -108,7 +108,7 @@ app.post('/profile', upload.single('file'), function (req, res, next) {
     // req.file is the `avatar` file
     // req.body will hold the text fields, if there were any
     if (!req.file){ //work around file was not moved
-        let file = req.files[0];
+        let file = req.files.file;
         let oldPath  = file.path;
         let newPath = './public/uploads';
         fs.rename(oldPath, newPath, function (err) {
