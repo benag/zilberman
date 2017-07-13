@@ -107,7 +107,18 @@ app.post('/project/:userId', (req, res)=>{
 app.post('/profile', upload.single('file'), function (req, res, next) {
     // req.file is the `avatar` file
     // req.body will hold the text fields, if there were any
-    res.json({status:'ok', payload:'uploads/'+req.file.filename});
+    if (!req.file){ //work around file was not moved
+        let file = req.files[0];
+        let oldPath  = file.path;
+        let newPath = './public/uploads';
+        fs.rename(oldPath, newPath, function (err) {
+            if (err) throw err
+            console.log('Successfully renamed - AKA moved!')
+        })
+    }else{
+        res.json({status:'ok', payload:'uploads/'+req.file.filename});
+    }
+
 });
 
 app.post('/scan/upload', (req, res)=>{
