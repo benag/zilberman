@@ -8,10 +8,20 @@ var express = require('express'),
     passport = require('passport'),
     LocalStrategy    = require('passport-local').Strategy,
     FacebookStrategy = require('passport-facebook').Strategy,
-    multer  = require('multer'),
-    upload = multer({ dest: 'public/uploads/' }),
+    multer  = require('multer');
+    //upload = multer({ dest: 'public/uploads/' });
 
-    routes = require('./routes');
+    var storage = multer.diskStorage({
+        destination: function (request, file, callback) {
+            callback(null, './public/uploads/');
+        },
+        filename: function (request, file, callback) {
+            console.log(file);
+            callback(null, file.originalname)
+        }
+    });
+    var upload = multer({ storage: storage });
+    var routes = require('./routes');
 
 
 
