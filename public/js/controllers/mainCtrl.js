@@ -1,36 +1,33 @@
-angular.module('ganim').controller('mainCtrl', ['$scope', '$stateParams', '$location','$http', 'Upload','global',
-    function($scope, $stateParams, $location,$http, Upload, global) {
+angular.module('ganim').controller('mainCtrl', ['$scope', '$stateParams', '$location','$http', 'Upload','global', 'projectMng',
+    function($scope, $stateParams, $location,$http, Upload, global, projectMng) {
 
 
-        $scope.currentUser = 0;
         $scope.currentProject = 0;
         $scope.mode = 'Insert User';
         $scope.state='newUser';
-        $scope.projectMode = ''
+        $scope.projectMode = '';
 
 
-        $scope.userMng = {
-            users:[{}],
-            newUser:[{}]
-        };
+        $scope.user = {};
 
+        $scope.projectMng = projectMng;
 
         $scope.init = function(){
             if (global.searchUser){
-                $scope.userMng.users = [global.searchUser];
-                $scope.currentUser = 0;
+                $scope.user = global.searchUser;
                 $scope.mode = 'Edit User';
-                $scope.state='users';
+                $scope.projectMng.setUser($scope.user);
             }else{
-                $scope.currentUser = 0;
-                $scope.userMng.newUser =[{}];
+                $scope.user ={};
                 $scope.mode = 'Insert User';
-                $scope.state = 'newUser';
-
+                $scope.projectMng.setUser($scope.user);
             }
 
         };
 
+        $scope.newProject = function(){
+            $scope.projectMng.newProject();
+        }
         $scope.setMaps = function(){
             var myLatlng = new google.maps.LatLng(40.748817, -73.985428);
             var mapOptions = {
@@ -47,7 +44,7 @@ angular.module('ganim').controller('mainCtrl', ['$scope', '$stateParams', '$loca
             });
 
             marker.setMap(map);
-        }
+        };
 
 
         $scope.insertProject = function(){
@@ -58,7 +55,7 @@ angular.module('ganim').controller('mainCtrl', ['$scope', '$stateParams', '$loca
         };
 
         $scope.submitProject = function(){
-            $http.post('/project/' + $scope.userMng.users[$scope.currentUser]._id , {project:$scope.userMng.users[0].projects[0]})
+            $http.post('/project/' + $scope.user._id , {project:$scope.user.projects[0]})
             .then(function(project){
                 alert('project added');
             })
@@ -66,40 +63,35 @@ angular.module('ganim').controller('mainCtrl', ['$scope', '$stateParams', '$loca
 
         $scope.submitUser = function(){
             if ($scope.mode === 'Edit User'){
-                $http.put('/user',{user: $scope.userMng.users[0]})
+                $http.put('/user',{user: $scope.user})
                 .then(function(user){
                     alert('Member updated');
                     $scope.mode = 'Edit User';
-                    $scope.state = 'users';
                 });
             }else{
-                $http.post('/user',{user: $scope.userMng.newUser[0]})
+                $http.post('/user',{user: $scope.user})
                 .then(function(data){
                     alert('Member added');
-                    $scope.userMng.users[0] = data.data.payload;
-                    $scope.currentUser = 0;
+                    $scope.user = data.data.payload;
                     $scope.currentProject = 0;
-                    $scope.userMng.users[0].projects = [{}];
+                    $scope.user.projects = [{}];
                     $scope.mode = 'Edit User';
-                    $scope.state = 'users';
-
                 });
             }
 
         };
 
         $scope.setProfession = function(){
-            return $scope.userMng[$scope.state][$scope.currentUser].profession ? $scope.userMng[$scope.state][$scope.currentUser].profession : 'Architect'
+            return $scope.user.profession ? $scope.user.profession : 'Architect'
         };
         $scope.getType = function(){
-            return $scope.userMng[$scope.state][$scope.currentUser].type ? $scope.userMng[$scope.state][$scope.currentUser].type: 'Offices';
+            return $scope.user.type ? $scope.user.type: 'Offices';
         };
         $scope.getGender = function(){
-            return $scope.userMng[$scope.state][$scope.currentUser].gender ? $scope.userMng[$scope.state][$scope.currentUser].gender: 'Male';
-        }
+            return $scope.user.gender ? $scope.user.gender: 'Male';
+        };
         $scope.uploadFiles = function(file, errFiles) {
-            $scope.f = file;
-            $scope.errFile = errFiles && errFiles[0];
+
             if (file) {
                 let url = 'http://' + global.getMachine() + '/profile';
                 file.upload = Upload.upload({
@@ -109,7 +101,7 @@ angular.module('ganim').controller('mainCtrl', ['$scope', '$stateParams', '$loca
 
                 file.upload.then(function (response) {
                    //$scope.users[$scope.currentUser].img = 'http://' + global.getMachine() + '/' + response.data.payload
-                    $scope.userMng[$scope.state][$scope.currentUser].img = 'http://' + global.getMachine() + '/' + response.data.payload
+                    $scope.user.img = 'http://' + global.getMachine() + '/' + response.data.payload
 
                 }, function (response) {
                     if (response.status > 0)
@@ -120,9 +112,11 @@ angular.module('ganim').controller('mainCtrl', ['$scope', '$stateParams', '$loca
                 });
             }
         };
+        $scope.newProject = function(){
+
+        }
         $scope.uploadMaps = function(file, errFiles) {
-            $scope.f = file;
-            $scope.errFile = errFiles && errFiles[0];
+
             if (file) {
                 file.upload = Upload.upload({
                     url: 'http://' + global.getMachine() + '/map',
@@ -131,7 +125,7 @@ angular.module('ganim').controller('mainCtrl', ['$scope', '$stateParams', '$loca
 
                 file.upload.then(function (response) {
                     //$scope.users[$scope.currentUser].img = 'http://' + global.getMachine() + '/' + response.data.payload
-                    $scope.userMng[$scope.state][$scope.currentUser].projects[currentProject].img = 'http://' + global.getMachine() + '/' + response.data.payload
+                    $scope.user.projects[currentProject].img = 'http://' + global.getMachine() + '/' + response.data.payload
 
                 }, function (response) {
                     if (response.status > 0)

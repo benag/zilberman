@@ -5,48 +5,11 @@
             <div class="row">
 
 
-                <!--<div class="pagination-pos">-->
-
-                    <!--<ul class="pagination pagination-info ">-->
-                        <!--<li><a ng-click="loadBack()"><</a></li>-->
-                        <!--<li ng-class="{'active':currentUser === 1}"><a ng-click="getPage(1)" class="pagination-user" class="pag-class" ng-class = "{'disabled':disabled(1)}">1</a></li>-->
-                        <!--<li ng-class="{'active':currentUser === 2}"><a ng-click="getPage(2)" class="pagination-user" ng-class = "{'disabled':disabled(2)}">2</a></li>-->
-                        <!--<li ng-class="{'active':currentUser === 3}"> <a ng-click="getPage(3)" class="pagination-user" ng-class = "{'disabled':disabled(3)}" >3</a></li>-->
-                        <!--<li ng-class="{'active':currentUser === 4}"><a ng-click="getPage(4)" class="pagination-user" ng-class = "{'disabled':disabled(4)}">4</a></li>-->
-                        <!--<li ng-class="{'active':currentUser === 5}"><a ng-click="getPage(5)" class="pagination-user" ng-class = "{'disabled':disabled(5)}">5</a></li>-->
-                        <!--<li><a ng-click="loadNext()">></a></li>-->
-                    <!--</ul>-->
-
-                <!--</div>-->
-
-
-
-
-
             </div>
             <div class="row">
                 <div class="col-md-8">
 
                     <div class="card">
-                        <!--<div class="dropdown edit-pos">-->
-                            <!--<button class="btn btn-primary dropdown-toggle btn-black " type="button" data-toggle="dropdown">{{options}}-->
-                                <!--<span class="caret"></span></button>-->
-                            <!--<ul class="dropdown-menu">-->
-                                <!--<li><a ng-click="setOptions('Edit')">Edit User</a></li>-->
-                                <!--<li><a ng-click="setOptions('New')">New User</a></li>-->
-                                <!--<li><a ng-click="setOptions('Remove')">Remove User</a></li>-->
-                            <!--</ul>-->
-                        <!--</div>-->
-                        <!--<button class="btn btn-round edit-pos btn-black pull-right">{{mode}}</button>-->
-                        <!--<div ng-click="insertUser()" class="cool-button pull-right plus-left" >-->
-                            <!--<i class="fa fa-plus" aria-hidden="true"></i>-->
-                        <!--</div>-->
-                        <!--<div class="cool-button pull-right" >-->
-                            <!--<i class="fa fa-minus" aria-hidden="true"></i>-->
-                        <!--</div>-->
-                        <!--<div class="card-header card-header-icon btn-black" data-background-color="black">-->
-                            <!--<i class="material-icons"></i>-->
-                        <!--</div>-->
 
                         <div class="card-content">
 
@@ -59,14 +22,14 @@
                                     <div class="col-md-5">
                                         <div class="form-group label-floating">
                                             <label class="control-label">Company </label>
-                                            <input type="text" class="form-control" ng-model="userMng[state][currentUser].company">
+                                            <input type="text" class="form-control" ng-model="user.company">
                                         </div>
                                     </div>
 
                                     <div class="col-md-4">
                                         <div class="form-group label-floating">
                                             <label class="control-label">Email address</label>
-                                            <input type="email" ng-model="userMng[state][currentUser].email" class="form-control">
+                                            <input type="email" ng-model="user.email" class="form-control">
                                         </div>
                                     </div>
 
@@ -77,67 +40,52 @@
                                             </a>
                                             <ul class="dropdown-menu dropdown-menu-left">
                                                 <li>
-                                                    <a ng-click="userMng[state][currentUser].profession = 'Architect'" class="genderAnchor">Architect</a>
+                                                    <a ng-click="user.profession = 'Architect'" class="genderAnchor">Architect</a>
                                                 </li>
                                                 <li>
-                                                    <a ng-click="userMng[state][currentUser].profession = 'Gardener'" class="genderAnchor">Gardener</a>
+                                                    <a ng-click="user.profession = 'Gardener'" class="genderAnchor">Gardener</a>
                                                 </li>
                                                 <li>
-                                                    <a ng-click="userMng[state][currentUser].profession = 'landscape architect'" class="genderAnchor">landscape architect</a>
+                                                    <a ng-click="user.profession = 'landscape architect'" class="genderAnchor">landscape architect</a>
                                                 </li>
                                                 <li>
-                                                    <a ng-click="userMng[state][currentUser].profession = 'Interior designer'" class="genderAnchor">Interior designer</a>
+                                                    <a ng-click="user.profession = 'Interior designer'" class="genderAnchor">Interior designer</a>
                                                 </li>
                                                 <li>
-                                                    <a ng-click="userMng[state][currentUser].profession = 'Construction inspector'" class="genderAnchor">Construction inspector</a>
+                                                    <a ng-click="user.profession = 'Construction inspector'" class="genderAnchor">Construction inspector</a>
                                                 </li>
                                                 <li>
-                                                    <a ng-click="userMng[state][currentUser].profession = 'Other'" class="genderAnchor">Other</a>
+                                                    <a ng-click="user.profession = 'Other'" class="genderAnchor">Other</a>
                                                 </li>
 
                                             </ul>
                                         </div>
-                                        <!--<div class="form-group label-floating">-->
-                                        <!--<label class="control-label">Profession </label>-->
-                                        <!--<input type="text" class="form-control" ng-model="userMng[state][currentUser].profession">-->
-                                        <!--</div>-->
-                                        <!--selectpicker-->
-                                        <!--<select class="selectpicker" data-style="btn btn-primary btn-round" title="Single Select" data-size="7">-->
-                                        <!--<option disabled selected>Choose city</option>-->
-                                        <!--<option value="2">Foobar</option>-->
-                                        <!--<option value="3">Is great</option>-->
-                                        <!--</select>-->
-
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-5">
                                         <div class="form-group label-floating">
                                             <label class="control-label">Fist Name</label>
-                                            <input type="text" ng-model="userMng[state][currentUser].firstName" class="form-control">
+                                            <input type="text" ng-model="user.firstName" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-5">
                                         <div class="form-group label-floating">
                                             <label class="control-label">Last Name</label>
-                                            <input type="text" ng-model="userMng[state][currentUser].lastName" class="form-control">
+                                            <input type="text" ng-model="user.lastName" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-2">
-                                        <!--<select class="selectpicker" data-style="select-with-transition" multiple title="Choose City" data-size="7">-->
-                                            <!--<option disabled> Choose city</option>-->
-                                            <!--<option value="2">Paris </option>-->
-                                        <!--</select>-->
                                         <div class="dropdown" >
                                             <button class="dropdown-toggle btn btn-black btn-round btn-block gender-btn" data-toggle="dropdown">{{getGender()}}
                                                 <b class="caret"></b>
                                             </button>
                                             <ul class="dropdown-menu dropdown-menu-left">
                                                 <li>
-                                                    <a ng-click="userMng[state][currentUser].gender = 'Male'" class="genderAnchor">Male</a>
+                                                    <a ng-click="user.gender = 'Male'" class="genderAnchor">Male</a>
                                                 </li>
                                                 <li>
-                                                    <a ng-click="userMng[state][currentUser].gender = 'Female'" class="genderAnchor">Female</a>
+                                                    <a ng-click="user.gender = 'Female'" class="genderAnchor">Female</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -147,37 +95,17 @@
                                     <div class="col-md-12">
                                         <div class="form-group label-floating">
                                             <label class="control-label">Address</label>
-                                            <input vs-google-autocomplete type="text" ng-model="userMng[state][currentUser].address" class="form-control">
+                                            <input vs-google-autocomplete type="text" ng-model="user.address" class="form-control">
                                         </div>
                                     </div>
                                 </div>
-                                <!--<div class="row">-->
-                                    <!--<div class="col-md-4">-->
-                                        <!--<div class="form-group label-floating">-->
-                                            <!--<label class="control-label">City</label>-->
-                                            <!--<input type="text" class="form-control">-->
-                                        <!--</div>-->
-                                    <!--</div>-->
-                                    <!--<div class="col-md-4">-->
-                                        <!--<div class="form-group label-floating">-->
-                                            <!--<label class="control-label">Country</label>-->
-                                            <!--<input type="text" class="form-control">-->
-                                        <!--</div>-->
-                                    <!--</div>-->
-                                    <!--<div class="col-md-4">-->
-                                        <!--<div class="form-group label-floating">-->
-                                            <!--<label class="control-label">Postal Code</label>-->
-                                            <!--<input type="text" class="form-control">-->
-                                        <!--</div>-->
-                                    <!--</div>-->
-                                <!--</div>-->
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>About Me</label>
                                             <div class="form-group label-floating">
 
-                                                <textarea class="form-control" ng-model="userMng[state][currentUser].about" rows="5"></textarea>
+                                                <textarea class="form-control" ng-model="user.about" rows="5"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -200,16 +128,16 @@
                         <div class="card-avatar">
                             <a ngf-select="uploadFiles($file, $invalidFiles)"
                                accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
-                                <img class="img" src="{{userMng[state][currentUser].img}}" />
+                                <img class="img" src="{{user.img}}" />
                             </a>
                         </div>
                         <div class="card-content">
-                            <h6 class="category text-gray">{{userMng[state][currentUser].profession}}</h6>
-                            <h4 class="card-title">{{userMng[state][currentUser].firstName}} {{userMng[state][currentUser].lastName}}</h4>
+                            <h6 class="category text-gray">{{user.profession}}</h6>
+                            <h4 class="card-title">{{user.firstName}} {{user.lastName}}</h4>
                             <p class="description">
-                                {{userMng[state][currentUser].about}}
+                                {{user.about}}
                             </p>
-                            <a class="btn btn-round">{{userMng[state][currentUser].points}}TRIBU Points</a>
+                            <a class="btn btn-round">{{user.points}}TRIBU Points</a>
                         </div>
                         <div>
                             <!--<span uib-rating ng-model="rate" max="max" read-only="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null" aria-labelledby="default-rating"></span>-->
@@ -217,9 +145,14 @@
                     </div>
                 </div>
             </div>
-            <!--ng-show="userMng[state][currentUser].projects.length >0"-->
+
+
+            <!-- ----------------------- projects ---------------------------------------------------------!>
+
+
+            <!--ng-show="user.projects.length >0"-->
             <div class="row" ng-show="mode === 'Edit User'">
-                <div class="pagination-pos" ng-show="userMng[state][currentUser].projects.length > 1">
+                <div class="pagination-pos" ng-show="user.projects.length > 1">
 
                     <ul class="pagination pagination-info ">
                         <li><a ><</a></li>
@@ -234,15 +167,11 @@
                 </div>
                 <div class="col-md-8">
                     <div class="card">
-                        <!--<div ng-click="insertProject();" data-toggle="tooltip" title="Hooray!" class="cool-button pull-right plus-left" >-->
-                            <!--<i class="fa fa-plus" aria-hidden="true"></i>-->
-                        <!--</div>-->
-                        <!--<div class="cool-button pull-right" >-->
-                            <!--<i class="fa fa-minus" aria-hidden="true"></i>-->
-                        <!--</div>-->
-                        <div class="card-header card-header-icon btn-black" data-background-color="black">
+                        <div class="card-header card-header-icon btn-black " data-background-color="black">
                             <i class="material-icons"></i>
+
                         </div>
+                        <button ng-lick="newProject()" class="btn btn-black pull-right">+ New Project</button>
                         <div class="card-content">
                             <h4 class="card-title">Edit Project
                                 <small class="category"></small>
@@ -252,15 +181,15 @@
                                     <div class="col-md-8">
                                         <div class="form-group label-floating">
                                             <label class="control-label">Project Name </label>
-                                            <input type="text" class="form-control" ng-model="userMng[state][currentUser].projects[currentProject].name">
+                                            <input type="text" class="form-control" ng-model="projectMng.getCurrentProject().name">
                                         </div>
                                         <div class="form-group label-floating">
                                             <label class="control-label">Address</label>
-                                            <input type="text" vs-google-autocomplete ng-model="userMng[state][currentUser].projects[currentProject].address" class="form-control">
+                                            <input type="text" vs-google-autocomplete ng-model="projectMng.getCurrentProject().address" class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label">Ending Date</label>
-                                            <input type="text" class="form-control datetimepicker" ng-model="userMng[state][currentUser].projects[currentProject].endingDate" />
+                                            <input type="text" class="form-control datetimepicker" ng-model="projectMng.getCurrentProject().endingDate" />
 
                                         </div>
                                         <div class="dropdown input-drop" >
@@ -269,13 +198,13 @@
                                             </a>
                                             <ul class="dropdown-menu dropdown-menu-left">
                                                 <li>
-                                                    <a ng-click="userMng[state][currentUser].projects.type = 'Architect'" class="genderAnchor">Offices</a>
+                                                    <a ng-click="user.projects.type = 'Architect'" class="genderAnchor">Offices</a>
                                                 </li>
                                                 <li>
-                                                    <a ng-click="userMng[state][currentUser].projects.type = 'Gardens'" class="genderAnchor">Gardens</a>
+                                                    <a ng-click="user.projects.type = 'Gardens'" class="genderAnchor">Gardens</a>
                                                 </li>
                                                 <li>
-                                                    <a ng-click="userMng[state][currentUser].projects.type = 'Institute'" class="genderAnchor">Institute</a>
+                                                    <a ng-click="user.projects.type = 'Institute'" class="genderAnchor">Institute</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -284,7 +213,7 @@
                                         <div class="">
                                             <a ngf-select="uploadMaps($file, $invalidFiles)"
                                                accept="image/*" ngf-max-height="1000" ngf-max-size="5MB" >
-                                                <img class="project-img" src="{{userMng[state][currentUser].projects[currentProject].img}}" alt="...">
+                                                <img class="project-img" src="{{projectMng.getCurrentProject().img}}" alt="...">
                                             </a>
                                         </div>
                                         <div class="fileinput-preview fileinput-exists thumbnail"></div>
@@ -296,7 +225,7 @@
                                     <div class="col-md-8">
                                         <!--<div class="form-group label-floating">-->
                                             <!--<label class="control-label">Address</label>-->
-                                            <!--<input type="text" vs-google-autocomplete ng-model="userMng[state][currentUser].projects[currentProject].address" class="form-control">-->
+                                            <!--<input type="text" vs-google-autocomplete ng-model="projectMng.currentProject.address" class="form-control">-->
                                         <!--</div>-->
                                     </div>
                                     <div class="col-md-4">
