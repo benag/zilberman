@@ -112,12 +112,14 @@ app.post('/profile', upload.single('file'), function (req, res, next) {
         let file = req.files.file;
         let oldPath  = file.path;
         let newPath = './public/uploads/' + oldPath.split('/').pop();
+        let returnPath  = newPath.split('/').slice(2).join('/');
         fs.rename(oldPath, newPath, function (err) {
-            if (err) throw err
-            console.log('Successfully renamed - AKA moved!')
+            if (err) throw err;
+            res.json({status:'ok', payload:'uploads/'+req.file.filename});
+
         })
     }else{
-        res.json({status:'ok', payload:'uploads/'+req.file.filename});
+        //res.json({status:'ok', payload:'uploads/'+req.file.filename});
     }
 
 });
