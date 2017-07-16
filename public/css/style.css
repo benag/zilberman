@@ -233,3 +233,6 @@
 .color-heading{
     color:black!important;
 }
+.new-project-btn{
+    z-index:99999;
+}

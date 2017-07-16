@@ -28,6 +28,7 @@ angular.module('ganim').controller('mainCtrl', ['$scope', '$stateParams', '$loca
         $scope.newProject = function(){
             $scope.projectMng.newProject();
         }
+
         $scope.setMaps = function(){
             var myLatlng = new google.maps.LatLng(40.748817, -73.985428);
             var mapOptions = {
@@ -112,9 +113,7 @@ angular.module('ganim').controller('mainCtrl', ['$scope', '$stateParams', '$loca
                 });
             }
         };
-        $scope.newProject = function(){
 
-        }
         $scope.uploadMaps = function(file, errFiles) {
 
             if (file) {
