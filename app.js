@@ -119,7 +119,7 @@ app.post('/profile', upload.single('file'), function (req, res, next) {
 
         })
     }else{
-        //res.json({status:'ok', payload:'uploads/'+req.file.filename});
+        res.json({status:'ok', payload:'uploads/'+req.file.filename});
     }
 
 });

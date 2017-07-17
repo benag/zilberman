@@ -14,8 +14,9 @@ angular.module('ganim').factory('projectMng',function($state, $timeout, $locatio
             return this.user;
         },
 
-        setUser: function(){
-            return this.user;
+        setUser: function(user){
+            this.user = user;
+            this.projects = user.projects;
         },
 
         newProject: function(){

@@ -156,11 +156,11 @@
 
                     <ul class="pagination pagination-info ">
                         <li><a ><</a></li>
-                        <li><a >1</a></li>
-                        <li><a >2</a></li>
-                        <li class="active"><a >3</a></li>
-                        <li><a >4</a></li>
-                        <li><a >5</a></li>
+                        <li><a ng-class="{'active':isActive(1)}">1</a></li>
+                        <li><a ng-class="{'active':isActive(1)}">2</a></li>
+                        <li ng-class="{'active':isActive(3)}"><a >3</a></li>
+                        <li><a ng-class="{'active':isActive(4)}">4</a></li>
+                        <li><a ng-class="{'active':isActive(5)}">5</a></li>
                         <li><a >></a></li>
                     </ul>
 

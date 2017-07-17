@@ -24,7 +24,11 @@ angular.module('ganim').controller('mainCtrl', ['$scope', '$stateParams', '$loca
             }
 
         };
+        $scope.isActive = function(number){
 
+            return number <= $scope.projectMng.projects.length;
+
+        }
         $scope.newProject = function(){
             $scope.projectMng.newProject();
         }
