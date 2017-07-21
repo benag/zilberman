@@ -5,23 +5,45 @@ angular.module('ganim').factory('projectMng',function($state, $timeout, $locatio
 
         projects:[{}],
 
+        newProject:{},
+
         current: 0,
 
+        newProjectMode:false,
+
         getCurrentProject: function(){
+            if (this.newProjectMode) return this.newProject;
             return this.projects[this.current];
+        },
+        GetCurrentIndex: function(){
+          return (this.current +1);
+        },
+        setCurrentProject: function(number){
+            this.current = number-1;
         },
         getUser: function(){
             return this.user;
         },
 
+        getProjects: function(){
+            return this.projects;
+        },
+
         setUser: function(user){
             this.user = user;
             this.projects = user.projects;
+
+        },
+        setMode: function(newProject){
+            this.newProjectMode = newProject;
         },
 
-        newProject: function(){
-            this.projects.push({});
-            this.current++;
+        setNewProject: function(){
+            this.newProject = {};
+            this.newProjectMode = true;
+        },
+        getNewProject: function(){
+            return this.newProject;
         },
 
         removeProject: function(){

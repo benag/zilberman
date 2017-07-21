@@ -66,7 +66,7 @@ userController.setProject = (id, project)=>{
     let newProject  = new Project(project);
     return newProject.save()
     .then((project)=>{
-            return User.findByIdAndUpdate( id, { $push: { projects: project } })
+            return User.findByIdAndUpdate( id, { $push: { projects: newProject } })
     })
     .catch((err)=>{
         console.log(err);

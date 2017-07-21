@@ -124,6 +124,25 @@ app.post('/profile', upload.single('file'), function (req, res, next) {
 
 });
 
+app.post('/project', upload.single('file'), function (req, res, next) {
+    // req.file is the `avatar` file
+    // req.body will hold the text fields, if there were any
+    if (!req.file){ //work around file was not moved
+        let file = req.files.file;
+        let oldPath  = file.path;
+        let newPath = './public/uploads/projects' + oldPath.split('/').pop();
+        let returnPath  = newPath.split('/').slice(2).join('/');
+        fs.rename(oldPath, newPath, function (err) {
+            if (err) throw err;
+            res.json({status:'ok', payload:returnPath});
+
+        })
+    }else{
+        res.json({status:'ok', payload:'uploads/projects'+req.file.filename});
+    }
+
+});
+
 app.post('/scan/upload', (req, res)=>{
 
     let user = {};

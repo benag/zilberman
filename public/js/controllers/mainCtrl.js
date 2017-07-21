@@ -17,20 +17,29 @@ angular.module('ganim').controller('mainCtrl', ['$scope', '$stateParams', '$loca
                 $scope.user = global.searchUser;
                 $scope.mode = 'Edit User';
                 $scope.projectMng.setUser($scope.user);
+                $scope.projectMng.setMode(false);
             }else{
                 $scope.user ={};
                 $scope.mode = 'Insert User';
-                $scope.projectMng.setUser($scope.user);
+
             }
 
         };
-        $scope.isActive = function(number){
-
-            return number <= $scope.projectMng.projects.length;
+        $scope.isExist = function(number){
+            var numOfProjects = $scope.projectMng.getProjects().length;
+            return number <= numOfProjects;
 
         }
+        $scope.isActive = function(number){
+            return number === $scope.projectMng.GetCurrentIndex();
+        }
+        $scope.load = function(number){
+            if (number > $scope.projectMng.getProjects().length) return;
+            $scope.projectMng.setCurrentProject(number);
+        }
+
         $scope.newProject = function(){
-            $scope.projectMng.newProject();
+            $scope.projectMng.setNewProject();
         }
 
         $scope.setMaps = function(){
@@ -60,8 +69,9 @@ angular.module('ganim').controller('mainCtrl', ['$scope', '$stateParams', '$loca
         };
 
         $scope.submitProject = function(){
-            $http.post('/project/' + $scope.user._id , {project:$scope.user.projects[0]})
+            $http.post('/project/' + $scope.user._id , {project:$scope.projectMng.getNewProject()})
             .then(function(project){
+                $scope.projectMng.setMode(false);
                 alert('project added');
             })
         };
@@ -118,6 +128,28 @@ angular.module('ganim').controller('mainCtrl', ['$scope', '$stateParams', '$loca
             }
         };
 
+        $scope.uploadProjectImg = function(file, errFiles){
+            if (file) {
+                let url = 'http://' + global.getMachine() + '/project';
+                file.upload = Upload.upload({
+                    url: url,
+                    data: {file: file}
+                });
+
+                file.upload.then(function (response) {
+                    //$scope.users[$scope.currentUser].img = 'http://' + global.getMachine() + '/' + response.data.payload
+                    $scope.user.img = 'http://' + global.getMachine() + '/' + response.data.payload
+
+                }, function (response) {
+                    if (response.status > 0)
+                        $scope.errorMsg = response.status + ': ' + response.data;
+                }, function (evt) {
+                    file.progress = Math.min(100, parseInt(100.0 *
+                        evt.loaded / evt.total));
+                });
+            }
+
+        }
         $scope.uploadMaps = function(file, errFiles) {
 
             if (file) {

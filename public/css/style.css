@@ -91,7 +91,7 @@
 }
 .pagination-pos{
     margin-top:10px!important;
-    margin-bottom: 0px!important;
+    margin-bottom: -30px!important;
     margin-left:calc((100% - 200px)/2)
 }
 .card-flex{
@@ -235,4 +235,16 @@
 }
 .new-project-btn{
     z-index:99999;
+}
+.not-active{
+    color:green!important;
+    cursor: not-allowed!important;
+}
+.pagination.pagination-info > .active > a, .pagination.pagination-info > .active > a:focus, .pagination.pagination-info > .active > a:hover, .pagination.pagination-info > .active > span, .pagination.pagination-info > .active > span:focus, .pagination.pagination-info > .active > span:hover{
+    background-color: black!important;
+    border-color: black!important;
+    box-shadow: none!important;
+}
+.pagination.pagination-info li{
+    cursor: pointer;
 }
