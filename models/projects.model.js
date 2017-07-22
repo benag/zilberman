@@ -9,8 +9,10 @@ var projectSchema = new Schema({
     projectName: String,
     name:String,
     address: String,
+    img: String,
     Date: Date,
-    Type: String
+    Type: String,
+    location:{lat:Number, lng:Number}
 
 });
 mongoose.model('Project', projectSchema);

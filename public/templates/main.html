@@ -127,7 +127,7 @@
                     <div class="card card-profile">
                         <div class="card-avatar">
                             <a ngf-select="uploadFiles($file, $invalidFiles)"
-                               accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
+                               accept="image/*" ngf-max-height="2000" ngf-max-size="1MB">
                                 <img class="img" src="{{user.img}}" />
                             </a>
                         </div>
@@ -151,8 +151,8 @@
 
 
             <!--ng-show="user.projects.length >0"-->
-            <div class="row" ng-show="projectMng.getProjects().length > 1">
-                <div class="pagination-pos" ng-show="user.projects.length > 1">
+            <div class="row" ng-show="user._id">
+                <div class="pagination-pos" ng-show="userMng.getProjects().length > 1">
 
                     <ul class="pagination pagination-info ">
                         <li><a ><</a></li>
@@ -181,15 +181,15 @@
                                     <div class="col-md-8">
                                         <div class="form-group label-floating">
                                             <label class="control-label">Project Name </label>
-                                            <input type="text" class="form-control" ng-model="projectMng.getCurrentProject().name">
+                                            <input type="text" class="form-control" ng-model="userMng.getCurrentProject().name">
                                         </div>
                                         <div class="form-group label-floating">
                                             <label class="control-label">Address</label>
-                                            <input type="text" vs-google-autocomplete ng-model="projectMng.getCurrentProject().address" class="form-control">
+                                            <input type="text" vs-google-autocomplete ng-blur="updateMaps()" vs-latitude="userMng.getCurrentProject().lat" vs-longitude="userMng.getCurrentProject().lng" ng-model="userMng.getCurrentProject().address" class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label">Ending Date</label>
-                                            <input type="text" class="form-control datetimepicker" ng-model="projectMng.getCurrentProject().endingDate" />
+                                            <input type="text" class="form-control datetimepicker" ng-model="userMng.getCurrentProject().endingDate" />
 
                                         </div>
                                         <div class="dropdown input-drop" >
@@ -212,8 +212,8 @@
                                     <div class="col-md-4">
                                         <div class="">
                                             <a ngf-select="uploadProjectImg($file, $invalidFiles)"
-                                               accept="image/*" ngf-max-height="1000" ngf-max-size="5MB" >
-                                                <img class="project-img" src="{{projectMng.getCurrentProject().img}}" alt="...">
+                                               accept="image/*" ngf-max-height="2000" ngf-max-size="5MB" >
+                                                <img class="project-img" src="{{userMng.getCurrentProject().img}}" >
                                             </a>
                                         </div>
                                         <div class="fileinput-preview fileinput-exists thumbnail"></div>
@@ -225,7 +225,7 @@
                                     <div class="col-md-8">
                                         <!--<div class="form-group label-floating">-->
                                             <!--<label class="control-label">Address</label>-->
-                                            <!--<input type="text" vs-google-autocomplete ng-model="projectMng.currentProject.address" class="form-control">-->
+                                            <!--<input type="text" vs-google-autocomplete ng-model="userMng.currentProject.address" class="form-control">-->
                                         <!--</div>-->
                                     </div>
                                     <div class="col-md-4">
@@ -233,7 +233,7 @@
                                     </div>
                                 </div>
 
-                                <button type="submit" ng-click="submitProject()" class="btn btn-black pull-right">Upload Project</button>
+                                <button type="submit" ng-click="processProject()" class="btn btn-black pull-right">{{projectText}}</button>
                                 <div class="clearfix"></div>
                             </form>
                         </div>

@@ -1,23 +1,29 @@
-angular.module('ganim').controller('mainCtrl', ['$scope', '$stateParams', '$location','$http', 'Upload','global', 'projectMng',
-    function($scope, $stateParams, $location,$http, Upload, global, projectMng) {
+angular.module('ganim').controller('mainCtrl', ['$scope', '$stateParams', '$location','$http', 'Upload','global', 'userMng',
+    function($scope, $stateParams, $location,$http, Upload, global, userMng) {
 
 
-        $scope.currentProject = 0;
+        var s = $scope;
         $scope.mode = 'Insert User';
         $scope.state='newUser';
-        $scope.projectMode = '';
-
 
         $scope.user = {};
 
-        $scope.projectMng = projectMng;
+        $scope.userMng = userMng;
+
+        $scope.projectText = $scope.userMng.data.projectBtnText;
+
+        $scope.$watch('userMng.data.projectBtnText', function(){
+            $scope.projectText = $scope.userMng.data.projectBtnText;
+        });
 
         $scope.init = function(){
+            $scope.userMng.reset();
             if (global.searchUser){
                 $scope.user = global.searchUser;
                 $scope.mode = 'Edit User';
-                $scope.projectMng.setUser($scope.user);
-                $scope.projectMng.setMode(false);
+                $scope.userMng.setUser($scope.user);
+                $scope.userMng.setEditMode();
+
             }else{
                 $scope.user ={};
                 $scope.mode = 'Insert User';
@@ -26,24 +32,37 @@ angular.module('ganim').controller('mainCtrl', ['$scope', '$stateParams', '$loca
 
         };
         $scope.isExist = function(number){
-            var numOfProjects = $scope.projectMng.getProjects().length;
+            var numOfProjects = $scope.userMng.getProjects().length;
             return number <= numOfProjects;
 
         }
         $scope.isActive = function(number){
-            return number === $scope.projectMng.GetCurrentIndex();
+            return number === $scope.userMng.GetCurrentIndex();
         }
         $scope.load = function(number){
-            if (number > $scope.projectMng.getProjects().length) return;
-            $scope.projectMng.setCurrentProject(number);
+            if (number > $scope.userMng.getProjects().length) return;
+            $scope.userMng.setCurrentProject(number);
         }
 
         $scope.newProject = function(){
-            $scope.projectMng.setNewProject();
+            $scope.userMng.setNewProject();
         }
 
-        $scope.setMaps = function(){
-            var myLatlng = new google.maps.LatLng(40.748817, -73.985428);
+        $scope.getProjectText = function(){
+
+            if (userMng.isNewProjectMode) return 'Upload Project';
+            return 'Update Project';
+        }
+
+        $scope.updateMaps = function(){
+            var project = $scope.userMng.getCurrentProject();
+            $scope.setMaps({lat:project.lat,lng:project.lng});
+        }
+
+        $scope.setMaps = function(pos){
+
+            var myLatlng;
+            pos ? myLatlng = new google.maps.LatLng(pos.lat, pos.lng) : new google.maps.LatLng(40.748817, -73.985428);
             var mapOptions = {
                 zoom: 8,
                 center: myLatlng,
@@ -61,35 +80,23 @@ angular.module('ganim').controller('mainCtrl', ['$scope', '$stateParams', '$loca
         };
 
 
-        $scope.insertProject = function(){
-            $scope.projectMode = 'Add Project';
-            $scope.projectState = 'newProject';
-            $scope.currentProject = 0;
-
-        };
-
-        $scope.submitProject = function(){
-            $http.post('/project/' + $scope.user._id , {project:$scope.projectMng.getNewProject()})
-            .then(function(project){
-                $scope.projectMng.setMode(false);
-                alert('project added');
-            })
+        $scope.processProject = function(){
+            $scope.userMng.processProject($scope.user._id);
         };
 
         $scope.submitUser = function(){
             if ($scope.mode === 'Edit User'){
                 $http.put('/user',{user: $scope.user})
                 .then(function(user){
-                    alert('Member updated');
+                    swal("Member Updated");
                     $scope.mode = 'Edit User';
                 });
             }else{
                 $http.post('/user',{user: $scope.user})
                 .then(function(data){
-                    alert('Member added');
+                    swal("Member Added");
                     $scope.user = data.data.payload;
-                    $scope.currentProject = 0;
-                    $scope.user.projects = [{}];
+                    $scope.userMng.setNewProject();
                     $scope.mode = 'Edit User';
                 });
             }
@@ -99,12 +106,15 @@ angular.module('ganim').controller('mainCtrl', ['$scope', '$stateParams', '$loca
         $scope.setProfession = function(){
             return $scope.user.profession ? $scope.user.profession : 'Architect'
         };
+
         $scope.getType = function(){
             return $scope.user.type ? $scope.user.type: 'Offices';
         };
+
         $scope.getGender = function(){
             return $scope.user.gender ? $scope.user.gender: 'Male';
         };
+
         $scope.uploadFiles = function(file, errFiles) {
 
             if (file) {
@@ -130,15 +140,14 @@ angular.module('ganim').controller('mainCtrl', ['$scope', '$stateParams', '$loca
 
         $scope.uploadProjectImg = function(file, errFiles){
             if (file) {
-                let url = 'http://' + global.getMachine() + '/project';
+                let url = 'http://' + global.getMachine() + '/projectimage';
                 file.upload = Upload.upload({
                     url: url,
                     data: {file: file}
                 });
 
                 file.upload.then(function (response) {
-                    //$scope.users[$scope.currentUser].img = 'http://' + global.getMachine() + '/' + response.data.payload
-                    $scope.user.img = 'http://' + global.getMachine() + '/' + response.data.payload
+                    $scope.userMng.setProjectImg('http://' + global.getMachine() + '/' + response.data.payload);
 
                 }, function (response) {
                     if (response.status > 0)

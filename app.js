@@ -21,7 +21,21 @@ var express = require('express'),
             callback(null, file.originalname)
         }
     });
+
+    var projectStorage = multer.diskStorage({
+        destination: function (request, file, callback) {
+            callback(null, './public/uploads/projects');
+        },
+        filename: function (request, file, callback) {
+            console.log(file);
+            callback(null, file.originalname)
+        }
+    });
+
     var upload = multer({ storage: storage });
+
+    var projectUpload = multer({ storage: projectStorage});
+
     var routes = require('./routes');
 
 
@@ -76,15 +90,17 @@ app.get('/users/:page/:limit', function(req, res){
         console.log(err);
     })
 });
+
 app.post('/user', (req, res)=>{
 
     userCtrl.setUser(req.body.user)
-        .then(function(user){
-            res.json({status:'ok', payload:user});
-        }).catch(function(err){
+    .then(function(user){
+        res.json({status:'ok', payload:user});
+    }).catch(function(err){
 
-        })
+    })
 });
+
 app.put('/user', (req, res)=>{
 
     userCtrl.updateUser(req.body.user)
@@ -98,11 +114,18 @@ app.put('/user', (req, res)=>{
 app.post('/project/:userId', (req, res)=>{
 
     userCtrl.setProject(req.params.userId, req.body.project)
-        .then(function(project){
-            res.json({status:'ok', payload:project});
-        }).catch(function(err){
-            console.log(err);
-        })
+    .then(project=>
+            res.json({status:'ok', payload:project}))
+    .catch(err => console.log(err) );
+
+});
+
+app.put('/project/', (req, res)=>{
+    userCtrl.updateProject(req.body.project)
+    .then(function(project){
+        res.json({status:'ok', payload:project});
+    })
+    .catch(err => console.log(err) );
 });
 
 app.post('/profile', upload.single('file'), function (req, res, next) {
@@ -124,7 +147,7 @@ app.post('/profile', upload.single('file'), function (req, res, next) {
 
 });
 
-app.post('/project', upload.single('file'), function (req, res, next) {
+app.post('/projectimage', projectUpload.single('file'), function (req, res, next) {
     // req.file is the `avatar` file
     // req.body will hold the text fields, if there were any
     if (!req.file){ //work around file was not moved
@@ -138,10 +161,12 @@ app.post('/project', upload.single('file'), function (req, res, next) {
 
         })
     }else{
-        res.json({status:'ok', payload:'uploads/projects'+req.file.filename});
+        res.json({status:'ok', payload:'uploads/projects/'+req.file.filename});
     }
 
 });
+
+
 
 app.post('/scan/upload', (req, res)=>{
 
@@ -181,9 +206,4 @@ app.get('/callback',
 app.listen(4000, function(){
   console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
 });
-//var graph = require('fbgraph');
-//var authUrl = graph.getOauthUrl({
-//    "client_id":     '107630506476024'
-//    , "redirect_uri":  'http://localhost:4000/auth/facebook/callback'
-//});
-//res.redirect(authUrl);
+

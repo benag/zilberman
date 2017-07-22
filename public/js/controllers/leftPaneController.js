@@ -6,8 +6,8 @@ angular.module('ganim').controller('leftPaneController', ['$scope', '$stateParam
 
         $scope.goto = function(state){
             global.searchUser = undefined;
-            $scope.currenet = state;
-            $state.go(state);
+            $scope.current = state;
+            $state.go(state,null,{ reload: true });
         };
 
         $scope.isActive = function(menu){

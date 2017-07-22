@@ -1,13 +1,11 @@
-angular.module('ganim').controller('searchCtrl', ['$scope', '$stateParams', '$location', '$state', '$http', 'global',
-    function($scope, $stateParams, $location, $state, $http, global) {
+angular.module('ganim').controller('searchCtrl', ['$scope', '$stateParams', '$location', '$state', '$http', 'global', 'userMng',
+    function($scope, $stateParams, $location, $state, $http, global, userMng) {
 
+        s = $scope;
         $scope.page = 0;
         $scope.limit =100;
         $scope.init = function(){
-            $http.get('/users/' + $scope.page + '/' + $scope.limit)
-            .then(function(data){
-                $scope.users = data.data.payload;
-            });
+            userMng.getUsers(s.page,s.limit).then (function(users){ $scope.users = users;})
         };
         $scope.gotoUser = function(index){
             global.searchUser = $scope.users[index];
