@@ -10,9 +10,11 @@
                 <div class="col-md-4">
                     <div class="card card-product size-card">
                         <div class="card-image" data-header-animation="true">
-                            <a href="#pablo">
+                            <a ngf-select="uploadProductImg($file, $invalidFiles)"
+                               accept="image/*" ngf-max-height="2000" ngf-max-size="5MB" >
                                 <img class="img" src="{{product.img}}">
                             </a>
+
                         </div>
                         <div class="card-content">
                             <div class="card-actions">
@@ -31,7 +33,7 @@
 
                             </h4>
                             <div class="card-description">
-                                <textarea class="product-card" placeholder="Describe yourself here..." row="4">  {{product.description}} </textarea>
+                                <textarea class="desc-product" placeholder="Describe the product here..." value="{{product.description}} " row="4" cols="50"></textarea>
 
                             </div>
                         </div>

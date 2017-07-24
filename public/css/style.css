@@ -265,3 +265,8 @@
     border: none;
     cursor: pointer;
 }
+.desc-product{
+    border: none;
+    cursor: pointer;
+    resize: none;
+}

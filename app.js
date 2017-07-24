@@ -31,10 +31,21 @@ var express = require('express'),
             callback(null, file.originalname)
         }
     });
+    var productStorage = multer.diskStorage({
+        destination: function (request, file, callback) {
+            callback(null, './public/uploads/products');
+        },
+        filename: function (request, file, callback) {
+            console.log(file);
+            callback(null, file.originalname)
+        }
+    });
 
     var upload = multer({ storage: storage });
 
     var projectUpload = multer({ storage: projectStorage});
+
+    var productUpload = multer({ storage: productStorage});
 
     var routes = require('./routes');
 
@@ -166,6 +177,22 @@ app.post('/projectimage', projectUpload.single('file'), function (req, res, next
 
 });
 
+app.post('/product-image', productUpload.single('file'), function (req, res, next) {
+
+    if (!req.file){ //work around file was not moved
+        let file = req.files.file;
+        let oldPath  = file.path;
+        let newPath = './public/uploads/products' + oldPath.split('/').pop();
+        let returnPath  = newPath.split('/').slice(2).join('/');
+        fs.rename(oldPath, newPath, function (err) {
+            if (err) throw err;
+            res.json({status:'ok', payload:returnPath});
+        })
+    }else{
+        res.json({status:'ok', payload:'uploads/products/'+req.file.filename});
+    }
+
+});
 
 
 app.post('/scan/upload', (req, res)=>{
