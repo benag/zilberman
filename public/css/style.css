@@ -248,3 +248,20 @@
 .pagination.pagination-info li{
     cursor: pointer;
 }
+.size-card{
+    height: 470px;
+}
+.products-location{
+    margin-top:150px;
+}
+.card-back{
+    background-image: url('/img/ganim.jpg');
+    background-repeat: no-repeat;
+    background-size: 524px 303px
+    /*opacity: 0.5;*/
+}
+.product-card{
+    width: 80%;
+    border: none;
+    cursor: pointer;
+}

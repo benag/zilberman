@@ -193,6 +193,13 @@ app.post('/scan/upload', (req, res)=>{
 
 });
 
+app.get('/products/', (req, res)=>{
+    productsCtrl.getProducts().then((products)=>{
+        res.json({status:true, payload:products});
+    }).catch((err)=>{
+        res.json({status:false})
+    })
+})
 app.post('/auth/facebook/callback', (req, res)=>{
 
 })
