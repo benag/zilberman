@@ -1,5 +1,5 @@
-angular.module('ganim').controller('productsCtrl', ['$scope', '$stateParams', '$location', '$state', '$http','Upload', 'global',
-    function($scope, $stateParams, $location, $state, $http, Upload, global) {
+angular.module('ganim').controller('productsCtrl', ['$scope', '$stateParams', '$location', '$state', '$http','Upload', 'global', 'productsService',
+    function($scope, $stateParams, $location, $state, $http, Upload, global, productsService) {
 
         $scope.products = [];
         $http.get('/products')
@@ -7,6 +7,11 @@ angular.module('ganim').controller('productsCtrl', ['$scope', '$stateParams', '$
             $scope.products = data.payload;
         })
 
+
+        $scope.updateProduct = function(index){
+            productsService.updateProduct($scope.products[index]);
+
+        };
         $scope.uploadProductImg = function(file, errFiles, index){
             if (file) {
                 let url = 'http://' + global.getMachine() + '/product-image';

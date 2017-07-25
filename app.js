@@ -63,6 +63,7 @@ db.once('open', function (callback) {
 require('./models/users.model.js');
 require('./models/projects.model.js');
 var userCtrl = require('./controllers/userController.js');
+var productCtrl = require('./controllers/productsCtrl.js');
 
 var app = module.exports = express.createServer();
 
@@ -194,6 +195,12 @@ app.post('/product-image', productUpload.single('file'), function (req, res, nex
 
 });
 
+app.put('/products',(req, res)=>{
+    productCtrl.updateProduct(req.body.product)
+    .then((product)=>{
+        res.json(product);
+    })
+});
 
 app.post('/scan/upload', (req, res)=>{
 

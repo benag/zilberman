@@ -10,7 +10,7 @@
                 <div class="col-md-4">
                     <div class="card card-product size-card">
                         <div class="card-image" data-header-animation="true">
-                            <a ngf-select="uploadProductImg($file, $invalidFiles)"
+                            <a ngf-select="uploadProductImg($file, $invalidFiles, $index)"
                                accept="image/*" ngf-max-height="2000" ngf-max-size="5MB" >
                                 <img class="img" src="{{product.img}}">
                             </a>
@@ -29,11 +29,11 @@
 
                             </div>
                             <h4 class="card-title">
-                                <input class="product-card" value="{{product.title}}" placeholder="Category title"/>
+                                <input class="product-card" ng-blur="updateProduct($index)" value="{{product.category}}" placeholder="Category title"/>
 
                             </h4>
                             <div class="card-description">
-                                <textarea class="desc-product" placeholder="Describe the product here..." value="{{product.description}} " row="4" cols="50"></textarea>
+                                <textarea class="desc-product" ng-blur="updateProduct($index)" placeholder="Describe the product here..." value="{{product.description}} " row="4" cols="50"></textarea>
 
                             </div>
                         </div>
