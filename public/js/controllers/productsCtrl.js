@@ -4,7 +4,7 @@ angular.module('ganim').controller('productsCtrl', ['$scope', '$stateParams', '$
         $scope.products = [];
         $http.get('/products')
         .then(function(data){
-            $scope.products = data.payload;
+            $scope.products = data.data;
         })
 
 
@@ -35,7 +35,12 @@ angular.module('ganim').controller('productsCtrl', ['$scope', '$stateParams', '$
         }
 
         $scope.addCategory = function(){
-            $scope.products.push({img:'/material/assets/img/image_placeholder.jpg'})
+
+            productsService.createProduct({img:'/material/assets/img/image_placeholder.jpg'}).then(function(product){
+                $scope.products.push(product);
+            })
+
+
         }
 
     }

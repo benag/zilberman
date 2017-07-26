@@ -8,10 +8,16 @@ let Product = mongoose.model('Product');
 let productController ={};
 
 productController.getProducts = ()=>{
-    return Product.find({}).exec()
+    return Product.find({}).exec();
 };
+
 productController.updateProduct = (product)=>{
-    return Product.update({'_id':product.id},{category: product.category, description:product.description})
+    return Product.update({'_id':product._id},{category: product.category, description:product.description})
+};
+
+productController.createProduct = (product)=>{
+    let newProduct = new Product(product);
+    return newProduct.save();
 };
 
 module.exports = productController;

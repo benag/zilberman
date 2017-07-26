@@ -62,6 +62,7 @@ db.once('open', function (callback) {
 
 require('./models/users.model.js');
 require('./models/projects.model.js');
+require('./models/products.model.js');
 var userCtrl = require('./controllers/userController.js');
 var productCtrl = require('./controllers/productsCtrl.js');
 
@@ -201,6 +202,23 @@ app.put('/products',(req, res)=>{
         res.json(product);
     })
 });
+
+app.get('/products',(req, res)=>{
+    productCtrl.getProducts(req.body.product)
+    .then((product)=>{
+        res.json(product);
+    })
+});
+
+app.post('/products',(req, res)=>{
+    productCtrl.createProduct(req.body.product)
+    .then((product)=>{
+        res.json(product);
+    }).catch(function(err){
+        console.log(err);
+    })
+});
+
 
 app.post('/scan/upload', (req, res)=>{
 
