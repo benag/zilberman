@@ -1,9 +1,7 @@
-angular.module('ganim').controller('headerCtrl', ['$scope', '$stateParams', '$location', '$state',
-    function($scope, $stateParams, $location, $state) {
+angular.module('ganim').controller('headerCtrl', ['$scope', '$stateParams', '$location', '$state', '$rootScope',
+    function($scope, $stateParams, $location, $state, $rootScope) {
 
-        $scope.searchUserParam = '';
-        $scope.searchUser = function(){
 
-        }
+
     }
 ]);

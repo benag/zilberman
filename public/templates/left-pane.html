@@ -1,4 +1,4 @@
-<div class="sidebar" data-active-color="black" data-background-color="black" data-image="../material/assets/img/sidebar-1.jpg">
+<div class="sidebar" data-active-color="black" ng-show="showLeftPane" data-background-color="black" data-image="../material/assets/img/sidebar-1.jpg">
     <!--
 Tip 1: You can change the color of active element of the sidebar using: data-active-color="purple | blue | green | orange | red | rose"
 Tip 2: you can also add an image using data-image tag
@@ -42,6 +42,12 @@ Tip 3: you can change the color of the sidebar with data-background-color="white
         </div>
         <ul class="nav">
 
+            <li >
+                <a ng-click="goto('orders')" ng-class="{'active-menu':isActive('orders')}">
+                    <i class="material-icons">dashboard</i>
+                    <p>Orders</p>
+                </a>
+            </li>
             <li >
                 <a ng-click="goto('main')" ng-class="{'active-menu':isActive('users')}">
                     <i class="material-icons">dashboard</i>

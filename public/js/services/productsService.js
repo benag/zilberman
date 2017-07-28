@@ -13,6 +13,12 @@ angular.module('ganim').factory('productsService',function($state, $timeout, $lo
 
             })
         },
+        remove: function(product){
+            return $http.post('/products/delete',{product:product})
+            .then(function(data){
+                return data.data.payload;
+            })
+        },
         updateProduct: function(product){
             return $http.put('/products',{product:product})
             .then(function(data){

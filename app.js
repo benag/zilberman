@@ -210,6 +210,14 @@ app.get('/products',(req, res)=>{
     })
 });
 
+app.post('/products/delete',(req, res)=>{
+    productCtrl.remove(req.body.product)
+    .then((product)=>{
+        res.json(product);
+    })
+});
+
+
 app.post('/products',(req, res)=>{
     productCtrl.createProduct(req.body.product)
     .then((product)=>{

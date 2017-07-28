@@ -39,6 +39,13 @@ angular.module('ganim').controller('productsCtrl', ['$scope', '$stateParams', '$
             $state.go('subproducts',{product:$scope.products[index]})
         };
 
+        $scope.remove = function(index){
+            productsService.remove($scope.products[index])
+            .then(function(product){
+                $scope.products.splice(index,1);
+            })
+        }
+
         $scope.addCategory = function(){
 
             productsService.createProduct({img:'/material/assets/img/image_placeholder.jpg'}).then(function(product){
