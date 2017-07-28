@@ -7,12 +7,14 @@ var mongoose = require('mongoose'),
 
 var productsSchema = new Schema({
     category: String,
+    img: String,
+    chosen:Boolean,
     description:String,
     products:[{
-        name:String,
         title: String,
+        chosen:Boolean,
         img:String,
-        cost:Number,
+        price:Number,
         description:String
 
 

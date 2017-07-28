@@ -39,6 +39,17 @@ var app = angular.module('ganim', ['ui.router','vsGoogleAutocomplete','ngFileUpl
             "main": { templateUrl: "templates/products.html", controller: 'productsCtrl' }
         }
     };
+    var subproducts = {
+        name: 'subproducts',
+        url: '/subproducts',
+        views: {
+            "left-pane": { templateUrl: "templates/left-pane.html", controller: 'leftPaneController'},
+            "main": { templateUrl: "templates/subproducts.html", controller: 'subProductsCtrl' }
+        },
+        params: {
+            product: null
+        }
+    };
     var drinks = {
         name: 'drinks',
         url: '/drinks',
@@ -61,6 +72,7 @@ var app = angular.module('ganim', ['ui.router','vsGoogleAutocomplete','ngFileUpl
     $stateProvider.state(login);
     $stateProvider.state(search);
     $stateProvider.state(products);
+    $stateProvider.state(subproducts);
     $stateProvider.state(drinks);
     $stateProvider.state(main);
     $stateProvider.state(tools);

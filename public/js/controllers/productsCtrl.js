@@ -22,6 +22,7 @@ angular.module('ganim').controller('productsCtrl', ['$scope', '$stateParams', '$
 
                 file.upload.then(function (response) {
                     $scope.products[index].img = 'http://' + global.getMachine() + '/' + response.data.payload;
+                    productsService.updateProduct($scope.products[index]);
 
                 }, function (response) {
                     if (response.status > 0)
@@ -32,7 +33,11 @@ angular.module('ganim').controller('productsCtrl', ['$scope', '$stateParams', '$
                 });
             }
 
-        }
+        };
+
+        $scope.gotoProducts = function(index){
+            $state.go('subproducts',{product:$scope.products[index]})
+        };
 
         $scope.addCategory = function(){
 

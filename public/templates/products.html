@@ -5,15 +5,17 @@
 
 
         <div class="row products-location">
-            <span ng-repeat="product in products track by $index">
+            <div class="col-md-offset-1">
 
-                <div class="col-md-4">
+                <span ng-repeat="product in products track by $index">
+
+                <div class="col-md-3">
                     <div class="card card-product size-card">
                         <div class="card-image" data-header-animation="true">
 
-                            <a ngf-select="uploadProductImg($file, $invalidFiles, $index)"
+                            <a class="anchor-image" ngf-select="uploadProductImg($file, $invalidFiles, $index)"
                                accept="image/*" ngf-max-height="2000" ngf-max-size="5MB" >
-                                <img class="img" src="{{product.img}}">
+                                <img class="img-responsive" src="{{product.img}}">
                             </a>
                         </div>
                         <div class="card-content">
@@ -23,23 +25,23 @@
 
                                 <div class="togglebutton">
                                     <label>
-                                        <input type="checkbox" checked> Toggle is on
+                                        <input type="checkbox"> Toggle is on
                                     </label>
                                 </div>
 
                             </div>
-                            <h4 class="card-title">
+                            <h4 class="card-title title-left">
                                 <input class="product-card" ng-blur="updateProduct($index)" ng-model="product.category" placeholder="Category title"/>
 
                             </h4>
-                            <div class="card-description">
-                                <textarea class="desc-product" ng-blur="updateProduct($index)" placeholder="Describe the product here..." ng-model="product.description" row="4" cols="50"></textarea>
+                            <div class="card-description title-left">
+                                <textarea class="desc-product" ng-blur="updateProduct($index)" placeholder="Describe the product here..." ng-model="product.description" row="4" cols="35"></textarea>
 
                             </div>
                         </div>
                         <div class="card-footer">
                             <div class="price">
-                                <button class="btn btn-sm pull-right">Products</button>
+                                <button ng-click ="gotoProducts($index)" class="btn btn-round btn-sm pull-right products-btn">Products</button>
                             </div>
 
                         </div>
@@ -48,24 +50,23 @@
 
             </span>
 
-            <!-- add new product card -->
-            <div class="col-md-4">
-                <div class="card card-pricing card-raised card-back" ng-click="addCategory()">
-                    <div class="content">
-                        <h6 class="category">Add New Category</h6>
-                        <div class="icon icon-black">
-                            <i class="material-icons">library_add</i>
-                        </div>
-                        <h3 class="card-title"></h3>
-                        <p class="card-description">
+                <!-- add new product card -->
+                <div class="col-md-3">
+                    <div class="card card-pricing card-raised card-back" ng-click="addCategory()">
+                        <div class="content">
+                            <h6 class="category">Add New Category</h6>
+                            <div class="icon icon-black">
+                                <i class="material-icons">library_add</i>
+                            </div>
+                            <h3 class="card-title"></h3>
+                            <p class="card-description">
 
-                        </p>
-                        <a href="#pablo" class="btn btn-rose btn-round">Add Category</a>
+                            </p>
+                            <a class="btn btn-black btn-round">Add Category</a>
+                        </div>
                     </div>
                 </div>
             </div>
-
-
         </div>
         <!--<div style="margin-top:150px;" class="row">-->
 

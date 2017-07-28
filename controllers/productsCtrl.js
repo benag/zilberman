@@ -12,7 +12,7 @@ productController.getProducts = ()=>{
 };
 
 productController.updateProduct = (product)=>{
-    return Product.update({'_id':product._id},{category: product.category, description:product.description})
+    return Product.update({'_id':product._id},{category: product.category, description:product.description, img:product.img, products:product.products})
 };
 
 productController.createProduct = (product)=>{

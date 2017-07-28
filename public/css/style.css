@@ -251,14 +251,22 @@
 .size-card{
     height: 470px;
 }
+.size-card-sm{
+    height: 300px;
+}
 .products-location{
     margin-top:150px;
 }
 .card-back{
     background-image: url('/img/ganim.jpg');
     background-repeat: no-repeat;
-    background-size: 524px 303px
+    background-size: 524px 215px
     /*opacity: 0.5;*/
+}
+.card-back-sm{
+    background-image: url('/img/ganim.jpg');
+    background-repeat: no-repeat;
+    background-size: 524px 200px
 }
 .product-card{
     width: 80%;
@@ -269,4 +277,27 @@
     border: none;
     cursor: pointer;
     resize: none;
+}
+.price{
+    margin-left: 70%;
+}
+.products-btn{
+    background-color: black;
+
+}
+.anchor-image{
+    height: 283px;
+    width: 355px;
+    display: inline-block;
+}
+.anchor-image-sm{
+    height: 180px;
+    width: 220px;
+    display: inline-block;
+}
+.title-left{
+    text-align: left!important;
+}
+.togglebutton{
+    margin-top:30px;
 }
