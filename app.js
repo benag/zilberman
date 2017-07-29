@@ -202,7 +202,12 @@ app.put('/products',(req, res)=>{
         res.json(product);
     })
 });
-
+app.put('/products/product',(req, res)=>{
+    productCtrl.addSubProduct(req.body.product, req.body.subProduct)
+    .then((product)=>{
+        res.json(product);
+    })
+});
 app.get('/products',(req, res)=>{
     productCtrl.getProducts(req.body.product)
     .then((product)=>{

@@ -35,7 +35,7 @@ angular.module('ganim').controller('subProductsCtrl', ['$scope', '$stateParams',
 
         $scope.addProduct = function(){
             $scope.product.products.push({img:'/material/assets/img/image_placeholder.jpg'});
-            productsService.addSubProduct($scope.product).then(function(product){
+            productsService.addSubProduct($scope.product,{img:'/material/assets/img/image_placeholder.jpg'}).then(function(product){
                 $scope.product = product;
             })
 

@@ -5,8 +5,8 @@ angular.module('ganim').factory('productsService',function($state, $timeout, $lo
         updateProducts: function(){
 
         },
-        addSubProduct: function(product){
-            return $http.put('/products',{product:product})
+        addSubProduct: function(product, subProduct){
+            return $http.put('/products/product',{product:product, subProduct:subProduct})
             .then(function(data){
                 return data.data;
             }).catch(function(err){
