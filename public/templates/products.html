@@ -24,9 +24,10 @@
                                 <!--<input type="checkbox" style="margin-top:20px;" value="include"> include-->
 
                                 <div class="togglebutton">
-                                    <label>
-                                        <input type="checkbox"> Include
-                                    </label>
+                                    <div class="slideThree" style="display:inline-block;">
+                                        <input type="checkbox" value="None" ng-model="products[$index].chosen" id="slideOne" name="check" checked />
+                                        <label for="slideOne"></label>
+                                    </div>
                                     <button type="button" ng-click= "remove($index)" class="btn btn-danger btn-simple" rel="tooltip" data-placement="bottom" title="Remove">
                                         <i class="material-icons">close</i>
                                     </button>
@@ -46,6 +47,7 @@
                             <div class="price">
                                 <button ng-click ="gotoProducts($index)" class="btn btn-round btn-sm pull-right products-btn">Products</button>
                             </div>
+
 
                         </div>
                     </div>
@@ -71,96 +73,6 @@
                 </div>
             </div>
         </div>
-        <!--<div style="margin-top:150px;" class="row">-->
-
-            <!--<div class="col-md-4">-->
-                <!--<div ui-sref="drinks" class="card card-product">-->
-                    <!--<div class="card-image products-image" data-header-animation="true">-->
-                        <!--<a ui-sref="drinks">-->
-                            <!--<img class="img" src="../material/assets/img/coffe.jpg">-->
-                        <!--</a>-->
-                    <!--</div>-->
-                    <!--<div class="card-content">-->
-                        <!--<div class="card-actions">-->
-
-                        <!--</div>-->
-                        <!--<h4 class="card-title">-->
-                            <!--<a >Coffee & Drinks</a>-->
-                        <!--</h4>-->
-                        <!--&lt;!&ndash;<div class="card-description">&ndash;&gt;-->
-                            <!--&lt;!&ndash;The place is close to Metro Station and bus stop just 2 min by walk and near to "Naviglio" where you can enjoy the night life in London, UK.&ndash;&gt;-->
-                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                    <!--</div>-->
-                    <!--<div class="card-footer">-->
-                        <!--&lt;!&ndash;<div class="price">&ndash;&gt;-->
-                            <!--&lt;!&ndash;<h4>$1.119/night</h4>&ndash;&gt;-->
-                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<div class="stats pull-right">&ndash;&gt;-->
-                            <!--&lt;!&ndash;<p class="category"><i class="material-icons">place</i> London, UK</p>&ndash;&gt;-->
-                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<div class="col-md-4">-->
-                <!--<div class="card card-product">-->
-                    <!--<div class="card-image products-image" data-header-animation="true">-->
-                        <!--<a href="#pablo">-->
-                            <!--<img class="img" src="../material/assets/img/meetings.jpg">-->
-                        <!--</a>-->
-                    <!--</div>-->
-                    <!--<div class="card-content">-->
-                        <!--<div class="card-actions">-->
-
-                        <!--</div>-->
-                        <!--<h4 class="card-title">-->
-                            <!--<a >Meetups</a>-->
-                        <!--</h4>-->
-                        <!--&lt;!&ndash;<div class="card-description">&ndash;&gt;-->
-                        <!--&lt;!&ndash;The place is close to Metro Station and bus stop just 2 min by walk and near to "Naviglio" where you can enjoy the night life in London, UK.&ndash;&gt;-->
-                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                    <!--</div>-->
-                    <!--<div class="card-footer">-->
-                        <!--&lt;!&ndash;<div class="price">&ndash;&gt;-->
-                        <!--&lt;!&ndash;<h4>$1.119/night</h4>&ndash;&gt;-->
-                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<div class="stats pull-right">&ndash;&gt;-->
-                        <!--&lt;!&ndash;<p class="category"><i class="material-icons">place</i> London, UK</p>&ndash;&gt;-->
-                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--&lt;!&ndash;<div class="col-md-4">&ndash;&gt;-->
-                <!--&lt;!&ndash;<div class="card card-product">&ndash;&gt;-->
-                    <!--&lt;!&ndash;<div class="card-image products-image" data-header-animation="true">&ndash;&gt;-->
-                        <!--&lt;!&ndash;<a href="#pablo">&ndash;&gt;-->
-                            <!--&lt;!&ndash;<img class="img" src="../material/assets/img/coffe.jpg">&ndash;&gt;-->
-                        <!--&lt;!&ndash;</a>&ndash;&gt;-->
-                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<div class="card-content">&ndash;&gt;-->
-                        <!--&lt;!&ndash;<div class="card-actions">&ndash;&gt;-->
-
-                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<h4 class="card-title">&ndash;&gt;-->
-                            <!--&lt;!&ndash;<a >Coffee & Drinks</a>&ndash;&gt;-->
-                        <!--&lt;!&ndash;</h4>&ndash;&gt;-->
-                        <!--&lt;!&ndash;&lt;!&ndash;<div class="card-description">&ndash;&gt;&ndash;&gt;-->
-                        <!--&lt;!&ndash;&lt;!&ndash;The place is close to Metro Station and bus stop just 2 min by walk and near to "Naviglio" where you can enjoy the night life in London, UK.&ndash;&gt;&ndash;&gt;-->
-                        <!--&lt;!&ndash;&lt;!&ndash;</div>&ndash;&gt;&ndash;&gt;-->
-                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<div class="card-footer">&ndash;&gt;-->
-                        <!--&lt;!&ndash;&lt;!&ndash;<div class="price">&ndash;&gt;&ndash;&gt;-->
-                        <!--&lt;!&ndash;&lt;!&ndash;<h4>$1.119/night</h4>&ndash;&gt;&ndash;&gt;-->
-                        <!--&lt;!&ndash;&lt;!&ndash;</div>&ndash;&gt;&ndash;&gt;-->
-                        <!--&lt;!&ndash;&lt;!&ndash;<div class="stats pull-right">&ndash;&gt;&ndash;&gt;-->
-                        <!--&lt;!&ndash;&lt;!&ndash;<p class="category"><i class="material-icons">place</i> London, UK</p>&ndash;&gt;&ndash;&gt;-->
-                        <!--&lt;!&ndash;&lt;!&ndash;</div>&ndash;&gt;&ndash;&gt;-->
-                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                <!--&lt;!&ndash;</div>&ndash;&gt;-->
-            <!--&lt;!&ndash;</div>&ndash;&gt;-->
-
-        <!--</div>-->
-
-
     </div>
 
 </div>

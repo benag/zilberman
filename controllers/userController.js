@@ -74,6 +74,17 @@ userController.setProject = (id, project)=>{
 
 };
 
+userController.substract = (val, product, identify) =>{
+    let identifyObj;
+    if (identify === 'phone') identifyObj = {'phone': val};
+    User.findOne(identifyObj).exec()
+    .then(function(user){
+        if (user.points) user.points = user.points - product.price;
+        return user.save();
+    })
+
+};
+
 userController.updateProject = (project)=>{
 
     let newProject  = new Project(project);

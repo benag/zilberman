@@ -1,0 +1,78 @@
+
+
+
+
+<div class="main-panel tools-panel orders">
+    <div ng-include="'templates/lockHeader.html'"></div>
+    <div class="container-fluid">
+
+
+        <div class="row products-location" ng-if="showCategory">
+            <div class="col-md-offset-1">
+
+                <span ng-repeat="product in products | filter:chosen track by $index ">
+
+                <div class="col-md-3">
+                    <div class="card card-product size-card" ng-click="choseProducts($index)">
+                        <div class="card-image" data-header-animation="true">
+                            <img class="img-responsive" src="{{product.img}}">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-actions">
+                            </div>
+                            <h4 class="card-title title-left">
+                                <div class="product-card" >{{product.category}}</div>
+
+                            </h4>
+                            <div class="card-description title-left">
+                                <div class="desc-product" >{{product.description}}</div>
+
+                            </div>
+                        </div>
+                        <!--<div class="card-footer">-->
+                        <!--</div>-->
+                    </div>
+                </div>
+
+            </span>
+            </div>
+        </div>
+
+        <div class="row products-location" ng-if="!showCategory">
+            <span ng-repeat="product in product.products track by $index">
+
+                <div class="col-md-offset-1">
+
+                    <div class="col-md-2">
+                        <div class="card card-product size-card-sm" ng-click="confirmOrder($index)">
+                            <div class="card-image" data-header-animation="true">
+                                <img class="img" src="{{product.img}}">
+                            </div>
+                            <div class="card-content">
+                                <div class="card-actions">
+                                </div>
+                                <h4 class="card-title">
+                                    <div class="product-card" >{{product.title}}</div>
+
+                                </h4>
+                                <div class="card-description">
+                                    <div >{{product.description}}</div>
+
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="">
+                                    <div class="product-card" >{{product.price}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </span>
+        </div>
+
+    </div>
+
+
+</div>
+

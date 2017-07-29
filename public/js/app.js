@@ -88,4 +88,6 @@ var app = angular.module('ganim', ['ui.router','vsGoogleAutocomplete','ngFileUpl
     $urlRouterProvider.otherwise('/login');
 
 
-});
+}).run(function($rootScope){
+    $rootScope.current = 'orders';
+})

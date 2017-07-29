@@ -227,6 +227,14 @@ app.post('/products',(req, res)=>{
     })
 });
 
+app.post('/orders',(req, res)=>{
+    userCtrl.substract(req.body.user, req.body.product, req.body.identify )
+    .then((product)=>{
+        res.json(product);
+    }).catch(function(err){
+        console.log(err);
+    })
+});
 
 app.post('/scan/upload', (req, res)=>{
 
