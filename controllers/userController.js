@@ -11,7 +11,7 @@ userController.getUsers = (page, limit)=>{
 
     limit = Number(limit);
     page = Number(page);
-    return User.find()
+    return User.find({role:{ $ne: 'admin' }})
     .skip(page*limit)
     .limit(limit)
     .populate('projects')
@@ -85,8 +85,11 @@ userController.substract = (val, product, identify) =>{
 
 };
 
-userController.updateProject = (project)=>{
+userController.login = (email, pass)=>{
+    return User.findOne({email:email,password:pass}).exec()
+};
 
+userController.updateProject = (project)=>{
     let newProject  = new Project(project);
     return Project.update({_id: project._id}, newProject, {upsert: true}).exec();
 

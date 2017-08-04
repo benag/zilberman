@@ -11,16 +11,17 @@ var userSchema = new Schema({
     password: String,
     userName: String,
     company: String,
-    about:String,
+    about: String,
     points: Number,
     description: String,
     email: String,
+    birthday: Date,
     profession: String,
     projects: [{type: mongoose.Schema.ObjectId, ref: 'Project'}],
     title: String,
     img: String,
-    website:String,
-    address:String,
+    website: String,
+    address: String,
     phone: String,
     role: String,
     status: String,// register,verified
@@ -30,4 +31,5 @@ var userSchema = new Schema({
     socketId: String,
     os: String
 });
+
 mongoose.model('User', userSchema);

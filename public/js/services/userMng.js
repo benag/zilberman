@@ -36,8 +36,11 @@ angular.module('ganim').factory('userMng',function($state, $timeout, $location, 
             this.current = number-1;
         },
 
-        getUser: function(){
-            return this.user;
+        getUser: function(username, pass){
+            return $http.get('/login/' +username + '/' + pass)
+            .then(function(data){
+                return data.data.payload;
+            });
         },
 
         getUsers: function(page, limit){

@@ -215,6 +215,14 @@ app.get('/products',(req, res)=>{
     })
 });
 
+app.get('/login/:email/:pass',(req, res)=>{
+    userCtrl.login(req.params.email,req.params.pass)
+    .then((user)=>{
+        if(user){ res.json({status:true, payload:user})}
+        else{ res.json({status:false, payload:''})}
+    })
+});
+
 app.post('/products/delete',(req, res)=>{
     productCtrl.remove(req.body.product)
     .then((product)=>{
