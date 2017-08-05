@@ -866,7 +866,7 @@ demo = {
                     if (event_title) {
     					eventData = {
     						title: event_title,
-    						start: start,
+                            start: start,
     						end: end
     					};
     					$calendar.fullCalendar('renderEvent', eventData, true); // stick? = true
@@ -941,7 +941,18 @@ demo = {
 					url: 'http://www.creative-tim.com/',
 					className: 'event-orange'
 				}
-			]
+			],
+            eventClick: function(calEvent, jsEvent, view) {
+
+                alert('Event: ' + calEvent.title);
+                alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+                alert('View: ' + view.name);
+
+                // change the border color just for fun
+                $(this).css('border-color', 'red');
+
+            }
+
 		});
     },
 

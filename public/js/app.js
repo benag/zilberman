@@ -1,5 +1,5 @@
 
-var app = angular.module('ganim', ['ui.router','vsGoogleAutocomplete','ngFileUpload', 'ui.bootstrap'])
+var app = angular.module('ganim', ['ui.router','vsGoogleAutocomplete','ngFileUpload', 'ui.bootstrap','ui.select','ngSanitize'])
 
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -67,6 +67,15 @@ var app = angular.module('ganim', ['ui.router','vsGoogleAutocomplete','ngFileUpl
         }
     };
 
+    var meetups = {
+        name: 'meetups',
+        url: '/meetups',
+        views: {
+            "left-pane": { templateUrl: "templates/left-pane.html", controller: 'leftPaneController'},
+            "main": { templateUrl: "templates/meetups.html", controller: 'meetupsCtrl' }
+        }
+    };
+
     var login = {
         name: 'login',
         url: '/login',
@@ -84,6 +93,7 @@ var app = angular.module('ganim', ['ui.router','vsGoogleAutocomplete','ngFileUpl
     $stateProvider.state(subproducts);
     $stateProvider.state(drinks);
     $stateProvider.state(main);
+    $stateProvider.state(meetups);
     $stateProvider.state(tools);
     $urlRouterProvider.otherwise('/login');
 

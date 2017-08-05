@@ -11,6 +11,7 @@ angular.module('ganim').controller('leftPaneController', ['$scope', '$stateParam
             $state.go(state,null,{ reload: true });
         };
 
+
         $scope.isActive = function(menu){
             if (menu === $rootScope.current){
                 return true;
