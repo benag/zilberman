@@ -20,6 +20,8 @@ angular.module('ganim').controller('mainCtrl', ['$scope', '$stateParams', '$loca
             $scope.userMng.reset();
             if (global.searchUser){
                 $scope.user = global.searchUser;
+                if ($scope.user.birthday) $scope.user.birthday = new Date($scope.user.birthday);
+
                 $scope.mode = 'Edit User';
                 $scope.userMng.setUser($scope.user);
                 $scope.userMng.setEditMode();

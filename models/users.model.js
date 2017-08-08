@@ -15,7 +15,7 @@ var userSchema = new Schema({
     points: Number,
     description: String,
     email: String,
-    birthday: String,
+    birthday: Date,
     gender:String,
     profession: String,
     projects: [{type: mongoose.Schema.ObjectId, ref: 'Project'}],
