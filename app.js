@@ -63,8 +63,12 @@ db.once('open', function (callback) {
 require('./models/users.model.js');
 require('./models/projects.model.js');
 require('./models/products.model.js');
+require('./models/rooms.model.js');
+require('./models/events.model.js');
 var userCtrl = require('./controllers/userController.js');
 var productCtrl = require('./controllers/productsCtrl.js');
+var roomCtrl = require('./controllers/roomCtrl.js');
+var eventCtrl = require('./controllers/eventCtrl.js');
 
 var app = module.exports = express.createServer();
 
@@ -78,7 +82,7 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(app.router);
   app.use(express.static(__dirname + '/public'));
-  app.use(passport.initialize());
+  app.use(passport.initialize())
   app.use(passport.session());
 });
 
@@ -140,6 +144,35 @@ app.put('/project/', (req, res)=>{
     })
     .catch(err => console.log(err) );
 });
+
+app.get('/rooms', (req, res) =>{
+    roomCtrl.getRooms()
+    .then(function(rooms){
+        res.json({status:'ok', payload:rooms});
+    })
+    .catch(err => console.log(err) );
+});
+//app.post('/rooms', (req, res)=>{
+//    roomCtrl.setRooms()
+//    .then(function(rooms){
+//        res.json({status:'ok', payload:rooms});
+//    })
+//    .catch(err => console.log(err) );
+//})
+app.post('/events', (req, res)=>{
+    eventCtrl.setEvent(req.body.userId, req.body.start, req.body.end, req.body.roomId, req.body.title )
+    .then(function(event){
+        res.json({status:'ok', payload:event});
+    })
+    .catch(err => console.log(err) );
+})
+app.get('/events', (req, res)=>{
+    eventCtrl.getEvents( )
+    .then(function(event){
+        res.json({status:'ok', payload:event});
+    })
+    .catch(err => console.log(err) );
+})
 
 app.post('/profile', upload.single('file'), function (req, res, next) {
     // req.file is the `avatar` file

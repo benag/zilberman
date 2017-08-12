@@ -45,7 +45,9 @@ angular.module('ganim').controller('toolsCtrl', ['$scope', '$stateParams', '$loc
         $scope.getFacebookUserData = function(userId){
             FB.api(
                 userId
-                ,{fields: ['about','link','description','emails','general_info','mission','phone', 'company_overview','contact_address','website']},
+                //,{fields: ['about','link','description','emails','general_info','mission','phone', 'company_overview','contact_address','website']},
+                ,{fields: ['about','link','gender','last_name','first_name','website']},
+
                 function (response) {
                     if (response && !response.error) {
                         $scope.$applyAsync(function(){
@@ -95,16 +97,16 @@ angular.module('ganim').controller('toolsCtrl', ['$scope', '$stateParams', '$loc
             FB.login(function(response) {
                 if (response.authResponse) {
                     $scope.token = response.authResponse.accessToken;
-                    //if ($scope.options === 'User'){
-                    //    let array = $scope.faceBookUser.split('/');
-                    //    let userName = array.pop();
-                    //    $scope.getIDFromURL(userName)
-                    //    .then(function(userObj){
-                    //        $scope.getFacebookUserData(userObj.id)
-                    //    })
-                    //}else{
+                    if ($scope.options === 'User'){
+                        let array = $scope.faceBookUser.split('/');
+                        let userName = array.pop();
+                        //$scope.getIDFromURL(userName)
+                        //.then(function(userObj){
+                            $scope.getFacebookUserData(userName)
+                        //})
+                    }else{
                         $scope.getFacebookCompanyData();
-                    //}
+                    }
                 } else {
                     //login cancelled or not every permission accepted
                 }

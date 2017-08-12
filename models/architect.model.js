@@ -21,7 +21,7 @@ var architectSchema = new Schema({
         name:String,
         path:String,
         origin:String,
-        license:String,
+        license:String
 
     }],
     Projects:{type: Schema.ObjectId, ref: 'Project'},
