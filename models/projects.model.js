@@ -10,8 +10,8 @@ var projectSchema = new Schema({
     name:String,
     address: String,
     img: String,
-    Date: Date,
-    Type: String,
+    endingDate: Date,
+    type: String,
     location:{lat:Number, lng:Number}
 
 });

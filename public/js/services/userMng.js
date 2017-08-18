@@ -25,6 +25,7 @@ angular.module('ganim').factory('userMng',function($state, $timeout, $location, 
 
         getCurrentProject: function(){
             if (this.newProjectMode) return this.newProject;
+            if (this.projects.length === 0) return undefined;
             return this.projects[this.current];
         },
 

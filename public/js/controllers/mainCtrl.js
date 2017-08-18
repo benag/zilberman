@@ -1,5 +1,5 @@
-angular.module('ganim').controller('mainCtrl', ['$scope', '$stateParams', '$location','$http', 'Upload','global', 'userMng',
-    function($scope, $stateParams, $location,$http, Upload, global, userMng) {
+angular.module('ganim').controller('mainCtrl', ['$scope', '$stateParams', '$location','$http', 'Upload','global', 'userMng', '$state',
+    function($scope, $stateParams, $location,$http, Upload, global, userMng, $state) {
 
 
         var s = $scope;
@@ -16,12 +16,13 @@ angular.module('ganim').controller('mainCtrl', ['$scope', '$stateParams', '$loca
             $scope.projectText = $scope.userMng.data.projectBtnText;
         });
 
+
         $scope.init = function(){
             $scope.userMng.reset();
             if (global.searchUser){
                 $scope.user = global.searchUser;
                 if ($scope.user.birthday) $scope.user.birthday = new Date($scope.user.birthday);
-
+                $scope.insureProjectsDate($scope.user.projects);
                 $scope.mode = 'Edit User';
                 $scope.userMng.setUser($scope.user);
                 $scope.userMng.setEditMode();
@@ -33,6 +34,13 @@ angular.module('ganim').controller('mainCtrl', ['$scope', '$stateParams', '$loca
             }
 
         };
+
+        $scope.insureProjectsDate = function(projects){
+            for (var i = 0; i < projects.length; i++){
+                projects[i].endingDate = new Date(projects[i].endingDate);
+            }
+        };
+
         $scope.isExist = function(number){
             var numOfProjects = $scope.userMng.getProjects().length;
             return number <= numOfProjects;
@@ -61,6 +69,9 @@ angular.module('ganim').controller('mainCtrl', ['$scope', '$stateParams', '$loca
             $scope.setMaps({lat:project.lat,lng:project.lng});
         }
 
+        $scope.go = function(){
+            $state.reload();
+        }
         $scope.setMaps = function(pos){
 
             var myLatlng;
@@ -110,7 +121,9 @@ angular.module('ganim').controller('mainCtrl', ['$scope', '$stateParams', '$loca
         };
 
         $scope.getType = function(){
-            return $scope.user.type ? $scope.user.type: 'Offices';
+            var project = userMng.getCurrentProject();
+            return type = project && project.type ? project.type : 'Offices';
+
         };
 
         $scope.getGender = function(){

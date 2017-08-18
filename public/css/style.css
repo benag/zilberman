@@ -207,6 +207,10 @@
     background-color: black!important;
 }
 .input-drop{
+    margin-top: 17px;
+    border-bottom: 1px solid lightgray;
+}
+.input-drop-gender{
     margin-top: 35px;
     border-bottom: 1px solid lightgray;
 }
@@ -360,5 +364,11 @@
 .iframe-pos{
     position: relative;
     left:50px;
+}
+.card-title-main{
+    width:100px;
+}
+.new-btn{
+    z-index: 1000;
 }
 /* end .slideThree */

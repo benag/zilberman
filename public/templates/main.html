@@ -10,10 +10,10 @@
                 <div class="col-md-8">
 
                     <div class="card">
-
+                        <button class="btn btn-black pull-right new-btn" ng-click="go('main')">Add New</button>
                         <div class="card-content">
 
-                            <h4 class="card-title">{{mode}} -
+                            <h4 class="card-title card-title-main">{{mode}} -
                                 <small class="category"></small>
                             </h4>
 
@@ -91,7 +91,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-2">
-                                        <div class="dropdown input-drop" ng-init="setProfession()">
+                                        <div class="dropdown input-drop-gender" ng-init="setProfession()">
                                             <a class="dropdown-toggle input-btn" data-toggle="dropdown">{{getGender()}}
                                                 <b class="caret"></b>
                                             </a>
@@ -163,10 +163,6 @@
                 </div>
             </div>
 
-
-            <!-- ----------------------- projects ---------------------------------------------------------!>
-
-
             <!--ng-show="user.projects.length >0"-->
             <div class="row" ng-show="user._id">
                 <div class="pagination-pos" ng-show="userMng.getProjects().length > 1">
@@ -206,7 +202,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label">Ending Date</label>
-                                            <input type="text" class="form-control datetimepicker" ng-model="userMng.getCurrentProject().endingDate" />
+                                            <input type="date" class="form-control datetimepicker" ng-model="userMng.getCurrentProject().endingDate" />
 
                                         </div>
                                         <div class="dropdown input-drop" >
@@ -215,13 +211,13 @@
                                             </a>
                                             <ul class="dropdown-menu dropdown-menu-left">
                                                 <li>
-                                                    <a ng-click="user.projects.type = 'Architect'" class="genderAnchor">Offices</a>
+                                                    <a ng-click="userMng.getCurrentProject().type = 'Architect'" class="genderAnchor">Offices</a>
                                                 </li>
                                                 <li>
-                                                    <a ng-click="user.projects.type = 'Gardens'" class="genderAnchor">Gardens</a>
+                                                    <a ng-click="userMng.getCurrentProject().type = 'Gardens'" class="genderAnchor">Gardens</a>
                                                 </li>
                                                 <li>
-                                                    <a ng-click="user.projects.type = 'Institute'" class="genderAnchor">Institute</a>
+                                                    <a ng-click="userMng.getCurrentProject().type = 'Institute'" class="genderAnchor">Institute</a>
                                                 </li>
                                             </ul>
                                         </div>
