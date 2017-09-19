@@ -169,6 +169,22 @@ app.post('/events', (req, res)=>{
     })
     .catch(err => console.log(err) );
 })
+app.put('/events', (req, res)=>{
+    eventCtrl.updateEvent(req.body.userId, req.body.start, req.body.end, req.body.roomId, req.body.title )
+        .then(function(event){
+            res.json({status:'ok', payload:event});
+        })
+        .catch(err => console.log(err) );
+})
+app.delete('/events/:id', (req, res)=>{
+    eventCtrl.deleteEvent(req.body.id )
+        .then(function(event){
+            res.json({status:'ok', payload:event});
+        })
+        .catch( (err) => {
+            console.log(err)
+        } );
+})
 app.get('/events', (req, res)=>{
     eventCtrl.getEvents( )
     .then(function(event){

@@ -8,14 +8,18 @@ angular.module('ganim').controller(
         $scope.time = {};
         $scope.person.selected = eventDB.user;
         $scope.room.selected = eventDB.room;
-        $scope.time.startTime =
+        $scope.time.startTime = eventCal.start._d;
+        $scope.time.endTime = eventCal.end._d;
 
         $scope.ok = function () {
             $uibModalInstance.close({person:$scope.person.selected, time: $scope.time, room:$scope.room});
         };
 
+        $scope.cancel = function() {
+            $uibModalInstance.dismiss('cancel');
+        }
         $scope.remove = function () {
-            $rootScope.$broadCast('delete_event', {id:eventCal.id});
+            $rootScope.$broadcast('delete_event', {id:eventCal.id});
             $uibModalInstance.dismiss('cancel');
         };
     });

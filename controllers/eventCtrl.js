@@ -28,5 +28,10 @@ eventController.getEvent = async (id) => {
     return await Event.findOne({_id:id}).populate('user').populate('room').exec();
 }
 
+eventController.deleteEvent = async (id) => {
+    return await Event.remove({_id:id}).exec();
+}
+
+
 
 module.exports = eventController;

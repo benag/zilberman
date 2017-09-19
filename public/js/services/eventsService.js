@@ -8,10 +8,10 @@ angular.module('ganim').factory('eventsService',function($state, $timeout, $http
             return $http.post('/events',{userId:userId, start:start, end:end, roomId:roomId, title:title})
         },
         getEvent: function(id) {
-            return $http.get('/events/' + id)
+            return $http.get('/events/' + id);
         },
-        removeEvent: function () {
-
+        removeEvent: function (id) {
+            return $http.delete('/events/' + id);
         }
 
 

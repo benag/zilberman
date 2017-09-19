@@ -114,8 +114,15 @@ angular.module('ganim').factory('calenderService',function($state, $timeout, $lo
 
                     eventClick: function(calEvent, jsEvent, view) {
                         console.log(calEvent);
-                        $rootScope.$on('$rootScope', function(event, args){
-                            alert(args);
+
+                        $rootScope.$on('delete_event', function(event, args){
+                            eventsService.removeEvent(args.id)
+                            .then( function() {
+                                _this.refreshEvents();
+                            }).catch(function(err){
+                                console.log(err);
+                            })
+                            //_this.$calendar.fullCalendar('removeEvents' [ args.id]); // stick? = true
                         });
                         eventsService.getEvent(calEvent._id)
                         .then( function(res){
