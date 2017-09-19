@@ -8,6 +8,7 @@ var mongoose = require('mongoose'),
 var eventsSchema = new Schema({
     user: {type: Schema.ObjectId, ref: 'User'},
     room: {type: Schema.ObjectId, ref: 'Room'},
+    eventId: Number,
     title: String,
     desc: String,
     start: Date,

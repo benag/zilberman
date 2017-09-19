@@ -1,4 +1,4 @@
-angular.module('ganim').factory('calenderService',function($state, $timeout, $location, eventsService ){
+angular.module('ganim').factory('calenderService',function($state, $timeout, $location, eventsService, $rootScope ){
     return {
         itemArray:['dd','dqwd'],
         $calendar : '',
@@ -6,15 +6,7 @@ angular.module('ganim').factory('calenderService',function($state, $timeout, $lo
         y : (new Date()).getFullYear(),
         m : (new Date()).getMonth(),
         d : (new Date()).getDate(),
-        events:[
-            //{
-            //    id: 999,
-            //    title: 'Repeating Event',
-            //    start: new Date(),
-            //    allDay: false,
-            //    className: 'event-rose'
-            //}
-        ],
+        events:[],
         transferData: function(data){
             for (var i =0 ;i <  data.length; i++){
                 var item = data[i];
@@ -28,13 +20,6 @@ angular.module('ganim').factory('calenderService',function($state, $timeout, $lo
             var _this = this;
             return eventsService.getEvents()
             .then(function(events){
-                    //_this.events = [ {
-                    //    id: 999,
-                    //    title: 'Repeating Event',
-                    //    start: new Date(),
-                    //    allDay: false,
-                    //    className: 'event-rose'
-                    //}];
                 _this.events = _this.transferData(events.data.payload);
             }).catch(function(err){console.log(err)})
 
@@ -59,13 +44,14 @@ angular.module('ganim').factory('calenderService',function($state, $timeout, $lo
             selection.time.start._d.setMinutes(selection.time.startTime.getMinutes());
             selection.time.end._d.setDate(selection.time.end._d.getDate()-1);
             selection.time.end._d.setMinutes(selection.time.endTime.getMinutes());
-            var title = 'Member: ' + member.firstName + '' +member.lastName +  'reserved room: ' + room.name;
+            var title = member.firstName + '-' + room.name;
             eventsService.addEvent (member._id, selection.time.start._d,selection.time.end._d, room._id, title)
             .then(function(event){
                 eventData = {
                     title: title,
                     start: selection.time.start._d,
-                    end: selection.time.end._d
+                    end: selection.time.end._d,
+                    eventId: event.data.payload.eventId
                 };
                 this.$calendar.fullCalendar('renderEvent', eventData, true); // stick? = true
                 this.$calendar.fullCalendar('unselect');
@@ -74,6 +60,7 @@ angular.module('ganim').factory('calenderService',function($state, $timeout, $lo
             })
 
         },
+
         initCalender: function(meetupsCtrl){
             _this = this;
             this.meetupCtrl = meetupsCtrl;
@@ -126,10 +113,16 @@ angular.module('ganim').factory('calenderService',function($state, $timeout, $lo
                     events: _this.events,
 
                     eventClick: function(calEvent, jsEvent, view) {
-
-                        alert('Event: ' + calEvent.title);
-                        alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-                        alert('View: ' + view.name);
+                        console.log(calEvent);
+                        $rootScope.$on('$rootScope', function(event, args){
+                            alert(args);
+                        });
+                        eventsService.getEvent(calEvent._id)
+                        .then( function(res){
+                            meetupsCtrl.edit(res.data.payload, calEvent);
+                        }).catch( function(err){
+                            alert(err);
+                        });
 
                         // change the border color just for fun
                         $(this).css('border-color', 'red');

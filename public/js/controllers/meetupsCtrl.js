@@ -16,6 +16,43 @@ angular.module('ganim').controller('meetupsCtrl', ['$scope', '$stateParams', '$l
 
         $scope.animationsEnabled = true;
 
+        $scope.edit = function(eventDB, eventCal, parentSelector) {
+            var parentElem = parentSelector ?
+                angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+            var modalInstance = $uibModal.open({
+                animation: $scope.animationsEnabled,
+                ariaLabelledBy: 'modal-title',
+                ariaDescribedBy: 'modal-body',
+                templateUrl: 'myModalEditContent.html',
+                controller: 'ModalInstanceEditCtrl',
+                size: undefined,
+                appendTo: parentElem,
+                resolve: {
+                    items: function () {
+                        return $scope.users;
+                    },
+                    rooms: function() {
+                        return $scope.rooms;
+                    },
+                    eventDB: function () {
+                        return eventDB;
+                    },
+                    eventCal: function () {
+                        return eventCal;
+                    }
+
+                }
+            });
+
+            modalInstance.result.then(function (selectedItem) {
+                selectedItem.time.start = $scope.start;
+                selectedItem.time.end = $scope.end;
+                calenderService.updateEvent(selectedItem);
+                //calenderService.setEvent($scope.selected);
+            }, function () {
+                $log.info('Modal dismissed at: ' + new Date());
+            });
+        }
         $scope.open = function (start, end, size, parentSelector) {
             $scope.start = start;
             $scope.end = end;

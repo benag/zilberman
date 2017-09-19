@@ -10,6 +10,8 @@ var express = require('express'),
     FacebookStrategy = require('passport-facebook').Strategy,
     fs = require('fs'),
     multer  = require('multer');
+    var passport = require('passport');
+    var Strategy = require('passport-http').BasicStrategy;
     //upload = multer({ dest: 'public/uploads/' });
 
     var storage = multer.diskStorage({
@@ -65,6 +67,7 @@ require('./models/projects.model.js');
 require('./models/products.model.js');
 require('./models/rooms.model.js');
 require('./models/events.model.js');
+require('./models/config.model.js');
 var userCtrl = require('./controllers/userController.js');
 var productCtrl = require('./controllers/productsCtrl.js');
 var roomCtrl = require('./controllers/roomCtrl.js');
@@ -82,7 +85,7 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(app.router);
   app.use(express.static(__dirname + '/public'));
-  app.use(passport.initialize())
+  app.use(passport.initialize());
   app.use(passport.session());
 });
 
@@ -172,7 +175,18 @@ app.get('/events', (req, res)=>{
         res.json({status:'ok', payload:event});
     })
     .catch(err => console.log(err) );
-})
+});
+
+app.get('/events/:id', async (req, res)=>{
+    try{
+        let event = await eventCtrl.getEvent(req.params.id );
+        if (event) return res.json({status:'ok', payload:event});
+        return res.json({status:false});
+    }catch(err){
+        consoe.log(err);
+    }
+
+});
 
 app.post('/profile', upload.single('file'), function (req, res, next) {
     // req.file is the `avatar` file
@@ -251,8 +265,11 @@ app.get('/products',(req, res)=>{
 app.get('/login/:email/:pass',(req, res)=>{
     userCtrl.login(req.params.email,req.params.pass)
     .then((user)=>{
-        if(user){ res.json({status:true, payload:user})}
-        else{ res.json({status:false, payload:''})}
+        if(user){
+            res.json({status:true, payload:user})
+        }else{
+            res.json({status:false, payload:''})
+        }
     })
 });
 

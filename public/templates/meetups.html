@@ -88,3 +88,59 @@
         <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
     </div>
 </script>
+
+
+<script type="text/ng-template" id="myModalEditContent.html">
+    <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">Edit Event</h3>
+    </div>
+    <div class="modal-body" id="modal-body">
+
+        <div class="row">
+            <span>Update Room: </span>
+            <ui-select ng-model="room.selected" theme="select2" ng-disabled="disabled" style="min-width: 300px;" title="Choose a room" append-to-body="true">
+                <ui-select-match placeholder="Select a room in the list ">{{$select.selected.name}}</ui-select-match>
+                <ui-select-choices repeat="room in rooms ">
+                    <div ng-bind-html="room.name | highlight: $select.search"></div>
+                    <!--<small>-->
+                    <!--email: {{person.firstName}}-->
+                    <!--phone: <span ng-bind-html="''+person.phone | highlight: $select.search"></span>-->
+                    <!--</small>-->
+                </ui-select-choices>
+            </ui-select>
+        </div>
+
+        <div class="row">
+            <span>Update Member: </span>
+            <ui-select ng-model="person.selected" theme="select2" ng-disabled="disabled" style="min-width: 300px;" title="Choose a member" append-to-body="true">
+                <ui-select-match placeholder="Select a member in the list or search his name...">{{$select.selected.firstName}}</ui-select-match>
+                <ui-select-choices repeat="person in members | memberFilter: {firstName: $select.search, phone: $select.search}">
+                    <div ng-bind-html="person.firstName | highlight: $select.search"></div>
+                    <small>
+                        email: {{person.firstName}}
+                        phone: <span ng-bind-html="''+person.phone | highlight: $select.search"></span>
+                    </small>
+                </ui-select-choices>
+            </ui-select>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <label class="label-control">Start Time:</label>
+                <input type="time" name="usr_time" ng-model="time.startTime">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <label class="label-control">End Time:</label>
+                <input type="time" name="usr_time" ng-model="time.endTime">
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-warning" type="button" ng-click="remove()">Remove</button>
+        <button class="btn btn-primary" type="button" ng-click="update()">Update</button>
+    </div>
+</script>

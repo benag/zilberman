@@ -1,5 +1,5 @@
 
-var app = angular.module('ganim', ['ui.router','vsGoogleAutocomplete','ngFileUpload', 'ui.bootstrap','ui.select','ngSanitize'])
+var app = angular.module('ganim', ['ui.router','vsGoogleAutocomplete','ngFileUpload', 'ui.bootstrap','ui.select','ngAnimate','ngSanitize'])
 
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -98,6 +98,7 @@ var app = angular.module('ganim', ['ui.router','vsGoogleAutocomplete','ngFileUpl
     $urlRouterProvider.otherwise('/login');
 
 
-}).run(function($rootScope){
+}).run(function($rootScope, $state){
+
     $rootScope.current = 'main';
 })
