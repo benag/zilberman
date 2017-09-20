@@ -94,9 +94,17 @@ userController.updateProject = (project)=>{
     return Project.update({_id: project._id}, newProject, {upsert: true}).exec();
 
 };
-userController.deleteUser = (id)=>{
-    let newProject  = new Project(project);
-    return Project.update({_id: project._id}, newProject, {upsert: true}).exec();
+userController.deleteUser = async (id)=>{
+    try{
+        let user = await User.findById(id).populate('projects').exec();
+        for (let project of user.projects){
+            let id = project.id.toString();
+            await Project.remove({_id:id});
+        }
+        return await User.remove({_id:id}).exec();
+    }catch(err){
+        console.log(err);
+    }
 
 };
 

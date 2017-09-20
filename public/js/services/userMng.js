@@ -51,6 +51,10 @@ angular.module('ganim').factory('userMng',function($state, $timeout, $location, 
             });
         },
 
+        removeUser: function(id){
+            return $http.delete('/user/' +id)
+        },
+
         getProjects: function(){
             return this.projects;
         },
