@@ -45,10 +45,9 @@ angular.module('ganim').controller('meetupsCtrl', ['$scope', '$stateParams', '$l
             });
 
             modalInstance.result.then(function (selectedItem) {
-                selectedItem.time.start = $scope.start;
-                selectedItem.time.end = $scope.end;
+                selectedItem.time.start = selectedItem.time.startTime;
+                selectedItem.time.end = selectedItem.time.endTime;
                 calenderService.updateEvent(selectedItem);
-                //calenderService.setEvent($scope.selected);
             }, function () {
                 $log.info('Modal dismissed at: ' + new Date());
             });

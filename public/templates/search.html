@@ -7,23 +7,23 @@
         <div class="row search-content">
             <div class="col-md-4">
                 <div class="form-group form-search is-empty">
-                    <input type="text" ng-model="searchUserParam" class="form-control" placeholder="Filter By Company Name">
+                    <input type="text" ng-model="searchCompanyParam" class="form-control" placeholder="Filter By Company Name">
                     <span class="material-input"></span>
                 </div>
 
             </div>
             <div class="col-md-4">
                 <div class="form-group form-search is-empty">
-                    <input type="text" ng-model="searchPointsParam" class="form-control" placeholder="Filter By Points">
+                    <input type="text" ng-model="searchUserParam" class="form-control" placeholder="Filter By First Name">
                     <span class="material-input"></span>
                 </div>
             </div>
-            <div class="col-md-4">
-                <button ng-click="" type="submit" class="btn btn-white btn-round btn-just-icon">
-                    <i class="material-icons">search</i>
-                    <div class="ripple-container"></div>
-                </button>
-            </div>
+            <!--<div class="col-md-4">-->
+                <!--<button ng-click="" type="submit" class="btn btn-white btn-round btn-just-icon">-->
+                    <!--<i class="material-icons">search</i>-->
+                    <!--<div class="ripple-container"></div>-->
+                <!--</button>-->
+            <!--</div>-->
 
 
         </div>
@@ -39,14 +39,26 @@
                         <table class="table">
                             <thead class="text-primary color-heading">
 
-                            <th class="table-header">Company</th>
-                            <th>first Name</th>
-                            <th>Last Name</th>
-                            <th>points</th>
+                            <th class="table-header" ng-click="sortType = 'company';sortReverse = !sortReverse">Company
+                                <i ng-show="sortType === '' || (sortType === 'company' && sortReverse)" class="fa fa-caret-down" aria-hidden="true"></i>
+                                <i ng-show="(sortType === 'company' && !sortReverse)" class="fa fa-caret-up" aria-hidden="true"></i>
+                            </th>
+                            <th ng-click="sortType = 'firstName';sortReverse = !sortReverse">first Name
+                                <i ng-show="sortType === '' || (sortType === 'firstName' && sortReverse)" class="fa fa-caret-down" aria-hidden="true"></i>
+                                <i ng-show="(sortType === 'firstName' && !sortReverse)" class="fa fa-caret-up" aria-hidden="true"></i>
+                            </th>
+                            <th ng-click="sortType = 'lastName';sortReverse = !sortReverse">Last Name
+                                <i ng-show="sortType === '' || (sortType === 'lastName' && sortReverse)" class="fa fa-caret-down" aria-hidden="true"></i>
+                                <i ng-show="(sortType === 'lastName' && !sortReverse)" class="fa fa-caret-up" aria-hidden="true"></i>
+                            </th>
+                            <th ng-click="sortType = 'points';sortReverse = !sortReverse">points
+                                <i ng-show="sortType === '' || (sortType === 'points' && sortReverse)" class="fa fa-caret-down" aria-hidden="true"></i>
+                                <i ng-show="(sortType === 'points' && !sortReverse)" class="fa fa-caret-up" aria-hidden="true"></i>
+                            </th>
                             <th>Action</th>
                             </thead>
                             <tbody>
-                            <tr ng-repeat="user in users track by $index" >
+                            <tr ng-repeat="user in users | filter:{company:searchCompanyParam,firstName:searchUserParam} | orderBy:sortType:sortReverse track by $index" >
 
                                 <td >{{user.company}}</td>
                                 <td>{{user.firstName}}</td>

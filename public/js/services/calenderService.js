@@ -36,6 +36,20 @@ angular.module('ganim').factory('calenderService',function($state, $timeout, $lo
             var s = this.addZero(d.getSeconds());
             return  h + ":" + m + ":" + s;
         },
+        updateEvent: function(selection) {
+            let room = selection.room.selected;
+            let member = selection.person;
+            //selection.time.start._d.setHours(selection.time.startTime.getHours());
+            //selection.time.end._d.setHours(selection.time.endTime.getHours());
+            //selection.time.start._d.setMinutes(selection.time.startTime.getMinutes());
+            //selection.time.end._d.setDate(selection.time.end._d.getDate()-1);
+            //selection.time.end._d.setMinutes(selection.time.endTime.getMinutes());
+
+            eventsService.updateEvent(selection.id,member._id, selection.time.start,selection.time.end, room._id, selection.title)
+            .then(function(event){
+                $state.reload();
+            })
+        },
         addEvent: function(selection){
             let room = selection.room.selected;
             let member = selection.person;
@@ -87,6 +101,7 @@ angular.module('ganim').factory('calenderService',function($state, $timeout, $lo
                     },
                     defaultDate: today,
                     selectable: true,
+                    fullDay:true,
                     selectHelper: true,
                     views: {
                         month: { // name of view
@@ -118,7 +133,7 @@ angular.module('ganim').factory('calenderService',function($state, $timeout, $lo
                         $rootScope.$on('delete_event', function(event, args){
                             eventsService.removeEvent(args.id)
                             .then( function() {
-                                _this.refreshEvents();
+                                $state.reload();
                             }).catch(function(err){
                                 console.log(err);
                             })

@@ -12,6 +12,9 @@ angular.module('ganim').factory('eventsService',function($state, $timeout, $http
         },
         removeEvent: function (id) {
             return $http.delete('/events/' + id);
+        },
+        updateEvent: function (id, userId,start,end,roomId, title) {
+            return $http.put('/events/' + id, {userId:userId, start:start, end:end, roomId:roomId, title:title});
         }
 
 

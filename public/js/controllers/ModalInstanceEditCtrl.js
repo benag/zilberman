@@ -18,6 +18,9 @@ angular.module('ganim').controller(
         $scope.cancel = function() {
             $uibModalInstance.dismiss('cancel');
         }
+        $scope.update = function() {
+            $uibModalInstance.close({id:eventDB._id, person:$scope.person.selected, time: $scope.time, room:$scope.room, title:eventCal.title});
+        }
         $scope.remove = function () {
             $rootScope.$broadcast('delete_event', {id:eventCal.id});
             $uibModalInstance.dismiss('cancel');

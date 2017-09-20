@@ -24,6 +24,26 @@ eventController.setEvent = async (userId,start, end, roomId, title ) => {
     return event;
 
 };
+eventController.updateEvent = async (id, userId, start, end, roomId, title ) => {
+    try{
+        let event = await Event.findOne({_id:id}).exec();
+        if (event){
+            if (event.room.id.toString() !== roomId) event.room = roomId;
+            if (event.user.id.toString() !== userId) event.user = userId;
+            if (event.title !== title) event.title = title;
+            if (start && event.start !== start) event.start = start;
+            if (end && event.end !== end) event.end = end;
+            await event.save();
+            return event;
+        }else{
+
+        }
+
+    }catch(err){
+        console.log(err);
+    }
+
+}
 eventController.getEvent = async (id) => {
     return await Event.findOne({_id:id}).populate('user').populate('room').exec();
 }

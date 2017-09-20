@@ -94,6 +94,11 @@ userController.updateProject = (project)=>{
     return Project.update({_id: project._id}, newProject, {upsert: true}).exec();
 
 };
+userController.deleteUser = (id)=>{
+    let newProject  = new Project(project);
+    return Project.update({_id: project._id}, newProject, {upsert: true}).exec();
+
+};
 
 
 

@@ -2,6 +2,11 @@ angular.module('ganim').controller('searchCtrl', ['$scope', '$stateParams', '$lo
     function($scope, $stateParams, $location, $state, $http, global, userMng) {
 
         s = $scope;
+        $scope.sortType = '';
+        $scope.reverseCompany = false;
+        $scope.reverseFirst = false;
+        $scope.reverseLast = false;
+        $scope.reversePoints = false;
         $scope.page = 0;
         $scope.limit =100;
         $scope.init = function(){

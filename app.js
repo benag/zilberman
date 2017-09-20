@@ -130,6 +130,15 @@ app.put('/user', (req, res)=>{
         console.log(err);
     })
 });
+app.delete('/user/:id', (req, res)=>{
+
+    userCtrl.deleteUser(req.params.id)
+        .then(function(user){
+            res.json({status:'ok', payload:user});
+        }).catch(function(err){
+            console.log(err);
+        })
+});
 
 app.post('/project/:userId', (req, res)=>{
 
@@ -169,15 +178,15 @@ app.post('/events', (req, res)=>{
     })
     .catch(err => console.log(err) );
 })
-app.put('/events', (req, res)=>{
-    eventCtrl.updateEvent(req.body.userId, req.body.start, req.body.end, req.body.roomId, req.body.title )
+app.put('/events/:id', (req, res)=>{
+    eventCtrl.updateEvent(req.params.id, req.body.userId, req.body.start, req.body.end, req.body.roomId, req.body.title )
         .then(function(event){
             res.json({status:'ok', payload:event});
         })
         .catch(err => console.log(err) );
 })
 app.delete('/events/:id', (req, res)=>{
-    eventCtrl.deleteEvent(req.body.id )
+    eventCtrl.deleteEvent(req.params.id )
         .then(function(event){
             res.json({status:'ok', payload:event});
         })
