@@ -23,7 +23,7 @@ angular.module('ganim').controller('mainCtrl', ['$scope', '$stateParams', '$loca
                 $scope.user = global.searchUser;
                 if ($scope.user.birthday) $scope.user.birthday = new Date($scope.user.birthday);
                 $scope.insureProjectsDate($scope.user.projects);
-                $scope.mode = 'Edit User';
+                $scope.mode = 'Update User';
                 $scope.userMng.setUser($scope.user);
                 $scope.userMng.setEditMode();
 
@@ -98,11 +98,11 @@ angular.module('ganim').controller('mainCtrl', ['$scope', '$stateParams', '$loca
         };
 
         $scope.submitUser = function(){
-            if ($scope.mode === 'Edit User'){
+            if ($scope.mode === 'Update User'){
                 $http.put('/user',{user: $scope.user})
                 .then(function(user){
                     swal("Member Updated");
-                    $scope.mode = 'Edit User';
+                    $scope.mode = 'Update User';
                 });
             }else{
                 $http.post('/user',{user: $scope.user})
@@ -110,7 +110,7 @@ angular.module('ganim').controller('mainCtrl', ['$scope', '$stateParams', '$loca
                     swal("Member Added");
                     $scope.user = data.data.payload;
                     $scope.userMng.setNewProject();
-                    $scope.mode = 'Edit User';
+                    $scope.mode = 'Update User';
                 });
             }
 

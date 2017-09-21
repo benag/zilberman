@@ -18,6 +18,44 @@
                             </h4>
 
                             <form>
+
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Fist Name</label>
+                                            <input type="text" ng-model="user.firstName" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Last Name</label>
+                                            <input type="text" ng-model="user.lastName" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Phone</label>
+                                            <input type="text" ng-model="user.phone" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="dropdown input-drop-gender" ng-init="setProfession()">
+                                            <a class="dropdown-toggle input-btn" data-toggle="dropdown">{{getGender()}}
+                                                <b class="caret"></b>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-left">
+                                                <li>
+                                                    <a ng-click="user.gender = 'Male'" class="genderAnchor">Male</a>
+                                                </li>
+                                                <li>
+                                                    <a ng-click="user.gender = 'Female'" class="genderAnchor">Female</a>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+
+                                    </div>
+                                </div>
                                 <div class="row">
                                     <div class="col-md-3">
                                         <div class="form-group label-floating">
@@ -34,8 +72,8 @@
                                     </div>
                                     <div class="col-md-3">
                                         <!--<div class="form-group">-->
-                                            <!--<label class="label-control">Date Picker</label>-->
-                                            <!--<input type="text" class="form-control datepicker" value="10/10/2016" />-->
+                                        <!--<label class="label-control">Date Picker</label>-->
+                                        <!--<input type="text" class="form-control datepicker" value="10/10/2016" />-->
                                         <!--</div>-->
                                         <div class="form-group label-floating">
                                             <label class="control-label">Birthday</label>
@@ -72,40 +110,23 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-3">
+                                    <div class="col-md-4">
                                         <div class="form-group label-floating">
-                                            <label class="control-label">Fist Name</label>
-                                            <input type="text" ng-model="user.firstName" class="form-control">
+                                            <label class="control-label">Company website</label>
+                                            <input type="text" ng-model="user.companySite" class="form-control">
                                         </div>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-4">
                                         <div class="form-group label-floating">
-                                            <label class="control-label">Last Name</label>
-                                            <input type="text" ng-model="user.lastName" class="form-control">
+                                            <label class="control-label">Company Facebook URL</label>
+                                            <input type="text" ng-model="user.companyFacebook" class="form-control">
                                         </div>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-4">
                                         <div class="form-group label-floating">
-                                            <label class="control-label">Phone</label>
-                                            <input type="text" ng-model="user.phone" class="form-control">
+                                            <label class="control-label">Private Facebook URL</label>
+                                            <input type="text" ng-model="user.privateFacebook" class="form-control">
                                         </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="dropdown input-drop-gender" ng-init="setProfession()">
-                                            <a class="dropdown-toggle input-btn" data-toggle="dropdown">{{getGender()}}
-                                                <b class="caret"></b>
-                                            </a>
-                                            <ul class="dropdown-menu dropdown-menu-left">
-                                                <li>
-                                                    <a ng-click="user.gender = 'Male'" class="genderAnchor">Male</a>
-                                                </li>
-                                                <li>
-                                                    <a ng-click="user.gender = 'Female'" class="genderAnchor">Female</a>
-                                                </li>
-
-                                            </ul>
-                                        </div>
-
                                     </div>
                                 </div>
                                 <div class="row">

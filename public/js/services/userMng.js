@@ -4,7 +4,7 @@ angular.module('ganim').factory('userMng',function($state, $timeout, $location, 
 
         user:{},
 
-        projects:[{}],
+        projects:[],
 
         newProject:{},
 
