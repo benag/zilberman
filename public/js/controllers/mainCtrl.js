@@ -70,6 +70,7 @@ angular.module('ganim').controller('mainCtrl', ['$scope', '$stateParams', '$loca
         }
 
         $scope.go = function(){
+            global.searchUser = undefined;
             $state.reload();
         }
         $scope.setMaps = function(pos){

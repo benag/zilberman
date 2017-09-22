@@ -1,20 +1,17 @@
-angular.module('ganim').factory('userMng',function($state, $timeout, $location, $http){
+
+//import { projectMng } from './projectMng.js';
+
+angular.module('ganim').factory('userMng',function($state, $timeout, $location, $http, projectMng){
 
     return {
 
         user:{},
 
-        projects:[],
-
-        newProject:{},
+        //projects:[],
 
         data:{projectBtnText: 'Upload Project'},
 
-        current: 0,
-
-        newProjectMode:false,
-
-        newUserMode: false,
+        current: undefined,
 
         scope:{},
 
@@ -24,9 +21,9 @@ angular.module('ganim').factory('userMng',function($state, $timeout, $location, 
         },
 
         getCurrentProject: function(){
-            if (this.newProjectMode) return this.newProject;
-            if (this.projects.length === 0) return undefined;
-            return this.projects[this.current];
+            return projectMng.getCurrentProject();
+            //if (this.projects.length === 0) return undefined;
+            //return this.projects[this.current];
         },
 
         GetCurrentIndex: function(){
@@ -89,13 +86,15 @@ angular.module('ganim').factory('userMng',function($state, $timeout, $location, 
         },
 
         setProjectImg: function(url){
-            if (this.isNewProjectMode()){  this.newProject.img = url; } else{
-                this.projects[this.current].img = url;
-            }
+            projectMng.setProjectImg(url);
+            //if (this.isNewProjectMode()){  this.newProject.img = url; } else{
+            //    this.projects[this.current].img = url;
+            //}
         },
         setNewProject: function(){
-            this.newProject = {};
-            this.newProjectMode = true;
+            projectMng.createEmptyProject();
+            //this.projects.push({});
+            //this.current = 0;
             this.data.projectBtnText = 'Upload Project';
         },
 
@@ -115,7 +114,7 @@ angular.module('ganim').factory('userMng',function($state, $timeout, $location, 
         },
         uploadNewProject: function(id){
             var t = this;
-            $http.post('/project/' + id , {project:this.newProject})
+            $http.post('/project/' + id , {project:this.projects[this.projects.length]})
             .then(function(data){
                 t.setEditMode();
                 t.setProjects(data.data.payload.projects);
@@ -143,7 +142,14 @@ angular.module('ganim').factory('userMng',function($state, $timeout, $location, 
         },
 
         processProject: function(id){
-          this.isNewProjectMode() ? this.uploadNewProject(id) : this.updateProject();
+            //last project
+            projectMng.uploadProject(id);
+            //if (this.current === (this.projects.length-1)){
+            //    this.uploadNewProject(id)
+            //}else{
+            //    this.updateProject();
+            //}
+
         }
 
 
