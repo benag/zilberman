@@ -25,8 +25,6 @@ angular.module('ganim').controller('mainCtrl', ['$scope', '$stateParams', '$loca
                 $scope.insureProjectsDate($scope.user.projects);
                 $scope.mode = 'Update User';
                 $scope.userMng.setUser($scope.user);
-                $scope.userMng.setEditMode();
-
             }else{
                 $scope.user ={};
                 $scope.mode = 'Insert User';
@@ -46,9 +44,12 @@ angular.module('ganim').controller('mainCtrl', ['$scope', '$stateParams', '$loca
             return number <= numOfProjects;
 
         }
+
         $scope.isActive = function(number){
-            return number === $scope.userMng.GetCurrentIndex();
+            if (number === $scope.userMng.GetCurrentIndex()+1) return true;
+            return false;
         }
+
         $scope.load = function(number){
             if (number > $scope.userMng.getProjects().length) return;
             $scope.userMng.setCurrentProject(number);

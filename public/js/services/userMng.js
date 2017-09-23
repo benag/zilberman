@@ -11,8 +11,6 @@ angular.module('ganim').factory('userMng',function($state, $timeout, $location, 
 
         data:{projectBtnText: 'Upload Project'},
 
-        current: undefined,
-
         scope:{},
 
 
@@ -22,16 +20,14 @@ angular.module('ganim').factory('userMng',function($state, $timeout, $location, 
 
         getCurrentProject: function(){
             return projectMng.getCurrentProject();
-            //if (this.projects.length === 0) return undefined;
-            //return this.projects[this.current];
         },
 
         GetCurrentIndex: function(){
-          return (this.current +1);
+          return projectMng.GetCurrentIndex();
         },
 
         setCurrentProject: function(number){
-            this.current = number-1;
+            projectMng.setCurrentProjectIndex(number);
         },
 
         getUser: function(username, pass){
@@ -53,24 +49,14 @@ angular.module('ganim').factory('userMng',function($state, $timeout, $location, 
         },
 
         getProjects: function(){
-            return this.projects;
+            return projectMng.getProjects();
         },
 
-        setProjects: function(projects){
-            this.projects = projects;
-            this.current = 0;
-        },
 
         setUser: function(user){
             this.user = user;
-            this.projects = user.projects;
+            projectMng.setProjects(user.projects);
 
-        },
-
-        setEditMode: function(){
-            this.newProjectMode = false;
-            this.newUserMode = false;
-            this.data.projectBtnText = 'Update Project';
         },
 
         setNewMode: function(){
@@ -87,9 +73,6 @@ angular.module('ganim').factory('userMng',function($state, $timeout, $location, 
 
         setProjectImg: function(url){
             projectMng.setProjectImg(url);
-            //if (this.isNewProjectMode()){  this.newProject.img = url; } else{
-            //    this.projects[this.current].img = url;
-            //}
         },
         setNewProject: function(){
             projectMng.createEmptyProject();
@@ -112,26 +95,26 @@ angular.module('ganim').factory('userMng',function($state, $timeout, $location, 
             this.projects =[{}];
             this.current = 0;
         },
-        uploadNewProject: function(id){
-            var t = this;
-            $http.post('/project/' + id , {project:this.projects[this.projects.length]})
-            .then(function(data){
-                t.setEditMode();
-                t.setProjects(data.data.payload.projects);
-                swal("Project was Added");
-                //alert("Project was Added");
-            })
-        },
-
-        updateProject: function(){
-            return $http.put('/project/', {project:this.projects[this.current]})
-            .then(function(project){
-                this.setEditMode();
-                swal("Project was Updated");
-                //alert("Project was Updated");
-
-            })
-        },
+        //uploadNewProject: function(id){
+        //    var t = this;
+        //    $http.post('/project/' + id , {project:this.projects[this.projects.length]})
+        //    .then(function(data){
+        //        //t.setEditMode();
+        //        t.setProjects(data.data.payload.projects);
+        //        swal("Project was Added");
+        //        //alert("Project was Added");
+        //    })
+        //},
+        //
+        //updateProject: function(){
+        //    return $http.put('/project/', {project:this.projects[this.current]})
+        //    .then(function(project){
+        //        this.setEditMode();
+        //        swal("Project was Updated");
+        //        //alert("Project was Updated");
+        //
+        //    })
+        //},
 
         removerProject:function(index){
             return $http.put('/project/delete/:userId/projectId')
@@ -143,12 +126,11 @@ angular.module('ganim').factory('userMng',function($state, $timeout, $location, 
 
         processProject: function(id){
             //last project
-            projectMng.uploadProject(id);
-            //if (this.current === (this.projects.length-1)){
-            //    this.uploadNewProject(id)
-            //}else{
-            //    this.updateProject();
-            //}
+            projectMng.uploadProject(id)
+            .then ((uploaded) => {
+                this.data.projectBtnText = 'Update Project';
+                swal("Project was Added");
+            })
 
         }
 

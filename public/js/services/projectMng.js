@@ -21,8 +21,9 @@ angular.module('ganim').factory('projectMng',function($state, $timeout, $locatio
             return (this.current);
         },
 
-        setCurrentProject: function(number){
-            this.current = number;
+        setCurrentProjectIndex: function(number){
+            if (number  === undefined) this.current = undefined;
+            this.current = number-1;
         },
 
 
@@ -32,7 +33,7 @@ angular.module('ganim').factory('projectMng',function($state, $timeout, $locatio
 
         setProjects: function(projects){
             this.projects = projects;
-            this.current = 0;
+            (this.projects.length >0) ? this.setCurrentProjectIndex(1) : this.setCurrentProjectIndex(undefined);
         },
 
         setProjectImg: function(url){
@@ -47,9 +48,9 @@ angular.module('ganim').factory('projectMng',function($state, $timeout, $locatio
         uploadProject: function(id){
             var project = this.projects[this.current];
             if (!project._id) {
-                this.uploadNewProject(id);
+                return this.uploadNewProject(id, project);
             }else {
-                this.updateProject();
+                return this.updateProject();
             }
         },
         getLastProject: function(){
@@ -63,7 +64,7 @@ angular.module('ganim').factory('projectMng',function($state, $timeout, $locatio
 
         createEmptyProject: function() {
             this.projects.push({});
-            this.current = 0;
+            (this.current === undefined) ? this.current = 0 : this.current++;
         },
 
         reset: function() {
@@ -71,13 +72,12 @@ angular.module('ganim').factory('projectMng',function($state, $timeout, $locatio
             this.current = undefined;
         },
 
-        uploadNewProject: function(id){
+        uploadNewProject: function(id, project){
             var t = this;
-            $http.post('/project/' + id , {project:this.newProject})
+            return $http.post('/project/' + id , {project:project})
                 .then(function(data){
-                    t.setEditMode();
                     t.setProjects(data.data.payload.projects);
-                    swal("Project was Added");
+                    return true;
                     //alert("Project was Added");
                 })
         },
@@ -85,7 +85,7 @@ angular.module('ganim').factory('projectMng',function($state, $timeout, $locatio
         updateProject: function(){
             return $http.put('/project/', {project:this.projects[this.current]})
                 .then(function(project){
-                    this.setEditMode();
+                    //this.setEditMode();
                     swal("Project was Updated");
                     //alert("Project was Updated");
 

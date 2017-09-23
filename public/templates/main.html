@@ -223,7 +223,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label">Ending Date</label>
-                                            <input type="date" class="form-control datetimepicker" ng-model="userMng.getCurrentProject().endingDate" />
+                                            <input type="date" placeholder="dd-MM-yyyy" class="form-control datetimepicker" ng-model="userMng.getCurrentProject().endingDate" />
 
                                         </div>
                                         <div class="dropdown input-drop" >
@@ -247,7 +247,8 @@
                                         <div class="">
                                             <a ngf-select="uploadProjectImg($file, $invalidFiles)"
                                                accept="image/*" ngf-max-height="2000" ngf-max-size="5MB" >
-                                                <img class="project-img" src="{{userMng.getCurrentProject().img}}" >
+                                                <img class="project-img" ng-if ="userMng.getCurrentProject().img" src="{{userMng.getCurrentProject().img}}" >
+                                                <img class="project-img" ng-if ="!userMng.getCurrentProject().img" src="img/placeholder.jpg" >
                                             </a>
                                         </div>
                                         <div class="fileinput-preview fileinput-exists thumbnail"></div>
