@@ -75,7 +75,14 @@ var app = angular.module('ganim', ['ui.router','vsGoogleAutocomplete','ngFileUpl
             "main": { templateUrl: "templates/meetups.html", controller: 'meetupsCtrl' }
         }
     };
-
+    var reports = {
+        name: 'reports',
+        url: '/reports',
+        views: {
+            "left-pane": { templateUrl: "templates/left-pane.html", controller: 'leftPaneController'},
+            "main": { templateUrl: "templates/reports.html", controller: 'reportsCtrl' }
+        }
+    };
     var login = {
         name: 'login',
         url: '/login',

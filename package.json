@@ -5,18 +5,21 @@
   "dependencies": {
     "angular-auth0": "^2.0.0-beta.2",
     "auth0-js": "^8.7.0",
+    "crypto": "^1.0.1",
     "express": "2.5.8",
     "jade": ">= 0.0.1",
-    "passport": "^0.3.2",
-    "passport-auth0": "^0.6.0"
+    "jsonwebtoken": "^8.0.1",
+    "passport-auth0": "^0.6.0",
+    "passport-jwt": "^3.0.0"
   },
-  "scripts":{
-    "t":"node --inspect app.js"
+  "scripts": {
+    "t": "node --inspect app.js"
   },
   "devDependencies": {
     "bcrypt-nodejs": "0.0.3",
     "config": "^1.26.1",
     "cors": "^2.8.3",
+    "csvtojson": "^1.1.8",
     "fbgraph": "^1.4.1",
     "mongoose": "^4.6.1",
     "node-restful": "^0.2.5",

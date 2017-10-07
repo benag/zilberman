@@ -1,5 +1,5 @@
 
-//import { projectMng } from './projectMng.js';
+
 
 angular.module('ganim').factory('userMng',function($state, $timeout, $location, $http, projectMng){
 
@@ -134,10 +134,7 @@ angular.module('ganim').factory('userMng',function($state, $timeout, $location, 
 
         }
 
-
-
     }
-
 
 });
 

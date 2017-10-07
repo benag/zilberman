@@ -1,18 +1,18 @@
 "use strict";
 
 var express = require('express'),
+    passportService = require('./config/passport'),
     winston = require('winston'),
     mongoose = require('mongoose'),
     config = require('config'),
     cors = require('cors'),
     passport = require('passport'),
-    LocalStrategy    = require('passport-local').Strategy,
-    FacebookStrategy = require('passport-facebook').Strategy,
+    requireAuth = passport.authenticate('jwt', { session: false }),
+    requireLogin = passport.authenticate('local', { session: false }),
     fs = require('fs'),
     multer  = require('multer');
-    var passport = require('passport');
-    var Strategy = require('passport-http').BasicStrategy;
-    //upload = multer({ dest: 'public/uploads/' });
+
+
 
     var storage = multer.diskStorage({
         destination: function (request, file, callback) {
@@ -42,12 +42,23 @@ var express = require('express'),
             callback(null, file.originalname)
         }
     });
+    var excelStorage = multer.diskStorage({
+        destination: function (request, file, callback) {
+            callback(null, './public/uploads/excel');
+        },
+        filename: function (request, file, callback) {
+            console.log(file);
+            callback(null, file.originalname)
+        }
+    });
 
     var upload = multer({ storage: storage });
 
     var projectUpload = multer({ storage: projectStorage});
 
     var productUpload = multer({ storage: productStorage});
+
+    var excelUpload = multer({ storage: excelStorage});
 
     var routes = require('./routes');
 
@@ -72,8 +83,12 @@ var userCtrl = require('./controllers/userController.js');
 var productCtrl = require('./controllers/productsCtrl.js');
 var roomCtrl = require('./controllers/roomCtrl.js');
 var eventCtrl = require('./controllers/eventCtrl.js');
+var settingsService = require('./services/settings.js');
 
 var app = module.exports = express.createServer();
+
+
+
 
 // Configuration
 
@@ -85,6 +100,7 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(app.router);
   app.use(express.static(__dirname + '/public'));
+  app.use(multer());
   app.use(passport.initialize());
   app.use(passport.session());
 });
@@ -100,6 +116,20 @@ app.configure('production', function(){
 // Routes
 
 app.get('/', routes.index);
+
+
+app.post('/register', (req, res, next) => {
+    //let mng = new userCtrl();
+    userCtrl.register(req, res, next);
+});
+
+// Login route
+app.post('/login', requireLogin, (req, res, next) => {
+    //let mng = new userCtrl();
+    userCtrl.login(req, res, next);
+})
+
+
 
 app.get('/users/:page/:limit', function(req, res){
 
@@ -177,8 +207,9 @@ app.post('/events', (req, res)=>{
         res.json({status:'ok', payload:event});
     })
     .catch(err => console.log(err) );
-})
-app.put('/events/:id', (req, res)=>{
+});
+
+app.put('/events/:id', (req, res) => {
     eventCtrl.updateEvent(req.params.id, req.body.userId, req.body.start, req.body.end, req.body.roomId, req.body.title )
         .then(function(event){
             res.json({status:'ok', payload:event});
@@ -194,6 +225,8 @@ app.delete('/events/:id', (req, res)=>{
             console.log(err)
         } );
 })
+
+
 app.get('/events', (req, res)=>{
     eventCtrl.getEvents( )
     .then(function(event){
@@ -202,7 +235,7 @@ app.get('/events', (req, res)=>{
     .catch(err => console.log(err) );
 });
 
-app.get('/events/:id', async (req, res)=>{
+app.get('/events/:id', async (req, res) => {
     try{
         let event = await eventCtrl.getEvent(req.params.id );
         if (event) return res.json({status:'ok', payload:event});
@@ -267,6 +300,27 @@ app.post('/product-image', productUpload.single('file'), function (req, res, nex
     }
 
 });
+
+app.post('/excel-file', excelUpload.single('file'), function (req, res, next) {
+
+    if (!req.file){ //work around file was not moved
+        let file = req.files.file;
+        let oldPath  = file.path;
+        let newPath = './public/uploads/excel' + oldPath.split('/').pop();
+        let returnPath  = newPath.split('/').slice(2).join('/');
+        fs.rename(oldPath, newPath, function (err) {
+            if (err) throw err;
+            res.json({status:'ok', payload:returnPath});
+        })
+    }else{
+        let path = __dirname + '/public//uploads/excel/'+req.file.filename;
+        //let excel = fs.readFileSync(path);
+        settingsService.loadCSV(path);
+        res.json({status:'ok', payload:'uploads/excel/'+req.file.filename});
+    }
+
+});
+
 
 app.put('/products',(req, res)=>{
     productCtrl.updateProduct(req.body.product)
