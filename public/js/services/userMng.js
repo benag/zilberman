@@ -1,7 +1,7 @@
 
 
 
-angular.module('ganim').factory('userMng',function($state, $timeout, $location, $http, projectMng){
+angular.module('ganim').factory('userMng',function($state, $timeout, $location, $http, global, projectMng){
 
     return {
 
@@ -31,16 +31,17 @@ angular.module('ganim').factory('userMng',function($state, $timeout, $location, 
         },
 
         getUser: function(username, pass){
-            return $http.get('/login/' +username + '/' + pass)
+            return $http.post('/login/',{email:username, password:pass})
             .then(function(data){
-                return data.data.payload;
+                global.setUserData(data.data);
+                return data.data;
             });
         },
 
         getUsers: function(page, limit){
             return $http.get('/users/' +page + '/' + limit)
             .then(function(data){
-                return data.data.payload;
+                return data.data;
             });
         },
 

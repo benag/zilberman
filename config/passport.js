@@ -1,5 +1,9 @@
+
+"use strict";
+
 const passport = require('passport'),
-    User = require('../models/users.model'),
+    mongoose = require('mongoose'),
+    User = mongoose.model('User'),
     config = require('./default'),
     JwtStrategy = require('passport-jwt').Strategy,
     ExtractJwt = require('passport-jwt').ExtractJwt,
@@ -7,12 +11,18 @@ const passport = require('passport'),
 
 
 
-const localOptions = { usernameField: 'email' };
+//const localOptions = { usernameField: 'email', passwordField: 'email', passReqToCallback: true };
+const localOptions = { usernameField: 'email', passReqToCallback: true };
 
-const localLogin = new LocalStrategy(localOptions, function(email, password, done) {
+const localLogin = new LocalStrategy(localOptions, function(req, email, password, done) {
+
     User.findOne({ email: email }, function(err, user) {
         if(err) { return done(err); }
         if(!user) { return done(null, false, { error: 'Your login details could not be verified. Please try again.' }); }
+        if (req.body.facebookId){
+            if (user.facebookId === req.body.facebookId) return done(null, user);
+            return done(null, false, { error: "Your login details could not be verified. Please try again." });
+        }
 
         user.comparePassword(password, function(err, isMatch) {
             if (err) { return done(err); }
@@ -30,10 +40,13 @@ const localLogin = new LocalStrategy(localOptions, function(email, password, don
 //    secretOrKey: config.secret
 //};
 var jwtOptions = {};
-jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
+//jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
+//jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeader();
+console.log('secter:' +config.secret)
+jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeaderWithScheme('jwt');
 jwtOptions.secretOrKey = config.secret;
-jwtOptions.issuer = 'accounts.examplesoft.com';
-jwtOptions.audience = 'yoursite.net';
+//jwtOptions.issuer = 'accounts.examplesoft.com';
+//jwtOptions.audience = 'yoursite.net';
 
 // Setting up JWT login strategy
     const jwtLogin = new JwtStrategy(jwtOptions, function(payload, done) {

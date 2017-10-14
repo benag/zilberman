@@ -12,34 +12,47 @@ const jwt = require('jsonwebtoken'),
 class userController {
 
     constructor(app){
+        this.init();
+
+    }
+
+    async init() {
+        try{
+            let adminUser = await User.findOne({firstName: 'admin'}).exec();
+            console.log('admin user:' + JSON.stringify(adminUser));
+            if (!adminUser) await User.create({firstName: 'admin', lastName: 'admin', password: 'admin',email:'admin'});
+        }catch(err){
+            console.log(err);
+        }
 
 
     }
 
-
     setUserInfo (user) {
         return {
-            _id: user._id,
-            firstName: user.firstName,
-            lastName: user.lastName,
-            email: user.email,
-            role: user.role
+            _id: user._id
+            //firstName: user.firstName,
+            //lastName: user.lastName,
+            //email: user.email,
+            //role: user.role
         };
 
     }
 
     generateToken(user) {
+        console.log(config.secret);
         return jwt.sign(user, config.secret, {
             expiresIn: 100080 // in seconds
         });
     }
 
-    register (req, res, next) {
+    async register (req, res, next) {
         // Check for registration errors
         let _this = this;
         console.log(_this);
 
         let email = req.body.email;
+        let phone = req.body.phone;
         let firstName = req.body.firstName;
         let lastName = req.body.lastName;
         let password = req.body.password;
@@ -61,43 +74,37 @@ class userController {
         }
 
         // Return error if no password provided
-        if (!password && !faccebookId) {
+        if (!password && !facebookId) {
             return res.status(422).send({ error: 'You must enter a password.' });
         }
+        //{$or: [ {email: email}, {phone: phone} ]}
+        let existingUser = await User.findOne({email:email}).exec();
+        // If user is not unique, return error
+        if (existingUser) {
+            if (existingUser.phone !== phone) existingUser.phone = phone;
+            //if (existingUser.email !== email) existingUser.email = email;
+            await existingUser.save();
+            return res.json({ code:100, error: 'That email address is already in use.' });
+        }
 
-        User.findOne({ email: email }, function(err, existingUser) {
+        let user = new User({
+            email: email,
+            password: password,
+            firstName: firstName,
+            lastName: lastName,
+            facebookId: facebookId,
+            points: config.points
+        });
+
+        user.save(function(err, user) {
             if (err) { return next(err); }
-
-            // If user is not unique, return error
-            if (existingUser) {
-                return res.status(422).send({ error: 'That email address is already in use.' });
-            }
-
-            // If email is unique and password was provided, create account
-            let user = new User({
-                email: email,
-                password: password,
-                firstName: firstName,
-                lastName: lastName,
-                facebookId: facebookId
-            });
-
-            user.save(function(err, user) {
-                if (err) { return next(err); }
-
-                // Subscribe member to Mailchimp list
-                // mailchimp.subscribeToNewsletter(user.email);
-
-                // Respond with JWT if user was created
-
-                let userInfo = _this.setUserInfo(user);
-
-                res.status(201).json({
-                    token: 'JWT ' + _this.generateToken(userInfo),
-                    user: userInfo
-                });
+            let userInfo = _this.setUserInfo(user);
+            res.status(201).json({
+                token: 'JWT ' + _this.generateToken(userInfo),
+                user: userInfo
             });
         });
+
     }
 
     getUsers (page, limit) {
@@ -107,6 +114,7 @@ class userController {
             .skip(page*limit)
             .limit(limit)
             .populate('projects')
+            .lean()
     }
 
     setUser (user) {
@@ -160,10 +168,10 @@ class userController {
 
     login (req, res, next) {
 
-        let userInfo = setUserInfo(req.user);
+        let userInfo = this.setUserInfo(req.user);
 
         res.status(200).json({
-            token: 'JWT ' + generateToken(userInfo),
+            token: 'JWT ' + this.generateToken(userInfo),
             user: userInfo
         });
     }

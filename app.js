@@ -1,15 +1,12 @@
 "use strict";
 
 var express = require('express'),
-    passportService = require('./config/passport'),
     winston = require('winston'),
     mongoose = require('mongoose'),
     config = require('config'),
     cors = require('cors'),
-    passport = require('passport'),
-    requireAuth = passport.authenticate('jwt', { session: false }),
-    requireLogin = passport.authenticate('local', { session: false }),
     fs = require('fs'),
+    logger = require('winston'),
     multer  = require('multer');
 
 
@@ -79,11 +76,17 @@ require('./models/products.model.js');
 require('./models/rooms.model.js');
 require('./models/events.model.js');
 require('./models/config.model.js');
+require('./models/orders.model.js');
 var userCtrl = require('./controllers/userController.js');
 var productCtrl = require('./controllers/productsCtrl.js');
 var roomCtrl = require('./controllers/roomCtrl.js');
 var eventCtrl = require('./controllers/eventCtrl.js');
+var orderCtrl = require('./controllers/orderCtrl.js');
 var settingsService = require('./services/settings.js');
+var passportService = require('./config/passport');
+const passport = require('passport'),
+requireAuth = passport.authenticate('jwt', { session: false }),
+requireLogin = passport.authenticate('local', { session: false });
 
 var app = module.exports = express.createServer();
 
@@ -124,11 +127,15 @@ app.post('/register', (req, res, next) => {
 });
 
 // Login route
+//requireLogin
 app.post('/login', requireLogin, (req, res, next) => {
     //let mng = new userCtrl();
     userCtrl.login(req, res, next);
 })
 
+app.post('/verify', requireAuth, (req, res) => {
+    res.json('OK');
+})
 
 
 app.get('/users/:page/:limit', function(req, res){
@@ -376,6 +383,11 @@ app.post('/orders',(req, res)=>{
     }).catch(function(err){
         console.log(err);
     })
+});
+
+app.post('/order/process',  async (req, res) => {
+    let order = orderCtrl.processOrder(req.body.orders, req.body.user, req.body.total);
+    order ? res.json(order): res.json(false);
 });
 
 app.post('/scan/upload', (req, res)=>{

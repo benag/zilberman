@@ -119,7 +119,7 @@ angular.module('ganim').controller('mainCtrl', ['$scope', '$stateParams', '$loca
         };
 
         $scope.setProfession = function(){
-            return $scope.user.profession ? $scope.user.profession : 'Architect'
+            return ($scope.user.profession && $scope.user.profession.length > 0) ? $scope.user.profession[0] : 'Architect'
         };
 
         $scope.getType = function(){

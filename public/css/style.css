@@ -375,4 +375,9 @@
     width:230px;
     height: 90px;
 }
+.backImage{
+    background-image: url("../img/ganim.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
 /* end .slideThree */

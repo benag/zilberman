@@ -51,7 +51,6 @@ angular.module('ganim').controller('ordersCtrl', ['$scope', '$stateParams', '$lo
                 },
                 allowOutsideClick: false
             }).then(function (email) {
-
                 var docelem = document.documentElement;
                 if (document.exitFullscreen) {
                     document.exitFullscreen();
@@ -67,8 +66,6 @@ angular.module('ganim').controller('ordersCtrl', ['$scope', '$stateParams', '$lo
                 });
 
             })
-
-
         }
 
         $scope.expand = function(){

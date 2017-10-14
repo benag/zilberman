@@ -22,9 +22,18 @@ var app = angular.module('ganim', ['ui.router','vsGoogleAutocomplete','ngFileUpl
             "main": { templateUrl: "templates/tools.html", controller: 'toolsCtrl' }
         }
     };
+    var tools = {
+        name: 'excel',
+        url: '/excel',
+        views: {
+            "left-pane": { templateUrl: "templates/left-pane.html", controller: 'leftPaneController'},
+            "main": { templateUrl: "templates/excel.html", controller: 'excelCtrl' }
+        }
+    };
     var search = {
         name: 'search',
         url: '/search',
+        cache: false,
         views: {
             "left-pane": { templateUrl: "templates/left-pane.html", controller: 'leftPaneController'},
             "main": { templateUrl: "templates/search.html", controller: 'searchCtrl' }

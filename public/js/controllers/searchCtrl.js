@@ -12,7 +12,9 @@ angular.module('ganim').controller('searchCtrl', ['$scope', '$stateParams', '$lo
 
 
         $scope.init = function(){
-            userMng.getUsers(s.page,s.limit).then (function(users){ $scope.users = users;})
+            userMng.getUsers(s.page,s.limit).then ( function(users) {
+                $scope.users = users.payload;
+            })
         };
 
         $scope.remove = function(index){
