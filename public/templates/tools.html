@@ -5,8 +5,16 @@
 <div class="main-panel tools-panel">
     <div ng-include="'templates/header.html'"></div>
     <div class="container">
-        
         <div style="margin-top:100px;" class="row">
+            <a ngf-select="uploadFiles($file, $invalidFiles)"
+               accept="image/*" ngf-max-height="2000" ngf-max-size="1MB">
+                <button>Upload Excel</button>
+            </a>
+
+
+        </div>
+        <div style="margin-top:20px;" class="row">
+
 
             <div class="col-md-12">
                 <div class="card">

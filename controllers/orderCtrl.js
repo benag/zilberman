@@ -25,7 +25,7 @@ class orderController{
             await newOrder.save();
             let dbUser  = await User.findById(user._id);
             if (!dbUser.points) dbUser.points = 0;
-            dbUser.points = dbUser.points - total;
+            (dbUser.points - total < 0 ) ? dbUser.points = 0 : dbUser.points = dbUser.points - total;
             await dbUser.save();
             return newOrder;
         }catch(err){

@@ -30,11 +30,12 @@ class userController {
 
     setUserInfo (user) {
         return {
-            _id: user._id
-            //firstName: user.firstName,
-            //lastName: user.lastName,
-            //email: user.email,
-            //role: user.role
+            _id: user._id,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            role: user.role,
+            points: user.points
         };
 
     }
@@ -100,7 +101,7 @@ class userController {
             if (err) { return next(err); }
             let userInfo = _this.setUserInfo(user);
             res.status(201).json({
-                token: 'JWT ' + _this.generateToken(userInfo),
+                token: 'JWT ' + _this.generateToken({_id:user._id}),
                 user: userInfo
             });
         });
@@ -171,7 +172,7 @@ class userController {
         let userInfo = this.setUserInfo(req.user);
 
         res.status(200).json({
-            token: 'JWT ' + this.generateToken(userInfo),
+            token: 'JWT ' + this.generateToken({_id:req.user._id}),
             user: userInfo
         });
     }
