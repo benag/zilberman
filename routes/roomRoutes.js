@@ -1,6 +1,0 @@
-
-
-roomRoutes ={};
-
-
-module.exports = roomRoutes;

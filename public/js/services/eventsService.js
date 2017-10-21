@@ -17,8 +17,6 @@ angular.module('ganim').factory('eventsService',function($state, $timeout, $http
             return $http.put('/events/' + id, {userId:userId, start:start, end:end, roomId:roomId, title:title});
         }
 
-
-
     }
 
 });

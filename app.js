@@ -79,7 +79,6 @@ require('./models/config.model.js');
 require('./models/orders.model.js');
 var userCtrl = require('./controllers/userController.js');
 var productCtrl = require('./controllers/productsCtrl.js');
-var roomCtrl = require('./controllers/roomCtrl.js');
 var eventCtrl = require('./controllers/eventCtrl.js');
 var orderCtrl = require('./controllers/orderCtrl.js');
 var settingsService = require('./services/settings.js');
@@ -117,6 +116,9 @@ app.configure('production', function(){
 });
 
 // Routes
+
+let mainRouter = require('./routes/mainRouter.js');
+mainRouter.init(app);
 
 app.get('/', routes.index);
 
@@ -194,20 +196,7 @@ app.put('/project/', (req, res)=>{
     .catch(err => console.log(err) );
 });
 
-app.get('/rooms', (req, res) =>{
-    roomCtrl.getRooms()
-    .then(function(rooms){
-        res.json({status:'ok', payload:rooms});
-    })
-    .catch(err => console.log(err) );
-});
-//app.post('/rooms', (req, res)=>{
-//    roomCtrl.setRooms()
-//    .then(function(rooms){
-//        res.json({status:'ok', payload:rooms});
-//    })
-//    .catch(err => console.log(err) );
-//})
+
 app.post('/events', (req, res)=>{
     eventCtrl.setEvent(req.body.userId, req.body.start, req.body.end, req.body.roomId, req.body.title )
     .then(function(event){
@@ -234,10 +223,10 @@ app.delete('/events/:id', (req, res)=>{
 })
 
 
-app.get('/events', (req, res)=>{
-    eventCtrl.getEvents( )
+app.get('/events/room/:room', (req, res)=>{
+    eventCtrl.getEvents( req.params.room )
     .then(function(event){
-        res.json({status:'ok', payload:event});
+        res.json(event);
     })
     .catch(err => console.log(err) );
 });

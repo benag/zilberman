@@ -8,12 +8,13 @@ let Room = mongoose.model('Room');
 class roomController {
 
     constructor(){
+        console.log('init rooms');
         this.init();
     }
 
     async init() {
-        let room1 = Room.find({name:'Room1'}).exec();
-        let room2 = Room.find({name:'Room2'}).exec();
+        let room1 = await Room.findOne({name:'Room1'}).exec();
+        let room2 = await Room.findOne({name:'Room2'}).exec();
         if (!room1){
             let newRoom1 = new Room({name:'Room1'});
             await newRoom1.save();
@@ -25,11 +26,11 @@ class roomController {
     }
 
     getRooms () {
-        return Room.find({}).exec();
+        return Room.find({}).lean().exec();
     }
 
-    setRooms () {
-        return Room.insert({}).exec();
+    setRooms (room) {
+        return Room.create(room).exec();
     }
 };
 

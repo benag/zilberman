@@ -7,5 +7,9 @@ class userRouter {
 
     }
 
+    init (app) {
+
+    }
+
 
 }
