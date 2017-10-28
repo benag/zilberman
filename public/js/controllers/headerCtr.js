@@ -1,6 +1,10 @@
-angular.module('ganim').controller('headerCtrl', ['$scope', '$stateParams', '$location', '$state', '$rootScope',
-    function($scope, $stateParams, $location, $state, $rootScope) {
+angular.module('ganim').controller('headerCtrl', ['$scope', '$stateParams', '$location', '$state', '$rootScope', 'global',
+    function($scope, $stateParams, $location, $state, $rootScope, global) {
 
+        $scope.logOut = () => {
+            global.logOutUser();
+            $state.go('login');
+        }
 
 
     }

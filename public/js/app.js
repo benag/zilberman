@@ -1,6 +1,6 @@
 
 var app = angular.module('ganim', ['ui.router','vsGoogleAutocomplete','ngFileUpload', 'ui.bootstrap','ui.select','ngAnimate','ngSanitize'])
-
+//,'ngAnimate','ngSanitize'
 
 .config(function($stateProvider, $urlRouterProvider) {
 
@@ -107,7 +107,13 @@ var app = angular.module('ganim', ['ui.router','vsGoogleAutocomplete','ngFileUpl
     $urlRouterProvider.otherwise('/login');
 
 
-}).run(function($rootScope, $state){
+}).run(function($rootScope, $state, global){
 
     $rootScope.current = 'main';
+    $rootScope.$on('$locationChangeSuccess', (event, toState, toStateParams) => {
+        let user = global.getUserData();
+        if (!user) $state.go('login');
+
+
+    });
 })

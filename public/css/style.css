@@ -17,8 +17,9 @@
 .border{
     border:1px solid black
 }
-.main-panel-hb{
-    float:left!important;
+.main-panel{
+    /*float:left!important;*/
+    overflow-x: auto;
 }
 .pagination > li > a,
 .pagination > li > span {
@@ -380,4 +381,6 @@
     background-repeat: no-repeat;
     background-size: 100% 100%;
 }
-/* end .slideThree */
+#logOut:hover {
+    background-color: lightgrey!important;
+}

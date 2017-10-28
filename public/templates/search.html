@@ -7,14 +7,14 @@
         <div class="row search-content">
             <div class="col-md-4">
                 <div class="form-group form-search is-empty">
-                    <input type="text" ng-model="searchCompanyParam" class="form-control" placeholder="Filter By Company Name">
+                    <input type="text" ng-change="byCompany()" ng-model="searchCompanyParam" class="form-control" placeholder="Search By Company Name">
                     <span class="material-input"></span>
                 </div>
 
             </div>
             <div class="col-md-4">
                 <div class="form-group form-search is-empty">
-                    <input type="text" ng-model="searchUserParam" class="form-control" placeholder="Filter By First Name">
+                    <input type="text" ng-change="byName()" ng-model="searchUserParam" class="form-control" placeholder="Search By Name">
                     <span class="material-input"></span>
                 </div>
             </div>
@@ -77,6 +77,12 @@
             </div>
 
 
+        </div>
+        <div class="row">
+            <div class="col-md-offset-10">
+                <button ng-show="page > 0" ng-click="back()" class="btn btn-black"><<</button>
+                <button ng-show="currentShown === limit" ng-click="next()" class="btn btn-black">>></button>
+            </div>
         </div>
 
 

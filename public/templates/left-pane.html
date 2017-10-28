@@ -17,13 +17,15 @@ Tip 3: you can change the color of the sidebar with data-background-color="white
     <div class="sidebar-wrapper">
         <div class="user">
             <div class="photo">
-                <img src="../img/dan.jpg" />
+                <div ngf-select="adminImg($file, $invalidFiles)" accept="image/*" ngf-max-height="2000" ngf-max-size="1MB">
+                    <img ng-src="{{user.img || 'img/placeholder.jpg'}}" />
+                </div>
             </div>
             <!--href="#collapseExample"-->
             <div class="info">
                 <a data-toggle="collapse" class="collapsed">
                     {{user.name}}
-                    <b class="caret"></b>
+                    <!--<b class="caret"></b>-->
                 </a>
                 <div class="collapse" id="collapseExample">
                     <ul class="nav">
@@ -43,12 +45,6 @@ Tip 3: you can change the color of the sidebar with data-background-color="white
         <ul class="nav">
 
             <li >
-                <a ng-click="goto('orders')" ng-class="{'active-menu':isActive('orders')}">
-                    <i class="material-icons">dashboard</i>
-                    <p>Orders</p>
-                </a>
-            </li>
-            <li >
                 <a ng-click="goto('main')" ng-class="{'active-menu':isActive('main')}">
                     <i class="material-icons">dashboard</i>
                     <p>Add Members</p>
@@ -58,6 +54,12 @@ Tip 3: you can change the color of the sidebar with data-background-color="white
                 <a ng-click="goto('search')" ng-class="{'active-menu':isActive('search')}">
                     <i  class="material-icons">dashboard</i>
                     <p>Search Members</p>
+                </a>
+            </li>
+            <li >
+                <a ng-click="goto('orders')" ng-class="{'active-menu':isActive('orders')}">
+                    <i class="material-icons">dashboard</i>
+                    <p>Station</p>
                 </a>
             </li>
             <li >

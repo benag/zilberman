@@ -9,13 +9,20 @@ angular.module('ganim').factory('global',function($state, $timeout, $location, $
            return $location.host() + ':' + $location.port();
        },
        getUserData: function() {
-           return JSON.parse(window.localStorage.getItem("user"));
+           let user = window.localStorage.getItem("user");
+           return user ? JSON.parse(user) : undefined;
        },
 
        getTokenData: function() {
            return window.localStorage.getItem("ganimToken");
        },
 
+       logOutUser: () => {
+           window.localStorage.setItem("user", '');
+           window.localStorage.setItem("ganimToken", '');
+           this.user = {};
+           this.token  = '';
+       },
        setUserData: function(userData) {
            window.localStorage.setItem("user", JSON.stringify(userData.user));
            window.localStorage.setItem("ganimToken", JSON.stringify(userData.token));

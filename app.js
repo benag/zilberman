@@ -17,7 +17,16 @@ var express = require('express'),
         },
         filename: function (request, file, callback) {
             console.log(file);
-            callback(null, file.originalname)
+            callback(null, file.originalname + Date.now())
+        }
+    });
+    var storageAdmin = multer.diskStorage({
+        destination: function (request, file, callback) {
+            callback(null, './public/uploads/users/admin');
+        },
+        filename: function (request, file, callback) {
+            console.log(file);
+            callback(null, file.originalname + Date.now())
         }
     });
 
@@ -50,6 +59,8 @@ var express = require('express'),
     });
 
     var upload = multer({ storage: storage });
+
+    var uploadAdmin = multer({ storage: storageAdmin });
 
     var projectUpload = multer({ storage: projectStorage});
 
@@ -142,7 +153,7 @@ app.post('/verify', requireAuth, (req, res) => {
 
 app.get('/users/:page/:limit', function(req, res){
 
-    userCtrl.getUsers(req.params.page, req.params.limit)
+    userCtrl.getUsers( req.params.page, req.params.limit )
     .then(function(users){
         res.json({status:'ok', payload:users});
     }).catch((err)=>{
@@ -240,6 +251,14 @@ app.get('/events/:id', async (req, res) => {
         consoe.log(err);
     }
 
+});
+
+app.post('/admin-image', uploadAdmin.single('file'), async (req, res, next) => {
+    let user = req.body.user;
+    let img = 'uploads/users/admin/' + req.file.filename;
+    user.img = img;
+    await userCtrl.updateUser(user);
+    res.send(img);
 });
 
 app.post('/profile', upload.single('file'), function (req, res, next) {

@@ -20,7 +20,7 @@ class userController {
         try{
             let adminUser = await User.findOne({firstName: 'admin'}).exec();
             console.log('admin user:' + JSON.stringify(adminUser));
-            if (!adminUser) await User.create({firstName: 'admin', lastName: 'admin', password: 'admin',email:'admin'});
+            if (!adminUser) await User.create({firstName: 'admin', lastName: 'admin', password: 'admin',email:'admin', role:'admin'});
         }catch(err){
             console.log(err);
         }
@@ -35,7 +35,8 @@ class userController {
             lastName: user.lastName,
             email: user.email,
             role: user.role,
-            points: user.points
+            points: user.points,
+            img: user.img
         };
 
     }
@@ -111,7 +112,15 @@ class userController {
     getUsers (page, limit) {
         limit = Number(limit);
         page = Number(page);
-        return User.find({role:{ $ne: 'admin' }})
+
+        let q = {
+            role:{ $ne: 'admin' }
+        }
+
+        //if (company) q.company = { "$regex": company, "$options": "i" };
+        //if (name) q.name = { "$regex": name, "$options": "i" };
+
+        return User.find({})
             .skip(page*limit)
             .limit(limit)
             .populate('projects')

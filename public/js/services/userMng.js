@@ -45,6 +45,10 @@ angular.module('ganim').factory('userMng',function($state, $timeout, $location, 
             });
         },
 
+        getUsersBy : (by, page, limit) => {
+            return $http.get('/users/'+ by + '/' + page + '/' + limit)
+        },
+
         removeUser: function(id){
             return $http.delete('/user/' +id)
         },
