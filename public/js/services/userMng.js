@@ -22,7 +22,13 @@ angular.module('ganim').factory('userMng',function($state, $timeout, $location, 
             return projectMng.getCurrentProject();
         },
 
-        GetCurrentIndex: function(){
+        getUserByPhone: (phone) => {
+            return $http.get('/user/phone/' + phone);
+        },
+
+
+
+    GetCurrentIndex: function(){
           return projectMng.GetCurrentIndex();
         },
 

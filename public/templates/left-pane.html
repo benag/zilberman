@@ -45,6 +45,12 @@ Tip 3: you can change the color of the sidebar with data-background-color="white
         <ul class="nav">
 
             <li >
+                <a ng-click="goto('orders')" ng-class="{'active-menu':isActive('orders')}">
+                    <i class="material-icons">dashboard</i>
+                    <p>Current Orders</p>
+                </a>
+            </li>
+            <li >
                 <a ng-click="goto('main')" ng-class="{'active-menu':isActive('main')}">
                     <i class="material-icons">dashboard</i>
                     <p>Add Members</p>
@@ -57,11 +63,12 @@ Tip 3: you can change the color of the sidebar with data-background-color="white
                 </a>
             </li>
             <li >
-                <a ng-click="goto('orders')" ng-class="{'active-menu':isActive('orders')}">
+                <a ng-click="goto('station')" ng-class="{'active-menu':isActive('station')}">
                     <i class="material-icons">dashboard</i>
                     <p>Station</p>
                 </a>
             </li>
+
             <li >
                 <a ng-click="goto('products')" ng-class="{'active-menu':isActive('products')}">
                     <i class="material-icons">dashboard</i>
@@ -74,25 +81,25 @@ Tip 3: you can change the color of the sidebar with data-background-color="white
                     <p>Meetups</p>
                 </a>
             </li>
-            <li >
-                <a>
-                    <i class="material-icons">dashboard</i>
-                    <p>Campaigns</p>
-                </a>
-            </li>
-            <li >
-                <a ng-click="goto('reports')">
-                    <i class="material-icons">dashboard</i>
-                    <p>Reports</p>
-                </a>
-            </li>
-            <li >
+            <!--<li >-->
+                <!--<a>-->
+                    <!--<i class="material-icons">dashboard</i>-->
+                    <!--<p>Campaigns</p>-->
+                <!--</a>-->
+            <!--</li>-->
+            <!--<li >-->
+                <!--<a ng-click="goto('reports')">-->
+                    <!--<i class="material-icons">dashboard</i>-->
+                    <!--<p>Reports</p>-->
+                <!--</a>-->
+            <!--</li>-->
+            <!--<li >-->
 
-                <a ng-click="goto('tools')" ng-class="{'active-menu':isActive('tools')}">
-                    <i class="material-icons">dashboard</i>
-                    <p>Tools</p>
-                </a>
-            </li>
+                <!--<a ng-click="goto('tools')" ng-class="{'active-menu':isActive('tools')}">-->
+                    <!--<i class="material-icons">dashboard</i>-->
+                    <!--<p>Tools</p>-->
+                <!--</a>-->
+            <!--</li>-->
         </ul>
     </div>
 </div>

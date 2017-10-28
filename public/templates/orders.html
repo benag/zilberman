@@ -1,78 +1,80 @@
 
+<div class="main-panel search-pane" ng-init="init()">
+    <div ng-include="'templates/header.html'"></div>
+
+    <div class="container .top-margin">
+
+        <div class="row search-content">
+            <!--<div class="col-md-4">-->
+                <!--<div class="form-group form-search is-empty">-->
+                    <!--<input type="text" ng-change="byCompany()" ng-model="searchCompanyParam" class="form-control" placeholder="Search By Company Name">-->
+                    <!--<span class="material-input"></span>-->
+                <!--</div>-->
+
+            <!--</div>-->
+            <!--<div class="col-md-4">-->
+                <!--<div class="form-group form-search is-empty">-->
+                    <!--<input type="text" ng-change="byName()" ng-model="searchUserParam" class="form-control" placeholder="Search By Name">-->
+                    <!--<span class="material-input"></span>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-md-4">-->
+            <!--<button ng-click="" type="submit" class="btn btn-white btn-round btn-just-icon">-->
+            <!--<i class="material-icons">search</i>-->
+            <!--<div class="ripple-container"></div>-->
+            <!--</button>-->
+            <!--</div>-->
 
 
+        </div>
+        <div class="row ">
 
-<div class="main-panel tools-panel orders">
-    <div ng-include="'templates/lockHeader.html'"></div>
-    <div class="container-fluid ">
+            <div class="card">
+                <div class="card-header card-header-icon btn-black" data-background-color="black">
+                    <i class="material-icons">assignment</i>
+                </div>
+                <div class="card-content">
+                    <h4 class="card-title"></h4>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class="text-primary color-heading">
 
+                                <th class="table-header">Created </th>
+                                <th class="table-header"> User Name </th>
+                                <th class="table-header"> Product </th>
+                                <th class="table-header"> points </th>
 
-        <div class="row products-location" ng-if="showCategory">
-            <div class="col-md-offset-1">
+                            </thead>
 
-                <span ng-repeat="product in products | filter:chosen track by $index ">
+                            <tbody>
+                            <tr ng-repeat="order in orders track by $index" >
 
-                <div class="col-md-3">
-                    <div class="card card-product size-card" ng-click="choseProducts($index)">
-                        <div class="card-image" data-header-animation="true">
-                            <img class="img-responsive" src="{{product.img}}">
-                        </div>
-                        <div class="card-content">
-                            <div class="card-actions">
-                            </div>
-                            <h4 class="card-title title-left">
-                                <div class="product-card" >{{product.category}}</div>
+                                <td>{{order.createdAt | date }}</td>
+                                <td>{{order.user.firstName + ' ' + order.user.lastName}}</td>
+                                <td>{{order.Product}}</td>
+                                <td>{{order.points}}</td>
 
-                            </h4>
-                            <div class="card-description title-left">
-                                <div class="desc-product" >{{product.description}}</div>
-
-                            </div>
-                        </div>
-                        <!--<div class="card-footer">-->
-                        <!--</div>-->
+                            </tr>
+                            <!-- -->
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-
-            </span>
             </div>
+
+
         </div>
+        <!--<div class="row">-->
+            <!--<div class="col-md-offset-10">-->
+                <!--<button ng-show="page > 0" ng-click="back()" class="btn btn-black"><<</button>-->
+                <!--<button ng-show="currentShown === limit" ng-click="next()" class="btn btn-black">>></button>-->
+            <!--</div>-->
+        <!--</div>-->
 
-        <div class="row products-location" ng-if="!showCategory">
-            <span ng-repeat="product in product.products track by $index">
-
-                <div class="col-md-offset-1">
-
-                    <div class="col-md-2">
-                        <div class="card card-product size-card-sm" ng-click="confirmOrder($index)">
-                            <div class="card-image" data-header-animation="true">
-                                <img class="img" src="{{product.img}}">
-                            </div>
-                            <div class="card-content">
-                                <div class="card-actions">
-                                </div>
-                                <h4 class="card-title">
-                                    <div class="product-card" >{{product.title}}</div>
-
-                                </h4>
-                                <div class="card-description">
-                                    <div >{{product.description}}</div>
-
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                <div class="">
-                                    <div class="product-card" >{{product.price}}</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </span>
-        </div>
 
     </div>
 
-
 </div>
+
+
 

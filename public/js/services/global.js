@@ -10,6 +10,7 @@ angular.module('ganim').factory('global',function($state, $timeout, $location, $
        },
        getUserData: function() {
            let user = window.localStorage.getItem("user");
+           if (!this.user || !this.user.firstName) this.user = JSON.parse(user);
            return user ? JSON.parse(user) : undefined;
        },
 

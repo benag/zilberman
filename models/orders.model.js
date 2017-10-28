@@ -10,7 +10,7 @@ var ordersSchema = new Schema({
     createdAt: Date,
     orders:[
         {
-            categoryId: String,
+            categoryId: {type: Schema.ObjectId, ref: 'Product'},
             productId: String
         }
     ]

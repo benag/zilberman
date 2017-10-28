@@ -136,6 +136,12 @@ class userController {
             })
     }
 
+    getUser (by, value) {
+
+        let q = {};
+        q[by] = value;
+        return User.findOne(q).lean().exec();
+    }
     setUsers (userArray) {
 
         try{

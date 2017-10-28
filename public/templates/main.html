@@ -37,7 +37,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-2">
-                                        <div class="dropdown input-drop-gender" ng-init="setProfession()">
+                                        <div class="dropdown input-drop-gender" >
                                             <a class="dropdown-toggle input-btn" data-toggle="dropdown">{{getGender()}}
                                                 <b class="caret"></b>
                                             </a>
@@ -168,7 +168,7 @@
                             </a>
                         </div>
                         <div class="card-content">
-                            <h6 class="category text-gray">{{user.profession}}</h6>
+                            <h6 class="category text-gray">{{user.profession[0]}}</h6>
                             <h4 class="card-title">{{user.firstName}} {{user.lastName}}</h4>
                             <p class="description">
                                 {{user.about}}

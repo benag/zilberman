@@ -161,6 +161,17 @@ app.get('/users/:page/:limit', function(req, res){
     })
 });
 
+app.get('/user/phone/:phone', async (req,res) => {
+
+    try{
+        let user = await userCtrl.getUser( 'phone', req.params.phone );
+        res.json(user);
+    }catch(err){
+        res.status(400).send(err.message);
+    }
+
+});
+
 app.post('/user', (req, res)=>{
 
     userCtrl.setUser(req.body.user)
@@ -384,20 +395,29 @@ app.post('/products',(req, res)=>{
     })
 });
 
-app.post('/orders',(req, res)=>{
-    userCtrl.substract(req.body.user, req.body.product, req.body.identify )
-    .then((product)=>{
-        res.json(product);
-    }).catch(function(err){
-        console.log(err);
-    })
-});
+//app.post('/orders',(req, res)=>{
+//    userCtrl.substract(req.body.user, req.body.product, req.body.identify )
+//    .then((product)=>{
+//        res.json(product);
+//    }).catch(function(err){
+//        console.log(err);
+//    })
+//});
 
 app.post('/order/process',  async (req, res) => {
     let order = orderCtrl.processOrder(req.body.orders, req.body.user, req.body.total);
     order ? res.json(order): res.json(false);
 });
 
+app.get('/orders', async (req, res) => {
+    try{
+        let orders = await orderCtrl.getOrders();
+        res.json(orders);
+    }catch(err){
+        res.status(400).send(err.message);
+    }
+
+});
 app.post('/scan/upload', (req, res)=>{
 
     let user = {};

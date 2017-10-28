@@ -60,6 +60,14 @@ var app = angular.module('ganim', ['ui.router','vsGoogleAutocomplete','ngFileUpl
             "main": { templateUrl: "templates/drinks.html", controller: 'drinksCtrl' }
         }
     };
+    var station = {
+        name: 'station',
+        url: '/station',
+        views: {
+            "left-pane": { templateUrl: "templates/left-pane.html", controller: 'leftPaneController'},
+            "main": { templateUrl: "templates/station.html", controller: 'stationCtrl' }
+        }
+    };
     var orders = {
         name: 'orders',
         url: '/orders',
@@ -91,11 +99,11 @@ var app = angular.module('ganim', ['ui.router','vsGoogleAutocomplete','ngFileUpl
         views: {
             "main": { templateUrl: "templates/login.html", controller: 'loginCtrl' }
         }
-        //templateUrl: 'templates/login.html',
-        //controller:'loginCtrl'
+
     };
 
     $stateProvider.state(login);
+    $stateProvider.state(station);
     $stateProvider.state(orders);
     $stateProvider.state(search);
     $stateProvider.state(products);
