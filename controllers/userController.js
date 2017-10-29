@@ -86,7 +86,12 @@ class userController {
             if (existingUser.phone !== phone) existingUser.phone = phone;
             //if (existingUser.email !== email) existingUser.email = email;
             await existingUser.save();
-            return res.json({ code:100, error: 'That email address is already in use.' });
+            let userInfo = _this.setUserInfo(existingUser);
+            return res.status(201).json({
+                token: 'JWT ' + _this.generateToken({_id:userInfo._id}),
+                user: userInfo
+            });
+            //return res.json({ code:100, error: 'That email address is already in use.' });
         }
 
         let user = new User({
