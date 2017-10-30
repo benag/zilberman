@@ -5,26 +5,7 @@
     <div class="container .top-margin">
 
         <div class="row search-content">
-            <!--<div class="col-md-4">-->
-                <!--<div class="form-group form-search is-empty">-->
-                    <!--<input type="text" ng-change="byCompany()" ng-model="searchCompanyParam" class="form-control" placeholder="Search By Company Name">-->
-                    <!--<span class="material-input"></span>-->
-                <!--</div>-->
-
-            <!--</div>-->
-            <!--<div class="col-md-4">-->
-                <!--<div class="form-group form-search is-empty">-->
-                    <!--<input type="text" ng-change="byName()" ng-model="searchUserParam" class="form-control" placeholder="Search By Name">-->
-                    <!--<span class="material-input"></span>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<div class="col-md-4">-->
-            <!--<button ng-click="" type="submit" class="btn btn-white btn-round btn-just-icon">-->
-            <!--<i class="material-icons">search</i>-->
-            <!--<div class="ripple-container"></div>-->
-            <!--</button>-->
-            <!--</div>-->
-
+        
 
         </div>
         <div class="row ">
@@ -43,6 +24,7 @@
                                 <th class="table-header"> User Name </th>
                                 <th class="table-header"> Product </th>
                                 <th class="table-header"> points </th>
+                                <th class="table-header"> Status </th>
 
                             </thead>
 
@@ -51,8 +33,9 @@
 
                                 <td>{{order.createdAt | date }}</td>
                                 <td>{{order.user.firstName + ' ' + order.user.lastName}}</td>
-                                <td>{{order.Product}}</td>
+                                <td>{{order.title}}</td>
                                 <td>{{order.points}}</td>
+                                <td><button  ng-class="{'btn-info': order.status === 'pending', 'btn-success': order.success === 'confirmed'}" class="btn">{{order.status}}</button></td>
 
                             </tr>
                             <!-- -->

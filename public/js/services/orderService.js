@@ -8,13 +8,16 @@ angular.module('ganim').factory('orderService',function($state, $timeout, $locat
             if (identifyBy === 'phone'){
                 user = (await userMng.getUserByPhone(phone)).data;
             }
-
+            if (!user){
+                throw Error('Cant found user');
+            }
             let orders = [{
-                categoryId: category._id,
-                productId: product._id
+                category: category.category,
+                title: product.title,
+                price: product.price
             }];
 
-            return $http.post('/order/process',{ user:user , orders:product, total:product.price })
+            return $http.post('/order/process',{ user:user , orders:orders, total:product.price })
             .then(function(data){
                 return data.data;
             }).catch(function(err){

@@ -34,7 +34,7 @@ var userSchema = new Schema({
     phone: String,
     officePhone: String,
     role: String,
-    status: String,// register,verified
+    status: {type: String, enum: ['active','notactive']},// register,verified
     ARN: String,
     smsCode: String,
     APIToken: String,

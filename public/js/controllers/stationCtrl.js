@@ -92,7 +92,10 @@ angular.module('ganim').controller('stationCtrl', ['$scope', '$stateParams', '$l
                     .then(function(){
                         swal('Order Confirmed');
                     }).catch(function(err){
-                        swal('There was a problem processing your order!');
+                        swal('Oops...',
+                            'Please verify your phone is correct and that you are registered with TRIBU Cafe.',
+                            'error'
+                        );
                     })
             })
 

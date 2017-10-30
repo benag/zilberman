@@ -405,7 +405,7 @@ app.post('/products',(req, res)=>{
 //});
 
 app.post('/order/process',  async (req, res) => {
-    let order = orderCtrl.processOrder(req.body.orders, req.body.user, req.body.total);
+    let order = await orderCtrl.processOrder(req.body.orders, req.body.user, req.body.total);
     order ? res.json(order): res.json(false);
 });
 

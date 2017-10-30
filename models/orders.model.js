@@ -8,10 +8,13 @@ var mongoose = require('mongoose'),
 var ordersSchema = new Schema({
     user: {type: Schema.ObjectId, ref: 'User'},
     createdAt: Date,
+    status: {type: String, enum: ['pending','confirmed']},
     orders:[
         {
-            categoryId: {type: Schema.ObjectId, ref: 'Product'},
-            productId: String
+            category: String,
+            title: String,
+            price: Number
+
         }
     ]
 });
