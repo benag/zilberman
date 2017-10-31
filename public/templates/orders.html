@@ -29,16 +29,16 @@
                             </thead>
 
                             <tbody>
-                            <tr ng-repeat="order in orders track by $index" >
+                                <tr ng-click="openSummery()" ng-repeat="order in orders track by $index" >
 
-                                <td>{{order.createdAt | date }}</td>
-                                <td>{{order.user.firstName + ' ' + order.user.lastName}}</td>
-                                <td>{{order.title}}</td>
-                                <td>{{order.points}}</td>
-                                <td><button  ng-class="{'btn-info': order.status === 'pending', 'btn-success': order.success === 'confirmed'}" class="btn">{{order.status}}</button></td>
 
-                            </tr>
-                            <!-- -->
+                                    <td>{{order.createdAt | date }}</td>
+                                    <td>{{order.name}}</td>
+                                    <td>{{order.title}}</td>
+                                    <td>{{order.points}}</td>
+                                    <td><button  ng-class="{'btn-info': order.status === 'pending', 'btn-success': order.status === 'confirmed'}" class="btn">{{order.status}}</button></td>
+
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -58,6 +58,40 @@
     </div>
 
 </div>
+<script type="text/ng-template" id="orderInfoModal.html">
+
+    <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">Order info</h3>
+    </div>
+
+    <div class="modal-body" id="modal-body">
+        <div class="row">
+            <div class="col-md-6">
+                <label style="text-decoration: underline;">User info</label>
+                <div>First name: {{}} </div>
+                <div>Last name: {{}} </div>
+                <div>Email: {{}}</div>
+                <div>Phone: {{}}</div>
+            </div>
+
+            <div class="vertical_line"></div>
+
+            <div class="col-md-6">
+                <label >Order info:</label>
+                <div>Category: {{}}</div>
+                <div>Title: {{}}</div>
+                <div>Points: {{}}</div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="modal-footer">
+        <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+        <button class="btn btn-primary" type="button" ng-click="accept()">Accept</button>
+    </div>
+</script>
 
 
 

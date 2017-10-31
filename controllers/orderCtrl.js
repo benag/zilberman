@@ -20,7 +20,7 @@ class orderController{
      * Input should be an array of category id and products that were ordered
      */
     async processOrder(orders, user, total) {
-        let newOrder = new Order({user:user._id,orders:orders, createdAt:new Date()});
+        let newOrder = new Order({user:user._id,orders:orders, createdAt:new Date(), status:'pending'});
         await newOrder.save();
         //let dbUser  = await User.findById(user._id);
         //if (!dbUser.points) dbUser.points = 0;

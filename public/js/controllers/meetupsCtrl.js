@@ -53,10 +53,12 @@ angular.module('ganim').controller('meetupsCtrl', ['$scope', '$stateParams', '$l
             });
         }
         $scope.open = function (start, end, size, parentSelector) {
+            selectedItem.time.start = $scope.start;
             $scope.start = start;
             $scope.end = end;
             var parentElem = parentSelector ?
                 angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+
             var modalInstance = $uibModal.open({
                 animation: $scope.animationsEnabled,
                 ariaLabelledBy: 'modal-title',
@@ -74,9 +76,7 @@ angular.module('ganim').controller('meetupsCtrl', ['$scope', '$stateParams', '$l
                     }
                 }
             });
-
             modalInstance.result.then(function (selectedItem) {
-                selectedItem.time.start = $scope.start;
                 selectedItem.time.end = $scope.end;
                 calenderService.addEvent(selectedItem);
                 //calenderService.setEvent($scope.selected);
