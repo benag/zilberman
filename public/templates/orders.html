@@ -29,14 +29,12 @@
                             </thead>
 
                             <tbody>
-                                <tr ng-click="openSummery()" ng-repeat="order in orders track by $index" >
-
-
+                            <tr ng-click="openSummery($index)" ng-repeat="order in orders track by $index">
                                     <td>{{order.createdAt | date }}</td>
                                     <td>{{order.name}}</td>
                                     <td>{{order.title}}</td>
                                     <td>{{order.points}}</td>
-                                    <td><button  ng-class="{'btn-info': order.status === 'pending', 'btn-success': order.status === 'confirmed'}" class="btn">{{order.status}}</button></td>
+                                <td>{{order.status}}</td>
 
                                 </tr>
                             </tbody>
@@ -61,26 +59,27 @@
 <script type="text/ng-template" id="orderInfoModal.html">
 
     <div class="modal-header">
-        <h3 class="modal-title" id="modal-title">Order info</h3>
+        <h3 class="modal-title" style="text-decoration: underline;" id="modal-title">Order info</h3>
     </div>
 
     <div class="modal-body" id="modal-body">
         <div class="row">
             <div class="col-md-6">
                 <label style="text-decoration: underline;">User info</label>
-                <div>First name: {{}} </div>
-                <div>Last name: {{}} </div>
-                <div>Email: {{}}</div>
-                <div>Phone: {{}}</div>
+
+                <div>First name: {{order.user.firstName}}</div>
+                <div>Last name: {{order.user.lastName}}</div>
+                <div>Email: {{order.user.email}}</div>
+                <div>Phone: {{order.user.phone}}</div>
             </div>
 
             <div class="vertical_line"></div>
 
             <div class="col-md-6">
-                <label >Order info:</label>
-                <div>Category: {{}}</div>
-                <div>Title: {{}}</div>
-                <div>Points: {{}}</div>
+                <label style="text-decoration: underline;">Order info:</label>
+                <!--<div>Category: {{order.category}}</div>-->
+                <div>Title: {{order.title}}</div>
+                <div>Points: {{order.points}}</div>
             </div>
         </div>
 

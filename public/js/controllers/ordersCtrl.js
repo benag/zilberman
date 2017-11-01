@@ -9,6 +9,7 @@ angular.module('ganim').controller('ordersCtrl', ['$scope', '$stateParams', '$lo
                 orders.data.map( ( order ) => {
                     order.orders.forEach( product => {
                         _this.orders.push({createdAt: order.createdAt,
+                            user: order.user,
                                             name:order.user.firstName + ' ' + order.user.lastName,
                                             title:product.title,
                                             points: product.price,
@@ -16,25 +17,23 @@ angular.module('ganim').controller('ordersCtrl', ['$scope', '$stateParams', '$lo
                                           })
                     });
                 })
-            })
+            });
             console.log(_this.orders);
-        }
+        };
 
-        _this.openSummery = () => {
+        _this.openSummery = (index) => {
+
             var modalInstance = $uibModal.open({
                 animation: $scope.animationsEnabled,
                 ariaLabelledBy: 'modal-title',
                 ariaDescribedBy: 'modal-body',
                 templateUrl: 'orderInfoModal.html',
                 controller: 'OrderInstanceCtrl',
-                size: size,
-                appendTo: parentElem,
+                size: undefined,
+                appendTo: undefined,
                 resolve: {
-                    items: function () {
-                        return $scope.users;
-                    },
-                    rooms: function() {
-                        return $scope.rooms;
+                    order: function () {
+                        return $scope.orders[index];
                     }
                 }
             });
@@ -43,7 +42,7 @@ angular.module('ganim').controller('ordersCtrl', ['$scope', '$stateParams', '$lo
                 calenderService.addEvent(selectedItem);
                 //calenderService.setEvent($scope.selected);
             }, function () {
-                $log.info('Modal dismissed at: ' + new Date());
+
             });
         }
 
