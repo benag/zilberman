@@ -16,6 +16,14 @@ class orderController{
 
     }
 
+    async processApprove(order) {
+        let userId = order.user._id
+        let user = await User.findOne(userId);
+        user.points = user.points - order.points
+        if ( user.points < 0 ) user.points = 0
+        return user.save()
+    }
+
     /**
      * Input should be an array of category id and products that were ordered
      */

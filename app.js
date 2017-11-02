@@ -409,6 +409,16 @@ app.post('/order/process',  async (req, res) => {
     order ? res.json(order): res.json(false);
 });
 
+app.post('/order/approve',  async (req, res) => {
+    try{
+        let order = await orderCtrl.processApprove(req.body.order);
+        res.json(order)
+    }catch(err){
+        res.status(400).json(err.message);
+    }
+
+});
+
 app.get('/orders', async (req, res) => {
     try{
         let orders = await orderCtrl.getOrders();
