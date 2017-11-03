@@ -3,13 +3,17 @@ angular.module('ganim').controller(
 
         $scope.order = order;
         console.log($scope.order);
-
-        $scope.ok = function () {
-            $uibModalInstance.close({person:$scope.person.selected, time: $scope.time, room:$scope.room});
-        };
+        //
+        //$scope.ok = function () {
+        //
+        //};
 
         $scope.approve = () => {
-            $http.post('/order/approve', {order:$scope.order}).then( () => swal('Order approved!') )
+            $http.post('/order/approve', {order:$scope.order}).then( () => {
+                //$rootScope.$broadcast('refreshOrders')
+                swal('Order approved!')
+                $uibModalInstance.close()
+            }).catch(err => swal(err.data) )
         };
 
         $scope.cancel = function () {

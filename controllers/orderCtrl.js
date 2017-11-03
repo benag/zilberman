@@ -18,10 +18,13 @@ class orderController{
 
     async processApprove(order) {
         let userId = order.user._id
-        let user = await User.findOne(userId);
+        let user = await User.findById(userId);
+        if ((user.points - order.points) < 0) throw new Error('Not enough points')
         user.points = user.points - order.points
-        if ( user.points < 0 ) user.points = 0
-        return user.save()
+        await user.save()
+        let dbOrder = await Order.findById(order._id)
+        dbOrder.status = 'confirmed';
+        return dbOrder.save()
     }
 
     /**
@@ -39,7 +42,7 @@ class orderController{
 
     async getOrders() {
 
-        return await Order.find({}).limit(100).sort({createdAt:-1}).populate('user').lean().exec();
+        return await Order.find({}).limit(100).sort({createdAt:-1}).populate('user').exec();
 
 
     }

@@ -5,25 +5,29 @@ angular.module('ganim').controller('ordersCtrl', ['$scope', '$stateParams', '$lo
         let _this = $scope;
         _this.orders = [];
         _this.init = async () => {
+            console.log('init orders');
             $http.get('/orders').then( (orders) => {
                 orders.data.map( ( order ) => {
                     order.orders.forEach( product => {
-                        _this.orders.push({createdAt: order.createdAt,
-                            user: order.user,
-                                            name:order.user.firstName + ' ' + order.user.lastName,
-                                            title:product.title,
-                                            points: product.price,
-                                            status: order.status
-                                          })
+                        _this.orders.push
+                        ({
+                            _id:order._id,
+                            createdAt: order.createdAt,
+                            user: order.user || {},
+                            name: order.user ? (order.user.firstName || '' + ' ' + order.user.lastName || '') : '',
+                            title: product ? product.title : '',
+                            points: product ? product.price : '',
+                            status: order.status
+                        })
                     });
                 })
             });
-            console.log(_this.orders);
         };
+
 
         _this.openSummery = (index) => {
 
-            var modalInstance = $uibModal.open({
+            _this.modalInstance = $uibModal.open({
                 animation: $scope.animationsEnabled,
                 ariaLabelledBy: 'modal-title',
                 ariaDescribedBy: 'modal-body',
@@ -37,10 +41,8 @@ angular.module('ganim').controller('ordersCtrl', ['$scope', '$stateParams', '$lo
                     }
                 }
             });
-            modalInstance.result.then(function (selectedItem) {
-                selectedItem.time.end = $scope.end;
-                calenderService.addEvent(selectedItem);
-                //calenderService.setEvent($scope.selected);
+            _this.modalInstance.result.then(function (selectedItem) {
+                _this.init();
             }, function () {
 
             });

@@ -135,10 +135,18 @@ class userController {
     setUser (user) {
         let newUser  = new User(user);
         newUser.points = 500;
+        newUser.status = 'Not Active';
         return newUser.save()
             .catch((err)=>{
                 console.log(err);
             })
+    }
+
+    async activate (id) {
+        let user = await User.findById(id);
+        if ( !user ) throw new Error('Couldnt find user');
+        user.status = 'Active';
+        return user.save();
     }
 
     getUser (by, value) {
@@ -208,7 +216,16 @@ class userController {
 
     };
 
-
+    getUsersByFilter (by, filter, multiple) {
+        let req = {};
+        by = by.toLowerCase();
+        let limit;
+        //let regex =  { $regex: '/' + filter + '/', $options: 'i' };
+        let regex = new RegExp(filter, 'i');
+        req[by] = regex;
+        multiple === 'single' ? limit = 1 : limit = 100;
+        return User.find(req).limit(limit).exec();
+    }
 
     async deleteUser (id) {
         try {

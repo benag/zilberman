@@ -197,8 +197,5 @@ angular.module('ganim').controller('mainCtrl', ['$scope', '$stateParams', '$loca
             }
         };
 
-
-
-
     }
 ]);

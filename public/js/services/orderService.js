@@ -6,7 +6,7 @@ angular.module('ganim').factory('orderService',function($state, $timeout, $locat
         orderProduct: async (phone, category, product, identifyBy) => {
             let user;
             if (identifyBy === 'phone'){
-                user = (await userMng.getUserByPhone(phone)).data;
+                user = (await userMng.getUsersByFilter('phone', phone, 'single')).data;
             }
             if (!user){
                 throw Error('Cant found user');

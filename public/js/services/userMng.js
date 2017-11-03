@@ -22,13 +22,12 @@ angular.module('ganim').factory('userMng',function($state, $timeout, $location, 
             return projectMng.getCurrentProject();
         },
 
-        getUserByPhone: (phone) => {
-            return $http.get('/user/phone/' + phone);
+        getUsersByFilter: (by, filter, multiple) => {
+            return $http.get('/user/'+by+'/'+filter + '/' + multiple)
         },
 
 
-
-    GetCurrentIndex: function(){
+        GetCurrentIndex: function(){
           return projectMng.GetCurrentIndex();
         },
 
@@ -106,26 +105,10 @@ angular.module('ganim').factory('userMng',function($state, $timeout, $location, 
             this.projects =[{}];
             this.current = 0;
         },
-        //uploadNewProject: function(id){
-        //    var t = this;
-        //    $http.post('/project/' + id , {project:this.projects[this.projects.length]})
-        //    .then(function(data){
-        //        //t.setEditMode();
-        //        t.setProjects(data.data.payload.projects);
-        //        swal("Project was Added");
-        //        //alert("Project was Added");
-        //    })
-        //},
-        //
-        //updateProject: function(){
-        //    return $http.put('/project/', {project:this.projects[this.current]})
-        //    .then(function(project){
-        //        this.setEditMode();
-        //        swal("Project was Updated");
-        //        //alert("Project was Updated");
-        //
-        //    })
-        //},
+
+        activate: (user) => {
+            return $http.post('/user/activate', { id: user._id })
+        },
 
         removerProject:function(index){
             return $http.put('/project/delete/:userId/projectId')

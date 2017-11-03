@@ -34,7 +34,7 @@ var userSchema = new Schema({
     phone: String,
     officePhone: String,
     role: String,
-    status: {type: String, enum: ['active','notactive']},// register,verified
+    status: {type: String, enum: ['Active','Not Active']},// register,verified
     ARN: String,
     smsCode: String,
     APIToken: String,
@@ -67,5 +67,6 @@ userSchema.methods.comparePassword = function(candidatePassword, cb) {
         cb(null, isMatch);
     });
 }
+
 
 mongoose.model('User', userSchema);

@@ -161,11 +161,11 @@ app.get('/users/:page/:limit', function(req, res){
     })
 });
 
-app.get('/user/phone/:phone', async (req,res) => {
+app.get('/user/:by/:filter/:multiple', async (req,res) => {
 
     try{
-        let user = await userCtrl.getUser( 'phone', req.params.phone );
-        res.json(user);
+        let users = await userCtrl.getUsersByFilter( req.params.by, req.params.filter, req.params.multiple );
+        return res.json(users);
     }catch(err){
         res.status(400).send(err.message);
     }
@@ -180,6 +180,18 @@ app.post('/user', (req, res)=>{
     }).catch(function(err){
 
     })
+});
+
+app.post('/user/activate', async (req, res) => {
+    try{
+        let user = await userCtrl.activate(req.body.id);
+        return res.json(user);
+    }catch(err){
+        return res.status(400).send(err.message);
+    }
+
+
+
 });
 
 app.put('/user', (req, res)=>{

@@ -5,16 +5,30 @@
     <div class="container .top-margin">
 
         <div class="row search-content">
-            <div class="col-md-4">
-                <div class="form-group form-search is-empty">
-                    <input type="text" ng-change="byCompany()" ng-model="searchCompanyParam" class="form-control" placeholder="Search By Company Name">
-                    <span class="material-input"></span>
+            <div class="col-md-2">
+                <div class="dropdown input-drop">
+
+                    <a class="dropdown-toggle input-btn" data-toggle="dropdown">{{searchParam}}
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-left">
+                        <li>
+                            <a ng-click="searchParam = 'Company'" class="genderAnchor">Company</a>
+                        </li>
+                        <li>
+                            <a ng-click="searchParam = 'Name'" class="genderAnchor">Name</a>
+                        </li>
+                        <li>
+                            <a ng-click="searchParam = 'Points'" class="genderAnchor">Points</a>
+                        </li>
+                    </ul>
+
                 </div>
 
             </div>
             <div class="col-md-4">
                 <div class="form-group form-search is-empty">
-                    <input type="text" ng-change="byName()" ng-model="searchUserParam" class="form-control" placeholder="Search By Name">
+                    <input type="text" ng-change="search()" ng-model="searchUserParam" placeholder="Enter search parameter" class="form-control">
                     <span class="material-input"></span>
                 </div>
             </div>
@@ -44,7 +58,7 @@
                                 <i ng-show="sortType === '' || (sortType === 'company' && sortReverse)" class="fa fa-caret-down" aria-hidden="true"></i>
                                 <i ng-show="(sortType === 'company' && !sortReverse)" class="fa fa-caret-up" aria-hidden="true"></i>
                             </th>
-                            <th ng-click="sortType = 'firstName';sortReverse = !sortReverse">first Name
+                            <th ng-click="sortType = 'firstName';sortReverse = !sortReverse">First Name
                                 <i ng-show="sortType === '' || (sortType === 'firstName' && sortReverse)" class="fa fa-caret-down" aria-hidden="true"></i>
                                 <i ng-show="(sortType === 'firstName' && !sortReverse)" class="fa fa-caret-up" aria-hidden="true"></i>
                             </th>
@@ -52,21 +66,27 @@
                                 <i ng-show="sortType === '' || (sortType === 'lastName' && sortReverse)" class="fa fa-caret-down" aria-hidden="true"></i>
                                 <i ng-show="(sortType === 'lastName' && !sortReverse)" class="fa fa-caret-up" aria-hidden="true"></i>
                             </th>
-                            <th ng-click="sortType = 'points';sortReverse = !sortReverse">points
+                            <th ng-click="sortType = 'points';sortReverse = !sortReverse">Points
                                 <i ng-show="sortType === '' || (sortType === 'points' && sortReverse)" class="fa fa-caret-down" aria-hidden="true"></i>
                                 <i ng-show="(sortType === 'points' && !sortReverse)" class="fa fa-caret-up" aria-hidden="true"></i>
+                            </th>
+                            <th ng-click="sortType = 'status'; sortReverse = !sortReverse" >Status
+                                <i ng-show="sortType === '' || (sortType === 'status' && sortReverse)" class="fa fa-caret-down" aria-hidden="true"></i>
+                                <i ng-show="(sortType === 'status' && !sortReverse)" class="fa fa-caret-up" aria-hidden="true"></i>
                             </th>
                             <th>Action</th>
                             </thead>
                             <tbody>
-                            <tr ng-repeat="user in users | filter:{company:searchCompanyParam,firstName:searchUserParam} | orderBy:sortType:sortReverse track by $index" >
+                            <tr ng-repeat="user in users | orderBy:sortType:sortReverse track by $index"
+                                ng-click="gotoUser($index)">
 
                                 <td >{{user.company}}</td>
                                 <td>{{user.firstName}}</td>
                                 <td>{{user.lastName}}</td>
                                 <td>{{user.points}}</td>
+                                <td>{{user.status}}</td>
                                 <td><button ng-click= "remove($index)" class="btn btn-black btn-sm">Remove</button>
-                                    <button ng-click="gotoUser($index)" class="btn btn-black btn-sm">Edit</button>
+                                    <button ng-click="activate($index)" class="btn btn-black btn-sm">Activate</button>
                                 </td>
                             </tr>
                             <!-- -->
@@ -78,12 +98,12 @@
 
 
         </div>
-        <div class="row">
-            <div class="col-md-offset-10">
-                <button ng-show="page > 0" ng-click="back()" class="btn btn-black"><<</button>
-                <button ng-show="currentShown === limit" ng-click="next()" class="btn btn-black">>></button>
-            </div>
-        </div>
+        <!--<div class="row">-->
+            <!--<div class="col-md-offset-10">-->
+                <!--<button ng-show="page > 0" ng-click="back()" class="btn btn-black"><<</button>-->
+                <!--<button ng-show="currentShown === limit" ng-click="next()" class="btn btn-black">>></button>-->
+            <!--</div>-->
+        <!--</div>-->
 
 
     </div>
