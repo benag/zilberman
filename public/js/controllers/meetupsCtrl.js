@@ -1,20 +1,39 @@
 angular.module('ganim').controller('meetupsCtrl', ['$scope', '$stateParams', '$location', '$state', 'calenderService','$uibModal', '$log', '$document', 'userMng', 'roomMng',
     function($scope, $stateParams, $location, $state, calenderService, $uibModal, $log, $document, userMng, roomMng) {
 
-        calenderService.initCalender($scope);
-        userMng.getUsers()
-        .then(function(users){
-            $scope.users = users;
-        }).catch();
+
+        $scope.room = {};
+        $scope.searchUserParam ='';
+        $scope.person = {}
+
+
+        userMng.getUsersByFilter('name', ' ', 'multiple').then( users => {
+            $scope.users = users.data;
+        })
 
         roomMng.getRooms()
         .then(function(rooms){
-            $scope.rooms = rooms.data.payload;
+            $scope.rooms = rooms.data;
+            calenderService.initCalender($scope, $scope.rooms[0] );
         }).catch(function(err){ console.log(err)});
+
+        $scope.search = (val) => {
+            alert('search');
+            //
+            //if ($scope.searchUserParam.length > 2) {
+            //    userMng.getUsersByFilter('name', val, 'multiple').then( users => {
+            //        $scope.users = users.data;
+            //    })
+            //}
+        }
 
         $scope.timepicker ='';
 
         $scope.animationsEnabled = true;
+
+        $scope.roomSelected = () => {
+            calenderService.initCalender($scope, $scope.room.selected );
+        }
 
         $scope.edit = function(eventDB, eventCal, parentSelector) {
             var parentElem = parentSelector ?
@@ -53,7 +72,7 @@ angular.module('ganim').controller('meetupsCtrl', ['$scope', '$stateParams', '$l
             });
         }
         $scope.open = function (start, end, size, parentSelector) {
-            selectedItem.time.start = $scope.start;
+            //selectedItem.time.start = $scope.start;
             $scope.start = start;
             $scope.end = end;
             var parentElem = parentSelector ?

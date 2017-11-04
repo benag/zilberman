@@ -11,6 +11,16 @@ angular.module('ganim').controller(
         $scope.time.startTime = eventCal.start._d;
         $scope.time.endTime = eventCal.end._d;
 
+        $scope.search = (val) => {
+            alert('search');
+            //
+            //if ($scope.searchUserParam.length > 2) {
+            //    userMng.getUsersByFilter('name', val, 'multiple').then( users => {
+            //        $scope.users = users.data;
+            //    })
+            //}
+        }
+
         $scope.ok = function () {
             $uibModalInstance.close({person:$scope.person.selected, time: $scope.time, room:$scope.room});
         };

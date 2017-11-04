@@ -16,9 +16,9 @@ angular.module('ganim').factory('calenderService',function($state, $timeout, $lo
             }
             return data;
         },
-        refreshEvents: function(){
+        refreshEvents: function(room){
             var _this = this;
-            return eventsService.getEvents()
+            return eventsService.getEvents(room)
             .then(function(events){
                 _this.events = _this.transferData(events.data.payload);
             }).catch(function(err){console.log(err)})
@@ -75,10 +75,10 @@ angular.module('ganim').factory('calenderService',function($state, $timeout, $lo
 
         },
 
-        initCalender: function(meetupsCtrl){
+        initCalender: function(meetupsCtrl, room){
             _this = this;
             this.meetupCtrl = meetupsCtrl;
-            _this.refreshEvents()
+            _this.refreshEvents(room)
             .then(function(){
                 $calendar = $('#fullCalendar');
                 this.$calendar = $calendar;

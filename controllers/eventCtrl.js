@@ -12,10 +12,10 @@ class eventController {
 
     }
 
-    getEvents( room ) {
+    getEvents( roomId ) {
 
         let query = {};
-        if (room) query.room = room;
+        if (roomId) query.room = roomId;
         return Event.find(query).lean().exec();
 
     }

@@ -13,12 +13,23 @@
                 <div class="container-fluid">
 
                     <div class="row">
+                        <span>Choose Room: </span>
+                        <ui-select ng-model="room.selected" ng-change="roomSelected()" theme="select2" ng-disabled="disabled" style="min-width: 300px;" title="Choose a room" append-to-body="true">
+                            <ui-select-match placeholder="Select a room in the list ">{{$select.selected.name}}</ui-select-match>
+                            <ui-select-choices repeat="room in rooms ">
+                                <div ng-bind-html="room.name | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                    <div class="row">
                         <div class="col-md-10">
+
                             <div class="card card-calendar">
                                 <div class="card-content" class="ps-child">
                                     <div id="fullCalendar"></div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -36,24 +47,11 @@
     <div class="modal-body" id="modal-body">
 
         <div class="row">
-            <span>Choose Room: </span>
-            <ui-select ng-model="room.selected" theme="select2" ng-disabled="disabled" style="min-width: 300px;" title="Choose a room" append-to-body="true">
-            <ui-select-match placeholder="Select a room in the list ">{{$select.selected.name}}</ui-select-match>
-                <ui-select-choices repeat="room in rooms ">
-                    <div ng-bind-html="room.name | highlight: $select.search"></div>
-                    <!--<small>-->
-                        <!--email: {{person.firstName}}-->
-                        <!--phone: <span ng-bind-html="''+person.phone | highlight: $select.search"></span>-->
-                    <!--</small>-->
-                </ui-select-choices>
-            </ui-select>
-        </div>
-
-        <div class="row">
             <span>Choose Member: </span>
+
             <ui-select ng-model="person.selected" theme="select2" ng-disabled="disabled" style="min-width: 300px;" title="Choose a member" append-to-body="true">
                 <ui-select-match placeholder="Select a member in the list or search his name...">{{$select.selected.firstName}}</ui-select-match>
-                <ui-select-choices repeat="person in members | memberFilter: {firstName: $select.search, phone: $select.search}">
+                <ui-select-choices refresh="search($select.search)" repeat="person in members | memberFilter: {firstName: $select.search, phone: $select.search}">
                     <div ng-bind-html="person.firstName | highlight: $select.search"></div>
                     <small>
                         email: {{person.firstName}}
@@ -97,24 +95,10 @@
     <div class="modal-body" id="modal-body">
 
         <div class="row">
-            <span>Update Room: </span>
-            <ui-select ng-model="room.selected" theme="select2" ng-disabled="disabled" style="min-width: 300px;" title="Choose a room" append-to-body="true">
-                <ui-select-match placeholder="Select a room in the list ">{{$select.selected.name}}</ui-select-match>
-                <ui-select-choices repeat="room in rooms ">
-                    <div ng-bind-html="room.name | highlight: $select.search"></div>
-                    <!--<small>-->
-                    <!--email: {{person.firstName}}-->
-                    <!--phone: <span ng-bind-html="''+person.phone | highlight: $select.search"></span>-->
-                    <!--</small>-->
-                </ui-select-choices>
-            </ui-select>
-        </div>
-
-        <div class="row">
             <span>Update Member: </span>
             <ui-select ng-model="person.selected" theme="select2" ng-disabled="disabled" style="min-width: 300px;" title="Choose a member" append-to-body="true">
                 <ui-select-match placeholder="Select a member in the list or search his name...">{{$select.selected.firstName}}</ui-select-match>
-                <ui-select-choices repeat="person in members | memberFilter: {firstName: $select.search, phone: $select.search}">
+                <ui-select-choices refresh="search($select.search)" repeat="person in members | memberFilter: {firstName: $select.search, phone: $select.search}">
                     <div ng-bind-html="person.firstName | highlight: $select.search"></div>
                     <small>
                         email: {{person.firstName}}

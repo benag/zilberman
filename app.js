@@ -258,8 +258,8 @@ app.delete('/events/:id', (req, res)=>{
 })
 
 
-app.get('/events/room/:room', (req, res)=>{
-    eventCtrl.getEvents( req.params.room )
+app.get('/events/room/:roomId', (req, res)=>{
+    eventCtrl.getEvents( req.params.roomId )
     .then(function(event){
         res.json(event);
     })

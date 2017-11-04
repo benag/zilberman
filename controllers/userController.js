@@ -225,17 +225,11 @@ class userController {
         let regex;
         if ( by !== 'points' ) {
             regex = new RegExp(filter, 'i');
-            if ( by === 'name' ){
-
-            }else{
-                req[by] = regex;
-            }
-
-
+            req[by] = regex;
         }else{
             req[by] = filter;
         }
-
+        if (filter === ' ') req = {};
 
         multiple === 'single' ? limit = 1 : limit = 100;
         return User.find(req).limit(limit).exec();

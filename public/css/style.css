@@ -376,6 +376,12 @@
     width:230px;
     height: 90px;
 }
+.tribu-logo-expand {
+    width: 187px;
+    height: 60px;
+    top: -16px;
+    position: relative;
+}
 .backImage{
     background-image: url("../img/ganim.jpg");
     background-repeat: no-repeat;
@@ -383,4 +389,7 @@
 }
 #logOut:hover {
     background-color: lightgrey!important;
+}
+.nav-expand{
+    min-width: 100px;!important;
 }
