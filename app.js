@@ -184,7 +184,8 @@ app.post('/user', (req, res)=>{
 
 app.post('/user/activate', async (req, res) => {
     try{
-        let user = await userCtrl.activate(req.body.id);
+
+        let user = await userCtrl.activate(req.body.id, req.body.activate);
         return res.json(user);
     }catch(err){
         return res.status(400).send(err.message);

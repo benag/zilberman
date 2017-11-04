@@ -40,7 +40,10 @@ angular.module('ganim').controller('searchCtrl', ['$scope', '$stateParams', '$lo
         }
 
         $scope.search = () => {
-            if (_this.searchUserParam.length > 2) {
+            if (_this.searchUserParam.length === 0) {
+                _this.init()
+            }
+            if (_this.searchUserParam.length > 1) {
                 userMng.getUsersByFilter(_this.searchParam, _this.searchUserParam, 'multiple').then( users => {
                     $scope.users = users.data;
                     _this.currentShown = _this.users.length;
@@ -49,14 +52,42 @@ angular.module('ganim').controller('searchCtrl', ['$scope', '$stateParams', '$lo
         };
 
         $scope.remove = function(index){
-            userMng.removeUser($scope.users[index]._id).then( function(){
-                swal('User deleted');
-                $scope.init()
-            }).catch(function (err){swal('Error: contact admin')});
+            swal({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then(function () {
+                userMng.removeUser($scope.users[index]._id).then( function(){
+                    swal(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                    )
+                    $scope.init()
+                }).catch(function (err){swal('Error: contact admin')});
+
+            })
+
+        }
+
+        $scope.changeSearchParam = (param) => {
+            $scope.searchParam = param;
+            $scope.search();
+        }
+
+        $scope.deActivate = (index) => {
+            userMng.activate($scope.users[index],false).then( users => {
+                $scope.init();
+                swal('User activated');
+            }).catch( err => console.log(err) );
         }
 
         $scope.activate = (index) => {
-            userMng.activate($scope.users[index]).then( users => {
+            userMng.activate($scope.users[index], true).then( users => {
                 $scope.init();
                 swal('User activated');
             }).catch( err => console.log(err) );

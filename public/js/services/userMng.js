@@ -106,8 +106,8 @@ angular.module('ganim').factory('userMng',function($state, $timeout, $location, 
             this.current = 0;
         },
 
-        activate: (user) => {
-            return $http.post('/user/activate', { id: user._id })
+        activate: (user, activate) => {
+            return $http.post('/user/activate', { id: user._id, activate:activate })
         },
 
         removerProject:function(index){

@@ -99,6 +99,7 @@ class userController {
             password: password,
             firstName: firstName,
             lastName: lastName,
+            name: firstName + ' ' + lastName,
             facebookId: facebookId,
             points: config.points
         });
@@ -142,10 +143,10 @@ class userController {
             })
     }
 
-    async activate (id) {
+    async activate (id, activate) {
         let user = await User.findById(id);
         if ( !user ) throw new Error('Couldnt find user');
-        user.status = 'Active';
+        activate ? user.status = 'Active' : user.status = 'Not Active';
         return user.save();
     }
 
@@ -220,9 +221,21 @@ class userController {
         let req = {};
         by = by.toLowerCase();
         let limit;
-        //let regex =  { $regex: '/' + filter + '/', $options: 'i' };
-        let regex = new RegExp(filter, 'i');
-        req[by] = regex;
+        let regex;
+        if ( by !== 'points' ) {
+            regex = new RegExp(filter, 'i');
+            if ( by === 'name' ){
+
+            }else{
+                req[by] = regex;
+            }
+
+
+        }else{
+            req[by] = filter;
+        }
+
+
         multiple === 'single' ? limit = 1 : limit = 100;
         return User.find(req).limit(limit).exec();
     }
