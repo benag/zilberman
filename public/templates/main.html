@@ -38,7 +38,7 @@
                                     </div>
                                     <div class="col-md-2">
                                         <div class="dropdown input-drop-gender" >
-                                            <a class="dropdown-toggle input-btn" data-toggle="dropdown">{{getGender()}}
+                                            <a class="dropdown-toggle input-btn" data-toggle="dropdown">{{user.gender || 'Gender'}}
                                                 <b class="caret"></b>
                                             </a>
                                             <ul class="dropdown-menu dropdown-menu-left">
@@ -69,10 +69,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-3">
-                                        <!--<div class="form-group">-->
-                                        <!--<label class="label-control">Date Picker</label>-->
-                                        <!--<input type="text" class="form-control datepicker" value="10/10/2016" />-->
-                                        <!--</div>-->
+
                                         <div class="form-group label-floating">
                                             <label class="control-label">Birthday</label>
                                             <input type="date" ng-model="user.birthday" class="form-control">
@@ -80,10 +77,11 @@
                                     </div>
                                     <div class="col-md-2">
                                         <div class="dropdown input-drop" ng-init="setProfession()">
-                                            <a class="dropdown-toggle input-btn" data-toggle="dropdown">{{setProfession()}}
+                                            <a class="dropdown-toggle input-btn" data-toggle="dropdown">{{user.profession || 'Profession'}}
                                                 <b class="caret"></b>
                                             </a>
                                             <ul class="dropdown-menu dropdown-menu-left">
+
                                                 <li>
                                                     <a ng-click="user.profession = 'Architect'" class="genderAnchor">Architect</a>
                                                 </li>
@@ -91,13 +89,25 @@
                                                     <a ng-click="user.profession = 'Gardener'" class="genderAnchor">Gardener</a>
                                                 </li>
                                                 <li>
-                                                    <a ng-click="user.profession = 'landscape architect'" class="genderAnchor">landscape architect</a>
+                                                    <a ng-click="user.profession = 'Landscape Architect'" class="genderAnchor">Landscape architect</a>
                                                 </li>
                                                 <li>
-                                                    <a ng-click="user.profession = 'Interior designer'" class="genderAnchor">Interior designer</a>
+                                                    <a ng-click="user.profession = 'Interior Design'" class="genderAnchor">Interior designer</a>
                                                 </li>
                                                 <li>
-                                                    <a ng-click="user.profession = 'Construction inspector'" class="genderAnchor">Construction inspector</a>
+                                                    <a ng-click="user.profession = 'Wood Construction'" class="genderAnchor">Wood Construction</a>
+                                                </li>
+                                                <li>
+                                                    <a ng-click="user.profession = 'Constructor'" class="genderAnchor">Constructor</a>
+                                                </li>
+                                                <li>
+                                                    <a ng-click="user.profession = 'Pool Construction'" class="genderAnchor">Pool Construction</a>
+                                                </li>
+                                                <li>
+                                                    <a ng-click="user.profession = 'Outdoor Kitchens'" class="genderAnchor">Interior designer</a>
+                                                </li>
+                                                <li>
+                                                    <a ng-click="user.profession = 'Construction Inspector'" class="genderAnchor">Construction inspector</a>
                                                 </li>
                                                 <li>
                                                     <a ng-click="user.profession = 'Other'" class="genderAnchor">Other</a>
@@ -173,7 +183,7 @@
                             <p class="description">
                                 {{user.about}}
                             </p>
-                            <a class="btn btn-round">{{user.points}}TRIBU Points</a>
+                            <a class="btn btn-round">{{user.points}} TRIBU Points</a>
                         </div>
                         <div>
                             <!--<span uib-rating ng-model="rate" max="max" read-only="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null" aria-labelledby="default-rating"></span>-->

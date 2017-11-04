@@ -95,7 +95,9 @@ angular.module('ganim').controller('searchCtrl', ['$scope', '$stateParams', '$lo
 
         $scope.gotoUser = function(index){
             global.searchUser = $scope.users[index];
-            $rootScope.current = 'main'
+            $scope.$applyAsync( () => {
+                $rootScope.current = 'main'
+            })
             $state.go('main');
         }
 

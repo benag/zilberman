@@ -38,6 +38,20 @@
 
 
         <div class="wrapper">
+            <nav ng-show="!showLeftPane" class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">WebSiteName</a>
+                    </div>
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#">Page 1</a></li>
+                        <li><a href="#">Page 2</a></li>
+                        <li><a href="#">Page 3</a></li>
+                    </ul>
+                    <i class="material-icons pull-right" ng-show="!showLeftPane" ng-click="contract()" style="font-size:35px;cursor: pointer;">settings_backup_restore</i>
+                </div>
+            </nav>
             <section data-ui-view="left-pane"></section>
             <section class="main" data-ui-view="main" ></section>
         </div>

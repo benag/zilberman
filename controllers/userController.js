@@ -136,6 +136,7 @@ class userController {
     setUser (user) {
         let newUser  = new User(user);
         newUser.points = 500;
+        newUser.createdAt = new Date();
         newUser.status = 'Not Active';
         return newUser.save()
             .catch((err)=>{

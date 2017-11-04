@@ -7,6 +7,7 @@ var mongoose = require('mongoose'),
 
 
 var userSchema = new Schema({
+    createdAt: Date,
     firstName: String,
     lastName: String,
     name: String,
@@ -25,7 +26,7 @@ var userSchema = new Schema({
     email: String,
     birthday: Date,
     gender:String,
-    profession: [{ type: String, enum: ['Architect', 'Gardener', 'Landscape Architect', 'Wood Construction', 'Constructor', 'Outdoor Kitchens','Pool Construction', 'Interior Design','Construction Inspector','Other'] }],
+    profession: { type: String, enum: ['Architect', 'Gardener', 'Landscape Architect', 'Wood Construction', 'Constructor', 'Outdoor Kitchens','Pool Construction', 'Interior Design','Construction Inspector','Other'] },
     projects: [{type: mongoose.Schema.ObjectId, ref: 'Project'}],
     title: String,
     img: String,

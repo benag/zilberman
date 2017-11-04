@@ -19,7 +19,7 @@ angular.module('ganim').controller('stationCtrl', ['$scope', '$stateParams', '$l
 
         };
 
-        $scope.contract = function(){
+        $rootScope.contract = function(){
             swal({
                 title: 'Enter Password',
                 input: 'text',
