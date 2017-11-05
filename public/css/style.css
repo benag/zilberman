@@ -393,3 +393,6 @@
 .nav-expand{
     min-width: 100px;!important;
 }
+tr td {
+    word-wrap:break-word;
+}
