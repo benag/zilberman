@@ -35,4 +35,5 @@ angular.module('ganim').controller(
             $rootScope.$broadcast('delete_event', {id:eventCal.id});
             $uibModalInstance.dismiss('cancel');
         };
+
     });

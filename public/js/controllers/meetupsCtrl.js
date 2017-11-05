@@ -17,16 +17,6 @@ angular.module('ganim').controller('meetupsCtrl', ['$scope', '$stateParams', '$l
             calenderService.initCalender($scope, $scope.rooms[0] );
         }).catch(function(err){ console.log(err)});
 
-        $scope.search = (val) => {
-            alert('search');
-            //
-            //if ($scope.searchUserParam.length > 2) {
-            //    userMng.getUsersByFilter('name', val, 'multiple').then( users => {
-            //        $scope.users = users.data;
-            //    })
-            //}
-        }
-
         $scope.timepicker ='';
 
         $scope.animationsEnabled = true;
@@ -34,6 +24,7 @@ angular.module('ganim').controller('meetupsCtrl', ['$scope', '$stateParams', '$l
         $scope.roomSelected = () => {
             calenderService.initCalender($scope, $scope.room.selected );
         }
+
 
         $scope.edit = function(eventDB, eventCal, parentSelector) {
             var parentElem = parentSelector ?

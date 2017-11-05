@@ -15,4 +15,11 @@ angular.module('ganim').controller(
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
     };
+    $scope.refresh = (val) => {
+        if (val > 2) {
+            userMng.getUsersByFilter('name', val, 'multiple').then( users => {
+                $scope.members = users.data;
+            })
+        }
+    }
 });
