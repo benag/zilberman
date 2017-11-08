@@ -1,10 +1,11 @@
-angular.module('ganim').controller('meetupsCtrl', ['$scope', '$stateParams', '$location', '$state', 'calenderService','$uibModal', '$log', '$document', 'userMng', 'roomMng',
-    function($scope, $stateParams, $location, $state, calenderService, $uibModal, $log, $document, userMng, roomMng) {
+angular.module('ganim').controller('meetupsCtrl', ['$scope', '$stateParams', '$location', '$state', 'calenderService',
+    '$uibModal', '$log', '$document', 'userMng', 'roomMng','$rootScope',
+    function($scope, $stateParams, $location, $state, calenderService, $uibModal, $log, $document, userMng, roomMng, $rootScope) {
 
 
         $scope.room = {};
         $scope.searchUserParam ='';
-        $scope.person = {}
+        $scope.person = {};
 
 
         userMng.getUsersByFilter('name', ' ', 'multiple').then( users => {
@@ -22,7 +23,9 @@ angular.module('ganim').controller('meetupsCtrl', ['$scope', '$stateParams', '$l
         $scope.animationsEnabled = true;
 
         $scope.roomSelected = () => {
-            calenderService.initCalender($scope, $scope.room.selected );
+            $rootScope.selectedRoom = $scope.room.selected;
+            $state.go($state.$current, null, { reload: true });
+            calenderService.initCalender($scope, $rootScope.selectedRoom );
         }
 
 
@@ -61,9 +64,10 @@ angular.module('ganim').controller('meetupsCtrl', ['$scope', '$stateParams', '$l
             }, function () {
                 $log.info('Modal dismissed at: ' + new Date());
             });
-        }
+        };
+
         $scope.open = function (start, end, size, parentSelector) {
-            //selectedItem.time.start = $scope.start;
+
             $scope.start = start;
             $scope.end = end;
             var parentElem = parentSelector ?
@@ -87,6 +91,7 @@ angular.module('ganim').controller('meetupsCtrl', ['$scope', '$stateParams', '$l
                 }
             });
             modalInstance.result.then(function (selectedItem) {
+                selectedItem.time.start = $scope.start;
                 selectedItem.time.end = $scope.end;
                 calenderService.addEvent(selectedItem);
                 //calenderService.setEvent($scope.selected);

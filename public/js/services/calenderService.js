@@ -20,7 +20,7 @@ angular.module('ganim').factory('calenderService',function($state, $timeout, $lo
             var _this = this;
             return eventsService.getEvents(room)
             .then(function(events){
-                _this.events = _this.transferData(events.data.payload);
+                _this.events = _this.transferData(events.data);
             }).catch(function(err){console.log(err)})
 
         },
@@ -51,15 +51,15 @@ angular.module('ganim').factory('calenderService',function($state, $timeout, $lo
             })
         },
         addEvent: function(selection){
-            let room = selection.room.selected;
+            _this = this;
             let member = selection.person;
             selection.time.start._d.setHours(selection.time.startTime.getHours());
             selection.time.end._d.setHours(selection.time.endTime.getHours());
             selection.time.start._d.setMinutes(selection.time.startTime.getMinutes());
             selection.time.end._d.setDate(selection.time.end._d.getDate()-1);
             selection.time.end._d.setMinutes(selection.time.endTime.getMinutes());
-            var title = member.firstName + '-' + room.name;
-            eventsService.addEvent (member._id, selection.time.start._d,selection.time.end._d, room._id, title)
+            var title = member.firstName;
+            eventsService.addEvent (member._id, selection.time.start._d,selection.time.end._d, _this.room._id, title)
             .then(function(event){
                 eventData = {
                     title: title,
@@ -77,6 +77,7 @@ angular.module('ganim').factory('calenderService',function($state, $timeout, $lo
 
         initCalender: function(meetupsCtrl, room){
             _this = this;
+            _this.room = room;
             this.meetupCtrl = meetupsCtrl;
             _this.refreshEvents(room)
             .then(function(){
