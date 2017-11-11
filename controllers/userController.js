@@ -248,6 +248,13 @@ class userController {
         }
     }
 
+    async addPoints (sum, user) {
+
+        let dbUser = await User.findOne({_id:user._id});
+        dbUser.points += sum;
+        return dbUser.save();
+    }
+
 };
 
 const userContrl  = new userController();

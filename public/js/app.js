@@ -117,6 +117,8 @@ var app = angular.module('ganim', ['ui.router','vsGoogleAutocomplete','ngFileUpl
 
 }).run(function($rootScope, $state, global){
 
+    $rootScope.showLeftPane = true;
+    $('#topBar').removeClass('hide-bar');
     $rootScope.current = 'main';
     $rootScope.$on('$locationChangeSuccess', (event, toState, toStateParams) => {
         let user = global.getUserData();

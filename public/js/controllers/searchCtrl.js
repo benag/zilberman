@@ -1,5 +1,6 @@
-angular.module('ganim').controller('searchCtrl', ['$scope', '$stateParams', '$location', '$state', '$http', 'global', 'userMng','$http',
-    '$rootScope', function($scope, $stateParams, $location, $state, $http, global, userMng, $rootScope, $http) {
+angular.module('ganim').controller('searchCtrl', ['$scope', '$stateParams', '$location', '$state', '$http',
+    'global', 'userMng','$uibModal','$rootScope',
+    function($scope, $stateParams, $location, $state, $http, global, userMng, $uibModal, $rootScope) {
 
         _this = $scope;
         $scope.sortType = '';
@@ -97,8 +98,37 @@ angular.module('ganim').controller('searchCtrl', ['$scope', '$stateParams', '$lo
             global.searchUser = $scope.users[index];
             $scope.$applyAsync( () => {
                 $rootScope.current = 'main'
-            })
+            });
             $state.go('main');
+        };
+
+        $rootScope.$on('add-points', (event, data) => {
+            let updatedUser = data.user;
+            $scope.users.forEach( (user) => {
+                if (user._id === updatedUser._id) {
+                    user.points = updatedUser.points;
+                }
+            })
+        });
+        $scope.points = (index) => {
+            $scope.modalInstance = $uibModal.open({
+                animation: $scope.animationsEnabled,
+                ariaLabelledBy: 'modal-title',
+                ariaDescribedBy: 'modal-body',
+                templateUrl: 'addPointsModal.html',
+                controller: 'addPointsCtrl',
+                size: undefined,
+                appendTo: undefined,
+                resolve: {
+                    user:$scope.users[index]
+                }
+            });
+            $scope.modalInstance.result.then(function (selectedItem) {
+                $scope.init();
+            }, function () {
+
+            });
+
         }
 
     }

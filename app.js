@@ -398,6 +398,12 @@ app.post('/products/delete',(req, res)=>{
     })
 });
 
+app.post('/points', (req, res) => {
+    userCtrl.addPoints(req.body.sum, req.body.user)
+    .then( (user) => {
+        res.json(user);
+    }).catch( (err) => { res.status(400).json(err)} )
+});
 
 app.post('/products',(req, res)=>{
     productCtrl.createProduct(req.body.product)

@@ -396,3 +396,41 @@
 tr td {
     word-wrap:break-word;
 }
+.amount-input{
+    top:-15px;
+    left:-20px;
+}
+.black {
+    color:black!important;
+}
+.points-body{
+    margin-top:15px;
+    color: black!important;
+}
+.points-checkbox {
+    margin-right:20px;
+}
+.checkbox-span{
+    margin-left: 5px;
+}
+.order-card {
+    height: 380px!important;
+}
+.order-content {
+    margin-top:20px;
+}
+.hide-bar{
+    display: none;
+}
+td {
+    word-wrap: break-word;
+}
+.search-img{
+    width: 50px !important;
+    height: 50px !important;
+}
+.search-by{
+    position: relative;
+    top: -5px;
+    z-index: 10000;
+}

@@ -13,11 +13,11 @@
                 <span ng-repeat="product in products | filter:chosen track by $index ">
 
                 <div class="col-md-3">
-                    <div class="card card-product size-card" ng-click="choseProducts($index)">
+                    <div class="card card-product size-card order-card" ng-click="choseProducts($index)">
                         <div class="card-image" data-header-animation="true">
                             <img class="img-responsive" src="{{product.img}}">
                         </div>
-                        <div class="card-content">
+                        <div class="card-content order-content">
                             <div class="card-actions">
                             </div>
                             <h4 class="card-title title-left">
