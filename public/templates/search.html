@@ -44,10 +44,10 @@
         <div class="row ">
 
             <div class="card">
-                <div class="card-header card-header-icon btn-black" data-background-color="black">
-                    <i class="material-icons">assignment</i>
-                </div>
-                <div class="card-content">
+                <!--<div class="card-header card-header-icon btn-black" data-background-color="black">-->
+                    <!--<i class="material-icons">assignment</i>-->
+                <!--</div>-->
+                <div style="margin-top:5px;" class="card-content">
                     <h4 class="card-title"></h4>
                     <div class="table-responsive">
                         <table class="table">
@@ -99,8 +99,8 @@
                                 <td ng-click="gotoUser($index)" >{{user.createdAt | date}}</td>
                                 <td>
                                     <button ng-click ="remove($index)" class="btn btn-danger btn-sm">Remove</button>
-                                    <button ng-click ="points($index)" class="btn btn-danger btn-sm">Points</button>
-                                    <button ng-show = "user.status !== 'Active'" ng-click="activate($index)" class="btn btn-black btn-sm">Activate</button>
+                                    <button ng-click ="points($index)" class="btn btn-blue btn-sm">Add points</button>
+                                    <button ng-show = "user.status !== 'Active'" ng-click="activate($index)" class="btn btn-green btn-sm">Activate</button>
                                     <button ng-show = "user.status === 'Active'" ng-click="deActivate($index)" class="btn btn-black btn-sm">Deactivate</button>
                                 </td>
                             </tr>

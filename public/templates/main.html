@@ -8,7 +8,7 @@
                 <div class="col-md-8">
 
                     <div class="card">
-                        <button class="btn btn-black pull-right new-btn" ng-click="go('main')">Add New</button>
+
                         <div class="card-content">
 
                             <h4 class="card-title card-title-main">
@@ -161,7 +161,8 @@
                                     <div class="col-lg-5 col-md-6 col-sm-3">
                                     </div>
                                 </div>
-                                <button type="submit" ng-click="submitUser()" class="btn btn-black pull-right">{{mode}}</button>
+                                <button type="submit" class="btn pull-right main-btn" ng-click="submitUser()">{{mode}}</button>
+                                <button class="btn pull-right main-btn main-add-new" ng-click="go('main')">Add new user</button>
                                 <div class="clearfix"></div>
                             </form>
                         </div>
@@ -181,7 +182,7 @@
                             <p class="description">
                                 {{user.about}}
                             </p>
-                            <a class="btn btn-round">{{user.points}} TRIBU Points</a>
+                            <a class="btn tribu-btn">{{user.points}} TRIBU Points</a>
                         </div>
                         <div>
                             <!--<span uib-rating ng-model="rate" max="max" read-only="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null" aria-labelledby="default-rating"></span>-->
@@ -207,11 +208,11 @@
                 </div>
                 <div class="col-md-8">
                     <div class="card">
-                        <div class="card-header card-header-icon btn-black " data-background-color="black">
-                            <i class="material-icons"></i>
+                        <!--<div class="" >-->
+                            <!--&lt;!&ndash;<i class="material-icons"></i>&ndash;&gt;-->
 
-                        </div>
-                        <button ng-click="newProject()" class="btn new-project-btn btn-black pull-right">+ New Project</button>
+                        <!--</div>-->
+
                         <div class="card-content">
                             <h4 class="card-title">Edit Project
                                 <small class="category"></small>
@@ -273,8 +274,11 @@
                                         <div ng-init="setMaps()" class="project-map" id="regularMap"></div>
                                     </div>
                                 </div>
+                                <div class="project-btn">
+                                    <button type="submit" ng-click="processProject()" class="btn main-btn pull-right">{{projectText}}</button>
+                                    <button ng-click="newProject()" class="btn main-btn new-project-btn pull-right">+ New Project</button>
+                                </div>
 
-                                <button type="submit" ng-click="processProject()" class="btn btn-black pull-right">{{projectText}}</button>
                                 <div class="clearfix"></div>
                             </form>
                         </div>

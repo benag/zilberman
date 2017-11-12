@@ -2093,7 +2093,7 @@ svg {
   text-align: center;
   border-bottom: 1px solid #eeeeee;
   font-size: 12px;
-  text-transform: uppercase;
+  /*text-transform: uppercase;*/
   color: #333333;
   font-weight: 400;
   padding-bottom: 5px;
@@ -3731,7 +3731,7 @@ be a descendant of the grid when it is being dragged.
   text-align: center;
   padding: 12px;
   font-size: 12px;
-  text-transform: uppercase;
+  /*text-transform: uppercase;*/
   -webkit-font-smoothing: subpixel-antialiased;
   top: -4px;
   left: 0px;
@@ -3915,7 +3915,7 @@ be a descendant of the grid when it is being dragged.
   text-align: center;
 }
 .wizard-card .btn {
-  text-transform: uppercase;
+  /*text-transform: uppercase;*/
 }
 .wizard-card .info-text {
   text-align: center;
@@ -3972,7 +3972,7 @@ be a descendant of the grid when it is being dragged.
   border: 0 !important;
   border-radius: 0;
   line-height: 18px;
-  text-transform: uppercase;
+  /*text-transform: uppercase;*/
   font-size: 12px;
   font-weight: 500;
   min-width: 100px;
@@ -5295,7 +5295,7 @@ h5, .h5 {
 
 h6, .h6 {
   font-size: 1em;
-  text-transform: uppercase;
+  /*text-transform: uppercase;*/
   font-weight: 500;
 }
 
@@ -5546,7 +5546,7 @@ h2.title {
 }
 .sidebar .logo .simple-text,
 .off-canvas-sidebar .logo .simple-text {
-  text-transform: uppercase;
+  /*text-transform: uppercase;*/
   padding: 5px 0px;
   display: block;
   font-size: 18px;
@@ -5918,7 +5918,7 @@ h2.title {
   margin: 10px 1px;
   font-size: 12px;
   font-weight: 400;
-  text-transform: uppercase;
+  /*text-transform: uppercase;*/
   letter-spacing: 0;
   will-change: box-shadow, transform;
   transition: box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1), background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -5957,7 +5957,7 @@ h2.title {
 .navbar .navbar-nav > li > a.btn.btn-default.dropdown-toggle, .open >
 .navbar .navbar-nav > li > a.btn.btn-default.dropdown-toggle:focus, .open >
 .navbar .navbar-nav > li > a.btn.btn-default.dropdown-toggle:hover {
-  background-color: #999999;
+  /*background-color: #999999;*/
   color: #FFFFFF;
 }
 .btn:focus, .btn:active, .btn:hover, .btn.btn-default:focus, .btn.btn-default:active, .btn.btn-default:hover,
@@ -7872,7 +7872,7 @@ select.form-control[multiple], .form-group.is-focused select.form-control[multip
 }
 .alert b {
   font-weight: 500;
-  text-transform: uppercase;
+  /*text-transform: uppercase;*/
   font-size: 12px;
 }
 .alert, .alert.alert-default {
@@ -8069,7 +8069,7 @@ select.form-control[multiple], .form-group.is-focused select.form-control[multip
 
 .table-shopping > thead > tr > th {
   font-size: 0.9em;
-  text-transform: uppercase;
+  /*text-transform: uppercase;*/
 }
 .table-shopping > tbody > tr > td {
   font-size: 16px;
@@ -8918,7 +8918,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
   color: #FFFFFF;
   font-weight: 500;
   font-size: 0.75em;
-  text-transform: uppercase;
+  /*text-transform: uppercase;*/
   display: inline-block;
   line-height: 1.5em;
   padding-left: 0.8em;
@@ -9224,7 +9224,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
   color: #999999;
   font-weight: 400;
   font-size: 12px;
-  text-transform: uppercase;
+  /*text-transform: uppercase;*/
   background: transparent;
 }
 .pagination > li > a:hover, .pagination > li > a:focus,
@@ -9282,7 +9282,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 .label {
   border-radius: 12px;
   padding: 5px 12px;
-  text-transform: uppercase;
+  /*text-transform: uppercase;*/
   font-size: 10px;
 }
 .label.label-default {
@@ -9299,7 +9299,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 }
 .nav-pills > li > a {
   line-height: 24px;
-  text-transform: uppercase;
+  /*text-transform: uppercase;*/
   font-size: 12px;
   font-weight: 500;
   min-width: 100px;
@@ -9478,7 +9478,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
   padding-bottom: 15px;
   font-weight: 500;
   font-size: 12px;
-  text-transform: uppercase;
+  /*text-transform: uppercase;*/
   border-radius: 3px;
 }
 .navbar .navbar-nav > li > a:hover, .navbar .navbar-nav > li > a:focus {
@@ -10023,7 +10023,7 @@ footer ul li a {
   padding: 15px;
   font-weight: 500;
   font-size: 12px;
-  text-transform: uppercase;
+  /*text-transform: uppercase;*/
   border-radius: 3px;
   text-decoration: none;
   position: relative;
@@ -10813,7 +10813,7 @@ footer .btn {
   margin: 0;
   border-radius: 3px;
   line-height: 24px;
-  text-transform: uppercase;
+  /*text-transform: uppercase;*/
   font-size: 12px;
 }
 .nav-tabs > li > a:hover {

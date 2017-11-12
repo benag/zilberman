@@ -212,7 +212,7 @@
     border-bottom: 1px solid lightgray;
 }
 .input-drop-gender{
-    margin-top: 17px;
+    margin-top: 32px;
     border-bottom: 1px solid lightgray;
 }
 .input-btn{
@@ -222,7 +222,7 @@
 }
 .project-img{
     width: 80% !important;
-    height: 250px !important;
+    height: 220px !important;
 }
 .project-map{
     width:80%;
@@ -433,4 +433,61 @@ td {
     position: relative;
     top: -5px;
     z-index: 10000;
+}
+.card-ganim-login{
+    width:360px;
+    height:360px;
+}
+.login-btn {
+    width: 305px;
+    height: 45px;
+    line-height: 15px;
+    font-size: 18px;
+    background-color: #32A1AA!important;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+.Lets{
+    color:black;
+    font-size: 16px;
+    font-family: sans-serif;
+}
+.main-btn {
+    width:135px;
+    height: 45px;
+    background-color: #32A1AA;
+    font-family: sans-serif;
+    border: none;
+    color: white;
+    font-size: 14px;
+}
+.main-add-new {
+    margin-right:20px;
+    text-align: center;
+    padding-left: -3px!important;
+
+}
+.tribu-btn{
+    width:133px;
+    text-align: center;
+    height: 42px;
+    background-color: #32A1AA;
+    padding-left:-10px!important;
+
+}
+.new-project-btn{
+    margin-right: 20px;
+    padding: auto auto;
+    padding-left: 22px!important;
+    text-align: center!important;
+}
+.project-btn {
+    margin-top:20px;
+}
+
+.btn-green{
+    background-color: #7ea730
+}
+.btn-blue{
+    background-color: #457fb1;
 }
