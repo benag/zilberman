@@ -290,8 +290,20 @@
     margin-left: 70%;
 }
 .products-btn{
-    background-color: black;
-
+    background-color: #32A1AA;
+    width:130px;
+    height: 40px;
+    margin-left: -36px;
+}
+.add-category{
+    background-color: #32A1AA;
+    width:130px;
+    height: 40px;
+}
+.add-product-btn{
+    background-color: #32A1AA;
+    width:130px;
+    height: 40px;
 }
 .anchor-image{
     height: 283px;
@@ -305,6 +317,7 @@
 }
 .title-left{
     text-align: left!important;
+    margin-top:30px!important;
 }
 .togglebutton{
     margin-top:0px;
@@ -490,4 +503,8 @@ td {
 }
 .btn-blue{
     background-color: #457fb1;
+}
+.product-maya-card{
+    height: 470px;
+    width: 345px;
 }
