@@ -7,6 +7,7 @@ var express = require('express'),
     cors = require('cors'),
     fs = require('fs'),
     logger = require('winston'),
+    nexmo = require('./services/nexmo'),
     multer  = require('multer');
 
 
@@ -150,6 +151,10 @@ app.post('/verify', requireAuth, (req, res) => {
     res.json('OK');
 })
 
+app.get('/sms', (req, res) => {
+    nexmo.sms('972526749884', 'test').then( response => {console.log(response); res.send('sent')})
+        .catch(err => res.status(400).send('Error sending sms'));
+});
 
 app.get('/users/:page/:limit', function(req, res){
 

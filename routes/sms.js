@@ -1,7 +1,7 @@
 
-var twillo = require('../services/twillo.service.js');
+var nexmo = require('../services/nexmo');
 
-class roomRoutes {
+class smsRoutes {
 
     constructor (){
 
@@ -10,12 +10,12 @@ class roomRoutes {
     init(app) {
 
         app.get('/twillo', (req, res) => {
-            twillo.sms('0526749884', 'test').then( response => console.log(response))
+            nexmo.sms('972526749884', 'test').then( response => console.log(response))
                 .catch(err => res.status(400).send('Error sending sms'));
         });
     }
 
 }
 
-const router = new roomRoutes();
+const router = new smsRoutes();
 module.exports = router;

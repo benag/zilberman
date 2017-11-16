@@ -41,9 +41,14 @@ angular.module('ganim').controller('stationMobileCtrl', ['$scope', '$stateParams
                     return new Promise(function (resolve, reject) {
                         $scope.currentPhone = phone;
                         $scope.user = userMng.getUserByPhone($scope.currentPhone).then( (user) => {
-                            $scope.user = user.data;
-                            $scope.pointsLeft = $scope.user.points;
-                            resolve();
+                            if (user.data){
+                                $scope.user = user.data;
+                                $scope.pointsLeft = $scope.user.points;
+                                resolve();
+                            }else{
+                                swal('Cant find user');
+                            }
+
                         })
 
                     })
