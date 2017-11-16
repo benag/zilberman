@@ -35,6 +35,9 @@ angular.module('ganim').factory('userMng',function($state, $timeout, $location, 
             projectMng.setCurrentProjectIndex(number);
         },
 
+        getUserByPhone: (phone) => {
+            return $http.get('/user/phone/' + phone);
+        },
         getUser: function(username, pass){
             return $http.post('/login/',{email:username, password:pass})
             .then(function(data){

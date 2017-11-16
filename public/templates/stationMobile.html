@@ -1,0 +1,119 @@
+<div class="main-panel search-pane" ng-init="init()">
+
+    <div class="station-nav">
+
+        <button ng-click="order()" class="btn pull-right order-btn">
+            <!--<div class="rounded-number">{{orders}}</div>-->
+            <i class="material-icons">shopping_basket</i>
+            Order
+        </button>
+        <!--<i ng-click="refresh()" class="material-icons pull-right refresh-btn">refresh</i>-->
+        <img ng-click="refresh()" class="station-img pull-right img-circle" width="50px" height="50px" src="{{user.img || '/img/ganim.jpg'}}">
+        <div ng-class="{'start-animation': user}" class="one-side-rounded pull-right"><span class="point-left">{{pointsLeft}}</span></div>
+        <i ng-show="!showCategory" ng-click="showCategory = true" class="material-icons back-order">backspace</i>
+
+    </div>
+    <div ng-init="init()" class="container-fluid ">
+
+        <div class="row products-location" ng-if="showCategory">
+            <div class="col-md-offset-1">
+
+                <span ng-repeat="menu in menus track by $index">
+
+                <div class="col-md-3">
+                    <div class="card product-maya-card size-card" ng-click="gotoProducts($index)">
+                        <div class="card-image" data-header-animation="true">
+                            <img class="img-responsive" src="{{menu.img}}">
+                        </div>
+                        <div class="card-content order-content">
+                            <div class="card-actions">
+                            </div>
+                            <h4 class="card-title title-left">
+                                <div class="product-card" >{{menu.name}}</div>
+
+                            </h4>
+                            <div class="">
+                                <div class="desc-product" >{{menu.description}}</div>
+
+                            </div>
+                        </div>
+                        <!--<div class="card-footer">-->
+                        <!--</div>-->
+                    </div>
+                </div>
+
+            </span>
+            </div>
+        </div>
+
+        <div class="row products-location" ng-if="!showCategory">
+            <span ng-repeat="product in menus[chosenMenu].products track by $index">
+
+                <div class="col-md-offset-1">
+
+                    <div class="col-md-2">
+                        <div class="card card-product size-card-sm" ng-click="orderProduct($index)">
+                            <div class="card-image" data-header-animation="true">
+                                <img class="img" src="{{product.img}}">
+                            </div>
+                            <div class="card-content station-product-content">
+                                <div class="card-actions">
+                                </div>
+                                <h4 class="card-title">
+                                    <div class="product-card" >{{product.title}}</div>
+
+                                </h4>
+                                <div class="description">
+                                    <div >{{product.description}}</div>
+
+                                </div>
+                                <div class="product-card" >TRIBU Points: {{product.price}}</div>
+                            </div>
+                            <div class="card-footer">
+                                <button ng-click="substract(chosenMenu, $index)" class="btn amount-btn btn-size"> - </button>
+                                <input class="offer-amount" ng-model="product.amount">
+                                <button ng-click="append(chosenMenu, $index)" class="btn amount-btn btn-size"> + </button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </span>
+        </div>
+
+    </div>
+</div>
+<script type="text/ng-template" class="orderModal" id="orderModal.html">
+
+    <div class="modal-header">
+        <h3 class="modal-title" style="text-decoration: underline;" id="modal-title">Order info</h3>
+    </div>
+
+    <div class="modal-body" id="modal-body">
+        <div class="offerings">
+
+            <div>
+                <ul class="list-group">
+
+                    <li ng-repeat="product in products track by $index" class="list-group-item">
+                        <img class="offer-img" src="{{product.img}}">
+                        <h4 class="offer-title-amount">{{product.title}} X {{product.amount}}</h4>
+                    </li>
+
+                </ul>
+
+            </div>
+            <div class="summery">
+                <div>TOTAL {{getTotal()}} Points</div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <div class="modal-footer">
+        <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+        <button ng-show="order.status !== 'confirmed'" class="btn btn-info" type="button" ng-click="order()">Order</button>
+    </div>
+</script>

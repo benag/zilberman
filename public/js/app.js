@@ -52,22 +52,31 @@ var app = angular.module('ganim', ['ui.router','vsGoogleAutocomplete','ngFileUpl
             product: null
         }
     };
-    var drinks = {
-        name: 'drinks',
-        url: '/drinks',
-        views: {
-            "left-pane": { templateUrl: "templates/left-pane.html", controller: 'leftPaneController'},
-            "main": { templateUrl: "templates/drinks.html", controller: 'drinksCtrl' }
-        }
-    };
-    var station = {
+    //var drinks = {
+    //    name: 'drinks',
+    //    url: '/drinks',
+    //    views: {
+    //        "left-pane": { templateUrl: "templates/left-pane.html", controller: 'leftPaneController'},
+    //        "main": { templateUrl: "templates/drinks.html", controller: 'drinksCtrl' }
+    //    }
+    //};
+    //var station = {
+    //    name: 'station',
+    //    url: '/station',
+    //    views: {
+    //        "left-pane": { templateUrl: "templates/left-pane.html", controller: 'leftPaneController'},
+    //        "main": { templateUrl: "templates/station.html", controller: 'stationCtrl' }
+    //    }
+    //};
+    var stationMobile = {
         name: 'station',
         url: '/station',
         views: {
             "left-pane": { templateUrl: "templates/left-pane.html", controller: 'leftPaneController'},
-            "main": { templateUrl: "templates/station.html", controller: 'stationCtrl' }
+            "main": { templateUrl: "templates/stationMobile.html", controller: 'stationMobileCtrl' }
         }
     };
+
     var orders = {
         name: 'orders',
         url: '/orders',
@@ -103,12 +112,12 @@ var app = angular.module('ganim', ['ui.router','vsGoogleAutocomplete','ngFileUpl
     };
 
     $stateProvider.state(login);
-    $stateProvider.state(station);
+    $stateProvider.state(stationMobile);
     $stateProvider.state(orders);
     $stateProvider.state(search);
     $stateProvider.state(products);
     $stateProvider.state(subproducts);
-    $stateProvider.state(drinks);
+    //$stateProvider.state(drinks);
     $stateProvider.state(main);
     $stateProvider.state(meetups);
     $stateProvider.state(tools);

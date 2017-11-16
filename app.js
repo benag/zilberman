@@ -161,6 +161,16 @@ app.get('/users/:page/:limit', function(req, res){
     })
 });
 
+app.get('/user/phone/:phone', async (req, res) => {
+    try{
+        let user = await userCtrl.getUserByPhone(req.params.phone);
+        res.json(user);
+    }catch(err){
+        console.log(err);
+        res.status(400).json(err.message);
+    }
+});
+
 app.get('/user/:by/:filter/:multiple', async (req,res) => {
 
     try{
@@ -424,8 +434,14 @@ app.post('/products',(req, res)=>{
 //});
 
 app.post('/order/process',  async (req, res) => {
-    let order = await orderCtrl.processOrder(req.body.orders, req.body.user, req.body.total);
-    order ? res.json(order): res.json(false);
+
+    try{
+        let order = await orderCtrl.processOrder(req.body.orders, req.body.user, req.body.total);
+        order ? res.json(order): res.status(400).json(false);
+    }catch(err) {
+        return res.status(400).json(err.message);
+    }
+
 });
 
 app.post('/order/approve',  async (req, res) => {

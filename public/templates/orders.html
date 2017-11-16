@@ -22,20 +22,18 @@
 
                                 <th class="table-header">Created </th>
                                 <th class="table-header"> User Name </th>
-                                <th class="table-header"> Product </th>
-                                <th class="table-header"> points </th>
-                                <th class="table-header"> Status </th>
+                                <!--<th class="table-header"> Product </th>-->
+                                <!--<th class="table-header"> points </th>-->
+
 
                             </thead>
 
                             <tbody>
                             <tr ng-click="openSummery($index)" ng-repeat="order in orders track by $index">
                                     <td>{{order.createdAt | date }}</td>
-                                    <td>{{order.name}}</td>
-                                    <td>{{order.title}}</td>
-                                    <td>{{order.points}}</td>
-                                <td>{{order.status}}</td>
-
+                                    <td>{{order.user.firstName + ' ' + order.user.lastName}}</td>
+                                    <!--<td>{{order.title}}</td>-->
+                                    <!--<td>{{order.points}}</td>-->
                                 </tr>
                             </tbody>
                         </table>
@@ -78,9 +76,14 @@
 
             <div class="col-md-6">
                 <label style="text-decoration: underline;">Order info:</label>
+                <ul>
+                    <li ng-repeat="product in order.orders track by $index">
+                        <div>Title: {{product.title}}</div>
+                        <div>Points: {{product.points}}</div>
+                    </li>
+                </ul>
                 <!--<div>Category: {{order.category}}</div>-->
-                <div>Title: {{order.title}}</div>
-                <div>Points: {{order.points}}</div>
+
             </div>
         </div>
 
@@ -88,8 +91,8 @@
     </div>
 
     <div class="modal-footer">
-        <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
-        <button ng-show="order.status !== 'confirmed'" class="btn btn-primary" type="button" ng-click="approve()">Approve</button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">Ok</button>
+
     </div>
 </script>
 

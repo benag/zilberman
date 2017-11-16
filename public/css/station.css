@@ -1,0 +1,138 @@
+.product-maya-card{
+    height: 470px;
+    width: 345px;
+}
+.station-nav{
+    margin-top: 28px;
+    margin-right: 59px;
+}
+.order-btn{
+    background-color: #32A1AA;
+}
+.back-order{
+    margin-top: 17px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+.station-product-content{
+    min-height: 100px;
+}
+.rounded-number{
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    background-color: #c36a6a;
+    left: 6px;
+    top: 10px;
+    position: absolute;
+}
+.menu-background{
+    background-color: black;
+}
+.sub-menu {
+    height: 80px;
+    border-bottom: 1px solid white;
+}
+.description{
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}
+.offer-add{
+    display: inline;
+}
+.btn-size{
+    min-height: 15px!important;
+    line-height: 15px !important;
+    background-color: #32A1AA;
+}
+.offer-amount{
+    position: relative;
+    width: 30px;
+    bottom: 3px;
+    text-align: center;
+    padding-top: 6px;
+    border: 1px solid lightgray;
+    height: 35px;
+    margin-left: 4px;
+}
+.amount-btn{
+    margin-top: -8px!important;
+    margin-left: 4px;
+    margin-bottom: 5px;
+}
+.offer-img{
+    width: 10%;
+    height: 6%;
+    display: inline;
+}
+.offer-title-amount{
+    display: inline;
+}
+.refresh-btn{
+    top: 20px;
+    cursor: pointer;
+    position: relative;
+    right: 10px;
+}
+.one-side-rounded{
+    width:0px;
+    height: 20px;
+    position: relative;
+    top: 21px;
+    left: -8px;
+    background-color: #32A1AA;
+    border-radius: 100px 0px 0px 100px;
+    -webkit-border-radius: 100px 0px 0px 100px;
+    /*padding-left: 25px;*/
+    color: white;
+
+}
+@keyframes points {
+    from {width: 0px;}
+    to {width: 65px;}
+}
+@keyframes alert {
+    from {background-color: #32A1AA;}
+    to {background-color:red;}
+}
+
+.start-animation{
+    animation: points 0.5s linear 0.5s forwards;
+}
+.alert-animation {
+    animation: alert 1s linear 0.5s forwards;
+}
+.station-img{
+    width: 40px !important;
+    height: 40px !important;
+    top: 10px;
+    position: relative;
+    right: 10px;
+}
+
+@keyframes rattle {
+    0% {
+        -webkit-transform: translateX(-2px);
+    }
+
+    25% {
+        -webkit-transform: translateY(-2px) rotate(-1deg);
+    }
+
+    50% {
+        -webkit-transform: translateX(1px);
+    }
+
+    75% {
+        -webkit-transform: translateY(1px);
+    }
+
+    100% {
+        -webkit-transform: translateY(-2px);
+    }
+}
+.point-left{
+    left: 25px;
+    position: relative;
+}

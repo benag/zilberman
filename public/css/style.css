@@ -257,7 +257,7 @@
     height: 470px;
 }
 .size-card-sm{
-    height: 300px;
+    height: 320px;
 }
 .products-location{
     margin-top:150px;
@@ -449,7 +449,7 @@ td {
 }
 .card-ganim-login{
     width:360px;
-    height:360px;
+    height:380px;
 }
 .login-btn {
     width: 305px;
@@ -504,7 +504,8 @@ td {
 .btn-blue{
     background-color: #457fb1;
 }
-.product-maya-card{
-    height: 470px;
-    width: 345px;
+.logo-pic{
+    margin-left:55px;
+    width: 70%!important;
+    margin-bottom: 5px;
 }

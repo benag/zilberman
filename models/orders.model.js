@@ -11,9 +11,11 @@ var ordersSchema = new Schema({
     status: {type: String, enum: ['pending','confirmed']},
     orders:[
         {
-            category: String,
-            title: String,
-            price: Number
+            categoryId: String,
+            productId: String,
+            amount: Number,
+            productTitle: String,
+            productPrice: Number
 
         }
     ]

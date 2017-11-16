@@ -115,6 +115,10 @@ class userController {
 
     }
 
+    async getUserByPhone (phone) {
+        return User.findOne({phone:phone}).exec();
+    }
+
     getUsers (page, limit) {
         limit = Number(limit);
         page = Number(page);
