@@ -23,7 +23,7 @@ angular.module('ganim').controller('loginCtrl', ['$scope', '$stateParams', '$loc
             userMng.getUser($scope.user.email, $scope.user.password )
             .then(function(user){
                global.setUserData(user);
-               $state.go('main');
+               $state.go('station');
             }).catch(function(err) {
                 console.log(err);
                     swal('Wrong user name or password');

@@ -291,7 +291,7 @@ app.post('/admin-image', uploadAdmin.single('file'), async (req, res, next) => {
     let user = req.body.user;
     let img = 'uploads/users/admin/' + req.file.filename;
     user.img = img;
-    await userCtrl.updateUser(user);
+    await userCtrl.updateUserImg(user);
     res.send(img);
 });
 

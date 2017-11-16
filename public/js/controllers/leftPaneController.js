@@ -20,7 +20,10 @@ angular.module('ganim').controller('leftPaneController', ['$scope', '$stateParam
                 let url = 'http://' + global.getMachine() + '/admin-image';
                 file.upload = Upload.upload({ url: url, data: {file: file, user:global.getUserData()} });
 
-                let success = (res) => { $scope.user.img = res.data};
+                let success = (res) => {
+                    global.user.img = res.data;
+                    $scope.user.img = global.user.img;
+                };
                 let error = () => {};
                 let event = () => {};
 

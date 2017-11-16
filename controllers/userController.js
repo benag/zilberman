@@ -177,6 +177,9 @@ class userController {
         return User.update({_id: user._id}, userModel, {upsert: true}).exec()
 
     };
+    updateUserImg (user) {
+        return User.update({_id: user._id}, {$set:{img:user.img}}).exec();
+    };
 
     setProject (id, project) {
 
