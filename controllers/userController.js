@@ -130,7 +130,7 @@ class userController {
         //if (company) q.company = { "$regex": company, "$options": "i" };
         //if (name) q.name = { "$regex": name, "$options": "i" };
 
-        return User.find({})
+        return User.find(q)
             .skip(page*limit)
             .limit(limit)
             .populate('projects')
