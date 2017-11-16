@@ -8,8 +8,8 @@
             <span ng-repeat="product in product.products track by $index">
 
                 <div class="col-md-2">
-                    <div class="card card-product size-card-sm">
-                        <div class="card-image" data-header-animation="true">
+                    <div class="card no-shadow card-product size-card-sm">
+                        <div class="card-image no-shadow" data-header-animation="true">
 
                             <a class="anchor-image-sm" ngf-select="uploadSubProductImg($file, $invalidFiles, $index)"
                                accept="image/*" ngf-max-height="2000" ngf-max-size="5MB" >
@@ -48,7 +48,7 @@
 
             <!-- add new product card -->
             <div class="col-md-2">
-                <div class="card card-pricing card-raised card-back-sm" ng-click="addProduct()">
+                <div class="card no-shadow card-pricing card-raised card-back-sm" ng-click="addProduct()">
                     <div class="content">
                         <h6 class="category">Add New Product</h6>
                         <div class="icon icon-black">

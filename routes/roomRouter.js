@@ -17,13 +17,5 @@ class roomRoutes {
 
 }
 
-
-//app.post('/rooms', (req, res)=>{
-//    roomCtrl.setRooms()
-//    .then(function(rooms){
-//        res.json({status:'ok', payload:rooms});
-//    })
-//    .catch(err => console.log(err) );
-//})
 const router = new roomRoutes();
 module.exports = router;

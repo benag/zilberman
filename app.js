@@ -488,6 +488,10 @@ app.post('/scan/upload', (req, res)=>{
 
 });
 
+app.get('/test', (req, res) => {
+    console.log('connected');
+    res.send('connected');
+});
 app.get('/products/', (req, res)=>{
     productsCtrl.getProducts().then((products)=>{
         res.json({status:true, payload:products});

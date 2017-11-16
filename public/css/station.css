@@ -136,3 +136,6 @@
     left: 25px;
     position: relative;
 }
+.no-shadow{
+    box-shadow: none!important;
+}

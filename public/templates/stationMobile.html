@@ -1,5 +1,5 @@
 <div class="main-panel search-pane" ng-init="init()">
-
+    <!--<div ng-include="'templates/header.html'"></div>-->
     <div class="station-nav">
 
         <button ng-click="order()" class="btn pull-right order-btn">
@@ -21,8 +21,8 @@
                 <span ng-repeat="menu in menus track by $index">
 
                 <div class="col-md-3">
-                    <div class="card product-maya-card size-card" ng-click="gotoProducts($index)">
-                        <div class="card-image" data-header-animation="true">
+                    <div class="card no-shadow product-maya-card size-card" ng-click="gotoProducts($index)">
+                        <div class="card-image no-shadow" data-header-animation="true">
                             <img class="img-responsive" src="{{menu.img}}">
                         </div>
                         <div class="card-content order-content">
@@ -52,8 +52,8 @@
                 <div class="col-md-offset-1">
 
                     <div class="col-md-2">
-                        <div class="card card-product size-card-sm" ng-click="orderProduct($index)">
-                            <div class="card-image" data-header-animation="true">
+                        <div class="card no-shadow card-product size-card-sm" ng-click="orderProduct($index)">
+                            <div class="card-image no-shadow" data-header-animation="true">
                                 <img class="img" src="{{product.img}}">
                             </div>
                             <div class="card-content station-product-content">
