@@ -78,7 +78,7 @@ Tip 3: you can change the color of the sidebar with data-background-color="white
                 </a>
             </li>
             <li >
-                <a ng-click="goto('meetups')">
+                <a ng-click="goto('meetups')" ng-class="{'active-menu':isActive('meetups')}">
                     <i class="material-icons">work</i>
                     <p>Meetups</p>
                 </a>

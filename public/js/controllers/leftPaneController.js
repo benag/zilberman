@@ -10,7 +10,7 @@ angular.module('ganim').controller('leftPaneController', ['$scope', '$stateParam
 
         $scope.goto = function(state){
             global.searchUser = undefined;
-            $rootScope.current = state;
+            //$rootScope.current = state;
             $state.go(state,null,{ reload: true });
         };
 
@@ -32,7 +32,7 @@ angular.module('ganim').controller('leftPaneController', ['$scope', '$stateParam
         };
 
         $scope.isActive = function(menu){
-            if (menu === $rootScope.current){
+            if (menu === $rootScope.currentState){
                 return true;
             }else{
                 return false;
