@@ -46,6 +46,9 @@
     line-height: 15px !important;
     background-color: #32A1AA;
 }
+.btn-mayaColor{
+    background-color: #32A1AA;
+}
 .offer-amount{
     position: relative;
     width: 30px;

@@ -57,41 +57,48 @@
 <script type="text/ng-template" id="orderInfoModal.html">
 
     <div class="modal-header">
-        <h3 class="modal-title" style="text-decoration: underline;" id="modal-title">Order info</h3>
+        <!--<h2 class="modal-title" style="text-decoration: underline;" id="modal-title">Order info</h2>-->
     </div>
 
     <div class="modal-body" id="modal-body">
-        <div class="row">
+        <div class="row" style="font-size:16px">
+            <h4 style="text-decoration: underline;margin-left:10px;">User info</h4>
             <div class="col-md-6">
-                <label style="text-decoration: underline;">User info</label>
-
                 <div>First name: {{order.user.firstName}}</div>
                 <div>Last name: {{order.user.lastName}}</div>
                 <div>Email: {{order.user.email}}</div>
+
+            </div>
+            <div class="col-md-6">
                 <div>Phone: {{order.user.phone}}</div>
                 <div>Points: {{order.user.points}}</div>
             </div>
-
-            <div class="vertical_line"></div>
-
-            <div class="col-md-6">
-                <label style="text-decoration: underline;">Order info:</label>
-                <ul>
-                    <li ng-repeat="product in order.orders track by $index">
-                        <div>Title: {{product.title}}</div>
-                        <div>Points: {{product.points}}</div>
-                    </li>
-                </ul>
-                <!--<div>Category: {{order.category}}</div>-->
-
+        </div>
+        <div style="margin-top:10px;font-size:16px" class="row" >
+            <h4 style="text-decoration: underline;margin-left:10px;">Orders info</h4>
+            <div class="col-md-12">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Points</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="order in order.orders track by $index">
+                            <td>{{order.productTitle}}</td>
+                            <td>{{order.productPrice}}</td>
+                            <td>{{order.amount}}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
-
-
     </div>
 
     <div class="modal-footer">
-        <button class="btn btn-warning" type="button" ng-click="cancel()">Ok</button>
+        <button class="btn btn-mayaColor" type="button" ng-click="cancel()">Ok</button>
 
     </div>
 </script>
