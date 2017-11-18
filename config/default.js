@@ -10,5 +10,8 @@ module.exports = {
     database: {
         path: 'mongodb://localhost/',
         name: 'ganim'
-    }
+    },
+    maxPoints: 1000,
+    managerPhones:['972526749884','972526749884']
+
 };

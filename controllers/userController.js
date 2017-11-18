@@ -4,6 +4,7 @@
 let mongoose = require('mongoose');
 let User = mongoose.model('User');
 let Project = mongoose.model('Project');
+var nexmo = require('../services/nexmo');
 const jwt = require('jsonwebtoken'),
     crypto = require('crypto'),
     config = require('../config/default');
@@ -259,7 +260,14 @@ class userController {
 
         let dbUser = await User.findOne({_id:user._id});
         dbUser.points += sum;
-        return dbUser.save();
+        await dbUser.save();
+        let max = config.maxPoints;
+        if (sum >  max) {
+            for ( let phone of config.managerPhones ) {
+                let msg = `user ${dbUser.firstName} ${dbUser.lastName} received ${sum} points}`;
+                await nexmo.sms(phone, msg);
+            }
+        }
     }
 
 };
