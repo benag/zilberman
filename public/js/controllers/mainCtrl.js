@@ -34,6 +34,9 @@ angular.module('ganim').controller('mainCtrl', ['$scope', '$stateParams', '$loca
 
         };
 
+        $scope.setUserProfession = (index) => {
+            $scope.user.profession = $scope.professions[index].name;
+        }
         $scope.insureProjectsDate = function(projects){
             for (var i = 0; i < projects.length; i++){
                 projects[i].endingDate = new Date(projects[i].endingDate);

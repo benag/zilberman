@@ -66,14 +66,14 @@
                                             <input type="email" ng-model="user.email" class="form-control">
                                         </div>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-2">
 
                                         <div class="form-group label-floating">
                                             <label class="control-label">Birthday</label>
                                             <input type="date" ng-model="user.birthday" class="form-control">
                                         </div>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                         <div class="dropdown input-drop" ng-init="setProfession()">
                                             <a class="dropdown-toggle input-btn" data-toggle="dropdown">{{user.profession || 'Profession'}}
                                                 <b class="caret"></b>
@@ -81,7 +81,7 @@
                                             <ul class="dropdown-menu dropdown-menu-left">
 
                                                 <li ng-repeat="profession in professions track by $index">
-                                                    <a ng-click="user.profession = {{profession.name}}" class="genderAnchor">{{profession.name}}</a>
+                                                    <a ng-click="setUserProfession($index)" class="genderAnchor">{{profession.name}}</a>
                                                 </li>
                                             </ul>
                                         </div>

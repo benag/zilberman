@@ -1,16 +1,16 @@
-angular.module('ganim').factory('professionalService',function($state, $timeout, $http,  $location){
-    return {
+angular.module('ganim').factory('professionService',function($state, $timeout, $http,  $location){
+    let professionService = {};
 
-        professions:[],
-        getProfessions: () => {
-            return $http.get('/professions');
-        },
-        loadProfessions: async () => {
-            this.professions = await this.getProfessions();
-        }
+    professionService.professions =[];
 
+    professionService.getProfessions = () => {
+        return $http.get('/professions');
+    };
 
+    professionService.loadProfessions = async () => {
+        professionService.professions = (await professionService.getProfessions()).data;
     }
 
+    return professionService;
 });
 
