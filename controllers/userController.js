@@ -81,7 +81,7 @@ class userController {
             return res.status(422).send({ error: 'You must enter a password.' });
         }
         //{$or: [ {email: email}, {phone: phone} ]}
-        let existingUser = await User.findOne({email:email}).exec();
+        let existingUser = await User.findOne({phone:phone}).exec();
         // If user is not unique, return error
         if (existingUser) {
             if (existingUser.phone !== phone) existingUser.phone = phone;
