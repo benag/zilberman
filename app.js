@@ -137,7 +137,12 @@ app.get('/', routes.index);
 
 app.post('/register', (req, res, next) => {
     //let mng = new userCtrl();
-    userCtrl.register(req, res, next);
+    try{
+        userCtrl.register(req, res, next);
+    }catch(err){
+        console.log(err);
+    }
+
 });
 
 // Login route
