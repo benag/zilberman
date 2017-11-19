@@ -86,7 +86,12 @@ class userController {
         if (existingUser) {
             if (existingUser.phone !== phone) existingUser.phone = phone;
             //if (existingUser.email !== email) existingUser.email = email;
-            await existingUser.save();
+            try{
+                await existingUser.save();
+            }catch(err){
+                console.log(err);
+            }
+
             let userInfo = _this.setUserInfo(existingUser);
             return res.status(201).json({
                 token: 'JWT ' + _this.generateToken({_id:userInfo._id}),
