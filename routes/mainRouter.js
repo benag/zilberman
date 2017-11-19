@@ -1,5 +1,6 @@
 
 const roomRouter = require('./roomRouter');
+const professionRouter = require('./professionRouter');
 
 class mainRouter {
 
@@ -10,6 +11,7 @@ class mainRouter {
 
     init (app) {
         roomRouter.init(app);
+        professionRouter.init(app);
     }
 }
 

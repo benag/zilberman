@@ -24,9 +24,8 @@ class userController {
             if (!adminUser) await User.create({firstName: 'admin', lastName: 'admin', password: 'admin',email:'admin', role:'admin'});
         }catch(err){
             console.log(err);
+            throw(err);
         }
-
-
     }
 
     setUserInfo (user) {

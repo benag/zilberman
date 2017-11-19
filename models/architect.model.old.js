@@ -6,6 +6,7 @@ var mongoose = require('mongoose'),
 
 
 var architectSchema = new Schema({
+    version: {type:Number, default:1},
     firstName: String,
     lastName: String,
     password: String,

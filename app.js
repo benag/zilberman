@@ -89,20 +89,22 @@ require('./models/rooms.model.js');
 require('./models/events.model.js');
 require('./models/config.model.js');
 require('./models/orders.model.js');
-var userCtrl = require('./controllers/userController.js');
-var productCtrl = require('./controllers/productsCtrl.js');
-var eventCtrl = require('./controllers/eventCtrl.js');
-var orderCtrl = require('./controllers/orderCtrl.js');
-var settingsService = require('./services/settings.js');
-var passportService = require('./config/passport');
-const passport = require('passport'),
-requireAuth = passport.authenticate('jwt', { session: false }),
-requireLogin = passport.authenticate('local', { session: false });
+require('./models/professions.model.js');
+
+
 
 var app = module.exports = express.createServer();
 
-
-
+const userCtrl = require('./controllers/userController.js');
+const productCtrl = require('./controllers/productsCtrl.js');
+const eventCtrl = require('./controllers/eventCtrl.js');
+const orderCtrl = require('./controllers/orderCtrl.js');
+const settingsService = require('./services/settings.js');
+const passportService = require('./config/passport');
+const passport = require('passport');
+const professionCtrl = require('./controllers/professionCtrl.js');
+const requireAuth = passport.authenticate('jwt', { session: false });
+const requireLogin = passport.authenticate('local', { session: false });
 
 // Configuration
 

@@ -124,11 +124,12 @@ var app = angular.module('ganim', ['ui.router','vsGoogleAutocomplete','ngFileUpl
     $urlRouterProvider.otherwise('/login');
 
 
-}).run(function($rootScope, $state, global){
+}).run(function($rootScope, $state, global, professionService){
 
     $rootScope.showLeftPane = true;
     $('#topBar').removeClass('hide-bar');
     $rootScope.current = 'main';
+        professionService.loadProfessions();
     $rootScope.$on('$locationChangeSuccess', (event, toState, toStateParams) => {
         let user = global.getUserData();
         if (!user) $state.go('login');

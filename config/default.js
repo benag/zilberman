@@ -12,6 +12,7 @@ module.exports = {
         name: 'ganim'
     },
     maxPoints: 1000,
-    managerPhones:['972526749884','972526749884']
+    managerPhones:['972526749884','972526749884'],
+    professions: ['Architect', 'Gardener', 'Landscape Architect', 'Wood Construction', 'Constructor', 'Outdoor Kitchens','Pool Construction', 'Interior Design','Construction Inspector','Other']
 
 };

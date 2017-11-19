@@ -80,37 +80,9 @@
                                             </a>
                                             <ul class="dropdown-menu dropdown-menu-left">
 
-                                                <li>
-                                                    <a ng-click="user.profession = 'Architect'" class="genderAnchor">Architect</a>
+                                                <li ng-repeat="profession in professions track by $index">
+                                                    <a ng-click="user.profession = {{profession.name}}" class="genderAnchor">{{profession.name}}</a>
                                                 </li>
-                                                <li>
-                                                    <a ng-click="user.profession = 'Gardener'" class="genderAnchor">Gardener</a>
-                                                </li>
-                                                <li>
-                                                    <a ng-click="user.profession = 'Landscape Architect'" class="genderAnchor">Landscape architect</a>
-                                                </li>
-                                                <li>
-                                                    <a ng-click="user.profession = 'Interior Design'" class="genderAnchor">Interior designer</a>
-                                                </li>
-                                                <li>
-                                                    <a ng-click="user.profession = 'Wood Construction'" class="genderAnchor">Wood Construction</a>
-                                                </li>
-                                                <li>
-                                                    <a ng-click="user.profession = 'Constructor'" class="genderAnchor">Constructor</a>
-                                                </li>
-                                                <li>
-                                                    <a ng-click="user.profession = 'Pool Construction'" class="genderAnchor">Pool Construction</a>
-                                                </li>
-                                                <li>
-                                                    <a ng-click="user.profession = 'Outdoor Kitchens'" class="genderAnchor">Interior designer</a>
-                                                </li>
-                                                <li>
-                                                    <a ng-click="user.profession = 'Construction Inspector'" class="genderAnchor">Construction inspector</a>
-                                                </li>
-                                                <li>
-                                                    <a ng-click="user.profession = 'Other'" class="genderAnchor">Other</a>
-                                                </li>
-
                                             </ul>
                                         </div>
                                     </div>

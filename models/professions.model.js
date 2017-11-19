@@ -5,9 +5,9 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 
-var configSchema = new Schema({
+var professionSchema = new Schema({
     version: {type:Number, default:1},
-    eventId: { type: Number, default: 1 }
-});
+    name:String
 
-mongoose.model('Config', configSchema);
+});
+mongoose.model('Profession', professionSchema);

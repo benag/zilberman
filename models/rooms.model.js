@@ -6,6 +6,7 @@ var mongoose = require('mongoose'),
 
 
 var roomsSchema = new Schema({
+    version: {type:Number, default:1},
     name: String
 });
 

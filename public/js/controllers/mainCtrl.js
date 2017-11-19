@@ -1,10 +1,12 @@
 angular.module('ganim').controller('mainCtrl', ['$scope', '$stateParams', '$location','$http', 'Upload','global', 'userMng', '$state',
-    function($scope, $stateParams, $location,$http, Upload, global, userMng, $state) {
+    'professionService',
+    function($scope, $stateParams, $location,$http, Upload, global, userMng, $state, professionService) {
 
 
         var s = $scope;
         $scope.mode = 'Insert User';
         $scope.state='newUser';
+        $scope.professions = professionService.professions;
 
         $scope.user = {};
 

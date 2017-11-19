@@ -6,6 +6,7 @@ var mongoose = require('mongoose'),
 
 
 var productsSchema = new Schema({
+    version: {type:Number, default:1},
     category: String,
     img: String,
     chosen: Boolean,

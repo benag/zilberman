@@ -6,6 +6,7 @@ var mongoose = require('mongoose'),
 
 
 var projectSchema = new Schema({
+    version: {type:Number, default:1},
     projectName: String,
     name:String,
     address: String,
