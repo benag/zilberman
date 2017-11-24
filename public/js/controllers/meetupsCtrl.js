@@ -3,7 +3,7 @@ angular.module('ganim').controller('meetupsCtrl', ['$scope', '$stateParams', '$l
     function($scope, $stateParams, $location, $state, calenderService, $uibModal, $log, $document, userMng, roomMng, $rootScope) {
 
 
-        $scope.room = {};
+
         $scope.searchUserParam ='';
         $scope.person = {};
 
@@ -14,19 +14,22 @@ angular.module('ganim').controller('meetupsCtrl', ['$scope', '$stateParams', '$l
 
         roomMng.getRooms()
         .then(function(rooms){
-            $scope.rooms = rooms.data;
-            calenderService.initCalender($scope, $scope.rooms[0] );
+            $rootScope.rooms = rooms.data;
+            if (!$rootScope.room || !$rootScope.room.selected){
+                $rootScope.room = {selected: $rootScope.rooms[0]};
+                calenderService.initCalender($scope, $rootScope.room.selected );
+            }
         }).catch(function(err){ console.log(err)});
 
         $scope.timepicker ='';
 
         $scope.animationsEnabled = true;
 
-        $scope.roomSelected = () => {
-            $rootScope.selectedRoom = $scope.room.selected;
+        $scope.roomSelected = (index) => {
+            $rootScope.room.selected = $rootScope.rooms[index];
             $state.go($state.$current, null, { reload: true });
-            calenderService.initCalender($scope, $rootScope.selectedRoom );
-        }
+            calenderService.initCalender($scope, $rootScope.room.selected );
+        };
 
 
         $scope.edit = function(eventDB, eventCal, parentSelector) {
@@ -93,6 +96,7 @@ angular.module('ganim').controller('meetupsCtrl', ['$scope', '$stateParams', '$l
             modalInstance.result.then(function (selectedItem) {
                 selectedItem.time.start = $scope.start;
                 selectedItem.time.end = $scope.end;
+                selectedItem.room = $rootScope.room.selected;
                 calenderService.addEvent(selectedItem);
                 //calenderService.setEvent($scope.selected);
             }, function () {

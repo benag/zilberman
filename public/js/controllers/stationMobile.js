@@ -11,6 +11,7 @@ angular.module('ganim').controller('stationMobileCtrl', ['$scope', '$stateParams
         $scope.pageSize = 3;
         $scope.showCategory = true;
         $scope.redAlert = false;
+        $scope.notEnough = false;
 
 
         $scope.refresh = () => {

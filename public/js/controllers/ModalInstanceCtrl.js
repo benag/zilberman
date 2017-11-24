@@ -4,12 +4,11 @@ angular.module('ganim').controller(
     $scope.members = items;
     $scope.rooms = rooms;
     $scope.person = {};
-    $scope.room = {};
     $scope.time = {};
 
 
     $scope.ok = function () {
-        $uibModalInstance.close({person:$scope.person.selected, time: $scope.time, room:$scope.room});
+        $uibModalInstance.close({person:$scope.person.selected, time: $scope.time});
     };
 
     $scope.cancel = function () {

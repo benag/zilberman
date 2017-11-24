@@ -27,7 +27,7 @@ angular.module('ganim').controller('stationCtrl', ['$scope', '$stateParams', '$l
                 })
             });
             let user = global.getUserData();
-            if (total > user.total ) global.alert('Not enough points left');
+            if (total > user.points ) global.alert('Not enough points left');
             return httpService.post('/order/process', {orders:orders, user:global.getUserData(), total:total});
         };
 

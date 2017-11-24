@@ -9,7 +9,7 @@
         </button>
         <!--<i ng-click="refresh()" class="material-icons pull-right refresh-btn">refresh</i>-->
         <img ng-click="refresh()" class="station-img pull-right img-circle" width="50px" height="50px" src="{{user.img || '/img/ganim.jpg'}}">
-        <div ng-class="{'start-animation': user}" class="one-side-rounded pull-right"><span class="point-left">{{pointsLeft}}</span></div>
+        <div ng-class="{'start-animation': user, 'rattle': notEnough}" class="one-side-rounded pull-right"><span class="point-left">{{pointsLeft}}</span></div>
         <i ng-show="!showCategory" ng-click="showCategory = true" class="material-icons back-order">backspace</i>
 
     </div>

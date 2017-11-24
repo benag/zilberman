@@ -59,6 +59,7 @@ angular.module('ganim').factory('calenderService',function($state, $timeout, $lo
             selection.time.end._d.setDate(selection.time.end._d.getDate()-1);
             selection.time.end._d.setMinutes(selection.time.endTime.getMinutes());
             var title = member.firstName;
+            let min =
             eventsService.addEvent (member._id, selection.time.start._d,selection.time.end._d, _this.room._id, title)
             .then(function(event){
                 eventData = {

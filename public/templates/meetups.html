@@ -2,7 +2,7 @@
 
 
 
-<div class="main-panel tools-panel">
+<div class="main-panel tools-panel meetups">
     <div ng-include="'templates/header.html'"></div>
     <div class="wrapper">
 
@@ -13,13 +13,25 @@
                 <div class="container-fluid">
 
                     <div class="row">
-                        <span>Choose Room: </span>
-                        <ui-select ng-model="room.selected" ng-change="roomSelected()" theme="select2" ng-disabled="disabled" style="min-width: 300px;" title="Choose a room" append-to-body="true">
-                            <ui-select-match placeholder="Select a room in the list ">{{$select.selected.name}}</ui-select-match>
-                            <ui-select-choices repeat="room in rooms ">
-                                <div ng-bind-html="room.name | highlight: $select.search"></div>
-                            </ui-select-choices>
-                        </ui-select>
+                        <div class="col-md-6">
+                            <div class="col-md-3 room">
+                                <span >Choose Room: </span>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="dropdown input-drop-gender" >
+                                    <a class="dropdown-toggle input-btn" data-toggle="dropdown">{{room.selected.name}}
+                                        <b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-left">
+                                        <li ng-repeat="room in rooms track by $index">
+                                            <a ng-click="roomSelected($index)" class="genderAnchor">{{room.name}}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
+
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-md-10">
