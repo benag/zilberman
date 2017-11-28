@@ -39,6 +39,7 @@ angular.module('ganim').factory('calenderService',function($state, $timeout, $lo
         updateEvent: function(selection) {
             let room = selection.room.selected;
             let member = selection.person;
+
             //selection.time.start._d.setHours(selection.time.startTime.getHours());
             //selection.time.end._d.setHours(selection.time.endTime.getHours());
             //selection.time.start._d.setMinutes(selection.time.startTime.getMinutes());
@@ -59,7 +60,11 @@ angular.module('ganim').factory('calenderService',function($state, $timeout, $lo
             selection.time.end._d.setDate(selection.time.end._d.getDate()-1);
             selection.time.end._d.setMinutes(selection.time.endTime.getMinutes());
             var title = member.firstName;
-            let min =
+            let hours = Math.abs(selection.time.start - selection.time.end) / 36e5;
+            if (hours > 1) {
+                swal('Currently meetings are limited to one hour slots');
+                return;
+            }
             eventsService.addEvent (member._id, selection.time.start._d,selection.time.end._d, _this.room._id, title)
             .then(function(event){
                 eventData = {

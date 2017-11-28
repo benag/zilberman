@@ -11,7 +11,6 @@
 
             <div class="content">
                 <div class="container-fluid">
-
                     <div class="row">
                         <div class="col-md-6">
                             <div class="col-md-3 room">
@@ -102,9 +101,9 @@
 
 <script type="text/ng-template" id="myModalEditContent.html">
     <div class="modal-header">
-        <h3 class="modal-title" id="modal-title">Edit Event</h3>
+        <h3 class="modal-title" id="modal-title-edit">Edit Event</h3>
     </div>
-    <div class="modal-body" id="modal-body">
+    <div class="modal-body" id="modal-body-edit">
 
         <div class="row">
             <span>Update Member: </span>
@@ -123,14 +122,14 @@
         <div class="row">
             <div class="form-group">
                 <label class="label-control">Start Time:</label>
-                <input type="time" name="usr_time" ng-model="time.startTime">
+                <input type="time" class="time" name="usr_time" ng-model="time.startTime">
             </div>
         </div>
 
         <div class="row">
             <div class="form-group">
                 <label class="label-control">End Time:</label>
-                <input type="time" name="usr_time" ng-model="time.endTime">
+                <input type="time" class="time" name="usr_time" ng-model="time.endTime">
             </div>
         </div>
 

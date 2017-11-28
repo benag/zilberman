@@ -116,7 +116,7 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(app.router);
   app.use(express.static(__dirname + '/public'));
-  //app.use(multer());
+  app.use(multer());
   app.use(passport.initialize());
   app.use(passport.session());
 });
@@ -300,11 +300,25 @@ app.get('/events/:id', async (req, res) => {
 });
 
 app.post('/admin-image', uploadAdmin.single('file'), async (req, res, next) => {
+
     let user = req.body.user;
-    let img = 'uploads/users/admin/' + req.file.filename;
-    user.img = img;
-    await userCtrl.updateUserImg(user);
-    res.send(img);
+    if (!req.file) { //work around file was not moved
+        let file = req.files.file;
+        let oldPath = file.path;
+        let newPath = './public/uploads/users/admin/' + oldPath.split('/').pop();
+        let returnPath = newPath.split('/').slice(2).join('/');
+        fs.rename(oldPath, newPath, function (err) {
+            if (err) throw err;
+            user.img = returnPath;
+            userCtrl.updateUserImg(user).then((user) => {res.json({status: 'ok', payload: returnPath})});
+        })
+    }else{
+        let img = 'uploads/users/admin/' + req.file.filename;
+        user.img = img;
+        await userCtrl.updateUserImg(user);
+        res.send(img);
+    }
+
 });
 
 app.post('/profile', upload.single('file'), function (req, res, next) {

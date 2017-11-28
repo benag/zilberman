@@ -509,3 +509,7 @@ td {
     width: 70%!important;
     margin-bottom: 5px;
 }
+.time{
+    border: none!important;
+    border-bottom: 1px solid lightgrey!important;
+}
