@@ -315,7 +315,7 @@ app.post('/admin-image/:id', uploadAdmin.single('file'), async (req, res, next) 
         fs.rename(oldPath, newPath, function (err) {
             if (err) throw err;
             user.img = returnPath;
-            userCtrl.updateUserImg(user).then((user) => {res.json({status: 'ok', payload: returnPath})});
+            userCtrl.updateUserImg(user).then( (user) => { res.send(returnPath) } );
         })
     }else{
         let img = 'uploads/users/admin/' + req.file.filename;
