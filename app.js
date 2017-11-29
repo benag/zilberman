@@ -385,6 +385,7 @@ app.post('/excel-file', excelUpload.single('file'), function (req, res, next) {
         let returnPath  = newPath.split('/').slice(2).join('/');
         fs.rename(oldPath, newPath, function (err) {
             if (err) throw err;
+            settingsService.loadCSV(newPath);
             res.json({status:'ok', payload:returnPath});
         })
     }else{
