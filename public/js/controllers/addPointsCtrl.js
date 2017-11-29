@@ -23,7 +23,7 @@ angular.module('ganim').controller(
         $scope.add = () => {
             $http.post('/points', {sum: $scope.sum, user: $scope.user})
             .then( (user) => {
-                $rootScope.$broadcast('add-points', {user: user.config.data.user});
+                $rootScope.$broadcast('add-points', {user: user.data});
                 $uibModalInstance.dismiss('cancel');
             }).catch(err => console.log(err))
 
