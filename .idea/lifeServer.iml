@@ -3,7 +3,10 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/public/dashboard" />
       <excludeFolder url="file://$MODULE_DIR$/public/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/public/material" />
+      <excludeFolder url="file://$MODULE_DIR$/public/uploads" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
