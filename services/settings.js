@@ -36,7 +36,7 @@ class settingService {
                 user.lastName = user.name.split(" ")[1];
                 user.name = user.firstName + ' ' + user.lastName;
                 user.points = config.points;
-                let firstProfession = his.translateProfession(professionArray[0]);
+                let firstProfession = this.translateProfession(professionArray[0]);
                 //user.profession = professionArray.map( profession => this.translateProfession(profession));
                 user.profession = firstProfession;
                 let newUser = new User(user);
