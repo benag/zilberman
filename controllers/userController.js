@@ -149,8 +149,8 @@ class userController {
         newUser.points = 500;
         newUser.createdAt = new Date();
         newUser.name = user.firstName + ' ' + user.lastName;
-        let profession = await Profession.findOne({name:user.profession});
-        newUser.profession =  profession._id;
+        //let profession = await Profession.findOne({name:user.profession});
+        //newUser.profession =  user.profession;
         newUser.status = 'Not Active';
 
         return newUser.save()
