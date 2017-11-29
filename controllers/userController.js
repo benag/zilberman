@@ -283,6 +283,7 @@ class userController {
                 await nexmo.sms(phone, msg);
             }
         }
+        return dbUser;
     }
 
 };
