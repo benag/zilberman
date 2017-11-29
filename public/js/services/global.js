@@ -9,9 +9,12 @@ angular.module('ganim').factory('global',function($state, $timeout, $location, $
            return $location.host() + ':' + $location.port();
        },
        getUserData: function() {
-           let user = window.localStorage.getItem("user");
-           if (!this.user || !this.user.firstName) this.user = JSON.parse(user);
-           return user ? JSON.parse(user) : undefined;
+           if (!this.user || !this.user.firstName){
+               let user = window.localStorage.getItem("user");
+               if (!user) return undefined;
+               this.user = JSON.parse(user);
+           }
+           return this.user;
        },
 
        getTokenData: function() {
