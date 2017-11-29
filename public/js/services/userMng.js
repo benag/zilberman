@@ -98,15 +98,15 @@ angular.module('ganim').factory('userMng',function($state, $timeout, $location, 
             return this.newProject;
         },
 
-        removeProject: function(){
-            this.projects.pop();
-            this.current--;
-        },
+        //removeProject: function(){
+        //    this.projects.pop();
+        //    this.current--;
+        //},
 
         reset: function(){
             this.user = {};
             this.projects =[{}];
-            this.current = 0;
+            //this.current = 0;
         },
 
         activate: (user, activate) => {

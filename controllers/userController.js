@@ -255,7 +255,7 @@ class userController {
         if (filter === ' ') req = {};
 
         multiple === 'single' ? limit = 1 : limit = 100;
-        return User.find(req).limit(limit).populate('profession').exec();
+        return User.find(req).limit(limit).populate('projects profession').exec();
     }
 
     async deleteUser (id) {

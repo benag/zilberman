@@ -26,6 +26,10 @@ angular.module('ganim').controller('mainCtrl', ['$scope', '$stateParams', '$loca
                 $scope.insureProjectsDate($scope.user.projects);
                 $scope.mode = 'Update User';
                 $scope.userMng.setUser($scope.user);
+                // in case user doesnt have projects (shouldnt happen since we create empty project
+                if ( $scope.user.projects.length === 0 ) {
+                    $scope.userMng.setNewProject();
+                }
             }else{
                 $scope.user ={};
                 $scope.mode = 'Insert User';

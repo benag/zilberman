@@ -12,8 +12,9 @@ angular.module('ganim').factory('projectMng',function($state, $timeout, $locatio
 
         getCurrentProject: function(){
             if (this.current === undefined){
-              this.projects.push({name:''});
-                this.current = 0;
+                return false;
+              //this.projects.push({name:''});
+              //  this.current = 0;
             }
             return this.projects[this.current];
         },
@@ -24,7 +25,7 @@ angular.module('ganim').factory('projectMng',function($state, $timeout, $locatio
 
         setCurrentProjectIndex: function(number){
             if (number  === undefined) this.current = undefined;
-            this.current = number-1;
+            if (this.current) this.current = number-1;
         },
 
 
@@ -60,10 +61,12 @@ angular.module('ganim').factory('projectMng',function($state, $timeout, $locatio
 
         removeLastProject: function(){
             this.projects.pop();
-            this.current--;
+            if (this.current) this.current--;
         },
 
         createEmptyProject: function() {
+
+            if (isNaN(this.current)) this.current =undefined;
             this.projects.push({});
             (this.current === undefined) ? this.current = 0 : this.current++;
         },
