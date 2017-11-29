@@ -42,7 +42,7 @@ class settingService {
                 let firstProfession = await this.translateProfession(professionArray[0]);
                 //user.profession = professionArray.map( profession => this.translateProfession(profession));
 
-                user.profession = firstProfession;
+                user.profession = firstProfession._id;
                 let newUser = new User(user);
                 await newUser.save();
             }
