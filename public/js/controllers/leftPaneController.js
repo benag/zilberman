@@ -18,7 +18,8 @@ angular.module('ganim').controller('leftPaneController', ['$scope', '$stateParam
         $scope.adminImg = (file, errFiles) => {
             if (file) {
                 let url = 'http://' + global.getMachine() + '/admin-image';
-                file.upload = Upload.upload({ url: url, data: {file: file, user:global.getUserData()} });
+                let user = global.getUserData();
+                file.upload = Upload.upload({ url: url+'/'+user._id, data: {file: file, user:global.getUserData()} });
 
                 let success = (res) => {
                     global.user.img = res.data;

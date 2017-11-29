@@ -299,9 +299,14 @@ app.get('/events/:id', async (req, res) => {
 
 });
 
-app.post('/admin-image', uploadAdmin.single('file'), async (req, res, next) => {
+app.post('/admin-image/:id', uploadAdmin.single('file'), async (req, res, next) => {
 
-    let user = req.body.user;
+    let user;
+
+    if (!req.body.user){
+        user = await userCtrl.getUser('_id',req.params.id);
+    }
+
     if (!req.file) { //work around file was not moved
         let file = req.files.file;
         let oldPath = file.path;
