@@ -2,6 +2,7 @@
 const csv = require('csvtojson');
 let mongoose = require('mongoose');
 let User = mongoose.model('User');
+let Profession = mongoose.model('Profession');
 const config = require('../config/default');
 
 
@@ -20,12 +21,14 @@ class settingService {
             'מפקח בנייה': 'Construction Inspector',
             'קבלן': 'Constructor'
 
-
         }
     }
 
-    translateProfession(profession) {
-        return this.translate[profession];
+    async translateProfession(profession) {
+
+        let professionName = this.translate[profession];
+        return await Profession.get({name:professionName});
+
     }
 
     async saveUsers( usersArray ) {
@@ -38,6 +41,7 @@ class settingService {
                 user.points = config.points;
                 let firstProfession = this.translateProfession(professionArray[0]);
                 //user.profession = professionArray.map( profession => this.translateProfession(profession));
+
                 user.profession = firstProfession;
                 let newUser = new User(user);
                 await newUser.save();

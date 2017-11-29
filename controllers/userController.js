@@ -138,7 +138,7 @@ class userController {
         return User.find(q)
             .skip(page*limit)
             .limit(limit)
-            .populate('projects')
+            .populate('projects, professions')
             .lean()
     }
 
