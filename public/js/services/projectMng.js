@@ -25,7 +25,7 @@ angular.module('ganim').factory('projectMng',function($state, $timeout, $locatio
 
         setCurrentProjectIndex: function(number){
             if (number  === undefined) this.current = undefined;
-            if (this.current) this.current = number-1;
+            if (this.current !== undefined) this.current = number-1;
         },
 
 

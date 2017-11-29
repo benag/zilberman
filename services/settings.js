@@ -39,6 +39,8 @@ class settingService {
                 user.lastName = user.name.split(" ")[1];
                 user.name = user.firstName + ' ' + user.lastName;
                 user.points = config.points;
+                user.status = 'Not Active';
+                user.createdAt = Date.now();
                 let firstProfession = await this.translateProfession(professionArray[0]);
                 //user.profession = professionArray.map( profession => this.translateProfession(profession));
 
