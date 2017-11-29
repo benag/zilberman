@@ -27,7 +27,7 @@ class settingService {
     async translateProfession(profession) {
 
         let professionName = this.translate[profession];
-        return await Profession.find({name:professionName});
+        return Profession.find({name:professionName});
 
     }
 
@@ -39,7 +39,7 @@ class settingService {
                 user.lastName = user.name.split(" ")[1];
                 user.name = user.firstName + ' ' + user.lastName;
                 user.points = config.points;
-                let firstProfession = this.translateProfession(professionArray[0]);
+                let firstProfession = await this.translateProfession(professionArray[0]);
                 //user.profession = professionArray.map( profession => this.translateProfession(profession));
 
                 user.profession = firstProfession;

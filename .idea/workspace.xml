@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="66f8e8eb-ed07-4e2f-854c-9cb84124f2bd" name="Default" comment="added pop up in orders">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/services/settings.js" afterPath="$PROJECT_DIR$/services/settings.js" />
-    </list>
+    <list default="true" id="66f8e8eb-ed07-4e2f-854c-9cb84124f2bd" name="Default" comment="added pop up in orders" />
     <list id="362dcb0e-35ec-4a65-8ffb-a95dfc09e91f" name=".idea" comment="" />
     <ignored path="lifeServer.iws" />
     <ignored path=".idea/workspace.xml" />
