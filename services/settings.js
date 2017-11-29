@@ -27,7 +27,7 @@ class settingService {
     async translateProfession(profession) {
 
         let professionName = this.translate[profession];
-        return await Profession.get({name:professionName});
+        return await Profession.find({name:professionName});
 
     }
 
