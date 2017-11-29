@@ -10,10 +10,11 @@ angular.module('ganim').factory('projectMng',function($state, $timeout, $locatio
 
         current: undefined,
 
-
-
         getCurrentProject: function(){
-            if (this.current === undefined) return false;
+            if (this.current === undefined){
+              this.projects.push({name:''});
+                this.current = 0;
+            }
             return this.projects[this.current];
         },
 

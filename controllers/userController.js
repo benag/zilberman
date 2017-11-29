@@ -4,6 +4,7 @@
 let mongoose = require('mongoose');
 let User = mongoose.model('User');
 let Project = mongoose.model('Project');
+let Profession = mongoose.model('Profession');
 var nexmo = require('../services/nexmo');
 const jwt = require('jsonwebtoken'),
     crypto = require('crypto'),
@@ -142,11 +143,16 @@ class userController {
             .lean()
     }
 
-    setUser (user) {
+
+    async setUser (user) {
         let newUser  = new User(user);
         newUser.points = 500;
         newUser.createdAt = new Date();
+        newUser.name = user.firstName + ' ' + user.lastName;
+        let profession = await Profession.findOne({name:user.profession});
+        newUser.profession =  profession._id;
         newUser.status = 'Not Active';
+
         return newUser.save()
             .catch((err)=>{
                 console.log(err);
@@ -164,7 +170,7 @@ class userController {
 
         let q = {};
         q[by] = value;
-        return User.findOne(q).lean().exec();
+        return User.findOne(q).populate('profession').lean().exec();
     }
     setUsers (userArray) {
 
@@ -175,11 +181,16 @@ class userController {
         }
     }
 
-    updateUser (user) {
+    async updateUser (user) {
+        try{
+            var userModel = new User(user);
+            //userModel.profession =  profession._id;
+            return User.update({_id: user._id}, userModel, {upsert: true}).exec()
+        }catch(err){
+            console.log(err);
+            throw err;
+        }
 
-
-        var userModel = new User(user);
-        return User.update({_id: user._id}, userModel, {upsert: true}).exec()
 
     };
     updateUserImg (user) {
@@ -244,7 +255,7 @@ class userController {
         if (filter === ' ') req = {};
 
         multiple === 'single' ? limit = 1 : limit = 100;
-        return User.find(req).limit(limit).exec();
+        return User.find(req).limit(limit).populate('profession').exec();
     }
 
     async deleteUser (id) {
