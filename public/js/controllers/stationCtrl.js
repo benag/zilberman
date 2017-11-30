@@ -2,7 +2,7 @@ angular.module('ganim').controller('stationCtrl', ['$scope', '$stateParams', '$l
     function($scope, $stateParams, $location, $state, global, $rootScope, $http, orderService ) {
 
         $scope.products = [];
-        $scope.showCategory = true;
+        $rootScope.showCategory = true;
         $scope.orders = 0;
         $scope.basket = {};
 
@@ -35,7 +35,7 @@ angular.module('ganim').controller('stationCtrl', ['$scope', '$stateParams', '$l
 
             $scope.identifyUser(() => {
                 $rootScope.$applyAsync(function() {
-                    $scope.showCategory = false;
+                    $rootScope.showCategory = false;
                     $scope.product = $scope.products[index];
                 })
             }).catch(() => swal('Cannot identify user'));

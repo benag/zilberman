@@ -11,8 +11,10 @@
 }
 .back-order{
     margin-top: 17px;
-    margin-left: 10px;
+    /*margin-left: 10px;*/
+    margin-right: 10px;
     cursor: pointer;
+    float: right;
 }
 .station-product-content{
     min-height: 100px;

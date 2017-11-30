@@ -22,11 +22,19 @@ angular.module('ganim').controller('stationMobileCtrl', ['$scope', '$stateParams
 
         $scope.gotoProducts = function(index){
 
-            if ($scope.user) return $scope.showCategory = false;
+            if ($scope.user){
+                $scope.menus[$scope.chosenMenu].active = false;
+                $scope.chosenMenu = index;
+                $scope.menus[index].active = true;
+                $scope.showCategory = false;
+                return
+            }
             $scope.identifyUser(() => {
                 $rootScope.$applyAsync(function() {
                     $scope.showCategory = false;
-                    //$scope.product = $scope.products[index];
+                    $scope.menus[$scope.chosenMenu].active = false;
+                    $scope.chosenMenu = index;
+                    $scope.menus[index].active = true;
                 })
             })
         };
@@ -41,7 +49,7 @@ angular.module('ganim').controller('stationMobileCtrl', ['$scope', '$stateParams
                 preConfirm: function (phone) {
                     return new Promise(function (resolve, reject) {
                         $scope.currentPhone = phone;
-                        userMng.getUserByPhone($scope.currentPhone).then( (user) => {
+                        $scope.user = userMng.getUserByPhone($scope.currentPhone).then( (user) => {
                             if (user.data){
                                 $scope.user = user.data;
                                 $scope.pointsLeft = $scope.user.points;
