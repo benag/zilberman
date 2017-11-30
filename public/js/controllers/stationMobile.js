@@ -53,6 +53,10 @@ angular.module('ganim').controller('stationMobileCtrl', ['$scope', '$stateParams
                         $scope.currentPhone = phone;
                         userMng.getUserByPhone($scope.currentPhone).then( (user) => {
                             if (user.data){
+                                if (user.data.status === 'Not Active'){
+                                    swal ('User is not active');
+                                    return;
+                                }
                                 $scope.user = user.data;
                                 $scope.pointsLeft = $scope.user.points;
                                 resolve();
