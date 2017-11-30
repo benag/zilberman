@@ -513,3 +513,7 @@ td {
     border: none!important;
     border-bottom: 1px solid lightgrey!important;
 }
+.back-btn{
+    top:10px;
+    cursor: pointer;
+}
