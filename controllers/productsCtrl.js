@@ -24,8 +24,12 @@ class productController{
         return Product.findByIdAndUpdate(product._id, {category: product.category, description:product.description, img:product.img, products:product.products})
     }
 
-    addSubProduct (product,subProduct) {
+    addSubProduct (product, subProduct) {
         return Product.findByIdAndUpdate(product._id, {$push:{products:subProduct}},{new:true})
+    }
+
+    removeSubProduct (product, subProduct) {
+        return Product.findByIdAndUpdate(product._id, {$pull:{products:subProduct}},  { new: true });
     }
 
     remove (product) {

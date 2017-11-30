@@ -4,11 +4,11 @@ angular.module('ganim').controller('subProductsCtrl', ['$scope', '$stateParams',
 
         $scope.product = $stateParams.product;
 
-
         $scope.updateSubProduct = function(){
             productsService.updateProduct($scope.product);
 
         };
+
         $scope.uploadSubProductImg = function(file, errFiles, index){
             if (file) {
                 let url = 'http://' + global.getMachine() + '/product-image';
@@ -31,7 +31,16 @@ angular.module('ganim').controller('subProductsCtrl', ['$scope', '$stateParams',
 
         };
 
+        $scope.remove = (index) => {
+            let subproduct = $scope.product.products[index];
+            //$scope.product.products.splice(index,1);
+            productsService.removeSubProduct($scope.product, subproduct).then(function(product){
+                $scope.$applyAsync(() => {
+                    $scope.product = product;
+                })
 
+            })
+        };
 
         $scope.addProduct = function(){
             $scope.product.products.push({img:'/material/assets/img/image_placeholder.jpg'});

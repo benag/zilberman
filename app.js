@@ -415,6 +415,15 @@ app.put('/products/product',(req, res)=>{
         res.json(product);
     })
 });
+
+app.put('/products/product/remove',(req, res)=>{
+    productCtrl.removeSubProduct(req.body.product, req.body.subProduct)
+        .then((product)=>{
+            res.json(product);
+        }).catch((err) => res.status(400));
+});
+
+
 app.get('/products',(req, res)=>{
     productCtrl.getProducts(req.body.product)
     .then((product)=>{

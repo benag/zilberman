@@ -41,13 +41,14 @@ angular.module('ganim').controller('stationMobileCtrl', ['$scope', '$stateParams
                 preConfirm: function (phone) {
                     return new Promise(function (resolve, reject) {
                         $scope.currentPhone = phone;
-                        $scope.user = userMng.getUserByPhone($scope.currentPhone).then( (user) => {
+                        userMng.getUserByPhone($scope.currentPhone).then( (user) => {
                             if (user.data){
                                 $scope.user = user.data;
                                 $scope.pointsLeft = $scope.user.points;
                                 resolve();
                             }else{
                                 swal('Cant find user');
+                                return;
                             }
 
                         })
