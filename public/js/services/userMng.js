@@ -106,6 +106,7 @@ angular.module('ganim').factory('userMng',function($state, $timeout, $location, 
         reset: function(){
             this.user = {};
             this.projects =[{}];
+            projectMng.reset();
             //this.current = 0;
         },
 

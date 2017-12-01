@@ -74,8 +74,8 @@ angular.module('ganim').controller('mainCtrl', ['$scope', '$stateParams', '$loca
         }
 
         $scope.updateMaps = function(){
-            var project = $scope.userMng.getCurrentProject();
-            $scope.setMaps({lat:project.lat,lng:project.lng});
+            //var project = $scope.userMng.getCurrentProject();
+            //$scope.setMaps({lat:project.lat,lng:project.lng});
         }
 
         $scope.go = function(){
