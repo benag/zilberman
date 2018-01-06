@@ -21,55 +21,8 @@ var express = require('express'),
             callback(null, file.originalname + Date.now())
         }
     });
-    var storageAdmin = multer.diskStorage({
-        destination: function (request, file, callback) {
-            callback(null, './public/uploads/users/admin');
-        },
-        filename: function (request, file, callback) {
-            console.log(file);
-            callback(null, file.originalname + Date.now())
-        }
-    });
-
-    var projectStorage = multer.diskStorage({
-        destination: function (request, file, callback) {
-            callback(null, './public/uploads/projects');
-        },
-        filename: function (request, file, callback) {
-            console.log(file);
-            callback(null, file.originalname)
-        }
-    });
-    var productStorage = multer.diskStorage({
-        destination: function (request, file, callback) {
-            callback(null, './public/uploads/products');
-        },
-        filename: function (request, file, callback) {
-            console.log(file);
-            callback(null, file.originalname)
-        }
-    });
-    var excelStorage = multer.diskStorage({
-        destination: function (request, file, callback) {
-            callback(null, './public/uploads/excel');
-        },
-        filename: function (request, file, callback) {
-            console.log(file);
-            callback(null, file.originalname)
-        }
-    });
 
     var upload = multer({ storage: storage });
-
-    var uploadAdmin = multer({ storage: storageAdmin });
-
-    var projectUpload = multer({ storage: projectStorage});
-
-    var productUpload = multer({ storage: productStorage});
-
-    var excelUpload = multer({ storage: excelStorage});
-
-    var routes = require('./routes');
 
 
 
@@ -83,26 +36,12 @@ db.once('open', function (callback) {
 });
 
 require('./models/users.model.js');
-require('./models/projects.model.js');
-require('./models/products.model.js');
-require('./models/rooms.model.js');
-require('./models/events.model.js');
-require('./models/config.model.js');
-require('./models/orders.model.js');
-require('./models/professions.model.js');
 
 
 
 var app = module.exports = express.createServer();
 
 const userCtrl = require('./controllers/userController.js');
-const productCtrl = require('./controllers/productsCtrl.js');
-const eventCtrl = require('./controllers/eventCtrl.js');
-const orderCtrl = require('./controllers/orderCtrl.js');
-const settingsService = require('./services/settings.js');
-const passportService = require('./config/passport');
-const passport = require('passport');
-const professionCtrl = require('./controllers/professionCtrl.js');
 const requireAuth = passport.authenticate('jwt', { session: false });
 const requireLogin = passport.authenticate('local', { session: false });
 
@@ -212,9 +151,6 @@ app.post('/user/activate', async (req, res) => {
     }catch(err){
         return res.status(400).send(err.message);
     }
-
-
-
 });
 
 app.put('/user', (req, res)=>{
@@ -226,6 +162,7 @@ app.put('/user', (req, res)=>{
         console.log(err);
     })
 });
+
 app.delete('/user/:id', (req, res)=>{
 
     userCtrl.deleteUser(req.params.id)
@@ -234,96 +171,6 @@ app.delete('/user/:id', (req, res)=>{
         }).catch(function(err){
             console.log(err);
         })
-});
-
-app.post('/project/:userId', (req, res)=>{
-
-    userCtrl.setProject(req.params.userId, req.body.project)
-    .then(project=>
-            res.json({status:'ok', payload:project}))
-    .catch(err => console.log(err) );
-
-});
-
-app.put('/project/', (req, res)=>{
-    userCtrl.updateProject(req.body.project)
-    .then(function(project){
-        res.json({status:'ok', payload:project});
-    })
-    .catch(err => console.log(err) );
-});
-
-
-app.post('/events', (req, res)=>{
-    eventCtrl.setEvent(req.body.userId, req.body.start, req.body.end, req.body.roomId, req.body.title )
-    .then(function(event){
-        res.json({status:'ok', payload:event});
-    })
-    .catch(err => console.log(err) );
-});
-
-app.put('/events/:id', (req, res) => {
-    eventCtrl.updateEvent(req.params.id, req.body.userId, req.body.start, req.body.end, req.body.roomId, req.body.title )
-        .then(function(event){
-            res.json({status:'ok', payload:event});
-        })
-        .catch(err => console.log(err) );
-})
-app.delete('/events/:id', (req, res)=>{
-    eventCtrl.deleteEvent(req.params.id )
-        .then(function(event){
-            res.json({status:'ok', payload:event});
-        })
-        .catch( (err) => {
-            console.log(err)
-        } );
-})
-
-
-app.get('/events/room/:roomId', (req, res)=>{
-    eventCtrl.getEvents( req.params.roomId )
-    .then(function(event){
-        res.json(event);
-    })
-    .catch(err => console.log(err) );
-});
-
-app.get('/events/:id', async (req, res) => {
-    try{
-        let event = await eventCtrl.getEvent(req.params.id );
-        if (event) return res.json({status:'ok', payload:event});
-        return res.json({status:false});
-    }catch(err){
-        consoe.log(err);
-    }
-
-});
-
-app.post('/admin-image/:id', uploadAdmin.single('file'), async (req, res, next) => {
-
-    let user;
-
-    if (!req.body.user){
-        user = await userCtrl.getUser('_id',req.params.id);
-    }
-
-    if (!req.file) { //work around file was not moved
-        let file = req.files.file;
-        let oldPath = file.path;
-        let newPath = './public/uploads/users/admin/' + oldPath.split('/').pop();
-        let returnPath = newPath.split('/').slice(2).join('/');
-        fs.rename(oldPath, newPath, function (err) {
-            if (err) throw err;
-            user.img = returnPath;
-            userCtrl.updateUserImg(user).then( (user) => { res.send(returnPath) } );
-        })
-    }else{
-        let img = 'uploads/users/admin/' + req.file.filename;
-        user.img = img;
-        await userCtrl.updateUserImg(user);
-        res.send(img);
-    }
-
 });
 
 app.post('/profile', upload.single('file'), function (req, res, next) {
@@ -344,205 +191,6 @@ app.post('/profile', upload.single('file'), function (req, res, next) {
     }
 
 });
-
-app.post('/projectimage', projectUpload.single('file'), function (req, res, next) {
-    // req.file is the `avatar` file
-    // req.body will hold the text fields, if there were any
-    if (!req.file){ //work around file was not moved
-        let file = req.files.file;
-        let oldPath  = file.path;
-        let newPath = './public/uploads/projects' + oldPath.split('/').pop();
-        let returnPath  = newPath.split('/').slice(2).join('/');
-        fs.rename(oldPath, newPath, function (err) {
-            if (err) throw err;
-            res.json({status:'ok', payload:returnPath});
-
-        })
-    }else{
-        res.json({status:'ok', payload:'uploads/projects/'+req.file.filename});
-    }
-
-});
-
-app.post('/product-image', productUpload.single('file'), function (req, res, next) {
-
-    if (!req.file){ //work around file was not moved
-        let file = req.files.file;
-        let oldPath  = file.path;
-        let newPath = './public/uploads/products' + oldPath.split('/').pop();
-        let returnPath  = newPath.split('/').slice(2).join('/');
-        fs.rename(oldPath, newPath, function (err) {
-            if (err) throw err;
-            res.json({status:'ok', payload:returnPath});
-        })
-    }else{
-        res.json({status:'ok', payload:'uploads/products/'+req.file.filename});
-    }
-
-});
-
-app.post('/excel-file', excelUpload.single('file'), function (req, res, next) {
-
-    if (!req.file){ //work around file was not moved
-        let file = req.files.file;
-        let oldPath  = file.path;
-        let newPath = './public/uploads/excel' + oldPath.split('/').pop();
-        let returnPath  = newPath.split('/').slice(2).join('/');
-        fs.rename(oldPath, newPath, function (err) {
-            if (err) throw err;
-            settingsService.loadCSV(newPath);
-            res.json({status:'ok', payload:returnPath});
-        })
-    }else{
-        let path = __dirname + '/public//uploads/excel/'+req.file.filename;
-        //let excel = fs.readFileSync(path);
-        settingsService.loadCSV(path);
-        res.json({status:'ok', payload:'uploads/excel/'+req.file.filename});
-    }
-
-});
-
-
-app.put('/products',(req, res)=>{
-    productCtrl.updateProduct(req.body.product)
-    .then((product)=>{
-        res.json(product);
-    })
-});
-app.put('/products/product',(req, res)=>{
-    productCtrl.addSubProduct(req.body.product, req.body.subProduct)
-    .then((product)=>{
-        res.json(product);
-    })
-});
-
-app.put('/products/product/remove',(req, res)=>{
-    productCtrl.removeSubProduct(req.body.product, req.body.subProduct)
-        .then((product)=>{
-            res.json(product);
-        }).catch((err) => res.status(400));
-});
-
-
-app.get('/products',(req, res)=>{
-    productCtrl.getProducts(req.body.product)
-    .then((product)=>{
-        res.json(product);
-    })
-});
-
-app.get('/login/:email/:pass',(req, res)=>{
-    userCtrl.login(req.params.email,req.params.pass)
-    .then((user)=>{
-        if(user){
-            res.json({status:true, payload:user})
-        }else{
-            res.json({status:false, payload:''})
-        }
-    })
-});
-
-app.post('/products/delete',(req, res)=>{
-    productCtrl.remove(req.body.product)
-    .then((product)=>{
-        res.json(product);
-    })
-});
-
-app.post('/points', (req, res) => {
-    userCtrl.addPoints(req.body.sum, req.body.user)
-    .then( (user) => {
-        res.json(user);
-    }).catch( (err) => { res.status(400).json(err)} )
-});
-
-app.post('/products',(req, res)=>{
-    productCtrl.createProduct(req.body.product)
-    .then((product)=>{
-        res.json(product);
-    }).catch(function(err){
-        console.log(err);
-    })
-});
-
-//app.post('/orders',(req, res)=>{
-//    userCtrl.substract(req.body.user, req.body.product, req.body.identify )
-//    .then((product)=>{
-//        res.json(product);
-//    }).catch(function(err){
-//        console.log(err);
-//    })
-//});
-
-app.post('/order/process',  async (req, res) => {
-
-    try{
-        let order = await orderCtrl.processOrder(req.body.orders, req.body.user, req.body.total);
-        order ? res.json(order): res.status(400).json(false);
-    }catch(err) {
-        return res.status(400).json(err.message);
-    }
-
-});
-
-app.post('/order/approve',  async (req, res) => {
-    try{
-        let order = await orderCtrl.processApprove(req.body.order);
-        res.json(order)
-    }catch(err){
-        res.status(400).json(err.message);
-    }
-
-});
-
-app.get('/orders', async (req, res) => {
-    try{
-        let orders = await orderCtrl.getOrders();
-        res.json(orders);
-    }catch(err){
-        res.status(400).send(err.message);
-    }
-
-});
-app.post('/scan/upload', (req, res)=>{
-
-    let user = {};
-    let facebookData = req.body.facebookData;
-    facebookData.about ? user.about = facebookData.about : user.about = undefined;
-    facebookData.phone ? user.phone = facebookData.phone : user.phone = undefined;
-    user.role = 'user';
-    facebookData.description ? user.description = facebookData.description: user.description = undefined;
-    facebookData.emails[0] ? user.email = facebookData.emails[0]: user.email = undefined;
-    facebookData.contact_address ? user.address = facebookData.contact_address : user.address = undefined;
-    facebookData.website ? user.website = facebookData.website: user.website = undefined;
-    user.company = facebookData.company;
-    user.firstName =  facebookData.firstName;
-    user.lastName =  facebookData.lastName;
-    user.profession = facebookData.profession;
-
-    userCtrl.setUser(user)
-    .then(function(user){
-        res.json({status:'ok', payload:user});
-    }).catch(function(err){
-
-    })
-
-});
-
-app.get('/test', (req, res) => {
-    console.log('connected');
-    res.send('connected');
-});
-app.get('/products/', (req, res)=>{
-    productsCtrl.getProducts().then((products)=>{
-        res.json({status:true, payload:products});
-    }).catch((err)=>{
-        res.json({status:false})
-    })
-})
-app.post('/auth/facebook/callback', (req, res)=>{
-
-})
 
 app.get('/callback',
     passport.authenticate('auth0', { failureRedirect: '/' }),
