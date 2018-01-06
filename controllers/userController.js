@@ -3,8 +3,6 @@
 
 let mongoose = require('mongoose');
 let User = mongoose.model('User');
-let Project = mongoose.model('Project');
-let Profession = mongoose.model('Profession');
 var nexmo = require('../services/nexmo');
 const jwt = require('jsonwebtoken'),
     crypto = require('crypto'),
@@ -197,28 +195,6 @@ class userController {
         return User.update({_id: user._id}, {$set:{img:user.img}}).exec();
     };
 
-    setProject (id, project) {
-
-        let newProject  = new Project(project);
-        return newProject.save()
-            .then((project)=>{
-                return User.findByIdAndUpdate( id, { $push: { projects: newProject }}, { 'new': true}).populate('projects')
-            })
-            .catch((err)=>{
-                console.log(err);
-            })
-
-    };
-
-    substract (val, product, identify) {
-        let identifyObj;
-        if (identify === 'phone') identifyObj = {'phone': val};
-        User.findOne(identifyObj).exec()
-            .then(function (user) {
-                if (user.points) user.points = user.points - product.price;
-                return user.save();
-            })
-    }
 
     login (req, res, next) {
 
@@ -230,16 +206,6 @@ class userController {
         });
     }
 
-
-    loginOld (email, pass) {
-        return User.findOne({email:email,password:pass}).exec()
-    };
-
-    updateProject (project) {
-        let newProject  = new Project(project);
-        return Project.update({_id: project._id}, newProject, {upsert: true}).exec();
-
-    };
 
     getUsersByFilter (by, filter, multiple) {
         let req = {};
@@ -271,20 +237,6 @@ class userController {
         }
     }
 
-    async addPoints (sum, user) {
-
-        let dbUser = await User.findOne({_id:user._id});
-        dbUser.points += sum;
-        await dbUser.save();
-        let max = config.maxPoints;
-        if (sum >  max) {
-            for ( let phone of config.managerPhones ) {
-                let msg = `user ${dbUser.firstName} ${dbUser.lastName} received ${sum} points}`;
-                await nexmo.sms(phone, msg);
-            }
-        }
-        return dbUser;
-    }
 
 };
 
