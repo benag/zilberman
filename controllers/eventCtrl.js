@@ -21,7 +21,7 @@ class eventController {
     }
 
     async setEvent ( userId,start, end, roomId, title ) {
-
+        if (!userId || !start || !end || !roomId) throw new Error('Bad Input');
         let config = await Config.findOne({});
         if (!config){
             config = await Config.create({eventId:0});
