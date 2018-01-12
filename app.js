@@ -45,21 +45,21 @@ var mysql      = require('mysql');
 //    password : 'secret',
 //    database : 'my_db'
 //});
-var connection = mysql.createConnection({
-    host     : '62.219.187.1',
-    user     : 'LEAD_SERVER',
-    password : 'jo98^Hu%',
-    database : 'ZIL_LEADS'
-});
-
-connection.connect();
-
-connection.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
-    if (error) throw error;
-    console.log('The solution is: ', results[0].solution);
-});
-
-connection.end();
+//var connection = mysql.createConnection({
+//    host     : '62.219.187.1',
+//    user     : 'LEAD_SERVER',
+//    password : 'jo98^Hu%',
+//    database : 'ZIL_LEADS'
+//});
+//
+//connection.connect();
+//
+//connection.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
+//    if (error) throw error;
+//    console.log('The solution is: ', results[0].solution);
+//});
+//
+//connection.end();
 
 
 

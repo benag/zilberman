@@ -110,7 +110,7 @@
     width: 100%;
     height: 100%;
     background-size: cover;
-    background-image: url('../material/assets/img/TRIBU_2014_visavis04.jpg');
+    background-image: url('../img/background.jpg');
 
 }
 .black-card{
@@ -266,13 +266,13 @@
     margin-top:150px;
 }
 .card-back{
-    background-image: url('/img/ganim.jpg');
+    background-image: url('/img/background.jpg');
     background-repeat: no-repeat;
     background-size: 524px 215px
     /*opacity: 0.5;*/
 }
 .card-back-sm{
-    background-image: url('/img/ganim.jpg');
+    background-image: url('/img/background.jpg');
     background-repeat: no-repeat;
     background-size: 524px 200px
 }
@@ -396,7 +396,7 @@
     position: relative;
 }
 .backImage{
-    background-image: url("../img/ganim.jpg");
+    background-image: url("../img/background.jpg");
     background-repeat: no-repeat;
     background-size: 100% 100%;
 }
