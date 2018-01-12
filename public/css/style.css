@@ -517,3 +517,12 @@ td {
     top:10px;
     cursor: pointer;
 }
+
+/* RTL **********/
+.label-rtl{
+    left: 0 !important;
+    right:5px;
+}
+.input-rtl{
+    right:-20px;
+}

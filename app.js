@@ -29,15 +29,37 @@ require('./models/users.model.js');
 const passportService = require('./config/passport');
 const passport = require('passport');
 
-var dbConfig = config.get('database');
 
-mongoose.connect(dbConfig.get('path') + dbConfig.get('name'));
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function (callback) {
-  console.log('yay!');
+//var dbConfig = config.get('database');
+//
+//mongoose.connect(dbConfig.get('path') + dbConfig.get('name'));
+//var db = mongoose.connection;
+//db.on('error', console.error.bind(console, 'connection error:'));
+//db.once('open', function (callback) {
+//  console.log('yay!');
+//});
+var mysql      = require('mysql');
+//var connection = mysql.createConnection({
+//    host     : 'localhost',
+//    user     : 'me',
+//    password : 'secret',
+//    database : 'my_db'
+//});
+var connection = mysql.createConnection({
+    host     : '62.219.187.1',
+    user     : 'LEAD_SERVER',
+    password : 'jo98^Hu%',
+    database : 'ZIL_LEADS'
 });
 
+connection.connect();
+
+connection.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
+    if (error) throw error;
+    console.log('The solution is: ', results[0].solution);
+});
+
+connection.end();
 
 
 

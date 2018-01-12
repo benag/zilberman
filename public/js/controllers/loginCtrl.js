@@ -30,9 +30,10 @@ angular.module('ganim').controller('loginCtrl', ['$scope', '$stateParams', '$loc
             })
         };
 
-        //$scope.login = function(){
-        //    authService.login();
-        //
-        //}
+        $scope.login = function(){
+            //authService.login();
+
+
+        }
     }
 ]);
