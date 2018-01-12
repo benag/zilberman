@@ -28,7 +28,7 @@ var app = angular.module('ganim', ['ui.router','vsGoogleAutocomplete','ngFileUpl
     $urlRouterProvider.otherwise('/login');
 
 
-}).run(function($rootScope, $state, global, professionService){
+}).run(function($rootScope, $state, global){
 
 
     $rootScope.$on('$locationChangeSuccess', (event, toState, toStateParams) => {
