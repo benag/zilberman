@@ -50,6 +50,9 @@ const requireLogin = passport.authenticate('local', { session: false });
 
 // Configuration
 
+var routes = require('./routes');
+
+
 app.configure(function(){
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
