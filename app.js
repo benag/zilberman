@@ -12,6 +12,7 @@ var express = require('express'),
 
 
 
+
     var storage = multer.diskStorage({
         destination: function (request, file, callback) {
             callback(null, './public/uploads/');
@@ -25,7 +26,8 @@ var express = require('express'),
 var upload = multer({ storage: storage });
 
 require('./models/users.model.js');
-const passport = require('./config/passport');
+const passportService = require('./config/passport');
+const passport = require('passport');
 
 var dbConfig = config.get('database');
 
@@ -71,8 +73,8 @@ app.configure('production', function(){
 
 // Routes
 
-let mainRouter = require('./routes/mainRouter.js');
-mainRouter.init(app);
+//let mainRouter = require('./routes/mainRouter.js');
+//mainRouter.init(app);
 
 app.get('/', routes.index);
 
