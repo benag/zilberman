@@ -22,9 +22,10 @@ var express = require('express'),
         }
     });
 
-    var upload = multer({ storage: storage });
+var upload = multer({ storage: storage });
 
-
+require('./models/users.model.js');
+const passport = require('./config/passport');
 
 var dbConfig = config.get('database');
 
@@ -35,7 +36,7 @@ db.once('open', function (callback) {
   console.log('yay!');
 });
 
-require('./models/users.model.js');
+
 
 
 

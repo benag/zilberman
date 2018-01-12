@@ -42,7 +42,7 @@ const localLogin = new LocalStrategy(localOptions, function(req, email, password
 var jwtOptions = {};
 //jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 //jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeader();
-console.log('secter:' +config.secret)
+console.log('secter:' +config.secret);
 jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeaderWithScheme('jwt');
 jwtOptions.secretOrKey = config.secret;
 //jwtOptions.issuer = 'accounts.examplesoft.com';
