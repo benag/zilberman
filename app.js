@@ -38,7 +38,7 @@ const passport = require('passport');
 //db.once('open', function (callback) {
 //  console.log('yay!');
 //});
-var mysql      = require('mysql');
+//var mysql      = require('mysql');
 //var connection = mysql.createConnection({
 //    host     : 'localhost',
 //    user     : 'me',
@@ -60,7 +60,17 @@ var mysql      = require('mysql');
 //});
 //
 //connection.end();
+const sql = require('mssql')
 
+async () => {
+    try {
+        const pool = await sql.connect('mssql://LEAD_SERVER:jo98^Hu%@62.219.187.1/ZIL_LEADS')
+        const result = await sql.query`select * from mytable where id = ${value}`
+        console.dir(result)
+    } catch (err) {
+        // ... error checks
+    }
+}
 
 
 
