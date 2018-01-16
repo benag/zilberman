@@ -60,18 +60,47 @@ const passport = require('passport');
 //});
 //
 //connection.end();
-const sql = require('mssql')
 
-async () => {
+
+//mssql://username:password@localhost/database
+const sql = require('mssql')
+console.log('outside');
+const dbconfig = {
+    user: 'lead_server',
+    password: 'jo98^Hu%',
+    server: '62.219.187.1', // You can use 'localhost\\instance' to connect to named instance
+    port: 3306,
+    database: 'ZIL_LEADS'
+
+}
+var connect = async function () {
     try {
-        const pool = await sql.connect('mssql://LEAD_SERVER:jo98^Hu%@62.219.187.1/ZIL_LEADS')
-        const result = await sql.query`select * from mytable where id = ${value}`
-        console.dir(result)
-    } catch (err) {
+        let pool = await sql.connect(dbconfig)
+        let result1 = await pool.request()
+            .query('select * from LeadsClient')
+            
+        console.log(result1)
+    
+        } catch (err) {
+            console.log(err);
         // ... error checks
     }
-}
-
+};
+connect();
+sql.on('error', err => {
+    console.log(err);// ... error handler
+})
+// var connect = async function() {
+//     try {
+//         console.log('inside');
+//         const pool = await sql.connect('mssql://lead_server:jo98^Hu%@62.219.187.1/ZIL_LEADS');
+//         const result = await sql.query`select * from client`;
+//         console.log(result)
+//     } catch (err) {
+//         console.log(err);
+//     }
+// }
+// connect();
 
 
 var app = module.exports = express.createServer();
