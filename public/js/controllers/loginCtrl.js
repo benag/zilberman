@@ -1,9 +1,11 @@
 angular.module('ganim').controller('loginCtrl', ['$scope', '$stateParams', '$location', '$state', 'global', 'userMng', '$timeout',
-    function($scope, $stateParams, $location, $state, global, userMng, $timeout) {
+    function($scope, $stateParams, $location, $state, global, userMng, authService) {
 
 
         $scope.user = {};
         $scope.user.email ='';
+        $scope.sms = false;
+
         let $page = $('.full-page');
         let image_src = $page.data('image');
 
@@ -15,7 +17,7 @@ angular.module('ganim').controller('loginCtrl', ['$scope', '$stateParams', '$loc
         setTimeout(function() {
             // after 1000 ms we add the class animated to the login/register card
             $('.card').removeClass('card-hidden');
-        }, 700)
+        }, 700);
 
 
         $scope.validateAndContinue = function(){
@@ -31,7 +33,12 @@ angular.module('ganim').controller('loginCtrl', ['$scope', '$stateParams', '$loc
         };
 
         $scope.login = function(){
-            //authService.login();
+
+            $state.go('main');
+            //authService.login()
+            //.then( () => {
+            //    $scope.sms = true;
+            //})
 
 
         }

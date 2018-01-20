@@ -30,37 +30,6 @@ const passportService = require('./config/passport');
 const passport = require('passport');
 
 
-//var dbConfig = config.get('database');
-//
-//mongoose.connect(dbConfig.get('path') + dbConfig.get('name'));
-//var db = mongoose.connection;
-//db.on('error', console.error.bind(console, 'connection error:'));
-//db.once('open', function (callback) {
-//  console.log('yay!');
-//});
-//var mysql      = require('mysql');
-//var connection = mysql.createConnection({
-//    host     : 'localhost',
-//    user     : 'me',
-//    password : 'secret',
-//    database : 'my_db'
-//});
-//var connection = mysql.createConnection({
-//    host     : '62.219.187.1',
-//    user     : 'LEAD_SERVER',
-//    password : 'jo98^Hu%',
-//    database : 'ZIL_LEADS'
-//});
-//
-//connection.connect();
-//
-//connection.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
-//    if (error) throw error;
-//    console.log('The solution is: ', results[0].solution);
-//});
-//
-//connection.end();
-
 
 //mssql://username:password@localhost/database
 const sql = require('mssql')
@@ -90,17 +59,6 @@ connect();
 sql.on('error', err => {
     console.log(err);// ... error handler
 })
-// var connect = async function() {
-//     try {
-//         console.log('inside');
-//         const pool = await sql.connect('mssql://lead_server:jo98^Hu%@62.219.187.1/ZIL_LEADS');
-//         const result = await sql.query`select * from client`;
-//         console.log(result)
-//     } catch (err) {
-//         console.log(err);
-//     }
-// }
-// connect();
 
 
 var app = module.exports = express.createServer();
@@ -158,7 +116,7 @@ app.post('/register', (req, res, next) => {
 app.post('/login', requireLogin, (req, res, next) => {
     //let mng = new userCtrl();
     userCtrl.login(req, res, next);
-})
+});
 
 app.post('/verify', requireAuth, (req, res) => {
     res.json('OK');
