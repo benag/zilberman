@@ -1,0 +1,71 @@
+<div class="main-container"  >
+    <div ng-include="'templates/navbar.html'"></div>
+    <img class="main-back" src="img/background.jpg">
+    <div class="entry-form">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2">
+                    <input  class="zilberman-input" placeholder="תז" ng-model="form.id">
+                </div>
+                <div class="col-md-2">
+                    <input class="zilberman-input" placeholder="שם פרטי" ng-model="form.firstName">
+                </div>
+
+                <div  class="col-md-2">
+                    <input class="zilberman-input" placeholder="שם משפחה" ng-model="form.lastName">
+                    <!--<input class="zilberman-input" placeholder="תז" ng-model="4">-->
+                </div>
+                <div class="col-md-1">
+                    <select class="zilberman-dropdown" ng-model="form.gender" name="gender">
+                        <option >זכר</option>
+                        <option >נקבה</option>
+
+                    </select>
+                </div>
+                <div  class="col-md-2">
+                    <input class="zilberman-input" placeholder="טלפון נייד" ng-model="form.mobile">
+                </div>
+                <div  class="col-md-2">
+                    <input class="zilberman-input" placeholder="טלפון נוסף" ng-model="form.phone">
+                </div>
+            </div>
+            <br/><br/>
+            <div class="row">
+                <div class="col-md-2">
+                    <input  class="zilberman-input" placeholder="אימייל" ng-model="form.email">
+                </div>
+                <div class="col-md-3">
+                    <input type="date" class="zilberman-date" placeholder="תאריך לידה" ng-model="form.birthdate">
+                </div>
+
+                <!--<div  class="col-md-2">-->
+                    <!--<input class="zilberman-input" placeholder="שם משפחה" ng-model="form.lastName">-->
+                    <!--&lt;!&ndash;<input class="zilberman-input" placeholder="תז" ng-model="4">&ndash;&gt;-->
+                <!--</div>-->
+                <!--<div class="col-md-1">-->
+                    <!--<select class="zilberman-dropdown" ng-model="form.gender" name="gender">-->
+                        <!--<option >זכר</option>-->
+                        <!--<option >נקבה</option>-->
+
+                    <!--</select>-->
+                <!--</div>-->
+                <!--<div  class="col-md-2">-->
+                    <!--<input class="zilberman-input" placeholder="טלפון נייד" ng-model="form.mobile">-->
+                <!--</div>-->
+                <!--<div  class="col-md-2">-->
+                    <!--<input class="zilberman-input" placeholder="טלפון נוסף" ng-model="form.phone">-->
+                <!--</div>-->
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+</div>
+
+<div style="background-color: lightskyblue; width:100%;height: 15%">
+
+</div>
