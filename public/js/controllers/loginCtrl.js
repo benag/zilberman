@@ -1,11 +1,11 @@
 angular.module('ganim').controller('loginCtrl', ['$scope', '$stateParams', '$location', '$state', 'global', 'userMng', '$timeout',
-    function($scope, $stateParams, $location, $state, global, userMng, authService) {
+    function($scope, $stateParams, $location, $state, global, userMng, $http) {
 
 
         $scope.user = {};
         $scope.user.email ='';
         $scope.sms = false;
-
+        $scope.login = true;
         let $page = $('.full-page');
         let image_src = $page.data('image');
 
@@ -29,6 +29,25 @@ angular.module('ganim').controller('loginCtrl', ['$scope', '$stateParams', '$loc
             }).catch(function(err) {
                 console.log(err);
                     swal('Wrong user name or password');
+            })
+        };
+
+        $scope.changeToRegister = () => {
+            $scope.user ={};
+            $scope.login = false;
+        };
+        $scope.changeToLogin = () => {
+            $scope.user ={};
+            $scope.login = true;
+        };
+
+        $scope.register = () => {
+            $http.post('/register', {id:$scope.user.id,phone:user.phone, email:user.email, name:user.name, password:user.password})
+            .then( (data) => {
+
+            })
+            .catch((err) => {
+
             })
         };
 

@@ -505,7 +505,7 @@ td {
     background-color: #457fb1;
 }
 .logo-pic{
-    margin-left:55px;
+    /*margin-left:55px;*/
     width: 70%!important;
     margin-bottom: 5px;
 }
@@ -598,4 +598,18 @@ input[type="date"]:not(.has-value):before{
     border: none;
     border-bottom: 2px solid white;
     margin-top: 0px;
+}
+.input-group-addon:first-child{
+    border-right: none;
+}
+.register-link{
+    text-align: center;
+    color:#4F628E!important;
+    cursor: pointer;
+}
+.register-link a {
+    color:#4F628E!important;
+}
+.card-ganim-register {
+    height: 500px;
 }
