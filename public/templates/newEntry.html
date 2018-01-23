@@ -386,7 +386,41 @@
 
 
             </div>
+            <!-- הלוואת -->
             <div ng-show="show[2]" id="description-3">
+                <div  class="row line-distance">
+                    <div class="col-md-2">
+                        <input  class="zilberman-input" placeholder="תז" ng-model="form.id">
+                    </div>
+                    <div class="col-md-2">
+                        <input class="zilberman-input" placeholder="שם פרטי" ng-model="form.firstName">
+                    </div>
+
+                    <div  class="col-md-2">
+                        <input class="zilberman-input" placeholder="שם משפחה" ng-model="form.lastName">
+                        <!--<input class="zilberman-input" placeholder="תז" ng-model="4">-->
+                    </div>
+                </div>
+                <div class="row line-distance">
+                    <div class="col-md-2">
+                        <select class="zilberman-dropdown" ng-model="insuranceForm.smoking" placeholder="עישון" name="smoking">
+                            <option value="" disabled selected>סוג הלוואה</option>
+                            <option value="0">שפיצר</option>
+                            <option value="1">בלון</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-2">
+                        <input class="zilberman-input" placeholder="סכום הלוואה" ng-model="form.borrow.sum">
+                    </div>
+                    <div class="col-md-2">
+                        <input class="zilberman-input" placeholder="ריבית" ng-model="form.borrow.intrest">
+                    </div>
+                    <div class="col-md-2">
+                        <input class="zilberman-input" placeholder="מספר שנים שנותרוו" ng-model="form.borrow.years">
+                    </div>
+                </div>
+
             </div>
             <div ng-show="show[3]" id="description-4">
             </div>
