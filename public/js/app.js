@@ -1,5 +1,5 @@
 
-var app = angular.module('ganim', ['ui.router','vsGoogleAutocomplete','ngFileUpload', 'ui.bootstrap','ui.select','ngAnimate','ngSanitize'])
+var app = angular.module('ganim', ['ui.router','vsGoogleAutocomplete','ngFileUpload', 'ui.bootstrap','ui.select','ngAnimate','ngSanitize', 'ng-slide-down'])
 //,'ngAnimate','ngSanitize'
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -22,6 +22,14 @@ var app = angular.module('ganim', ['ui.router','vsGoogleAutocomplete','ngFileUpl
             "main": { templateUrl: "templates/newEntry.html", controller: 'newEntryCtrl' }
         }
     };
+    var summery = {
+        name: 'summery',
+        url: '/summery',
+        views: {
+            //"left-pane": { templateUrl: "templates/left-pane.html", controller: 'leftPaneController'},
+            "main": { templateUrl: "templates/summery.html", controller: 'summeryCtrl' }
+        }
+    };
 
     var login = {
         name: 'login',
@@ -35,6 +43,7 @@ var app = angular.module('ganim', ['ui.router','vsGoogleAutocomplete','ngFileUpl
     $stateProvider.state(login);
     $stateProvider.state(main);
     $stateProvider.state(newentery);
+    $stateProvider.state(summery);
     $urlRouterProvider.otherwise('/login');
 
 
@@ -49,4 +58,4 @@ var app = angular.module('ganim', ['ui.router','vsGoogleAutocomplete','ngFileUpl
 
 
     });
-})
+});

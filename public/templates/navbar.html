@@ -1,6 +1,4 @@
-<div class="row" style="position: absolute;
-    top: 50px;
-    width: 100%;">
+<div class="row zilberman-top-nav" ng-controller="topNavCtrl">
     <div class="col-md-6 col-md-offset-3">
         <div class="card-header card-header-tabs" data-background-color="rose">
             <div class="nav-tabs-navigation">
@@ -8,23 +6,18 @@
 
                     <ul class="nav nav-tabs" data-tabs="tabs">
                         <li class="active">
-                            <a href="#profile" data-toggle="tab">
+                            <a ng-click="state('newentry')"  data-toggle="tab">
                                 פנייה חדשה
                                 <div class="ripple-container"></div>
                             </a>
                         </li>
                         <li class="">
-                            <a href="#messages" data-toggle="tab">
+                            <a ng-click="state('summery')" data-toggle="tab">
                                 הזמנות קיימות
                                 <div class="ripple-container"></div>
                             </a>
                         </li>
-                        <!--<li class="">-->
-                        <!--<a href="#settings" data-toggle="tab">-->
-                        <!--<i class="material-icons">cloud</i> Server-->
-                        <!--<div class="ripple-container"></div>-->
-                        <!--</a>-->
-                        <!--</li>-->
+
                     </ul>
                 </div>
             </div>

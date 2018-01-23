@@ -24,14 +24,14 @@
                 <div class="row">
                     <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
                         <div >
-                            <div ng-class="{'card-ganim-login':login,'card-ganim-register': !login}" class="card card-login  card-hidden">
+                            <div ng-class="{'card-ganim-login':showLogin,'card-ganim-register': !showLogin}" class="card card-login  card-hidden">
                                 <div style="text-align: center;">
                                     <img class="logo-pic" src="/img/logo.png">
                                 </div>
                                 <p class="category text-center">
 
                                 </p>
-                                <div ng-show="login" class="card-content">
+                                <div ng-show="showLogin" class="card-content">
 
                                     <div dir="rtl" ng-show="!sms" class="input-group input-rtl">
                                             <span class="input-group-addon">
@@ -67,7 +67,7 @@
 
                                     <div class="register-link" ><a ng-click="changeToRegister()">אנה רישמו אותי</a></div>
                                 </div>
-                                <div ng-show="!login" class="card-content">
+                                <div ng-show="!showLogin" class="card-content">
 
                                     <div dir="rtl" class="input-group input-rtl">
                                             <span class="input-group-addon">

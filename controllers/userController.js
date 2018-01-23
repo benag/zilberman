@@ -30,11 +30,10 @@ class userController {
     setUserInfo (user) {
         return {
             _id: user._id,
-            firstName: user.firstName,
+            name: user.name,
             lastName: user.lastName,
             email: user.email,
             role: user.role,
-            points: user.points,
             img: user.img
         };
 
@@ -54,41 +53,26 @@ class userController {
 
         let email = req.body.email;
         let phone = req.body.phone;
-        let firstName = req.body.firstName;
-        let lastName = req.body.lastName;
         let password = req.body.password;
-        let facebookId = req.body.facebookId;
         let name = req.body.name;
 
-        if (name && !firstName && !lastName) {
-            firstName = name.split(' ')[0];
-            lastName = name.split(' ')[1];
-        }
+
         // Return error if no email provided
-        if (!email && !facebookId) {
+        if (!email) {
             return res.status(422).send({ error: 'You must enter an email address.'});
         }
 
-        // Return error if full name not provided
-        if (!firstName && !lastName ) {
-            return res.status(422).send({ error: 'You must enter your full name.'});
-        }
 
-        // Return error if no password provided
-        if (!password && !facebookId) {
-            return res.status(422).send({ error: 'You must enter a password.' });
-        }
-        //{$or: [ {email: email}, {phone: phone} ]}
         let existingUser = await User.findOne({phone:phone}).exec();
         // If user is not unique, return error
         if (existingUser) {
-            if (existingUser.phone !== phone) existingUser.phone = phone;
-            //if (existingUser.email !== email) existingUser.email = email;
-            try{
-                await existingUser.save();
-            }catch(err){
-                console.log(err);
-            }
+            //if (existingUser.phone !== phone) existingUser.phone = phone;
+            ////if (existingUser.email !== email) existingUser.email = email;
+            //try{
+            //    await existingUser.save();
+            //}catch(err){
+            //    console.log(err);
+            //}
 
             let userInfo = _this.setUserInfo(existingUser);
             return res.status(201).json({
@@ -98,25 +82,32 @@ class userController {
             //return res.json({ code:100, error: 'That email address is already in use.' });
         }
 
-        let user = new User({
+        let user = {
             email: email,
             password: password,
-            firstName: firstName,
-            lastName: lastName,
-            name: firstName + ' ' + lastName,
-            facebookId: facebookId,
-            points: config.points
-        });
+            name: name,
+            phone:phone
 
-        user.save(function(err, user) {
-            if (err) { return next(err); }
-            let userInfo = _this.setUserInfo(user);
-            res.status(201).json({
-                token: 'JWT ' + _this.generateToken({_id:user._id}),
-                user: userInfo
-            });
-        });
+        };
 
+        let dbUser = _this.saveUser(user);
+
+        //user.save(function(err, user) {
+        //    if (err) { return next(err); }
+        let userInfo = _this.setUserInfo(dbUser);
+        res.status(201).json({
+            token: 'JWT ' + _this.generateToken({_id:user._id}),
+            user: userInfo
+        });
+        //});
+
+    }
+
+    async findUer (id) {
+        return user;
+    }
+    async saveUser (user) {
+        return dbUser;
     }
 
     async getUserByPhone (phone) {

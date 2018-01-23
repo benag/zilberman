@@ -32,7 +32,7 @@ const passport = require('passport');
 
 
 //mssql://username:password@localhost/database
-const sql = require('mssql')
+const sql = require('mssql');
 console.log('outside');
 const dbconfig = {
     user: 'lead_server',
@@ -41,7 +41,7 @@ const dbconfig = {
     port: 3306,
     database: 'ZIL_LEADS'
 
-}
+};
 var connect = async function () {
     try {
         let pool = await sql.connect(dbconfig)
@@ -58,7 +58,7 @@ var connect = async function () {
 connect();
 sql.on('error', err => {
     console.log(err);// ... error handler
-})
+});
 
 
 var app = module.exports = express.createServer();

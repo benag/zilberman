@@ -5,7 +5,7 @@ angular.module('ganim').controller('loginCtrl', ['$scope', '$stateParams', '$loc
         $scope.user = {};
         $scope.user.email ='';
         $scope.sms = false;
-        $scope.login = true;
+        $scope.showLogin = true;
         let $page = $('.full-page');
         let image_src = $page.data('image');
 
@@ -34,11 +34,11 @@ angular.module('ganim').controller('loginCtrl', ['$scope', '$stateParams', '$loc
 
         $scope.changeToRegister = () => {
             $scope.user ={};
-            $scope.login = false;
+            $scope.showLogin = false;
         };
         $scope.changeToLogin = () => {
             $scope.user ={};
-            $scope.login = true;
+            $scope.showLogin = true;
         };
 
         $scope.register = () => {
@@ -53,7 +53,7 @@ angular.module('ganim').controller('loginCtrl', ['$scope', '$stateParams', '$loc
 
         $scope.login = function(){
 
-            $state.go('main');
+            $state.go('newentry');
             //authService.login()
             //.then( () => {
             //    $scope.sms = true;

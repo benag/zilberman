@@ -1,0 +1,62 @@
+/* newEntry */
+.newEntry {
+    font-size:20px;
+    /*color:white;*/
+}
+.zilberman-dropdown {
+    background-color: transparent;
+    border:none;
+    border-bottom: 1px solid white;
+}
+input[type="date"]:not(.has-value):before{
+    color: lightgray;
+    content: attr(placeholder);
+}
+
+.zilberman-date {
+    font-size: 20px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid white;
+    margin-top: 0px;
+}
+.input-group-addon:first-child{
+    border-right: none;
+}
+.register-link{
+    text-align: center;
+    color:#4F628E!important;
+    cursor: pointer;
+}
+.register-link a {
+    color:#4F628E!important;
+}
+.card-ganim-register {
+    height: 500px;
+}
+.zilberman-date{
+    font-size: 20px;
+    margin-top: 8px;
+}
+input[type="date"].zilberman-date::-webkit-input-placeholder {
+    font-size: 20px;
+}
+.mate {
+    margin-top:50px;
+    cursor: pointer;
+}
+.line-distance {
+    margin-top:20px;
+}
+.nav-pills > li > a{
+    line-height: 10px;
+    font-size: 12px;
+    font-weight: 500;
+    width: 70px!important;
+    text-align: center;
+    color: #555555;
+    transition: all .3s;
+}
+.mate-below {
+    margin-top:20px;
+}
