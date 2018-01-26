@@ -1,0 +1,9 @@
+.summery{
+    color:black;
+}
+.main-links {
+    position: absolute;
+    top: 16vh;
+    right: 14vw;
+    font-size: 16px;
+}

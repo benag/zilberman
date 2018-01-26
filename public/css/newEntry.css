@@ -1,20 +1,33 @@
 /* newEntry */
 .newEntry {
-    font-size:20px;
+    font-size:16px;
+    position:relative;
     /*color:white;*/
 }
 .zilberman-dropdown {
     background-color: transparent;
     border:none;
-    border-bottom: 1px solid white;
+    margin-top:1px;
+    width:100%;
+    border-bottom: 2px solid white;
+
+}
+select:required:invalid {
+    color: #686868;
+}
+select, option {
+    color: black;
 }
 input[type="date"]:not(.has-value):before{
     color: lightgray;
     content: attr(placeholder);
 }
-
+.nav-center {
+    margin-top:120px;
+}
 .zilberman-date {
-    font-size: 20px;
+    font-size: 15px;
+    font-family: Helvetica Neue, Arial, sans-serif;
     background-color: transparent;
     border: none;
     border-bottom: 2px solid white;
@@ -35,18 +48,18 @@ input[type="date"]:not(.has-value):before{
     height: 500px;
 }
 .zilberman-date{
-    font-size: 20px;
-    margin-top: 8px;
+    /*font-size: 20px;*/
+    /*margin-top: 8px;*/
 }
-input[type="date"].zilberman-date::-webkit-input-placeholder {
-    font-size: 20px;
-}
+/*input[type="date"].zilberman-date::-webkit-input-placeholder {*/
+    /*font-size: 20px;*/
+/*}*/
 .mate {
     margin-top:50px;
     cursor: pointer;
 }
 .line-distance {
-    margin-top:20px;
+    margin-top:25px;
 }
 .nav-pills > li > a{
     line-height: 10px;
@@ -59,4 +72,7 @@ input[type="date"].zilberman-date::-webkit-input-placeholder {
 }
 .mate-below {
     margin-top:20px;
+}
+.insurence-content{
+    margin-top:30px;
 }

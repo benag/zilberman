@@ -1,5 +1,5 @@
 
-var app = angular.module('ganim', ['ui.router','vsGoogleAutocomplete','ngFileUpload', 'ui.bootstrap','ui.select','ngAnimate','ngSanitize', 'ng-slide-down'])
+var app = angular.module('ganim', ['ui.router','vsGoogleAutocomplete','ngFileUpload', 'ui.bootstrap','ui.select','ngAnimate','ngSanitize', 'ng-slide-down','720kb.datepicker'])
 //,'ngAnimate','ngSanitize'
 
 .config(function($stateProvider, $urlRouterProvider) {

@@ -542,17 +542,12 @@ td {
     width: 100%;
     height: 85%;
 }
-.main-links {
-    position: absolute;
-    top:20%;
-    right:10%;
-    font-size:25px;
-}
+
 .entry-form {
     position: absolute;
     top:15%;
     right:10%;
-    font-size:25px;
+    font-size:16px;
 }
 .link {
     font-size:25px;
@@ -563,7 +558,7 @@ td {
     cursor: pointer;
 }
 .newEntry a {
-    color:white;
+    color:black;
 }
 .second-link{
     margin-top: 50px;
@@ -575,7 +570,7 @@ td {
     background-color: transparent;
     border-bottom: 2px solid white;
     text-align: right;
-    color:white;
+    color:black;
     width:100%;
 }
 .nav-tabs {
@@ -583,10 +578,10 @@ td {
     
 }
 .newEntry i {
-    color:white;
+    color:black;
 }
 .newEntry .content {
-    margin-top:50px;
+    margin-top:70px;
 }
 .newEntry .nav-pills.nav-pills-warning > li.active > a, .nav-pills.nav-pills-warning > li.active > a:focus, .nav-pills.nav-pills-warning > li.active > a:hover{
     background-color: #4F628E;
@@ -601,13 +596,34 @@ td {
     position: absolute;
     top: 30px;
     width: 100%;
+    z-index:1000;
 }
 .zilberman-top-nav a {
     font-size:15px!important;
 }
-.summery{
-    color:white;
-}
+
 .table-header{
     background-color: lightsteelblue;
+}
+.zilberman-select-option {
+    color: #686868 !important;
+}
+.zilberman-option {
+    color: black !important;
+}
+
+input::-webkit-input-placeholder {
+    color: #686868 !important;
+}
+
+input:-moz-placeholder { /* Firefox 18- */
+    color: 	#686868 !important;
+}
+
+input::-moz-placeholder {  /* Firefox 19+ */
+    color: 	#686868 !important;
+}
+
+input:-ms-input-placeholder {
+    color: 	#686868 !important;
 }

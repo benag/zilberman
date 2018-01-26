@@ -10,7 +10,7 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
         $scope.form = {};
         $scope.form.mate = {};
         $scope.form.id ='' ;
-        $scope.form.gender = 'זכר';
+        $scope.form.gender = '';
 
         $scope.show = [true,false,false,false];
         $scope.insurance= [false,false,false,false];
@@ -28,6 +28,10 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
                 (i === index) ? $scope.insurance[i] = true : $scope.insurance[i] = false;
             }
             $scope.insuranceForm = {};
+        };
+
+        $scope.omitCar = (index) => {
+            $scope.cars.splice(index,1);
         };
 
         $scope.click = (index) => {
