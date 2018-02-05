@@ -1,6 +1,6 @@
 
 
-let mysql = require('sqlService');
+let mysql = require('./sqlService');
 
 class newEntry {
     constructor(){
@@ -14,4 +14,4 @@ class newEntry {
     }
 }
 
-module.exports = newEntry;
+module.exports = new newEntry();

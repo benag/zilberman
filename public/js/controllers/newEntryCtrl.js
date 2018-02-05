@@ -37,14 +37,16 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
 
         $scope.click = (index) => {
             if (index === 3){
-                leadService.save($scope.form, $scope.insuranceForm)
+                leadService.save($scope.form)
                 .then( (done) => {
                     swal('הפניה נרשמה');
                 })
+            }else{
+                for (let i = 0 ; i < $scope.show.length ;i++  ) {
+                    (i === index) ? $scope.show[i] = true : $scope.show[i] = false;
+                }
             }
-            for (let i = 0 ; i < $scope.show.length ;i++  ) {
-                (i === index) ? $scope.show[i] = true : $scope.show[i] = false;
-            }
+
 
         }
 
