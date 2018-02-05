@@ -6,14 +6,14 @@ var app = angular.module('ganim', ['ui.router','vsGoogleAutocomplete','ngFileUpl
 
 
 
-    var main = {
-        name: 'main',
-        url: '/main',
-        views: {
-            //"left-pane": { templateUrl: "templates/left-pane.html", controller: 'leftPaneController'},
-            "main": { templateUrl: "templates/main.html", controller: 'mainCtrl' }
-        }
-    };
+    //var main = {
+    //    name: 'main',
+    //    url: '/main',
+    //    views: {
+    //        //"left-pane": { templateUrl: "templates/left-pane.html", controller: 'leftPaneController'},
+    //        "main": { templateUrl: "templates/main.html", controller: 'mainCtrl' }
+    //    }
+    //};
     var newentery = {
         name: 'newentry',
         url: '/newentry',
@@ -41,7 +41,7 @@ var app = angular.module('ganim', ['ui.router','vsGoogleAutocomplete','ngFileUpl
     };
 
     $stateProvider.state(login);
-    $stateProvider.state(main);
+    //$stateProvider.state(main);
     $stateProvider.state(newentery);
     $stateProvider.state(summery);
     $urlRouterProvider.otherwise('/login');

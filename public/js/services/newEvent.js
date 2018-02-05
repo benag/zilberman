@@ -1,8 +1,10 @@
-angular.module('ganim').factory('newEventService',function($state, $timeout, $location, $q){
-    let eventService = {};
+angular.module('ganim').factory('leadService',function($state, $timeout, $location, $q){
+    let leadService = {};
+    leadService.save = (form) => {
+        return $http.post('/save', {form})
+    };
 
-
-    return eventService;
+    return leadService;
 
 });
 

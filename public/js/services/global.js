@@ -21,17 +21,11 @@ angular.module('ganim').factory('global',function($state, $timeout, $location, $
             return window.localStorage.getItem("ganimToken");
         },
 
-        logOutUser: () => {
+        logOutUser: function()  {
             window.localStorage.setItem("user", '');
             window.localStorage.setItem("ganimToken", '');
             this.user = {};
             this.token  = '';
-        },
-        setUserData: function(userData) {
-            window.localStorage.setItem("user", JSON.stringify(userData.user));
-            window.localStorage.setItem("ganimToken", JSON.stringify(userData.token));
-            this.user = userData.user;
-            this.token  = userData.token;
         },
 
         uploadFiles: function(file, errFiles, path) {

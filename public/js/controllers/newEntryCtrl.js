@@ -1,10 +1,11 @@
-angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$location', '$state','newEventService',
-    function($scope, $stateParams, $location, $state, newEventService) {
+angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$location', '$state','leadService',
+    function($scope, $stateParams, $location, $state, leadService) {
 
         const mashkanta = 0;
         const rechev = 1;
         const privateData = 0;
         const insuranceTypes = 1;
+
         $scope.format = 'dd/MM/yyyy';
         $scope.date = new Date();
         $scope.form = {};
@@ -35,6 +36,12 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
         };
 
         $scope.click = (index) => {
+            if (index === 3){
+                leadService.save($scope.form, $scope.insuranceForm)
+                .then( (done) => {
+                    swal('הפניה נרשמה');
+                })
+            }
             for (let i = 0 ; i < $scope.show.length ;i++  ) {
                 (i === index) ? $scope.show[i] = true : $scope.show[i] = false;
             }

@@ -2,7 +2,7 @@ var Nexmo = require('nexmo');
 
 var nexmo = new Nexmo({
     apiKey: 'd59e4113',
-    apiSecret: 'a69b90efa342eadd',
+    apiSecret: 'a69b90efa342eadd'
 }, {});
 
 var nexmoService = {};

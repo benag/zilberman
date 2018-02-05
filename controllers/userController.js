@@ -63,7 +63,8 @@ class userController {
         }
 
 
-        let existingUser = await User.findOne({phone:phone}).exec();
+        //let existingUser = await User.findOne({phone:phone}).exec();
+        let existingUser = false;
         // If user is not unique, return error
         if (existingUser) {
             //if (existingUser.phone !== phone) existingUser.phone = phone;
@@ -91,7 +92,8 @@ class userController {
         };
 
         let dbUser = _this.saveUser(user);
-
+        let randomCode = Math.floor(1000 + Math.random() * 9000);
+        let returnSMS = nexmo.sms(user.phone, 'Your code is ' + randomCode );
         //user.save(function(err, user) {
         //    if (err) { return next(err); }
         let userInfo = _this.setUserInfo(dbUser);
@@ -103,11 +105,11 @@ class userController {
 
     }
 
-    async findUer (id) {
-        return user;
+    async findUser (id) {
+        return {};
     }
     async saveUser (user) {
-        return dbUser;
+        return user;
     }
 
     async getUserByPhone (phone) {
