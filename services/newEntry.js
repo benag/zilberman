@@ -8,7 +8,7 @@ class newEntry {
     };
 
     async save (form) {
-        let gender = await mysql.query('SELECT * FROM tGender');
+        let gender = await this.sql.query('SELECT * FROM tGender');
         console.log(gender);
         //let result = await mysql.query(`INSERT INTO tClients (cTaz1, cTaz2, cName, cFamily, cGender, cMobile, cPhone, cEmail, cBDate, cTazDate, cRemark, cSmoke, cQuitSmokeDate)`)
     }
