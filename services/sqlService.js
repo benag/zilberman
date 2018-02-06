@@ -2,7 +2,7 @@
 const sql = require('mssql');
 
 class sqlService {
-    constructor() {
+    async constructor() {
         if (sqlService.singelton) return sqlService.singelton;
         this.dbconfig = {
             user: 'lead_server',
@@ -12,6 +12,7 @@ class sqlService {
             database: 'ZIL_LEADS'
 
         };
+        this.pool = await sql.connect(this.dbconfig);
         sql.on('error', err => {
             console.log(err);
         });
@@ -22,11 +23,10 @@ class sqlService {
     }
     async query ( statement )  {
         try {
-            let pool = await sql.connect(this.dbconfig);
-            let result1 = await pool.request()
+            let result1 = await this.pool.request()
                 .query(statement);
 
-            console.log(result1)
+            console.log(result1);
             return result1;
 
         } catch (err) {
