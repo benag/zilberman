@@ -12,7 +12,7 @@ class sqlService {
             database: 'ZIL_LEADS'
 
         };
-        this.pool = this.init();
+
         sql.on('error', err => {
             console.log(err);
         });
@@ -21,12 +21,13 @@ class sqlService {
         return sqlService.singleton;
 
     }
-    async init () {
-        let pool = await sql.connect(this.dbconfig);
-        return pool;
-    }
+    //async init () {
+    //    let pool = await sql.connect(this.dbconfig);
+    //    return pool;
+    //}
     async query ( statement )  {
         try {
+            if (!this.pool) this.pool = await sql.connect(this.dbconfig);
             let result1 = await this.pool.request()
                 .query(statement);
 
