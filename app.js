@@ -219,7 +219,7 @@ app.post('/profile', upload.single('file'), function (req, res, next) {
 
 });
 
-app.post('/save', (req, res) => {
+app.post('save', (req, res) => {
     newEntry.save(req.body.form);
 });
 
