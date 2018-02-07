@@ -156,7 +156,7 @@
                         </div>
                         <div class="row line-distance">
                             <div class="col-md-2">
-                                <select class="zilberman-dropdown" ng-model="insuranceForm.smoking" placeholder="עישון" name="smoking" required>
+                                <select class="zilberman-dropdown" ng-model="form.smoking" placeholder="עישון" name="smoking" required>
                                     <option value="" disabled selected>האם עישנת בעבר?</option>
                                     <option value="0">כן</option>
                                     <option value="1">ולא עישנתי בעבר</option>
@@ -174,19 +174,19 @@
                             </div>
                         </div>
                         <div ng-show="form.mate.id" class="row line-distance">
-                            <select class="zilberman-dropdown" ng-model="insuranceForm.mate.smoking" placeholder="עישון" name="smoking-mate" required>
+                            <select class="zilberman-dropdown" ng-model="form.mate.smoking" placeholder="עישון" name="smoking-mate" required>
                                 <option value="" disabled selected> האם בת הזוג עשנ בעבר?</option>
                                 <option value="0">כן</option>
                                 <option value="1">ולא עישנתי בעבר</option>
                                 <option value="2">הפסקתי לעשן</option>
                             </select>
-                            <div class="col-md-3" ng-show="insuranceForm.mate.smoking === '2'">
+                            <div class="col-md-3" ng-show="form.mate.smokingDate === '2'">
                                 <input placeholder="תאריך הפסקה" class="zilberman-date" type="text" onfocus="(this.type='date', this.placeholder='')" onblur="(this.type='text', this.placeholder='תאריך הפסקה')" ng-model="form.mate.smokingDate" id="date">
                             </div>
                         </div>
                         <div class="row line-distance">
                             <div class="col-md-2">
-                                <select class="zilberman-dropdown" ng-model="insuranceForm.asset" placeholder="סוג הנכס" name="asset-type" required>
+                                <select class="zilberman-dropdown" ng-model="form.insuranceForm.morgage.assetType" placeholder="סוג הנכס" name="asset-type" required>
                                     <option value="" disabled selected> סוג הנכס</option>
                                     <option value="0">בתהליך בנייה</option>
                                     <option value="1">בית משותף</option>
@@ -195,19 +195,19 @@
                             </div>
 
                             <div ng-show="insuranceForm.asset === '1'" class="col-md-1">
-                                <input class="zilberman-input" placeholder="קומה" ng-model="insuranceForm.store">
+                                <input class="zilberman-input" placeholder="קומה" ng-model="form.insuranceForm.morgage.floor">
                             </div>
                             <div ng-show="insuranceForm.asset === '1'" class="col-md-1">
-                                <input class="zilberman-input" placeholder="מתוך" ng-model="insuranceForm.fromstore">
+                                <input class="zilberman-input" placeholder="מתוך" ng-model="form.insuranceForm.morgage.outOfFloor">
                             </div>
                             <div class="col-md-2">
-                                <input class="zilberman-input" placeholder="שטח בנוי במר" ng-model="insuranceForm.area">
+                                <input class="zilberman-input" placeholder="שטח בנוי במר" ng-model="form.insuranceForm.morgage.surface">
                             </div>
                             <div class="col-md-2">
-                                <input class="zilberman-input" placeholder="עלות בנייה" ng-model="insuranceForm.price">
+                                <input class="zilberman-input" placeholder="עלות בנייה" ng-model="form.insuranceForm.morgage.cost">
                             </div>
                             <div class="col-md-2">
-                                <input class="zilberman-input" placeholder="שוווי נכס" ng-model="insuranceForm.worth">
+                                <input class="zilberman-input" placeholder="שוווי נכס" ng-model="form.insuranceForm.morgage.value">
                             </div>
 
                         </div>
@@ -227,12 +227,12 @@
                                 <!--<input class="zilberman-input" placeholder="תז" ng-model="4">-->
                             </div>
                         </div>
-                        <div ng-repeat="car in cars track by $index" class="row line-distance">
+                        <div ng-repeat="car in form.insuranceForm.cars track by $index" class="row line-distance">
 
                             <div class="col-md-3">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <select class="zilberman-dropdown" ng-model="insuranceForm.manufacture" placeholder="יצרן" name="asset-type" required>
+                                        <select class="zilberman-dropdown" ng-model="form.insuranceForm.cars[$index].manufacture" placeholder="יצרן" name="asset-type" required>
                                             <option value="" disabled selected>יצרן</option>
                                             <option value="1">אאודי</option>
                                             <option value="227">אברת'</option>
@@ -293,7 +293,7 @@
                                         </select>
                                     </div>
                                     <div class="col-md-6">
-                                        <select class="zilberman-dropdown" ng-model="insuranceForm.manDate" placeholder="יצרן" name="asset-type" required>
+                                        <select class="zilberman-dropdown" ng-model="form.insuranceForm.cars[$index].manDate" placeholder="יצרן" name="asset-type" required>
                                             <option value="" disabled selected>שנת ייצור</option>
                                             <option value="2018">2018</option>
                                             <option value="2017">2017</option>
@@ -351,17 +351,17 @@
 
                             <div class="col-md-2">
                                 <datepicker date-format="dd/MM/yyyy">
-                                    <input placeholder="תאריך חידוש" class="zilberman-date" type="text" ng-model="form.car.renue" id="date5">
+                                    <input placeholder="תאריך חידוש" class="zilberman-date" type="text" ng-model="form.insuranceForm.cars[$index].renue" id="date5">
                                 </datepicker>
 
                             </div>
                             <div class="col-md-3">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <input class="zilberman-input" placeholder="פרמיית חובה" ng-model="insuranceForm.car.must">
+                                        <input class="zilberman-input" placeholder="פרמיית חובה" ng-model="form.insuranceForm.cars[$index].must">
                                     </div>
                                     <div class="col-md-6">
-                                        <input class="zilberman-input" placeholder="פרמיית מקיף" ng-model="insuranceForm.car.around">
+                                        <input class="zilberman-input" placeholder="פרמיית מקיף" ng-model="form.insuranceForm.car.around">
                                     </div>
                                 </div>
                             </div>
@@ -369,7 +369,7 @@
                                 <div class="row">
 
                                     <div class="col-md-10">
-                                        <input class="zilberman-input" placeholder="מספר תביעות ב 3 שנים אחרונות" ng-model="insuranceForm.car.numsues">
+                                        <input class="zilberman-input" placeholder="מספר תביעות ב 3 שנים אחרונות" ng-model="form.insuranceForm.cars[$index].numsues">
                                     </div>
                                     <div class="col-md-2">
                                         <i style="cursor:pointer;" ng-click="omitCar($index)" class="material-icons">delete_sweep</i>
@@ -406,7 +406,7 @@
                         </div>
                         <div class="row line-distance">
                             <div class="col-md-3">
-                                <select class="zilberman-dropdown" ng-model="insuranceForm.dira" placeholder="עישון" name="smoking" required>
+                                <select class="zilberman-dropdown" ng-model="form.insuranceForm.dira.diraType" placeholder="עישון" name="smoking" required>
                                     <option value="" disabled selected>סוג מבנה</option>
                                     <option value="0">מבנה+תכולה</option>
                                     <option value="1">מבנה</option>

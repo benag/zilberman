@@ -10,15 +10,17 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
         $scope.date = new Date();
         $scope.form = {};
         $scope.form.mate = {};
-        $scope.form.id ='' ;
-        $scope.form.gender = '';
 
         $scope.show = [true,false,false,false];
         $scope.insurance = [false,false,false,false];
-        $scope.insuranceForm = {};
-        $scope.insuranceForm.mate = {};
-        $scope.insuranceForm.dira = {};
-        $scope.cars = [{}];
+        $scope.form.insuranceForm = {};
+        $scope.form.insuranceForm.morgage = {};
+        $scope.form.insuranceForm.cars = [{}];
+        $scope.form.insuranceForm.mate = {};
+        $scope.form.insuranceForm.dira = {};
+        $scope.form.insuranceForm.prati = {};
+
+
 
         $scope.add = () => {
             if ($scope.cars.length <= 3) $scope.cars.push({});
@@ -28,15 +30,22 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
             for (let i = 0 ; i < $scope.insurance.length ;i++  ) {
                 (i === index) ? $scope.insurance[i] = true : $scope.insurance[i] = false;
             }
-            $scope.insuranceForm = {};
+            $scope.form.type = index;
+            //$scope.form.insuranceForm  = {};
         };
-
+        $scope.convertType = () => {
+            if ($scope.form.type === 0) $scope.form.type = 1;
+            if ($scope.form.type === 1) $scope.form.type = 3;
+            if ($scope.form.type === 2) $scope.form.type = 4;
+            if ($scope.form.type === 3) $scope.form.type = 2;
+        };
         $scope.omitCar = (index) => {
             $scope.cars.splice(index,1);
         };
 
         $scope.click = (index) => {
             if (index === 3){
+                $scope.convertType();
                 leadService.save($scope.form)
                 .then( (done) => {
                     swal('הפניה נרשמה');
