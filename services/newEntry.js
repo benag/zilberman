@@ -24,7 +24,7 @@ class newEntry {
                 VALUES ( '${cTaz1}' , '${cTaz2}', '${cName}', '${cFamily}', 1 , '${cMobile}','${cPhone}','${cEmail}', ${cBDate}, ${cTazDate}, '${cRemark}', 1, ${cQuitSmokeDate} )`;
 
         let newClient = await this.sql.query(insert);
-        return newClient;
+        return cTaz1;
     }
 
     async updateClient () {
@@ -52,7 +52,7 @@ class newEntry {
                 //TODO Fix claim count
                 let insert = `INSERT INTO tCarIns (carInsID, carTypeID, carYear, carRenewDate, carHovaPrem, carMekifPrem, carInsurer, claimsCount ) VALUES ( ${carid},'${carTypeID}' , '${carYear}', ${carRenewDate}, '${carHovaPrem}', '${carMekifPrem}','1',${claimsCount} )`;
                 let newCar = await this.sql.query(insert);
-                newCars.push(newCar);
+                newCars.push(carid);
                 returnObj.msg.push('נוצר מוצר מסוג רכב');
             }
             localStorage.setItem('carid', String(carid));
@@ -85,7 +85,7 @@ class newEntry {
                 VALUES ( ${id},'${pFloor}' , '${pOutOfFloor}', '${pSurface}', '${pBuildCost}','${pPropertyValue}')`;
         let newMorgage = await this.sql.query(insert);
         returnObj.msg.push('נוצר מוצר מסוג משכנתא');
-        return newMorgage;
+        return id;
 
     }
 
@@ -107,51 +107,79 @@ class newEntry {
 
     async createProduct( client, type, car, morgage, prati, dira, isloan,  loan, returnObj) {
 
+        let pID, pCli1, pCli2, pType, propertyID, loanID, pratInsID, carInsID;
+
+        let pid = (localStorage.getItem('pid'));
+        pid = parseInt(pid);
+        if (pid !== undefined && pid !== NaN) {
+            pid++;
+            localStorage.setItem('pid', String(pid));
+        }else{
+            pid = 0 ;
+            localStorage.setItem('pid', '0');
+        }
+
+        let insert = `INSERT INTO tProducts (pID, pCli1, pCli2, pType, propertyID, loanID, pratInsID, carInsID)
+                VALUES (${pid},'${client}','${client}',${type}, ${morgage},${loan},${prati},${car[0]} )`;
+        let newProduct = await this.sql.query(insert);
+
+        return newProduct;
+
+
+
+    }
+
+    async getProducts () {
+
+        let query = 'SELECT * FROM tProducts';
+        let products = await this.sql.query(query);
+        return products;
+
     }
 
     async save (form) {
 
         let returnObj = {status:true, msg:[]};
         await this.createOrUpdateCar(form, returnObj);
-        //let client, car, morgage, prati, dira, loan;
-        //try{
-        //    if (!form.id) {
-        //        returnObj.status = false;
-        //        returnObj.msg.push('חסר תעודת זהות');
-        //        return returnObj;
-        //    }
-        //
-        //
-        //    let clients = await this.sql.query("SELECT * FROM tClients");
-        //    console.log(clients);
-        //    client = await this.sql.query("SELECT * FROM tClients WHERE cTaz1 = " + form.id);
-        //    if (client.recordset.length > 0) {
-        //        client = await this.updateClient(client.recordset[0], form);
-        //        returnObj.msg.push('לקוח עודכן במערכת');
-        //    }else {
-        //        client = await this.createClient(form);
-        //        returnObj.msg.push('לקוח נוצר במערכת');
-        //    }
-        //
-        //    if (client){
-        //        let type = form.type;
-        //        if (type === this.CAR) car = await this.createOrUpdateCar( form, returnObj );
-        //        if (type === this.MORGAGE) morgage = await this.createOrUpdateMorgage( form, returnObj );
-        //        if (type === this.PRAT) prati =await this.createOrUpdatePart( form, returnObj );
-        //        if (type === this.DIRA) dira = await this.createOrUpdateDira( form, returnObj );
-        //    }
-        //    if (form.loan) loan = this.createOrUpdateLoan( form, returnObj );
-        //
-        //    await this.createProduct(client, type, car, morgage, prati, dira, form.loan,  loan, returnObj);
-        //
-        //    return returnObj;
+        let client = null, cars = null, morgage = null, prati = null, dira = null, loan = null;
+        try{
+            if (!form.id) {
+                returnObj.status = false;
+                returnObj.msg.push('חסר תעודת זהות');
+                return returnObj;
+            }
 
-        //
-        //
-        //}catch(err){
-        //    returnObj.status = false;
-        //    returnObj.msg.push('תקלה בשמירת הפניה');
-        //}
+
+            let clients = await this.sql.query("SELECT * FROM tClients");
+            console.log(clients);
+            client = await this.sql.query("SELECT * FROM tClients WHERE cTaz1 = " + form.id);
+            if (client.recordset.length > 0) {
+                client = await this.updateClient(client.recordset[0], form);
+                returnObj.msg.push('לקוח עודכן במערכת');
+            }else {
+                client = await this.createClient(form);
+                returnObj.msg.push('לקוח נוצר במערכת');
+            }
+
+            if (client){
+                let type = form.type;
+                if (type === this.CAR) cars = await this.createOrUpdateCar( form, returnObj );
+                if (type === this.MORGAGE) morgage = await this.createOrUpdateMorgage( form, returnObj );
+                if (type === this.PRAT) prati =await this.createOrUpdatePart( form, returnObj );
+                if (type === this.DIRA) dira = await this.createOrUpdateDira( form, returnObj );
+            }
+            if (form.loan) loan = this.createOrUpdateLoan( form, returnObj );
+
+            await this.createProduct(client, type, cars, morgage, prati, dira, form.loan,  loan, returnObj);
+
+            return returnObj;
+
+
+
+        }catch(err){
+            returnObj.status = false;
+            returnObj.msg.push('תקלה בשמירת הפניה');
+        }
 
         return returnObj;
 
