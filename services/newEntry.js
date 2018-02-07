@@ -49,7 +49,7 @@ class newEntry {
                 carid++;
                 let carTypeID = 1, carYear = car.manDate, carRenewDate = car.renue, carHovaPrem = car.must, carMekifPrem = car.around, carInsurer = 'טסט', claimsCount = car.numsues;
                 let insert = `INSERT INTO tProperty (carInsID, carTypeID, carYear, carRenewDate, carHovaPrem, carMekifPrem, carInsurer, claimsCount )
-                VALUES ( ${carid},'${carTypeID}' , '${carYear}', '${carRenewDate}', '${carHovaPrem}', '${carMekifPrem}','${carInsurer}',')`;
+                VALUES ( ${carid},'${carTypeID}' , '${carYear}', '${carRenewDate}', '${carHovaPrem}', '${carMekifPrem}','${carInsurer}','${claimsCount}')`;
                 let newCar = await this.sql.query(insert);
                 newCars.push(newCar);
                 returnObj.msg.push('נוצר מוצר מסוג רכב');
