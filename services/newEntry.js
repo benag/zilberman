@@ -58,7 +58,7 @@ class newEntry {
 
         let id = (localStorage.getItem('id'));
         id = parseInt(id);
-        if (id) {
+        if (id !== undefined && id !== NaN) {
             id++;
             localStorage.setItem('id', String(id));
         }else{
