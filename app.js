@@ -219,8 +219,10 @@ app.post('/profile', upload.single('file'), function (req, res, next) {
 
 });
 
-app.post('/save', function(req, res) {
-    newEntry.save(req.body.form);
+app.post('/save', async function(req, res) {
+    let result = await newEntry.save(req.body.form);
+    if (!result) res.status(400);
+    res.json.(result);
 });
 
 app.get('/callback',
