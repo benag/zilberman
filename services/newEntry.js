@@ -6,7 +6,7 @@ class newEntry {
 
     constructor(){
         this.sql = new mysql();
-        this.CAR = 2;
+        this.CAR = 3;
         this.MORGAGE = 1;
         this.PRAT = 2;
         this.DIRA = 4;
