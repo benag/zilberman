@@ -54,7 +54,7 @@ class newEntry {
 
     async createOrUpdateMorgage(form, returnObj) {
 
-        let morgage = form.insuranceForm.morgage, pFloor = morgage.floor || null, pOutOfFloor = morgage.outOfFloor || null, pSurface = morgage.surface || null, pBuildCost = morgage.cost || null, pPropertyValue = morgage.value || null;
+        let morgage = form.insuranceForm.morgage, pFloor = morgage.floor || 0, pOutOfFloor = morgage.outOfFloor || 0, pSurface = morgage.surface || 0, pBuildCost = morgage.cost || 0, pPropertyValue = morgage.value || 0;
         let insert = `INSERT INTO tProperty (pFloor, pOutOfFloor, pSurface, pBuildCost, pPropertyValue)
                 VALUES ( '${pFloor}' , '${pOutOfFloor}', '${pSurface}', '${pBuildCost}','${pPropertyValue}')`;
         let newMorgage = await this.sql.query(insert);
@@ -73,6 +73,7 @@ class newEntry {
     }
 
     async createOrUpdateLoan(form, returnObj) {
+
 
     }
 
