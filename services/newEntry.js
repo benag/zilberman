@@ -56,7 +56,8 @@ class newEntry {
 
     async createOrUpdateMorgage(form, returnObj) {
 
-        let id = Integer(localStorage.getItem('id'));
+        let id = (localStorage.getItem('id'));
+        id = parseInt(id);
         if (id) {
             id++;
             localStorage.setItem('id', id);
