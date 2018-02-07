@@ -23,7 +23,7 @@ class newEntry {
         //}else{// new client
             let cTaz1 = form.id || '', cTaz2 = form.mate.id || '09', cName = form.firstName || '', cFamily = form.lastName || '', cGender = form.gender || '',
                 cMobile = form.mobile || '', cPhone = form.phone || '', cEmail = form.email || '', cBDate = form.birthdate || null,
-                cTazDate= form.iddate || null, cRemark ='' || '', cSmoke = 0 || 0, cQuitSmokeDate = '' || '01/01/1900';
+                cTazDate= form.iddate || null, cRemark ='' || '', cSmoke = 0 || 0, cQuitSmokeDate = '' || undefined;
             //let insert = `INSERT INTO tClients (cTaz1, cTaz2, cName, cFamily, cGender, cMobile, cPhone, cEmail,cBDate, cTazDate, cRemark, cSmoke, cQuitSmokeDate)
             //    VALUES ( ${cTaz1} , ${cTaz2}, ${cName}, ${cFamily}, ${cGender} , ${cMobile}, ${cPhone}, ${cEmail}, ${cTazDate}, ${cRemark}, ${cSmoke}, ${cQuitSmokeDate} )`;
             let insert = `INSERT INTO tClients (cTaz1, cTaz2, cName, cFamily, cGender, cMobile, cPhone, cEmail, cBDate, cTazDate,cRemark, cSmoke, cQuitSmokeDate)
