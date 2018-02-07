@@ -78,8 +78,6 @@ class newEntry {
             id = 0 ;
             localStorage.setItem('id', '0');
         }
-
-        console.log();
         let morgage = form.insuranceForm.morgage, pFloor = morgage.floor || 0, pOutOfFloor = morgage.outOfFloor || 0, pSurface = morgage.surface || 0, pBuildCost = morgage.cost || 0, pPropertyValue = morgage.value || 0;
         let insert = `INSERT INTO tProperty (propertyID, pFloor, pOutOfFloor, pSurface, pBuildCost, pPropertyValue)
                 VALUES ( ${id},'${pFloor}' , '${pOutOfFloor}', '${pSurface}', '${pBuildCost}','${pPropertyValue}')`;
@@ -125,8 +123,6 @@ class newEntry {
 
         return newProduct;
 
-
-
     }
 
     async getProducts () {
@@ -149,9 +145,6 @@ class newEntry {
                 return returnObj;
             }
 
-
-            let clients = await this.sql.query("SELECT * FROM tClients");
-            console.log(clients);
             client = await this.sql.query("SELECT * FROM tClients WHERE cTaz1 = " + form.id);
             if (client.recordset.length > 0) {
                 client = await this.updateClient(client.recordset[0], form);
@@ -170,11 +163,9 @@ class newEntry {
             }
             if (form.loan) loan = this.createOrUpdateLoan( form, returnObj );
 
-            await this.createProduct(client, type, cars, morgage, prati, dira, form.loan,  loan, returnObj);
+            await this.createProduct(client, form.type, cars, morgage, prati, dira, form.loan,  loan, returnObj);
 
             return returnObj;
-
-
 
         }catch(err){
             returnObj.status = false;
