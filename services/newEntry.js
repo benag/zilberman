@@ -71,7 +71,7 @@ class newEntry {
 
         let id = (localStorage.getItem('id'));
         id = parseInt(id);
-        if (id !== undefined && id !== NaN) {
+        if (id !== undefined && !isNaN(id)) {
             id++;
             localStorage.setItem('id', String(id));
         }else{
@@ -109,7 +109,7 @@ class newEntry {
 
         let pid = (localStorage.getItem('pid'));
         pid = parseInt(pid);
-        if (pid !== undefined && pid !== NaN) {
+        if (pid !== undefined && !isNaN(pid)) {
             pid++;
             localStorage.setItem('pid', String(pid));
         }else{
