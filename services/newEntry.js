@@ -6,10 +6,10 @@ class newEntry {
 
     constructor(){
         this.sql = new mysql();
-        this.CAR = 3;
-        this.MORGAGE = 1;
-        this.PRAT = 2;
-        this.DIRA = 4;
+        this.CAR = 1;
+        this.MORGAGE = 0;
+        this.PRAT = 3;
+        this.DIRA = 2;
     };
 
     async createClient(form) {

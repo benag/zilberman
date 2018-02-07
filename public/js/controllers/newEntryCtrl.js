@@ -33,31 +33,31 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
             $scope.form.type = index;
             //$scope.form.insuranceForm  = {};
         };
-        $scope.convertType = () => {
-            if ($scope.form.type === 0){
-                $scope.form.type = 1;
-                return;
-            }
-            if ($scope.form.type === 1){
-                $scope.form.type = 3;
-                return;
-            }
-            if ($scope.form.type === 2){
-                $scope.form.type = 4;
-                return;
-            }
-            if ($scope.form.type === 3) {
-                $scope.form.type = 2;
-                return;
-            }
-        };
+        //$scope.convertType = () => {
+        //    if ($scope.form.type === 0){
+        //        $scope.form.type = 1;
+        //        return;
+        //    }
+        //    if ($scope.form.type === 1){
+        //        $scope.form.type = 3;
+        //        return;
+        //    }
+        //    if ($scope.form.type === 2){
+        //        $scope.form.type = 4;
+        //        return;
+        //    }
+        //    if ($scope.form.type === 3) {
+        //        $scope.form.type = 2;
+        //        return;
+        //    }
+        //};
         $scope.omitCar = (index) => {
             $scope.cars.splice(index,1);
         };
 
         $scope.click = (index) => {
             if (index === 3){
-                $scope.convertType();
+                //$scope.convertType();
                 leadService.save($scope.form)
                 .then( (done) => {
                     swal('הפניה נרשמה');
