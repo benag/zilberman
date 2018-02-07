@@ -50,7 +50,7 @@ class newEntry {
                 let carTypeID = 1, carYear = car.manDate || '1900', carRenewDate = car.renue || '01/01/1900', carHovaPrem = car.must || 0, carMekifPrem = car.around || 0, carInsurer = 'טסט',
                     claimsCount = car.numsues || 0;
                 //TODO Fix claim count
-                let insert = `INSERT INTO tCarIns (carInsID, carTypeID, carYear, carRenewDate, carHovaPrem, carMekifPrem, carInsurer, claimsCount ) VALUES ( ${carid},'${carTypeID}' , '${carYear}', '${carRenewDate}', '${carHovaPrem}', '${carMekifPrem}','${carInsurer}',${claimsCount} )`;
+                let insert = `INSERT INTO tCarIns (carInsID, carTypeID, carYear, carRenewDate, carHovaPrem, carMekifPrem, carInsurer, claimsCount ) VALUES ( ${carid},'${carTypeID}' , '${carYear}', ${carRenewDate}, '${carHovaPrem}', '${carMekifPrem}','${carInsurer}',${claimsCount} )`;
                 let newCar = await this.sql.query(insert);
                 newCars.push(newCar);
                 returnObj.msg.push('נוצר מוצר מסוג רכב');
