@@ -54,9 +54,9 @@ class newEntry {
 
     async createOrUpdateMorgage(form, returnObj) {
 
-        let morgage = form.insuranceForm.morgage, pFloor = morgage.floor || '', pOutOfFloor = morgage.outOfFloor || '', pSurface = morgage.surface || '', pBuildCost = morgage.cost || '', pPropertyValue = morgage.value || '';
+        let morgage = form.insuranceForm.morgage, pFloor = morgage.floor || null, pOutOfFloor = morgage.outOfFloor || null, pSurface = morgage.surface || null, pBuildCost = morgage.cost || null, pPropertyValue = morgage.value || null;
         let insert = `INSERT INTO tProperty (pFloor, pOutOfFloor, pSurface, pBuildCost, pPropertyValue)
-                VALUES ( '${pFloor}' , '${cTaz2}', '${pOutOfFloor}', '${pSurface}', '${pBuildCost}','${pPropertyValue}')`;
+                VALUES ( '${pFloor}' , '${pOutOfFloor}', '${pSurface}', '${pBuildCost}','${pPropertyValue}')`;
         let newMorgage = await this.sql.query(insert);
         returnObj.msg.push('נוצר מוצר מסוג משכנתא');
         return newMorgage;
