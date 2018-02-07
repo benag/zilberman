@@ -14,7 +14,7 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
         $scope.form.gender = '';
 
         $scope.show = [true,false,false,false];
-        $scope.insurance= [false,false,false,false];
+        $scope.insurance = [false,false,false,false];
         $scope.insuranceForm = {};
         $scope.insuranceForm.mate = {};
         $scope.insuranceForm.dira = {};
