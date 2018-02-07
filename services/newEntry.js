@@ -114,7 +114,7 @@ class newEntry {
 
             await createProduct(client, type, car, morgage, prati, dira, form.loan,  loan, returnObj);
 
-            return
+            return returnObj;
 
 
 
