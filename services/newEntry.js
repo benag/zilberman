@@ -32,10 +32,21 @@ class newEntry {
     }
     async createOrUpdateCar(form, returnObj) {
 
+        let carid = (localStorage.getItem('carid'));
+        carid = parseInt(carid);
+        if (carid !== undefined && carid !== NaN) {
+            carid++;
+            localStorage.setItem('carid', String(carid));
+        }else{
+            carid = 0 ;
+            localStorage.setItem('carid', '0');
+        }
+
         let newCars = [];
         try{
             let cars = form.insuranceForm.cars;
             for (let car of cars){
+                carid++;
                 let carTypeID = 1, carYear = car.manDate, carRenewDate = car.renue, carHovaPrem = car.must, carMekifPrem = car.around, carInsurer = 'טסט', claimsCount = car.numsues;
                 let insert = `INSERT INTO tProperty (carTypeID, carYear, carRenewDate, carHovaPrem, carMekifPrem, carInsurer, claimsCount )
                 VALUES ( '${carTypeID}' , '${carYear}', '${carRenewDate}', '${carHovaPrem}', '${carMekifPrem}','${carInsurer}',')`;
@@ -43,6 +54,7 @@ class newEntry {
                 newCars.push(newCar);
                 returnObj.msg.push('נוצר מוצר מסוג רכב');
             }
+            localStorage.setItem('carid', String(carid));
         }catch(err){
             returnObj.status = false;
         }
@@ -97,7 +109,7 @@ class newEntry {
     async save (form) {
 
         let returnObj = {status:true, msg:[]};
-        await this.createOrUpdateMorgage(form, returnObj);
+        await this.createOrUpdateCar(form, returnObj);
         //let client, car, morgage, prati, dira, loan;
         //try{
         //    if (!form.id) {
