@@ -16,7 +16,7 @@ class newEntry {
             return returnObj;
         }
 
-        //let gender = await this.sql.query('SELECT * FROM tGender');
+        let gender = await this.sql.query('SELECT * FROM tGender');
         //let client = await this.sql.query("SELECT * FROM tClients WHERE cTaz1 = " + form.id);
         //if (client.recordset.length > 0) { //client exist already
 
@@ -27,7 +27,7 @@ class newEntry {
             //let insert = `INSERT INTO tClients (cTaz1, cTaz2, cName, cFamily, cGender, cMobile, cPhone, cEmail,cBDate, cTazDate, cRemark, cSmoke, cQuitSmokeDate)
             //    VALUES ( ${cTaz1} , ${cTaz2}, ${cName}, ${cFamily}, ${cGender} , ${cMobile}, ${cPhone}, ${cEmail}, ${cTazDate}, ${cRemark}, ${cSmoke}, ${cQuitSmokeDate} )`;
             let insert = `INSERT INTO tClients (cTaz1, cTaz2, cName, cFamily, cGender, cMobile, cPhone, cEmail)
-                VALUES ( '${cTaz1}' , '${cTaz2}', '${cName}', '${cFamily}', ${cGender} , '${cMobile}','${cPhone}','${cEmail}' )`;
+                VALUES ( '038457867' , '038457867', 'ben', 'goldenberg', 1 , '0526749884','0526749884','goldenbergben@gmail.com' )`;
             let newClient = await this.sql.query(insert);
         //}
         console.log(gender);
