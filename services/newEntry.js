@@ -84,45 +84,46 @@ class newEntry {
     async save (form) {
 
         let returnObj = {status:true, msg:[]};
-        let client, car, morgage, prati, dira, loan;
-        try{
-            if (!form.id) {
-                returnObj.status = false;
-                returnObj.msg.push('חסר תעודת זהות');
-                return returnObj;
-            }
+        await createOrUpdateMorgage(form, returnObj);
+        //let client, car, morgage, prati, dira, loan;
+        //try{
+        //    if (!form.id) {
+        //        returnObj.status = false;
+        //        returnObj.msg.push('חסר תעודת זהות');
+        //        return returnObj;
+        //    }
+        //
+        //
+        //    let clients = await this.sql.query("SELECT * FROM tClients");
+        //    console.log(clients);
+        //    client = await this.sql.query("SELECT * FROM tClients WHERE cTaz1 = " + form.id);
+        //    if (client.recordset.length > 0) {
+        //        client = await this.updateClient(client.recordset[0], form);
+        //        returnObj.msg.push('לקוח עודכן במערכת');
+        //    }else {
+        //        client = await this.createClient(form);
+        //        returnObj.msg.push('לקוח נוצר במערכת');
+        //    }
+        //
+        //    if (client){
+        //        let type = form.type;
+        //        if (type === this.CAR) car = await this.createOrUpdateCar( form, returnObj );
+        //        if (type === this.MORGAGE) morgage = await this.createOrUpdateMorgage( form, returnObj );
+        //        if (type === this.PRAT) prati =await this.createOrUpdatePart( form, returnObj );
+        //        if (type === this.DIRA) dira = await this.createOrUpdateDira( form, returnObj );
+        //    }
+        //    if (form.loan) loan = this.createOrUpdateLoan( form, returnObj );
+        //
+        //    await this.createProduct(client, type, car, morgage, prati, dira, form.loan,  loan, returnObj);
+        //
+        //    return returnObj;
 
-
-            let clients = await this.sql.query("SELECT * FROM tClients");
-            console.log(clients);
-            client = await this.sql.query("SELECT * FROM tClients WHERE cTaz1 = " + form.id);
-            if (client.recordset.length > 0) {
-                client = await this.updateClient(client.recordset[0], form);
-                returnObj.msg.push('לקוח עודכן במערכת');
-            }else {
-                client = await this.createClient(form);
-                returnObj.msg.push('לקוח נוצר במערכת');
-            }
-
-            if (client){
-                let type = form.type;
-                if (type === this.CAR) car = await this.createOrUpdateCar( form, returnObj );
-                if (type === this.MORGAGE) morgage = await this.createOrUpdateMorgage( form, returnObj );
-                if (type === this.PRAT) prati =await this.createOrUpdatePart( form, returnObj );
-                if (type === this.DIRA) dira = await this.createOrUpdateDira( form, returnObj );
-            }
-            if (form.loan) loan = this.createOrUpdateLoan( form, returnObj );
-
-            await this.createProduct(client, type, car, morgage, prati, dira, form.loan,  loan, returnObj);
-
-            return returnObj;
-
-
-
-        }catch(err){
-            returnObj.status = false;
-            returnObj.msg.push('תקלה בשמירת הפניה');
-        }
+        //
+        //
+        //}catch(err){
+        //    returnObj.status = false;
+        //    returnObj.msg.push('תקלה בשמירת הפניה');
+        //}
 
         return returnObj;
 
