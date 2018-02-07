@@ -40,6 +40,13 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
                 leadService.save($scope.form)
                 .then( (done) => {
                     swal('הפניה נרשמה');
+                }).catch( (err) =>{
+                    swal({
+                        type: 'error',
+                        title: 'Oops...',
+                        text: 'הייתה בעיה ברישום',
+                        footer: ''
+                    });
                 })
             }else{
                 for (let i = 0 ; i < $scope.show.length ;i++  ) {

@@ -220,9 +220,14 @@ app.post('/profile', upload.single('file'), function (req, res, next) {
 });
 
 app.post('/save', async function(req, res) {
-    let result = await newEntry.save(req.body.form);
-    if (!result) res.status(400);
-    res.json(result);
+    try{
+        let result = await newEntry.save(req.body.form);
+        res.json(result);
+    }catch(err){
+        res.status(400);
+
+    }
+
 });
 
 app.get('/callback',
