@@ -99,7 +99,7 @@ class newEntry {
                 client = await this.updateClient(client.recordset[0], form);
                 returnObj.msg.push('לקוח עודכן במערכת');
             }else {
-                client = await this.createClient();
+                client = await this.createClient(form);
                 returnObj.msg.push('לקוח נוצר במערכת');
             }
 
