@@ -51,7 +51,8 @@ class newEntry {
                     claimsCount = car.numsues || 0;
                 //TODO Fix claim count
                 //let insert = `INSERT INTO tProperty (carInsID, carTypeID, carYear, carRenewDate, carHovaPrem, carMekifPrem, carInsurer, claimsCount ) VALUES ( ${carid},'${carTypeID}' , '${carYear}', '${carRenewDate}', '${carHovaPrem}', '${carMekifPrem}','${carInsurer}','0' )`;
-                let insert = `INSERT INTO tProperty (carInsID, carTypeID, carYear, carRenewDate, carHovaPrem, carMekifPrem, carInsurer, claimsCount) VALUES ( ${carid},'${carTypeID}' , '${carYear}', '${carRenewDate}', '${carHovaPrem}', '${carMekifPrem}',1,0 )`;
+                //let insert = `INSERT INTO tProperty (carInsID, carTypeID, carYear, carRenewDate, carHovaPrem, carMekifPrem, carInsurer, claimsCount) VALUES ( ${carid},'${carTypeID}' , '${carYear}', '${carRenewDate}', '${carHovaPrem}', '${carMekifPrem}',1,0 )`;
+                let insert = `INSERT INTO tProperty (carInsID, carTypeID, carYear, carRenewDate, carHovaPrem, carMekifPrem, carInsurer, claimsCount) VALUES ( ${carid},'1' , '1900', '01/01/1900', '10', '10',1,0 )`;
                 let newCar = await this.sql.query(insert);
                 newCars.push(newCar);
                 returnObj.msg.push('נוצר מוצר מסוג רכב');
