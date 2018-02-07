@@ -10,7 +10,7 @@ class newEntry {
     async save (form) {
         let gender = await this.sql.query('SELECT * FROM tGender');
         let client = await this.sql.query("SELECT * FROM tClients WHERE cTaz1 = " + form.id);
-        if (client) { //client exist already
+        if (client.recordset.length > 0) { //client exist already
 
         }else{// new client
             //cTaz1, zTaz2, cName, cFamily,
