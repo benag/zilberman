@@ -96,23 +96,23 @@ class newEntry {
             console.log(clients);
             client = await this.sql.query("SELECT * FROM tClients WHERE cTaz1 = " + form.id);
             if (client.recordset.length > 0) {
-                client = updateClient(client.recordset[0], form);
+                client = this.updateClient(client.recordset[0], form);
                 returnObj.msg.push('לקוח עודכן במערכת');
             }else {
-                client = createClient();
+                client = this.createClient();
                 returnObj.msg.push('לקוח נוצר במערכת');
             }
 
             if (client){
                 let type = form.type;
-                if (type === this.CAR) car = await createOrUpdateCar( form, returnObj );
-                if (type === this.MORGAGE) morgage = await createOrUpdateMorgage( form, returnObj );
-                if (type === this.PRAT) prati =await createOrUpdatePart( form, returnObj );
-                if (type === this.DIRA) dira = await createOrUpdateDira( form, returnObj );
+                if (type === this.CAR) car = await this.createOrUpdateCar( form, returnObj );
+                if (type === this.MORGAGE) morgage = await this.createOrUpdateMorgage( form, returnObj );
+                if (type === this.PRAT) prati =await this.createOrUpdatePart( form, returnObj );
+                if (type === this.DIRA) dira = await this.createOrUpdateDira( form, returnObj );
             }
-            if (form.loan) loan = createOrUpdateLoan( form, returnObj );
+            if (form.loan) loan = this.createOrUpdateLoan( form, returnObj );
 
-            await createProduct(client, type, car, morgage, prati, dira, form.loan,  loan, returnObj);
+            await this.createProduct(client, type, car, morgage, prati, dira, form.loan,  loan, returnObj);
 
             return returnObj;
 
