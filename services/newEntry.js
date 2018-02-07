@@ -60,16 +60,16 @@ class newEntry {
         id = parseInt(id);
         if (id) {
             id++;
-            localStorage.setItem('id', id);
+            localStorage.setItem('id', String(id));
         }else{
             id = 0 ;
-            localStorage.setItem(id, '0');
+            localStorage.setItem('id', '0');
         }
 
         console.log();
         let morgage = form.insuranceForm.morgage, pFloor = morgage.floor || 0, pOutOfFloor = morgage.outOfFloor || 0, pSurface = morgage.surface || 0, pBuildCost = morgage.cost || 0, pPropertyValue = morgage.value || 0;
         let insert = `INSERT INTO tProperty (propertyID, pFloor, pOutOfFloor, pSurface, pBuildCost, pPropertyValue)
-                VALUES ( ${id},${pFloor}' , '${pOutOfFloor}', '${pSurface}', '${pBuildCost}','${pPropertyValue}')`;
+                VALUES ( ${id},'${pFloor}' , '${pOutOfFloor}', '${pSurface}', '${pBuildCost}','${pPropertyValue}')`;
         let newMorgage = await this.sql.query(insert);
         returnObj.msg.push('נוצר מוצר מסוג משכנתא');
         return newMorgage;
