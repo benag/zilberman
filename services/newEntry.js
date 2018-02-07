@@ -98,7 +98,9 @@ class newEntry {
     }
 
     async createOrUpdateLoan(form, returnObj) {
-
+        //form.borrow.sum
+        //form.borrow.intrest
+        //form.borrow.years
 
     }
 

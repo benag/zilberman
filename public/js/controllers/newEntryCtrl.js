@@ -14,6 +14,7 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
         $scope.show = [true,false,false,false];
         $scope.insurance = [false,false,false,false];
         $scope.form.insuranceForm = {};
+        $scope.form.borrow = {};
         $scope.form.insuranceForm.morgage = {};
         $scope.form.insuranceForm.cars = [{}];
         $scope.form.insuranceForm.mate = {};
