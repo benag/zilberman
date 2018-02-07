@@ -96,10 +96,10 @@ class newEntry {
             console.log(clients);
             client = await this.sql.query("SELECT * FROM tClients WHERE cTaz1 = " + form.id);
             if (client.recordset.length > 0) {
-                client = this.updateClient(client.recordset[0], form);
+                client = await this.updateClient(client.recordset[0], form);
                 returnObj.msg.push('לקוח עודכן במערכת');
             }else {
-                client = this.createClient();
+                client = await this.createClient();
                 returnObj.msg.push('לקוח נוצר במערכת');
             }
 
