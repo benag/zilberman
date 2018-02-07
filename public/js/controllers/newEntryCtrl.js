@@ -34,10 +34,22 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
             //$scope.form.insuranceForm  = {};
         };
         $scope.convertType = () => {
-            if ($scope.form.type === 0) $scope.form.type = 1;
-            if ($scope.form.type === 1) $scope.form.type = 3;
-            if ($scope.form.type === 2) $scope.form.type = 4;
-            if ($scope.form.type === 3) $scope.form.type = 2;
+            if ($scope.form.type === 0){
+                $scope.form.type = 1;
+                return;
+            }
+            if ($scope.form.type === 1){
+                $scope.form.type = 3;
+                return;
+            }
+            if ($scope.form.type === 2){
+                $scope.form.type = 4;
+                return;
+            }
+            if ($scope.form.type === 3) {
+                $scope.form.type = 2;
+                return;
+            }
         };
         $scope.omitCar = (index) => {
             $scope.cars.splice(index,1);
