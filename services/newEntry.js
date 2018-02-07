@@ -105,6 +105,8 @@ class newEntry {
 
     async createProduct( client, type, car, morgage, prati, dira, isloan,  loan, returnObj) {
 
+        let clients = await this.getClients();
+        console.log(clients);
         let pID, pCli1, pCli2, pType, propertyID, loanID, pratInsID, carInsID;
 
         let pid = (localStorage.getItem('pid'));
@@ -133,6 +135,11 @@ class newEntry {
 
     }
 
+    async getClients() {
+        let query = 'SELECT * FROM tClients';
+        let clients = await this.sql.query(query);
+        return clients;
+    }
     async save (form) {
 
         let returnObj = {status:true, msg:[]};

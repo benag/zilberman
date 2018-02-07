@@ -218,6 +218,14 @@ app.post('/profile', upload.single('file'), function (req, res, next) {
     }
 
 });
+app.get('/clients', async function(req, res){
+    try{
+        let result = await newEntry.getClients();
+        res.json(result);
+    }catch(err){
+        res.status(400);
+    }
+});
 
 app.post('/save', async function(req, res) {
     try{
