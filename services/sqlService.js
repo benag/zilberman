@@ -27,6 +27,7 @@ class sqlService {
     //}
     async query ( statement )  {
         try {
+            console.log(statement);
             if (!this.pool) this.pool = await sql.connect(this.dbconfig);
             let result1 = await this.pool.request()
                 .query(statement);
