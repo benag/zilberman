@@ -58,16 +58,16 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
         $scope.click = (index) => {
             if (index === 3){
                 //$scope.convertType();
+                toastr.info('הפניה נשלחה לשרת');
                 leadService.save($scope.form)
                 .then( (done) => {
-                    swal('הפניה נרשמה');
+                    if (done.status){
+                        done.msg.forEach( msg => {
+                            toastr.info(msg);
+                        })
+                    }
                 }).catch( (err) =>{
-                    swal({
-                        type: 'error',
-                        title: 'Oops...',
-                        text: 'הייתה בעיה ברישום',
-                        footer: ''
-                    });
+                    toastr.error('תקלה בשמירת ההפניה', 'תקלה')ף
                 })
             }else{
                 for (let i = 0 ; i < $scope.show.length ;i++  ) {
