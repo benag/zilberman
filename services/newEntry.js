@@ -59,7 +59,7 @@ class newEntry {
         let id = Integer(localStorage.getItem('id'));
         if (id) {
             id++;
-            localStorage.setItem('id', String(id));
+            localStorage.setItem('id', id);
         }else{
             id = 0 ;
             localStorage.setItem(id, '0');
