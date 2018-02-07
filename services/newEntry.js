@@ -145,7 +145,6 @@ class newEntry {
     async save (form) {
 
         let returnObj = {status:true, msg:[]};
-        await this.createOrUpdateCar(form, returnObj);
         let client = null, cars = null, morgage = null, prati = null, dira = null, loan = null;
         try{
             if (!form.id) {
