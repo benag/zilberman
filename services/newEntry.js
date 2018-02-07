@@ -1,6 +1,8 @@
 
 
 let mysql = require('./sqlService');
+var LocalStorage = require('node-localstorage').LocalStorage;
+let localStorage = new LocalStorage('./scratch');
 
 class newEntry {
 
@@ -54,6 +56,16 @@ class newEntry {
 
     async createOrUpdateMorgage(form, returnObj) {
 
+        let id = Integer(localStorage.getItem('id'));
+        if (id) {
+            id++;
+            localStorage.setItem('id', String(id));
+        }else{
+            id = 0 ;
+            localStorage.setItem(id, '0');
+        }
+
+        console.log();
         let morgage = form.insuranceForm.morgage, pFloor = morgage.floor || 0, pOutOfFloor = morgage.outOfFloor || 0, pSurface = morgage.surface || 0, pBuildCost = morgage.cost || 0, pPropertyValue = morgage.value || 0;
         let insert = `INSERT INTO tProperty (pFloor, pOutOfFloor, pSurface, pBuildCost, pPropertyValue)
                 VALUES ( '${pFloor}' , '${pOutOfFloor}', '${pSurface}', '${pBuildCost}','${pPropertyValue}')`;
@@ -84,7 +96,7 @@ class newEntry {
     async save (form) {
 
         let returnObj = {status:true, msg:[]};
-        await this.createOrUpdateCar(form, returnObj);
+        await this.createOrUpdateMorgage(form, returnObj);
         //let client, car, morgage, prati, dira, loan;
         //try{
         //    if (!form.id) {
