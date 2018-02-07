@@ -66,6 +66,8 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
                         done.data.msg.forEach( msg => {
                             toastr.info(msg);
                         })
+                    }else{
+                        toastr.error('תקלה בשמירת ההפניה', 'תקלה');
                     }
                 }).catch( (err) =>{
                     toastr.error('תקלה בשמירת ההפניה', 'תקלה');

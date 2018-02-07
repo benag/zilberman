@@ -34,7 +34,7 @@ class newEntry {
 
         let carid = (localStorage.getItem('carid'));
         carid = parseInt(carid);
-        if (carid !== undefined && carid !== NaN) {
+        if (carid !== undefined && !isNaN(carid)) {
             carid++;
             localStorage.setItem('carid', String(carid));
         }else{
