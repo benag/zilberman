@@ -105,7 +105,7 @@ class newEntry {
 
     async createProduct( client, type, car, morgage, prati, dira, isloan,  loan, returnObj) {
 
-        let clients = await this.getClients();
+        let clients = await this.getClients(client);
         console.log(clients);
         let pID, pCli1, pCli2, pType, propertyID, loanID, pratInsID, carInsID;
 
@@ -135,8 +135,10 @@ class newEntry {
 
     }
 
-    async getClients() {
-        let query = 'SELECT * FROM tClients';
+    async getClients(id) {
+        let query;
+        if (id) query = 'SELECT * FROM tClients WHERE cTaz1='+id;
+        if (!id) query = 'SELECT * FROM tClients';
         let clients = await this.sql.query(query);
         return clients;
     }
