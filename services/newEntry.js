@@ -21,7 +21,7 @@ class newEntry {
         //if (client.recordset.length > 0) { //client exist already
 
         //}else{// new client
-            let cTaz1 = form.id || '', cTaz2 = form.mate.id || '', cName = form.firstName || '', cFamily = form.lastName || '', cGender = form.gender || '',
+            let cTaz1 = form.id || '', cTaz2 = form.mate.id || '09', cName = form.firstName || '', cFamily = form.lastName || '', cGender = form.gender || '',
                 cMobile = form.mobile || '', cPhone = form.phone || '', cEmail = form.email || '', cBDate = form.birthdate || null,
                 cTazDate= form.iddate || null, cRemark ='' || '', cSmoke = 0 || 0, cQuitSmokeDate = null || null;
             //let insert = `INSERT INTO tClients (cTaz1, cTaz2, cName, cFamily, cGender, cMobile, cPhone, cEmail,cBDate, cTazDate, cRemark, cSmoke, cQuitSmokeDate)
