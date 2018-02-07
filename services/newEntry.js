@@ -68,8 +68,8 @@ class newEntry {
 
         console.log();
         let morgage = form.insuranceForm.morgage, pFloor = morgage.floor || 0, pOutOfFloor = morgage.outOfFloor || 0, pSurface = morgage.surface || 0, pBuildCost = morgage.cost || 0, pPropertyValue = morgage.value || 0;
-        let insert = `INSERT INTO tProperty (pFloor, pOutOfFloor, pSurface, pBuildCost, pPropertyValue)
-                VALUES ( '${pFloor}' , '${pOutOfFloor}', '${pSurface}', '${pBuildCost}','${pPropertyValue}')`;
+        let insert = `INSERT INTO tProperty (propertyID, pFloor, pOutOfFloor, pSurface, pBuildCost, pPropertyValue)
+                VALUES ( '${id}',${pFloor}' , '${pOutOfFloor}', '${pSurface}', '${pBuildCost}','${pPropertyValue}')`;
         let newMorgage = await this.sql.query(insert);
         returnObj.msg.push('נוצר מוצר מסוג משכנתא');
         return newMorgage;
