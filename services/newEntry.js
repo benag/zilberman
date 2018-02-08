@@ -14,6 +14,14 @@ class newEntry {
         this.DIRA = 2;
     };
 
+    convertType(type) {
+        if (type === this.CAR) return 3;
+        if (type === this.MORGAGE) return 1;
+        if (type === this.PRAT) return 2;
+        if (type === this.DIRA) return 4;
+
+    };
+
     async createClient(form) {
 
         let cTaz1 = form.id || '', cTaz2 = form.mate.id || '09', cName = form.firstName || '', cFamily = form.lastName || '', cGender = form.gender || '',
@@ -125,7 +133,7 @@ class newEntry {
         }else{
             newCar = null;
         }
-
+        type = this.convertType(type);
         let insert = `INSERT INTO tProducts (pID, pCli1, pCli2, pType, propertyID, loanID, pratInsID, carInsID)
                 VALUES (${pid},${client},${client},${type}, ${morgage},${loan},${prati},${newCar} )`;
         let newProduct = await this.sql.query(insert);
