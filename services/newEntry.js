@@ -131,6 +131,12 @@ class newEntry {
 
         let query = 'SELECT * FROM tProducts';
         let products = await this.sql.query(query);
+        products = products.recordset;
+        for (let product of products){
+            let cliId = product.pCli1;
+            let client = this.getClients(cliId);
+            product.clientName = client;
+        }
         return products;
 
     }

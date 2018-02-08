@@ -14,7 +14,7 @@
                         מספר
                     </th>
                     <th>
-                        תאריך יצירה
+                        תאריך
                     </th>
                     <th>
                         תז
@@ -36,25 +36,15 @@
                     </th>
 
                 </tr>
-                <tr>
-                    <th>1</th>
-                    <th>10/12/2017</th>
-                    <th>038457867</th>
-                    <th>ני גולדנברג</th>
-                    <th>משכנתא</th>
-                    <th>08</th>
-                    <th>100</th>
-                    <th>פעיל</th>
-                </tr>
-                <tr>
-                    <th>2</th>
-                    <th>10/12/2018</th>
-                    <th>0356515</th>
-                    <th>יוסי חסם</th>
-                    <th>דירה</th>
-                    <th>06</th>
-                    <th>200</th>
-                    <th>פעיל</th>
+                <tr ng-repeat=" product in products track by $index">
+                    <td>{{product.pId}}</td>
+                    <td>{{}}</td>
+                    <td>{{product.pCli1}}</td>
+                    <td>{{}}</td>
+                    <td>{{product.pType}}</td>
+                    <td>{{}}</td>
+                    <td>{{}}</td>
+                    <td>{{}}</td>
                 </tr>
             </table>
         </div>
