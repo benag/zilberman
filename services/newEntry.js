@@ -20,6 +20,7 @@ class newEntry {
             cMobile = form.mobile || '', cPhone = form.phone || '', cEmail = form.email || '', cBDate = form.birthdate || null,
             cTazDate= form.iddate || '01/01/1900', cRemark ='' || '', cSmoke = 0 || 0, cQuitSmokeDate = '' || '01/01/1900';
 
+        if (cTaz1 && cTaz2 === '09') cTaz2 = cTaz1;
         let insert = `INSERT INTO tClients (cTaz1, cTaz2, cName, cFamily, cGender, cMobile, cPhone, cEmail, cBDate, cTazDate,cRemark, cSmoke, cQuitSmokeDate)
                 VALUES ( '${cTaz1}' , '${cTaz2}', '${cName}', '${cFamily}', 1 , '${cMobile}','${cPhone}','${cEmail}', ${cBDate}, ${cTazDate}, '${cRemark}', 1, ${cQuitSmokeDate} )`;
 
@@ -135,7 +136,7 @@ class newEntry {
         for (let product of products){
             let cliId = product.pCli1;
             let client = this.getClients(cliId);
-            product.clientName = client;
+            product.clientName = client.cName;
         }
         return products;
 
