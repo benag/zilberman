@@ -127,7 +127,7 @@ class newEntry {
         }
 
         let insert = `INSERT INTO tProducts (pID, pCli1, pCli2, pType, propertyID, loanID, pratInsID, carInsID)
-                VALUES (${pid},${client},${client},${type}, ${morgage},${loan},${prati},${car[0]} )`;
+                VALUES (${pid},${client},${client},${type}, ${morgage},${loan},${prati},${newCar} )`;
         let newProduct = await this.sql.query(insert);
 
         return newProduct;
