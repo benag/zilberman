@@ -119,6 +119,12 @@ class newEntry {
             pid = 0 ;
             localStorage.setItem('pid', '0');
         }
+        let newCar;
+        if (car){
+            newCar = car[0];
+        }else{
+            newCar = null;
+        }
 
         let insert = `INSERT INTO tProducts (pID, pCli1, pCli2, pType, propertyID, loanID, pratInsID, carInsID)
                 VALUES (${pid},${client},${client},${type}, ${morgage},${loan},${prati},${car[0]} )`;
