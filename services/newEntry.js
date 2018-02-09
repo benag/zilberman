@@ -71,9 +71,6 @@ class newEntry {
 
         return newCars;
 
-
-
-
     }
 
     async createOrUpdateMorgage(form, returnObj) {
