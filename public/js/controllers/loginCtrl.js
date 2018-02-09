@@ -52,8 +52,7 @@ angular.module('ganim').controller('loginCtrl', ['$scope', '$stateParams', '$loc
         };
 
         $scope.login = function(){
-
-            $state.go('newentry');
+            if ($scope.user.email === 'admin' && $scope.user.password) $state.go('newentry');
             //authService.login()
             //.then( () => {
             //    $scope.sms = true;

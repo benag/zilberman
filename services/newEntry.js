@@ -22,21 +22,54 @@ class newEntry {
 
     };
 
+    async wrapVal(value) {
+        if (value === null || value === undefined || value === '') return null;
+        return `'${value}'`;
+    };
+    async wrapDate (date) {
+        if (date === null || date === undefined || date === '') return null;
+        return `${date}`;
+    }
+
     async createClient(form) {
 
-        let cTaz1 = form.id || '', cTaz2 = form.mate.id || '09', cName = form.firstName || '', cFamily = form.lastName || '', cGender = form.gender || '',
-            cMobile = form.mobile || '', cPhone = form.phone || '', cEmail = form.email || '', cBDate = form.birthdate || null,
-            cTazDate= form.iddate || '01/01/1900', cRemark ='' || '', cSmoke = 0 || 0, cQuitSmokeDate = '' || '01/01/1900';
+        let cTaz1 = this.wrapVal(form.id) , cTaz2 = this.wrapVal(form.mate.id) , cName = this.wrapVal( form.firstName ) , cFamily = this.wrapVal( form.lastName ) , cGender = this.wrapVal (form.gender) ,
+            cMobile = this.wrapVal(form.mobile) , cPhone = this.wrapVal(form.phone), cEmail = this.wrapVal(form.email), cBDate = this.wrapDate(form.birthdate) ,
+            cTazDate= this.wrapDate (form.iddate ), cRemark = this.wrapVal(''), cSmoke = 0 , cQuitSmokeDate = this.wrapDate(form.smokingDate);
 
-        if (cTaz1 && cTaz2 === '09') cTaz2 = cTaz1;
+        if (cTaz1 && ( cTaz2 === null || cTaz2 === undefined) ) cTaz2 = cTaz1;
+
         let insert = `INSERT INTO tClients (cTaz1, cTaz2, cName, cFamily, cGender, cMobile, cPhone, cEmail, cBDate, cTazDate,cRemark, cSmoke, cQuitSmokeDate)
-                VALUES ( '${cTaz1}' , '${cTaz2}', '${cName}', '${cFamily}', 1 , '${cMobile}','${cPhone}','${cEmail}', ${cBDate}, ${cTazDate}, '${cRemark}', 1, ${cQuitSmokeDate} )`;
+                VALUES ( ${cTaz1} , ${cTaz2}, ${cName}, ${cFamily}, ${cGender} , ${cMobile},${cPhone}, ${cEmail}, ${cBDate}, ${cTazDate}, ${cRemark}, 1, ${cQuitSmokeDate} )`;
 
         let newClient = await this.sql.query(insert);
         return cTaz1;
     }
 
-    async updateClient () {
+    async updateClient (form) {
+        let cTaz1 = this.wrapVal(form.id) , cTaz2 = this.wrapVal(form.mate.id) , cName = this.wrapVal( form.firstName ) , cFamily = this.wrapVal( form.lastName ) , cGender = this.wrapVal (form.gender) ,
+            cMobile = this.wrapVal(form.mobile) , cPhone = this.wrapVal(form.phone), cEmail = this.wrapVal(form.email), cBDate = this.wrapDate(form.birthdate) ,
+            cTazDate= this.wrapDate (form.iddate ), cRemark = this.wrapVal(''), cSmoke = 0 , cQuitSmokeDate = this.wrapDate(form.smokingDate);
+
+        if (cTaz1 && ( cTaz2 === null || cTaz2 === undefined) ) cTaz2 = cTaz1;
+        let update = `UPDATE tClients SET cTaz2 = ${cTaz2},
+                        cName = ${cName},
+                        cFamily = ${cFamily},
+                        cGender = ${cGender},
+                        cMobile = ${cMobile},
+                        cPhone = ${cPhone},
+                        cEmail = ${cEmail},
+                        cBDate = ${cBDate},
+                        cTazDate = ${cTazDate},
+                        cRemark = ${cRemark},
+                        cSmoke = ${cSmoke} ,
+                        cQuitSmokeDate = ${cQuitSmokeDate})
+                WHERE cTaz1 = ${cTaz1})`;
+
+        let newClient = await this.sql.query(update);
+        return cTaz1;
+
+
 
     }
     async createOrUpdateCar(form, returnObj) {
@@ -160,6 +193,8 @@ class newEntry {
         let clients = await this.sql.query(query);
         return clients;
     }
+
+
     async save (form) {
 
         let returnObj = {status:true, msg:[]};
