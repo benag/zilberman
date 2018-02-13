@@ -22,11 +22,11 @@ class newEntry {
 
     };
 
-    async wrapVal(value) {
+    wrapVal(value) {
         if (value === null || value === undefined || value === '') return null;
         return `'${value}'`;
     };
-    async wrapDate (date) {
+    wrapDate (date) {
         if (date === null || date === undefined || date === '') return null;
         return `${date}`;
     }
