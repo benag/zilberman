@@ -31,9 +31,9 @@ class newEntry {
         return `${date}`;
     }
 
-    async createClient(form) {
+    async createClient(client) {
 
-        let cTaz1 = this.wrapVal(form.id) , cTaz2 = this.wrapVal(form.mate.id) , cName = this.wrapVal( form.firstName ) , cFamily = this.wrapVal( form.lastName ) , cGender = this.wrapVal (form.gender) ,
+        let cTaz1 = this.wrapVal(form.taz) , cTaz2 = this.wrapVal(form.mate.taz) , cName = this.wrapVal( form.firstName ) , cFamily = this.wrapVal( form.lastName ) , cGender = this.wrapVal (form.gender),
             cMobile = this.wrapVal(form.mobile) , cPhone = this.wrapVal(form.phone), cEmail = this.wrapVal(form.email), cBDate = this.wrapDate(form.birthdate) ,
             cTazDate= this.wrapDate (form.iddate ), cRemark = this.wrapVal(''), cSmoke = 0 , cQuitSmokeDate = this.wrapDate(form.smokingDate);
 
@@ -46,7 +46,8 @@ class newEntry {
         return cTaz1;
     }
 
-    async updateClient (form) {
+    async updateClient (client, form) {
+
         let cTaz1 = this.wrapVal(form.id) , cTaz2 = this.wrapVal(form.mate.id) , cName = this.wrapVal( form.firstName ) , cFamily = this.wrapVal( form.lastName ) , cGender = this.wrapVal (form.gender) ,
             cMobile = this.wrapVal(form.mobile) , cPhone = this.wrapVal(form.phone), cEmail = this.wrapVal(form.email), cBDate = this.wrapDate(form.birthdate) ,
             cTazDate= this.wrapDate (form.iddate ), cRemark = this.wrapVal(''), cSmoke = 0 , cQuitSmokeDate = this.wrapDate(form.smokingDate);
@@ -198,20 +199,23 @@ class newEntry {
     async save (form) {
 
         let returnObj = {status:true, msg:[]};
-        let client = null, cars = null, morgage = null, prati = null, dira = null, loan = null;
+        let client = null,secondClient = null, cars = null, morgage = null, prati = null, dira = null, loan = null;
         try{
             if (!form.id) {
                 returnObj.status = false;
                 returnObj.msg.push('חסר תעודת זהות');
                 return returnObj;
             }
-
-            client = await this.sql.query("SELECT * FROM tClients WHERE cTaz1 = " + form.id);
-            if (client.recordset.length > 0) {
+            if (form.id) client = await this.sql.query("SELECT * FROM tClients WHERE cTaz2 = " + form.id);
+            if (form.mate.id) secondClient = await this.sql.query("SELECT * FROM tClients WHERE cTaz2 = " + form.mate.id);
+            //client = await this.sql.query("SELECT * FROM tClients WHERE cTaz1 = " + form.id);
+            if (client && client.recordset.length > 0) {
                 client = await this.updateClient(client.recordset[0], form);
+                if (secondClient && secondClient.recordset.length > 0) secondClient = await this.updateClient(secondClient.recordset[0], form )
                 returnObj.msg.push('לקוח עודכן במערכת');
             }else {
-                client = await this.createClient(form);
+                client = await this.createClient(form.client);
+                if (form.mate.taz) await this.createClient(form.mate);
                 returnObj.msg.push('לקוח נוצר במערכת');
             }
 

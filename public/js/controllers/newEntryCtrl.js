@@ -9,6 +9,7 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
         $scope.format = 'dd/MM/yyyy';
         $scope.date = new Date();
         $scope.form = {};
+        $scope.form.client = {};
         $scope.form.mate = {};
 
         $scope.show = [true,false,false,false];
