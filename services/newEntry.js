@@ -73,24 +73,28 @@ class newEntry {
 
 
     }
+    getNewId(type) {
+        let id = (localStorage.getItem(type));
+        id = parseInt(carid);
+        if (id !== undefined && !isNaN(id)) {
+            id++;
+            localStorage.setItem(type, String(id));
+        }else{
+            id = 0 ;
+            localStorage.setItem(type, '0');
+        }
+    }
+
     async createOrUpdateCar(form, returnObj) {
 
-        let carid = (localStorage.getItem('carid'));
-        carid = parseInt(carid);
-        if (carid !== undefined && !isNaN(carid)) {
-            carid++;
-            localStorage.setItem('carid', String(carid));
-        }else{
-            carid = 0 ;
-            localStorage.setItem('carid', '0');
-        }
 
+        let carid = this.getNewId('carid');
         let newCars = [];
         try{
             let cars = form.insuranceForm.cars;
             for (let car of cars){
                 carid++;
-                let carTypeID = 1, carYear = car.manDate || '1900', carRenewDate = car.renue || '01/01/1900', carHovaPrem = car.must || 0, carMekifPrem = car.around || 0, carInsurer = 'טסט',
+                let carTypeID = 1, carYear = this.wrapVal(car.manDate), carRenewDate = this.wrapDate (car.renue ) , carHovaPrem = car.must || 0, carMekifPrem = car.around || 0, carInsurer = 'טסט',
                     claimsCount = car.numsues || 0;
                 //TODO Fix claim count
                 let insert = `INSERT INTO tCarIns (carInsID, carTypeID, carYear, carRenewDate, carHovaPrem, carMekifPrem, carInsurer, claimsCount ) VALUES ( ${carid},'${carTypeID}' , '${carYear}', ${carRenewDate}, '${carHovaPrem}', '${carMekifPrem}','1',${claimsCount} )`;
@@ -195,30 +199,51 @@ class newEntry {
         return clients;
     }
 
+    async updateClietnAndMate(form){
+        if (form.id){
+            // the original taz has being changed update according to old ID
+            
+        }else{
+            // find if taz already exist if yes update
+            let client = await this.sql.query("SELECT * FROM tClients WHERE cTaz2 = " + form.client.taz);
 
+        }
+
+        
+    }
+    async createOrUpdateClient (clientForm, returnObj) {
+        returnObj.msg.push('לקוח עודכן במערכת');
+        let client = null;
+        if (clientForm.id){
+            // taz was changed update according to old id
+            client = await this.updateClient(clientForm, clientForm.id);
+        }else{
+            client = await this.sql.query("SELECT * FROM tClients WHERE cTaz2 = " + clientForm.taz);
+            if ( client && client.recordset.length > 0 ) { // client exist in the system update
+                client = await this.updateClient(clientForm, false);        
+            }else{// ccreate new client
+                client = await this.createClient(clientForm);
+            } 
+
+        }
+    }
+
+    async createOrUpdateMate () {
+
+    }
     async save (form) {
 
         let returnObj = {status:true, msg:[]};
         let client = null,secondClient = null, cars = null, morgage = null, prati = null, dira = null, loan = null;
         try{
-            if (!form.id) {
+            if (!form.client.taz) {
                 returnObj.status = false;
                 returnObj.msg.push('חסר תעודת זהות');
                 return returnObj;
             }
-            if (form.id) client = await this.sql.query("SELECT * FROM tClients WHERE cTaz2 = " + form.id);
-            if (form.mate.id) secondClient = await this.sql.query("SELECT * FROM tClients WHERE cTaz2 = " + form.mate.id);
-            //client = await this.sql.query("SELECT * FROM tClients WHERE cTaz1 = " + form.id);
-            if (client && client.recordset.length > 0) {
-                client = await this.updateClient(client.recordset[0], form);
-                if (secondClient && secondClient.recordset.length > 0) secondClient = await this.updateClient(secondClient.recordset[0], form )
-                returnObj.msg.push('לקוח עודכן במערכת');
-            }else {
-                client = await this.createClient(form.client);
-                if (form.mate.taz) await this.createClient(form.mate);
-                returnObj.msg.push('לקוח נוצר במערכת');
-            }
-
+            client = this.createOrUpdateClient(form.client, returnObj);
+            secondClient =this.createOrUpdateClient(form.mate, returnObj);
+            
             if (client){
                 let type = form.type;
                 if (type === this.CAR) cars = await this.createOrUpdateCar( form, returnObj );
