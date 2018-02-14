@@ -91,7 +91,7 @@ class newEntry {
     }
     getNewId(type) {
         let id = (localStorage.getItem(type));
-        id = parseInt(carid);
+        id = parseInt(id);
         if (id !== undefined && !isNaN(id)) {
             id++;
             localStorage.setItem(type, String(id));
