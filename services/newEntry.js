@@ -166,7 +166,7 @@ class newEntry {
 
     }
 
-    async createProduct( client, type, car, morgage, prati, dira, isloan,  loan, returnObj) {
+    async createProduct( client, secondClient,type, car, morgage, prati, dira, isloan,  loan, returnObj) {
 
         let clients = await this.getClients(client);
         console.log(clients);
@@ -189,7 +189,7 @@ class newEntry {
         }
         type = this.convertType(type);
         let insert = `INSERT INTO tProducts (pID, pCli1, pCli2, pType, propertyID, loanID, pratInsID, carInsID)
-                VALUES (${pid},${client},${client},${type}, ${morgage},${loan},${prati},${newCar} )`;
+                VALUES (${pid},${client},${secondClient},${type}, ${morgage},${loan},${prati},${newCar} )`;
         let newProduct = await this.sql.query(insert);
 
         return newProduct;
@@ -301,7 +301,7 @@ class newEntry {
         }
         if (form.loan) loan = this.createLoan( form, returnObj );
 
-        await this.createProduct(client, form.type, cars, morgage, prati, dira, form.loan,  loan, returnObj);
+        await this.createProduct(client,secondClient, form.type, cars, morgage, prati, dira, form.loan,  loan, returnObj);
 
         return returnObj;
 
