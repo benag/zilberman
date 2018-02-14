@@ -42,7 +42,7 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
             let error = () => {};
             let event = () => {};
 
-            file.upload.then(success,error, event);
+            fileUpload.upload.then(success,error, event);
         }
 
         $scope.carDoc = (file, errFiles) => {

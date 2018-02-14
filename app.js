@@ -216,10 +216,10 @@ app.post('/cardoc/:id', upload.single('file'), function (req, res, next) {
         //let returnPath  = newPath.split('\\').slice(2).join('\\');
         fs.rename(oldPath, newPath, function (err) {
             if (err) throw err;
-            res.json({status:'ok', payload:returnPath});
+            res.json({status:'ok', payload:''});
         })
     }else{
-        res.json({status:'ok', payload:'uploads/'+req.file.filename});
+        res.json({status:'ok', payload:''});
     }
 
 });
