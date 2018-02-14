@@ -285,15 +285,16 @@ class newEntry {
         if (!client || !client.recordset.length > 0){
             // main client doesnt exist create one
             client = await this.createClient(form);
-            if (form.mate.cTaz1){
+            secondClient = await this.createMate(form);
+            //if (form.mate.cTaz1){
                 // find if second client already exist
-                secondClient = await this.sql.query("SELECT * FROM tClients WHERE cTaz2 = " + form.mate.cTaz1);
-                if (!secondClient || !secondClient.recordset.length > 0){
-                    secondClient = await this.createMate(form);
-                }else{
-                    secondClient = secondClient.recordset[0].cTaz2;
-                }     
-            } 
+                // secondClient = await this.sql.query("SELECT * FROM tClients WHERE cTaz2 = " + form.mate.cTaz1);
+                // if (!secondClient || !secondClient.recordset.length > 0){
+                //     secondClient = await this.createMate(form);
+                // }else{
+                //     secondClient = secondClient.recordset[0].cTaz2;
+                // }     
+            //} 
         }else{
             client = client.recordset[0].cTaz1;
         }
