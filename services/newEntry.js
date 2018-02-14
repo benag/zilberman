@@ -284,27 +284,7 @@ class newEntry {
     }
 
    
-    // async createOrUpdateClientAndMate (form, returnObj) {
-    //     returnObj.msg.push('לקוח עודכן במערכת');
-    //     let client = null;
-    //     if (form.client.cTaz2 && form.client.cTaz1 !== form.client.cTaz2){
-    //         // in thi case original taz was changed update also taz
-    //         await this.updateClient(form, true);
-    //     }
-
-    //     if (formClient.id){
-    //         // taz was changed update according to old id
-    //         client = await this.updateClient(clientForm, clientForm.id);
-    //     }else{
-    //         client = await this.sql.query("SELECT * FROM tClients WHERE cTaz2 = " + clientForm.taz);
-    //         if ( client && client.recordset.length > 0 ) { // client exist in the system update
-    //             client = await this.updateClient(client, clientForm, mateId, false);        
-    //         }else{// ccreate new client
-    //             client = await this.createClient(clientForm, mateId);
-    //         } 
-
-    //     }
-    // }
+   
 
     // if client doesnt exist create one and mate if exist do nothing
     //create sub products and products

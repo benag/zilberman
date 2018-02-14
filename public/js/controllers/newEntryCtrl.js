@@ -78,7 +78,7 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
                     console.log(done);
                     if (done.data.status){
                         if ($scope.form.type === 1 && $scope.file){
-                            $scope.uploadCarDoc(done.data.product.carId);
+                            $scope.uploadCarDoc(done.data.product.newCar);
                         }
                         done.data.msg.forEach( msg => {
                             toastr.info(msg);
