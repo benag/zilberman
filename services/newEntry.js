@@ -235,7 +235,7 @@ class newEntry {
         products = products.recordset;
         for (let product of products){
             let cliId = product.pCli1;
-            let client = this.getClients(cliId);
+            let client = await this.getClients(cliId);
             product.clientName = client.recordset[0].cName;
         }
         return products;
