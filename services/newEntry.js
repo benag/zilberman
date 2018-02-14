@@ -341,7 +341,7 @@ class newEntry {
 
         product = await this.createProduct(client,secondClient, form.type, cars, morgage, prati, dira, form.loan,  loan, returnObj);
 
-        return returnObj;
+        return product;
 
     }
     // if client doesnt exist create one and mate if exist do nothing
@@ -387,6 +387,7 @@ class newEntry {
             
 
         }catch(err){
+            console.log(err);
             returnObj.status = false;
             returnObj.msg.push('תקלה בשמירת הפניה');
         }

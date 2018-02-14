@@ -90,6 +90,7 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
                         toastr.error('תקלה בשמירת ההפניה', 'תקלה');
                     }
                 }).catch( (err) =>{
+                    console.log(err);
                     toastr.error('תקלה בשמירת ההפניה', 'תקלה');
                 })
             }else{
