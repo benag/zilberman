@@ -33,7 +33,7 @@ class newEntry {
     }
 
     async createMate(form) {
-        let cTaz1 = this.wrapVal(form.cTaz1) , cTaz2 = this.wrapVal(form.mate.cTaz1) , cName = this.wrapVal( form.mate.cName ) , cFamily = this.wrapVal( form.mate.cFamily ) , cGender = this.wrapVal (form.mate.cGender),
+        let cTaz1 = this.wrapVal(form.client.cTaz1) , cTaz2 = this.wrapVal(form.mate.cTaz1) , cName = this.wrapVal( form.mate.cName ) , cFamily = this.wrapVal( form.mate.cFamily ) , cGender = this.wrapVal (form.mate.cGender),
             cMobile = this.wrapVal(form.mate.cMobile) , cPhone = this.wrapVal(form.mate.cPhone), cEmail = this.wrapVal(form.mate.cEmail), cBDate = this.wrapDate(form.mate.cBDate) ,
             cTazDate= this.wrapDate (form.mate.cTazDate ), cRemark = this.wrapVal(''), cSmoke = 0 , cQuitSmokeDate = this.wrapDate(form.mate.cQuitSmokeDate);
         
@@ -287,9 +287,9 @@ class newEntry {
             client = await this.createClient(form);
             if (form.mate.cTaz1){
                 // find if second client already exist
-                let secondClient = await this.sql.query("SELECT * FROM tClients WHERE cTaz2 = " + form.client.cTaz1);
+                let secondClient = await this.sql.query("SELECT * FROM tClients WHERE cTaz2 = " + form.mate.cTaz1);
                 if (!secondClient || !secondClient.recordset.length > 0)
-                secondClient = await this.createMate(form.mate);
+                secondClient = await this.createMate(form);
             } 
         }
         if (client){
