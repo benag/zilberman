@@ -218,9 +218,9 @@ class newEntry {
         morgage = this.wrapVal(morgage);
         loan = this.wrapVal(loan);
         prati = this.wrapVal(prati);
-        newCar = this.wrapVal(newCar);
+        let CarDB = this.wrapVal(newCar);
         let insert = `INSERT INTO tProducts (pID, pCli1, pCli2, pType, propertyID, loanID, pratInsID, carInsID)
-                VALUES (${pid},${client},${secondClient},${type}, ${morgage},${loan},${prati},${newCar} )`;
+                VALUES (${pid},${client},${secondClient},${type}, ${morgage},${loan},${prati},${CarDB} )`;
         let newProduct = await this.sql.query(insert);
 
         loan = this.wrapVal(loan);
