@@ -171,7 +171,7 @@ class newEntry {
             localStorage.setItem('loanId', '0');
         }
         
-
+        
         let bankId = this.getNewId('bankid');
         let bank = await this.sql.query(`insert into tBanks (bankNo, bankName) values (${bankId}, 'מיזרחי')`);
         let loanID = this.wrapVal(id) , loanBank = bankId , loanValue = this.wrapVal( form.borrow.sum ),
