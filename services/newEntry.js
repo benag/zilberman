@@ -157,9 +157,29 @@ class newEntry {
     }
 
     async createLoan(form, returnObj) {
-        //form.borrow.sum
-        //form.borrow.intrest
-        //form.borrow.years
+
+        let id = (localStorage.getItem('loanId'));
+        id = parseInt(id);
+        if (id !== undefined && !isNaN(id)) {
+            id++;
+            localStorage.setItem('loanId', String(id));
+        }else{
+            id = 0 ;
+            localStorage.setItem('loanId', '0');
+        }
+      
+        
+        let loanID = this.wrapVal(id) , loanBank = this.wrapVal(1) , loanValue = this.wrapVal( form.borrow.sum ),
+        loanRate = this.wrapVal( form.borrow.intrest ) , loanYrsToPay = this.wrapVal (form.borrow.years),
+        loanType = this.wrapVal(form.borrow.type);
+
+
+        let insert = `INSERT INTO tLoans (loanID, loanBank, loanValue, loanRate, loanYrsToPay, loanType)
+                VALUES ( ${loanID} , ${loanBank}, ${loanValue}, ${loanRate}, ${loanYrsToPay} , ${loanType} )`;
+
+        let newLoan = await this.sql.query(insert);
+        return id;
+        
 
     }
     async updateLoan(){
@@ -309,7 +329,7 @@ class newEntry {
             if (type === this.PRAT) prati =await this.createPart( form, returnObj );
             if (type === this.DIRA) dira = await this.createDira( form, returnObj );
         }
-        if (form.loan) loan = this.createLoan( form, returnObj );
+        if (form.borrow.type !== undefined) loan = this.createLoan( form, returnObj );
 
         await this.createProduct(client,secondClient, form.type, cars, morgage, prati, dira, form.loan,  loan, returnObj);
 
