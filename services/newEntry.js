@@ -170,9 +170,11 @@ class newEntry {
             id = 0 ;
             localStorage.setItem('loanId', '0');
         }
-      
         
-        let loanID = this.wrapVal(id) , loanBank = this.wrapVal(1) , loanValue = this.wrapVal( form.borrow.sum ),
+
+        let bankId = this.getNewId('bankid');
+        let bank = await this.sql.query(`insert into tBanks (bankNo, bankName) values (${bankId}, 'מיזרחי')`);
+        let loanID = this.wrapVal(id) , loanBank = bankId , loanValue = this.wrapVal( form.borrow.sum ),
         loanRate = this.wrapVal( form.borrow.intrest ) , loanYrsToPay = this.wrapVal (form.borrow.years),
         loanType = this.wrapVal(form.borrow.type);
 
