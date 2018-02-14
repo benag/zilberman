@@ -279,15 +279,15 @@ class newEntry {
     // if client doesnt exist create one and mate if exist do nothing
     //create sub products and products
     async newRecord (form, returnObj){
-        let cars, morgage, prati, dira, loan;
+        let cars,client, secondClient, morgage, prati, dira, loan;
         // does client already exist?
-        let client = await this.sql.query("SELECT * FROM tClients WHERE cTaz2 = " + form.client.cTaz1);
+        client = await this.sql.query("SELECT * FROM tClients WHERE cTaz2 = " + form.client.cTaz1);
         if (!client || !client.recordset.length > 0){
             // main client doesnt exist create one
             client = await this.createClient(form);
             if (form.mate.cTaz1){
                 // find if second client already exist
-                let secondClient = await this.sql.query("SELECT * FROM tClients WHERE cTaz2 = " + form.mate.cTaz1);
+                secondClient = await this.sql.query("SELECT * FROM tClients WHERE cTaz2 = " + form.mate.cTaz1);
                 if (!secondClient || !secondClient.recordset.length > 0)
                 secondClient = await this.createMate(form);
             } 
