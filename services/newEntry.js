@@ -221,7 +221,8 @@ class newEntry {
                 VALUES (${pid},${client},${secondClient},${type}, ${morgage},${loan},${prati},${newCar} )`;
         let newProduct = await this.sql.query(insert);
 
-        return newProduct;
+        loan = this.wrapVal(loan);
+        return {productId:pid, type, morgage,loan,prati,newCar};
 
     }
 
@@ -308,7 +309,7 @@ class newEntry {
     // if client doesnt exist create one and mate if exist do nothing
     //create sub products and products
     async newRecord (form, returnObj){
-        let cars,client, secondClient, morgage, prati, dira, loan;
+        let cars,client, secondClient, morgage, prati, dira, loan, product;
         // does client already exist?
         client = await this.sql.query("SELECT * FROM tClients WHERE cTaz2 = " + form.client.cTaz1);
         if (!client || !client.recordset.length > 0){
@@ -338,7 +339,7 @@ class newEntry {
         }
         if (form.borrow.type !== undefined) loan = await this.createLoan( form, returnObj );
 
-        await this.createProduct(client,secondClient, form.type, cars, morgage, prati, dira, form.loan,  loan, returnObj);
+        product = await this.createProduct(client,secondClient, form.type, cars, morgage, prati, dira, form.loan,  loan, returnObj);
 
         return returnObj;
 
@@ -383,7 +384,7 @@ class newEntry {
                 product = await this.updateRecord(form,returnObj);                
             } 
         
-            return returnObj;
+            
 
         }catch(err){
             returnObj.status = false;
