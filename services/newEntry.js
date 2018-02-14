@@ -345,20 +345,7 @@ class newEntry {
             }else{
                 await this.updateRecord(form,returnObj);                
             } 
-            // client = await this.createOrUpdateClient(form.client,form.mate, returnObj);
-            // secondClient =await this.createOrUpdateClient(form.mate,null, returnObj);
-            
-            // if (client){
-            //     let type = form.type;
-            //     if (type === this.CAR) cars = await this.createOrUpdateCar( form, returnObj );
-            //     if (type === this.MORGAGE) morgage = await this.createOrUpdateMorgage( form, returnObj );
-            //     if (type === this.PRAT) prati =await this.createOrUpdatePart( form, returnObj );
-            //     if (type === this.DIRA) dira = await this.createOrUpdateDira( form, returnObj );
-            // }
-            // if (form.loan) loan = this.createOrUpdateLoan( form, returnObj );
-
-            // await this.createProduct(client, form.type, cars, morgage, prati, dira, form.loan,  loan, returnObj);
-
+        
             return returnObj;
 
         }catch(err){
