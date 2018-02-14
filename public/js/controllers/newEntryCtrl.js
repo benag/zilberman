@@ -33,7 +33,7 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
         $scope.uploadCarDoc = (carId) => {
             toastr.info('מעלה טופס מכונית לשרת');
             let url = 'http://'+ '18.221.178.131:3000' +'/cardoc';
-            carId = '333';
+            //carId = '333';
             file.upload = Upload.upload({ url: url+'/'+carid, data: {file: $scope.file, car:carId} });
 
             let success = (res) => {
