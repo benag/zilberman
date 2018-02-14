@@ -333,7 +333,7 @@ class newEntry {
         let returnObj = {status:true, msg:[]};
         let client = null,secondClient = null, cars = null, morgage = null, prati = null, dira = null, loan = null;
         try{
-            if (!form.client.taz) {
+            if (!form.client.cTaz1) {
                 returnObj.status = false;
                 returnObj.msg.push('חסר תעודת זהות');
                 return returnObj;
