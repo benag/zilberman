@@ -391,7 +391,7 @@ class newEntry {
             returnObj.status = false;
             returnObj.msg.push('תקלה בשמירת הפניה');
         }
-
+        returnObj.product = product;
         return returnObj;
 
     }
