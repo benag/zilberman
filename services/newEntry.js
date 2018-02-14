@@ -47,9 +47,9 @@ class newEntry {
 
     async createClient(form) {
 
-        let cTaz1 = this.wrapVal(form.cTaz1) , cTaz2 = this.wrapVal(form.mate.cTaz1) , cName = this.wrapVal( form.cName ) , cFamily = this.wrapVal( form.cFamily ) , cGender = this.wrapVal (form.cGender),
-            cMobile = this.wrapVal(form.cMobile) , cPhone = this.wrapVal(form.cPhone), cEmail = this.wrapVal(form.cEmail), cBDate = this.wrapDate(form.cBDate) ,
-            cTazDate= this.wrapDate (form.cTazDate ), cRemark = this.wrapVal(''), cSmoke = 0 , cQuitSmokeDate = this.wrapDate(form.cQuitSmokeDate);
+        let cTaz1 = this.wrapVal(form.client.cTaz1) , cTaz2 = this.wrapVal(form.mate.cTaz1) , cName = this.wrapVal( form.client.cName ) , cFamily = this.wrapVal( form.client.cFamily ) , cGender = this.wrapVal (form.client.cGender),
+            cMobile = this.wrapVal(form.client.cMobile) , cPhone = this.wrapVal(form.client.cPhone), cEmail = this.wrapVal(form.client.cEmail), cBDate = this.wrapDate(form.client.cBDate) ,
+            cTazDate= this.wrapDate (form.client.cTazDate ), cRemark = this.wrapVal(''), cSmoke = 0 , cQuitSmokeDate = this.wrapDate(form.client.cQuitSmokeDate);
 
         if (cTaz1 && ( cTaz2 === null || cTaz2 === undefined) ) cTaz2 = cTaz1;
 
@@ -60,14 +60,9 @@ class newEntry {
         return cTaz1;
     }
     
-    async updateClient (client, form, mateId, oldId) {
+    async updateClient (form) {
 
-        // we didnt find client but there is an old Id id was chenged find client according to old Id
-        if (!client && oldId) client = this.sql.query("select * from tClients where cTaz2=" + oldId);
-
-        // find which fields need to be changed and create an update string
-
-        let updateFielfds = '';
+               
         // if (oldId) updateFielfds = "SET cTaz1="+
         let cTaz1 = this.wrapVal(form.id) , cTaz2 = this.wrapVal(form.mate.id) , cName = this.wrapVal( form.firstName ) , cFamily = this.wrapVal( form.lastName ) , cGender = this.wrapVal (form.gender) ,
             cMobile = this.wrapVal(form.mobile) , cPhone = this.wrapVal(form.phone), cEmail = this.wrapVal(form.email), cBDate = this.wrapDate(form.birthdate) ,
