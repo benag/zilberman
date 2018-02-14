@@ -334,7 +334,7 @@ class newEntry {
             if (type === this.PRAT) prati =await this.createPart( form, returnObj );
             if (type === this.DIRA) dira = await this.createDira( form, returnObj );
         }
-        if (form.borrow.type !== undefined) loan = this.createLoan( form, returnObj );
+        if (form.borrow.type !== undefined) loan = await this.createLoan( form, returnObj );
 
         await this.createProduct(client,secondClient, form.type, cars, morgage, prati, dira, form.loan,  loan, returnObj);
 
