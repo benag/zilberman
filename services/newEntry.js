@@ -95,9 +95,11 @@ class newEntry {
         if (id !== undefined && !isNaN(id)) {
             id++;
             localStorage.setItem(type, String(id));
+            return id;
         }else{
             id = 0 ;
             localStorage.setItem(type, '0');
+            return id;
         }
     }
 
