@@ -382,12 +382,12 @@
                             <button ng-click="add()" class="btn btn-info">הוסף רכב</button>
                         </div>
                         <div class="row pull-left">
-                            <button class="btn btn-info" ng-click="upload()">
+                            <button ngf-select="carDoc($file, $invalidFiles)" accept="image/*" ngf-max-height="2000" ngf-max-size="1MB" class="btn btn-info">
                                 צרף קבצים
                             </button>
-                            <button class="btn btn-info" >
+                            <!-- <button class="btn btn-info" >
                                 שלח טופס
-                            </button>
+                            </button> -->
                         </div>
                     </div>
                     <div ng-show="insurance[2]" class="row">

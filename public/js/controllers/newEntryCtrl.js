@@ -1,5 +1,5 @@
-angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$location', '$state','leadService', 'global',
-    function($scope, $stateParams, $location, $state, leadService, global) {
+angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$location', '$state','leadService', 'global','Upload','$rootScope',
+    function($scope, $stateParams, $location, $state, leadService, global, Upload, $rootScope) {
 
         const mashkanta = 0;
         const rechev = 1;
@@ -30,6 +30,29 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
             
         }
 
+        $scope.uploadCarDoc = (carId) => {
+            toastr.info('מעלה טופס מכונית לשרת');
+            let url = 'http://'+ '18.221.178.131:3000' +'/cardoc';
+            let carId = '333';
+            file.upload = Upload.upload({ url: url+'/'+carid, data: {file: $scope.file, car:carId} });
+
+            let success = (res) => {
+                toastr.info('טופס מכונית הועלה לשרת בהצלחה');
+            };
+            let error = () => {};
+            let event = () => {};
+
+            file.upload.then(success,error, event);
+        }
+
+        $scope.carDoc = (file, errFiles) => {
+            if (file) {
+                $scope.file = file;
+            }
+        };
+
+
+
         $scope.add = () => {
             if ($scope.cars.length <= 3) $scope.cars.push({});
         };
@@ -41,24 +64,7 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
             $scope.form.type = index;
             //$scope.form.insuranceForm  = {};
         };
-        //$scope.convertType = () => {
-        //    if ($scope.form.type === 0){
-        //        $scope.form.type = 1;
-        //        return;
-        //    }
-        //    if ($scope.form.type === 1){
-        //        $scope.form.type = 3;
-        //        return;
-        //    }
-        //    if ($scope.form.type === 2){
-        //        $scope.form.type = 4;
-        //        return;
-        //    }
-        //    if ($scope.form.type === 3) {
-        //        $scope.form.type = 2;
-        //        return;
-        //    }
-        //};
+  
         $scope.omitCar = (index) => {
             $scope.cars.splice(index,1);
         };
@@ -71,10 +77,16 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
                 .then( (done) => {
                     console.log(done);
                     if (done.data.status){
+                        if (form.type === 1 && $scope.file){
+                            $scope.uploadCarDoc(done.data.product.carId);
+                        }
                         done.data.msg.forEach( msg => {
                             toastr.info(msg);
                         })
                     }else{
+                        done.data.msg.forEach( msg => {
+                            toastr.error(msg);
+                        })
                         toastr.error('תקלה בשמירת ההפניה', 'תקלה');
                     }
                 }).catch( (err) =>{
@@ -86,11 +98,6 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
                     (i === index) ? $scope.show[i] = true : $scope.show[i] = false;
                 }
             }
-
-
         }
-
-
-
     }
 ]);

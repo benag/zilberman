@@ -200,9 +200,10 @@ app.delete('/user/:id', (req, res)=>{
         })
 });
 
-app.post('/profile', upload.single('file'), function (req, res, next) {
+app.post('/cardoc/:id', upload.single('file'), function (req, res, next) {
     // req.file is the `avatar` file
     // req.body will hold the text fields, if there were any
+    console.log(req.params.id);
     if (!req.file){ //work around file was not moved
         let file = req.files.file;
         let oldPath  = file.path;
@@ -211,7 +212,6 @@ app.post('/profile', upload.single('file'), function (req, res, next) {
         fs.rename(oldPath, newPath, function (err) {
             if (err) throw err;
             res.json({status:'ok', payload:returnPath});
-
         })
     }else{
         res.json({status:'ok', payload:'uploads/'+req.file.filename});
