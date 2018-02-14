@@ -362,7 +362,7 @@ class newEntry {
     async save (form, newRecord) {
 
         let returnObj = {status:true, msg:[]};
-        let client = null,secondClient = null, cars = null, morgage = null, prati = null, dira = null, loan = null;
+        let client = null,secondClient = null, cars = null, morgage = null, prati = null, dira = null, loan = null, product = null;
         try{
             if (!form.client.cTaz1) {
                 returnObj.status = false;
@@ -376,9 +376,9 @@ class newEntry {
             }
             
             if (newRecord){
-                await this.newRecord(form,returnObj);                
+                product = await this.newRecord(form,returnObj);                
             }else{
-                await this.updateRecord(form,returnObj);                
+                product = await this.updateRecord(form,returnObj);                
             } 
         
             return returnObj;
