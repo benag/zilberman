@@ -344,7 +344,7 @@ class newEntry {
                 returnObj.msg.push('חסר תעודת זהות');
                 return returnObj;
             }
-            if (!form.type) {
+            if (form.type === undefined || form.type === null) {
                 returnObj.status = false;
                 returnObj.msg.push('חסר סוג הפניה');
                 return returnObj;
