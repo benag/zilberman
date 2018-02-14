@@ -245,7 +245,7 @@ app.get('/product/:id', async (req, res) => {
 });
 app.post('/save', async function(req, res) {
     try{
-        let result = await newEntry.save(req.body.form);
+        let result = await newEntry.save(req.body.form, req.body.new);
         res.json(result);
     }catch(err){
         res.status(400);

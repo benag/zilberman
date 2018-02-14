@@ -32,9 +32,9 @@ class newEntry {
         return `${date}`;
     }
 
-    async createClient(client) {
+    async createClient(form, mateID) {
 
-        let cTaz1 = this.wrapVal(form.taz) , cTaz2 = this.wrapVal(form.mate.taz) , cName = this.wrapVal( form.firstName ) , cFamily = this.wrapVal( form.lastName ) , cGender = this.wrapVal (form.gender),
+        let cTaz1 = this.wrapVal(form.taz) , cTaz2 = this.wrapVal(mateID) , cName = this.wrapVal( form.firstName ) , cFamily = this.wrapVal( form.lastName ) , cGender = this.wrapVal (form.gender),
             cMobile = this.wrapVal(form.mobile) , cPhone = this.wrapVal(form.phone), cEmail = this.wrapVal(form.email), cBDate = this.wrapDate(form.birthdate) ,
             cTazDate= this.wrapDate (form.iddate ), cRemark = this.wrapVal(''), cSmoke = 0 , cQuitSmokeDate = this.wrapDate(form.smokingDate);
 
@@ -46,9 +46,16 @@ class newEntry {
         let newClient = await this.sql.query(insert);
         return cTaz1;
     }
+    
+    async updateClient (client, form, mateId, oldId) {
 
-    async updateClient (client, form) {
+        // we didnt find client but there is an old Id id was chenged find client according to old Id
+        if (!client && oldId) client = this.sql.query("select * from tClients where cTaz2=" + oldId);
 
+        // find which fields need to be changed and create an update string
+
+        let updateFielfds = '';
+        // if (oldId) updateFielfds = "SET cTaz1="+
         let cTaz1 = this.wrapVal(form.id) , cTaz2 = this.wrapVal(form.mate.id) , cName = this.wrapVal( form.firstName ) , cFamily = this.wrapVal( form.lastName ) , cGender = this.wrapVal (form.gender) ,
             cMobile = this.wrapVal(form.mobile) , cPhone = this.wrapVal(form.phone), cEmail = this.wrapVal(form.email), cBDate = this.wrapDate(form.birthdate) ,
             cTazDate= this.wrapDate (form.iddate ), cRemark = this.wrapVal(''), cSmoke = 0 , cQuitSmokeDate = this.wrapDate(form.smokingDate);
@@ -86,7 +93,7 @@ class newEntry {
         }
     }
 
-    async createOrUpdateCar(form, returnObj) {
+    async createCar(form, returnObj) {
 
 
         let carid = this.getNewId('carid');
@@ -112,7 +119,7 @@ class newEntry {
 
     }
   
-    async createOrUpdateMorgage(form, returnObj) {
+    async createMorgage(form, returnObj) {
 
         let id = (localStorage.getItem('id'));
         id = parseInt(id);
@@ -132,19 +139,22 @@ class newEntry {
 
     }
 
-    async createOrUpdatePart(form, returnObj) {
+    async createPart(form, returnObj) {
         return {};
     }
 
-    async createOrUpdateDira(form, returnObj) {
+    async createDira(form, returnObj) {
         //form.insuranceForm.dira.diraType
         return {};
     }
 
-    async createOrUpdateLoan(form, returnObj) {
+    async createLoan(form, returnObj) {
         //form.borrow.sum
         //form.borrow.intrest
         //form.borrow.years
+
+    }
+    async updateLoan(){
 
     }
 
@@ -236,24 +246,76 @@ class newEntry {
     }
 
    
-    async createOrUpdateClient (clientForm, returnObj) {
+    async createOrUpdateClientAndMate (form, returnObj) {
         returnObj.msg.push('לקוח עודכן במערכת');
         let client = null;
-        if (clientForm.id){
+        if (form.client.cTaz2 && form.client.cTaz1 !== form.client.cTaz2){
+            // in thi case original taz was changed update also taz
+            await this.updateClient(form, true);
+        }
+
+        if (formClient.id){
             // taz was changed update according to old id
             client = await this.updateClient(clientForm, clientForm.id);
         }else{
             client = await this.sql.query("SELECT * FROM tClients WHERE cTaz2 = " + clientForm.taz);
             if ( client && client.recordset.length > 0 ) { // client exist in the system update
-                client = await this.updateClient(clientForm, false);        
+                client = await this.updateClient(client, clientForm, mateId, false);        
             }else{// ccreate new client
-                client = await this.createClient(clientForm);
+                client = await this.createClient(clientForm, mateId);
             } 
 
         }
     }
 
-    async save (form) {
+    // if client doesnt exist create one and mate if exist do nothing
+    //create sub products and products
+    async newRecord (form, returnObj){
+        // does client already exist?
+        let client = await this.sql.query("SELECT * FROM tClients WHERE cTaz2 = " + form.client.cTaz1);
+        if (!client || !client.recordset.length > 0){
+            // main client doesnt exist create one
+            client = await this.createClient(form);
+            if (form.mate.cTaz1){
+                // find if second client already exist
+                let secondClient = await this.sql.query("SELECT * FROM tClients WHERE cTaz2 = " + form.client.cTaz1);
+                if (!secondClient || !secondClient.recordset.length > 0)
+                secondClient = await this.createMate(form.mate);
+            } 
+        }
+        if (client){
+            let type = form.type;
+            if (type === this.CAR) cars = await this.createCar( form, returnObj );
+            if (type === this.MORGAGE) morgage = await this.createMorgage( form, returnObj );
+            if (type === this.PRAT) prati =await this.createPart( form, returnObj );
+            if (type === this.DIRA) dira = await this.createDira( form, returnObj );
+        }
+        if (form.loan) loan = this.createLoan( form, returnObj );
+
+        await this.createProduct(client, form.type, cars, morgage, prati, dira, form.loan,  loan, returnObj);
+
+        return returnObj;
+
+    }
+    // if client doesnt exist create one and mate if exist do nothing
+    //create sub products and products
+    async updateRecord (form) {
+        if (form.client.cTaz1 !== form.client.cTaz2){
+            // specific case were taz was changed TODO!1
+        }
+        this.updateClient(form);
+        this.updateMate(form);
+        let type = form.type;
+        if (type === this.CAR) cars = await this.UpdateCar( form, returnObj );
+        if (type === this.MORGAGE) morgage = await this.UpdateMorgage( form, returnObj );
+        if (type === this.PRAT) prati =await this.UpdatePart( form, returnObj );
+        if (type === this.DIRA) dira = await this.UpdateDira( form, returnObj );
+        
+        if (form.loan) loan = this.createOrUpdateLoan( form, returnObj );
+
+
+    }
+    async save (form, newRecord) {
 
         let returnObj = {status:true, msg:[]};
         let client = null,secondClient = null, cars = null, morgage = null, prati = null, dira = null, loan = null;
@@ -263,19 +325,25 @@ class newEntry {
                 returnObj.msg.push('חסר תעודת זהות');
                 return returnObj;
             }
-            client = await this.createOrUpdateClient(form.client, returnObj);
-            secondClient =await this.createOrUpdateClient(form.mate, returnObj);
             
-            if (client){
-                let type = form.type;
-                if (type === this.CAR) cars = await this.createOrUpdateCar( form, returnObj );
-                if (type === this.MORGAGE) morgage = await this.createOrUpdateMorgage( form, returnObj );
-                if (type === this.PRAT) prati =await this.createOrUpdatePart( form, returnObj );
-                if (type === this.DIRA) dira = await this.createOrUpdateDira( form, returnObj );
-            }
-            if (form.loan) loan = this.createOrUpdateLoan( form, returnObj );
+            if (newRecord){
+                await this.newRecord(form,returnObj);                
+            }else{
+                await this.updateRecord(form,returnObj);                
+            } 
+            // client = await this.createOrUpdateClient(form.client,form.mate, returnObj);
+            // secondClient =await this.createOrUpdateClient(form.mate,null, returnObj);
+            
+            // if (client){
+            //     let type = form.type;
+            //     if (type === this.CAR) cars = await this.createOrUpdateCar( form, returnObj );
+            //     if (type === this.MORGAGE) morgage = await this.createOrUpdateMorgage( form, returnObj );
+            //     if (type === this.PRAT) prati =await this.createOrUpdatePart( form, returnObj );
+            //     if (type === this.DIRA) dira = await this.createOrUpdateDira( form, returnObj );
+            // }
+            // if (form.loan) loan = this.createOrUpdateLoan( form, returnObj );
 
-            await this.createProduct(client, form.type, cars, morgage, prati, dira, form.loan,  loan, returnObj);
+            // await this.createProduct(client, form.type, cars, morgage, prati, dira, form.loan,  loan, returnObj);
 
             return returnObj;
 
