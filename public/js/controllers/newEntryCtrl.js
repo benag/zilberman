@@ -67,7 +67,7 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
             if (index === 3){
                 //$scope.convertType();
                 toastr.info('הפניה נשלחה לשרת');
-                leadService.save($scope.form)
+                leadService.save($scope.form, true)
                 .then( (done) => {
                     console.log(done);
                     if (done.data.status){
