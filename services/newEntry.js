@@ -173,7 +173,7 @@ class newEntry {
         
         
         let bankId = this.getNewId('bankid');
-        let bank = await this.sql.query(`insert into tBanks (bankNo, bankName) values (${bankId}, 'מיזרחי')`);
+        let bank = await this.sql.query(`insert into tBanks (bankNo, bankName) values (${bankId}, 'מיזרחיג')`);
         let loanID = this.wrapVal(id) , loanBank = this.wrapVal(bankId) , loanValue = this.wrapVal( form.borrow.sum ),
         loanRate = this.wrapVal( form.borrow.intrest ) , loanYrsToPay = this.wrapVal (form.borrow.years),
         loanType = this.wrapVal(form.borrow.type);
