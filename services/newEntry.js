@@ -112,10 +112,11 @@ class newEntry {
             let cars = form.insuranceForm.cars;
             for (let car of cars){
                 carid++;
-                let carTypeID = 1, carYear = this.wrapVal(car.manDate), carRenewDate = this.wrapDate (car.renue ) , carHovaPrem = car.must || 0, carMekifPrem = car.around || 0, carInsurer = 'טסט',
-                    claimsCount = car.numsues || 0;
+                let carTypeID = 1, carYear = this.wrapDate(car.manDate), carRenewDate = this.wrapDate (car.renue ) ,
+                    carHovaPrem = this.wrapVal(car.must), carMekifPrem = this.wrapVal(car.around), carInsurer = 'טסט',
+                    claimsCount = this.wrapVal(car.numsues);
                 //TODO Fix claim count
-                let insert = `INSERT INTO tCarIns (carInsID, carTypeID, carYear, carRenewDate, carHovaPrem, carMekifPrem, carInsurer, claimsCount ) VALUES ( ${carid},'${carTypeID}' , '${carYear}', ${carRenewDate}, '${carHovaPrem}', '${carMekifPrem}','1',${claimsCount} )`;
+                let insert = `INSERT INTO tCarIns (carInsID, carTypeID, carYear, carRenewDate, carHovaPrem, carMekifPrem, carInsurer, claimsCount ) VALUES ( ${carid},${carTypeID} , ${carYear}, ${carRenewDate}, ${carHovaPrem}, ${carMekifPrem},'1',${claimsCount} )`;
                 let newCar = await this.sql.query(insert);
                 newCars.push(carid);
                 returnObj.msg.push('נוצר מוצר מסוג רכב');
