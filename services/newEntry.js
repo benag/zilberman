@@ -32,11 +32,24 @@ class newEntry {
         return `${date}`;
     }
 
-    async createClient(form, mateID) {
+    async createMate(form) {
+        let cTaz1 = this.wrapVal(form.cTaz1) , cTaz2 = this.wrapVal(form.mate.cTaz1) , cName = this.wrapVal( form.mate.cName ) , cFamily = this.wrapVal( form.mate.cFamily ) , cGender = this.wrapVal (form.mate.cGender),
+            cMobile = this.wrapVal(form.mate.cMobile) , cPhone = this.wrapVal(form.mate.cPhone), cEmail = this.wrapVal(form.mate.cEmail), cBDate = this.wrapDate(form.mate.cBDate) ,
+            cTazDate= this.wrapDate (form.mate.cTazDate ), cRemark = this.wrapVal(''), cSmoke = 0 , cQuitSmokeDate = this.wrapDate(form.mate.cQuitSmokeDate);
+        
+        let insert = `INSERT INTO tClients (cTaz1, cTaz2, cName, cFamily, cGender, cMobile, cPhone, cEmail, cBDate, cTazDate,cRemark, cSmoke, cQuitSmokeDate)
+                VALUES ( ${cTaz1} , ${cTaz2}, ${cName}, ${cFamily}, ${cGender} , ${cMobile},${cPhone}, ${cEmail}, ${cBDate}, ${cTazDate}, ${cRemark}, 1, ${cQuitSmokeDate} )`;
 
-        let cTaz1 = this.wrapVal(form.taz) , cTaz2 = this.wrapVal(mateID) , cName = this.wrapVal( form.firstName ) , cFamily = this.wrapVal( form.lastName ) , cGender = this.wrapVal (form.gender),
-            cMobile = this.wrapVal(form.mobile) , cPhone = this.wrapVal(form.phone), cEmail = this.wrapVal(form.email), cBDate = this.wrapDate(form.birthdate) ,
-            cTazDate= this.wrapDate (form.iddate ), cRemark = this.wrapVal(''), cSmoke = 0 , cQuitSmokeDate = this.wrapDate(form.smokingDate);
+        let newClient = await this.sql.query(insert);
+        return cTaz1;
+
+    }
+
+    async createClient(form) {
+
+        let cTaz1 = this.wrapVal(form.cTaz1) , cTaz2 = this.wrapVal(form.mate.cTaz1) , cName = this.wrapVal( form.cName ) , cFamily = this.wrapVal( form.cFamily ) , cGender = this.wrapVal (form.cGender),
+            cMobile = this.wrapVal(form.cMobile) , cPhone = this.wrapVal(form.cPhone), cEmail = this.wrapVal(form.cEmail), cBDate = this.wrapDate(form.cBDate) ,
+            cTazDate= this.wrapDate (form.cTazDate ), cRemark = this.wrapVal(''), cSmoke = 0 , cQuitSmokeDate = this.wrapDate(form.cQuitSmokeDate);
 
         if (cTaz1 && ( cTaz2 === null || cTaz2 === undefined) ) cTaz2 = cTaz1;
 
@@ -246,27 +259,27 @@ class newEntry {
     }
 
    
-    async createOrUpdateClientAndMate (form, returnObj) {
-        returnObj.msg.push('לקוח עודכן במערכת');
-        let client = null;
-        if (form.client.cTaz2 && form.client.cTaz1 !== form.client.cTaz2){
-            // in thi case original taz was changed update also taz
-            await this.updateClient(form, true);
-        }
+    // async createOrUpdateClientAndMate (form, returnObj) {
+    //     returnObj.msg.push('לקוח עודכן במערכת');
+    //     let client = null;
+    //     if (form.client.cTaz2 && form.client.cTaz1 !== form.client.cTaz2){
+    //         // in thi case original taz was changed update also taz
+    //         await this.updateClient(form, true);
+    //     }
 
-        if (formClient.id){
-            // taz was changed update according to old id
-            client = await this.updateClient(clientForm, clientForm.id);
-        }else{
-            client = await this.sql.query("SELECT * FROM tClients WHERE cTaz2 = " + clientForm.taz);
-            if ( client && client.recordset.length > 0 ) { // client exist in the system update
-                client = await this.updateClient(client, clientForm, mateId, false);        
-            }else{// ccreate new client
-                client = await this.createClient(clientForm, mateId);
-            } 
+    //     if (formClient.id){
+    //         // taz was changed update according to old id
+    //         client = await this.updateClient(clientForm, clientForm.id);
+    //     }else{
+    //         client = await this.sql.query("SELECT * FROM tClients WHERE cTaz2 = " + clientForm.taz);
+    //         if ( client && client.recordset.length > 0 ) { // client exist in the system update
+    //             client = await this.updateClient(client, clientForm, mateId, false);        
+    //         }else{// ccreate new client
+    //             client = await this.createClient(clientForm, mateId);
+    //         } 
 
-        }
-    }
+    //     }
+    // }
 
     // if client doesnt exist create one and mate if exist do nothing
     //create sub products and products
