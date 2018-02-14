@@ -77,7 +77,7 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
                 .then( (done) => {
                     console.log(done);
                     if (done.data.status){
-                        if (form.type === 1 && $scope.file){
+                        if ($scope.form.type === 1 && $scope.file){
                             $scope.uploadCarDoc(done.data.product.carId);
                         }
                         done.data.msg.forEach( msg => {
