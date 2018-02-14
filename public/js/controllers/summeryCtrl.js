@@ -5,6 +5,13 @@ angular.module('ganim').controller('summeryCtrl', ['$scope', '$stateParams', '$l
         .then( (data) => {
             $scope.loading = false;
             $scope.products = data.data;
+            $scope.products.forEach( function(p) {
+     
+                if (p.pType === 1) p.pType = 'משכנתה';
+                if (p.pType === 2) p.pType = 'פרט';
+                if (p.pType === 3) p.pType = 'רכב';
+                if (p.pType === 4) p.pType = 'דירה';
+            })
         })
         $scope.goToClient = (index) => {
             global.setProduct($scope.products[index]);
