@@ -36,7 +36,7 @@
                     </th>
 
                 </tr>
-                <tr ng-repeat=" product in products track by $index">
+                <tr ng-click="goToClient($index)" ng-repeat=" product in products track by $index">
                     <td>{{product.pId}}</td>
                     <td>{{}}</td>
                     <td>{{product.pCli1}}</td>

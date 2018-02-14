@@ -2,9 +2,18 @@ angular.module('ganim').factory('global',function($state, $timeout, $location, $
     return {
 
         user:{},
-
+        product: undefined,
         token:'',
 
+        getProduct: () => {
+            return this.product;
+        },
+        setProduct: (p) => {
+            this.product = p;
+        },
+        resetProduct: () => {
+            this.product = undefined;
+        },
         getMachine: function(){
             return $location.host() + ':' + $location.port();
         },

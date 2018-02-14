@@ -1,5 +1,5 @@
-angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$location', '$state','leadService',
-    function($scope, $stateParams, $location, $state, leadService) {
+angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$location', '$state','leadService', 'global',
+    function($scope, $stateParams, $location, $state, leadService, global) {
 
         const mashkanta = 0;
         const rechev = 1;
@@ -22,7 +22,13 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
         $scope.form.insuranceForm.dira = {};
         $scope.form.insuranceForm.prati = {};
 
-
+        let product = global.getProduct();
+        if (product) {
+            $http.get('/product/' + product.pID, () => {
+                
+            })
+            
+        }
 
         $scope.add = () => {
             if ($scope.cars.length <= 3) $scope.cars.push({});
@@ -75,6 +81,7 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
                     toastr.error('תקלה בשמירת ההפניה', 'תקלה');
                 })
             }else{
+                if (index === 0) global.resetProduct();
                 for (let i = 0 ; i < $scope.show.length ;i++  ) {
                     (i === index) ? $scope.show[i] = true : $scope.show[i] = false;
                 }

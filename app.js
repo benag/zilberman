@@ -235,6 +235,14 @@ app.get('/products', async function(req, res){
     }
 });
 
+app.get('/product/:id', async (req, res) => {
+    try{
+        let result = await newEntry.getProductFull(req.params.id);
+        res.json(result);
+    }catch(err){
+        res.status(400);
+    }
+});
 app.post('/save', async function(req, res) {
     try{
         let result = await newEntry.save(req.body.form);

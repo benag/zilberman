@@ -8,6 +8,7 @@ class newEntry {
 
     constructor(){
         this.sql = new mysql();
+        // type according to client;
         this.CAR = 1;
         this.MORGAGE = 0;
         this.PRAT = 3;
@@ -110,7 +111,7 @@ class newEntry {
         return newCars;
 
     }
-
+  
     async createOrUpdateMorgage(form, returnObj) {
 
         let id = (localStorage.getItem('id'));
@@ -190,6 +191,41 @@ class newEntry {
         return products;
 
     }
+//  סוג המוצר: 1 - משכנתא, 2 - פרט, 3- רכב, 4 - דירה. רצוי לשכפל הטבלה לאתר
+
+    async getProductFull (pid) {
+        let client, secondClient, type,morgage,  propety, prati, loan, cars;
+        let query = "SELECT * FROM tProducts WHERE pID=" + pid;
+        let product = (await this.sql.query(query)).recordset[0];
+        let pcli1 = product.pcli1;
+        let pcli2 = product.pcli2;
+        type = product.pType;
+
+        if (pcli1) client = (await this.sql.query("SELECT * from tClients WHERE cTaz1=" + pcli1)).recordset[0];
+        if (pcli2) secondClient = (await this.sql.query("SELECT * from tClients WHERE cTaz2=" + pcli2)).recordset[0];
+        if (type === 3){
+            let carId = product.carInsID;
+            cars = await this.sql.query("SELECT * FROM tCars WHERE carInsID=" + carId); 
+        }
+        if (type === 1){
+            let morageId = product.propertyID;
+            morgage = await this.sql.query("SELECT * FROM tProperty WHERE propertyID=" + morageId); 
+        }
+        if (type === 2){
+            let pratInsID = product.pratInsID;
+            prati = await this.sql.query("SELECT * FROM tPratIns WHERE pratInsID=" + pratInsID); 
+        }
+        if (type === 4){
+            // let diraId = product.propertyID;
+            // propety = await this.sql.query("SELECT * FROM tPratIns WHERE pratInsID=" + pratInsID); 
+
+        }
+        if (product.loanID){
+            loan = await this.sql.query("SELECT * FROM tLoans WHERE loanID=" + product.loanID); 
+        }
+        return { client,secondClient,type,cars,morgage,prati,loan };
+
+    }
 
     async getClients(id) {
         let query;
@@ -199,18 +235,7 @@ class newEntry {
         return clients;
     }
 
-    async updateClietnAndMate(form){
-        if (form.id){
-            // the original taz has being changed update according to old ID
-            
-        }else{
-            // find if taz already exist if yes update
-            let client = await this.sql.query("SELECT * FROM tClients WHERE cTaz2 = " + form.client.taz);
-
-        }
-
-        
-    }
+   
     async createOrUpdateClient (clientForm, returnObj) {
         returnObj.msg.push('לקוח עודכן במערכת');
         let client = null;
@@ -228,9 +253,6 @@ class newEntry {
         }
     }
 
-    async createOrUpdateMate () {
-
-    }
     async save (form) {
 
         let returnObj = {status:true, msg:[]};
