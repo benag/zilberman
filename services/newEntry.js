@@ -279,6 +279,7 @@ class newEntry {
     // if client doesnt exist create one and mate if exist do nothing
     //create sub products and products
     async newRecord (form, returnObj){
+        let cars, morgage, prati, dira;
         // does client already exist?
         let client = await this.sql.query("SELECT * FROM tClients WHERE cTaz2 = " + form.client.cTaz1);
         if (!client || !client.recordset.length > 0){
