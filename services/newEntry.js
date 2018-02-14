@@ -41,7 +41,7 @@ class newEntry {
                 VALUES ( ${cTaz1} , ${cTaz2}, ${cName}, ${cFamily}, ${cGender} , ${cMobile},${cPhone}, ${cEmail}, ${cBDate}, ${cTazDate}, ${cRemark}, 1, ${cQuitSmokeDate} )`;
 
         let newClient = await this.sql.query(insert);
-        return cTaz1;
+        return form.mate.cTaz1;
 
     }
 
