@@ -263,8 +263,8 @@ class newEntry {
                 returnObj.msg.push('חסר תעודת זהות');
                 return returnObj;
             }
-            client = this.createOrUpdateClient(form.client, returnObj);
-            secondClient =this.createOrUpdateClient(form.mate, returnObj);
+            client = await this.createOrUpdateClient(form.client, returnObj);
+            secondClient =await this.createOrUpdateClient(form.mate, returnObj);
             
             if (client){
                 let type = form.type;
