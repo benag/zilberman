@@ -8,6 +8,7 @@ angular.module('ganim').controller('summeryCtrl', ['$scope', '$stateParams', '$l
         })
         $scope.goToClient = (index) => {
             global.setProduct($scope.products[index]);
+            $state.go('newentry');
         }    
 
     }
