@@ -20,7 +20,7 @@ var express = require('express'),
         },
         filename: function (request, file, callback) {
             console.log(file);
-            callback(null, file.originalname + Date.now())
+            callback(null, file.originalname + Math.floor(1000 + Math.random() * 9000))
         }
     });
 
@@ -208,7 +208,11 @@ app.post('/cardoc/:id', upload.single('file'), function (req, res, next) {
         let file = req.files.file;
         let oldPath  = file.path;
         let name = oldPath.split('\\').pop();
-        let newPath = "C:\\projects\\dashboard\\public\\uploads"+ "\\" + name;
+        let newFolderPath = "C:\\projects\\dashboard\\public\\uploads"+ "\\" + req.params.id;
+        if (!fs.existsSync(newFolderPath)){
+            fs.mkdirSync(newFolderPath);
+        }
+        let newPath = newFolderPath + "\\" + name;
         //let returnPath  = newPath.split('\\').slice(2).join('\\');
         fs.rename(oldPath, newPath, function (err) {
             if (err) throw err;
