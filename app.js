@@ -16,7 +16,7 @@ var express = require('express'),
 
     var storage = multer.diskStorage({
         destination: function (request, file, callback) {
-            callback(null, './public/uploads/');
+            callback(null, '.\\public\\uploads\\');
         },
         filename: function (request, file, callback) {
             console.log(file);
@@ -207,8 +207,8 @@ app.post('/cardoc/:id', upload.single('file'), function (req, res, next) {
     if (!req.file){ //work around file was not moved
         let file = req.files.file;
         let oldPath  = file.path;
-        let newPath = './public/uploads/' + oldPath.split('/').pop();
-        let returnPath  = newPath.split('/').slice(2).join('/');
+        let newPath = '.\\public\\uploads\\' + oldPath.split('\\').pop();
+        let returnPath  = newPath.split('\\').slice(2).join('\\');
         fs.rename(oldPath, newPath, function (err) {
             if (err) throw err;
             res.json({status:'ok', payload:returnPath});
