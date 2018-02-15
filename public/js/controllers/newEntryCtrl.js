@@ -26,9 +26,27 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
         if (product) {
             $http.get('/product/' + product.pID, (data) => {
                 console.log(data.data);
+                let product = data.data;
+                $scope.setClient(product.client);
+                $scope.setMate(product.secondClient);        
+                $scope.setProduct();
             })
             
         }
+
+        $scope.setClient = (client) => {
+            $scope.form.client = client;
+        }
+        $scope.setMate = (client) => {
+            
+        }
+        $scope.setProduct = (client) => {
+            
+        }
+        $scope.setLoan = (client) => {
+            
+        }
+
 
         $scope.uploadCarDoc = (carId) => {
             toastr.info('מעלה טופס מכונית לשרת');
