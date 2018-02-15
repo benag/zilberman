@@ -24,7 +24,7 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
 
         let product = global.getProduct();
         if (product) {
-            $http.get('/product/' + product.pID, (data) => {
+            $http.get('/product/' + product.pID).then((data) => {
                 console.log(data.data);
                 let product = data.data;
                 $scope.setClient(product.client);
