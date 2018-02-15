@@ -40,8 +40,22 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
         $scope.setMate = (client) => {
             if (client) $scope.form.mate = client;
         }
-        $scope.setProduct = (client) => {
-            
+        $scope.setProduct = (p) => {
+            let type = p.cType;
+            if (type === 3){
+                $scope.insurance[1] = true;
+                $scope.form.insuranceForm.cars.push(p.cars);
+            } 
+            if (type === 1){
+                $scope.insurance[0] = true;
+                $scope.form.insuranceForm.morgage = morgage;
+
+            } 
+            if (type === 2) $scope.insurance[3] = true;
+            if (type === 4) $scope.insurance[2] = true;
+
+
+
         }
         $scope.setLoan = (client) => {
             
