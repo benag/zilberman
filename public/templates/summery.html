@@ -13,9 +13,9 @@
                     <th>
                         מספר
                     </th>
-                    <th>
+                    <!-- <th>
                         תאריך
-                    </th>
+                    </th> -->
                     <th>
                         תז
                     </th>
@@ -37,8 +37,8 @@
 
                 </tr>
                 <tr ng-click="goToClient($index)" ng-repeat=" product in products track by $index">
-                    <td>{{product.pId}}</td>
-                    <td>{{}}</td>
+                    <td>{{product.pID}}</td>
+                    <!-- <td>{{}}</td> -->
                     <td>{{product.pCli1}}</td>
                     <td>{{product.clientName}}</td>
                     <td>{{product.pType}}</td>
