@@ -29,7 +29,7 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
                 let product = data.data;
                 $scope.setClient(product.client);
                 $scope.setMate(product.secondClient);        
-                $scope.setProduct(product.product);
+                $scope.setProduct(product);
             })
             
         }
