@@ -247,8 +247,8 @@ class newEntry {
         let client, secondClient, type,morgage,  propety, prati, loan, cars;
         let query = "SELECT * FROM tProducts WHERE pID=" + pid;
         let product = (await this.sql.query(query)).recordset[0];
-        let pcli1 = product.pcli1;
-        let pcli2 = product.pcli2;
+        let pcli1 = product.pCli1;
+        let pcli2 = product.pCli2;
         type = product.pType;
 
         if (pcli1) client = (await this.sql.query("SELECT * from tClients WHERE cTaz1=" + pcli1)).recordset[0];
