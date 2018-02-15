@@ -38,7 +38,7 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
             $scope.form.client = client;
         }
         $scope.setMate = (client) => {
-            
+            if (client) $scope.form.mate = client;
         }
         $scope.setProduct = (client) => {
             
