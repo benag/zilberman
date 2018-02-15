@@ -255,15 +255,18 @@ class newEntry {
         if (pcli2) secondClient = (await this.sql.query("SELECT * from tClients WHERE cTaz2=" + pcli2)).recordset[0];
         if (type === 3){
             let carId = product.carInsID;
-            cars = await this.sql.query("SELECT * FROM tCars WHERE carInsID=" + carId); 
+            cars = await this.sql.query("SELECT * FROM tCars WHERE carInsID=" + carId);
+            cars = cars.recordset[0];
         }
         if (type === 1){
             let morageId = product.propertyID;
             morgage = await this.sql.query("SELECT * FROM tProperty WHERE propertyID=" + morageId); 
+            morgage = morgage.recordset[0];
         }
         if (type === 2){
             let pratInsID = product.pratInsID;
             prati = await this.sql.query("SELECT * FROM tPratIns WHERE pratInsID=" + pratInsID); 
+            prati = prato.recprdset[0];
         }
         if (type === 4){
             // let diraId = product.propertyID;
@@ -271,7 +274,8 @@ class newEntry {
 
         }
         if (product.loanID){
-            loan = await this.sql.query("SELECT * FROM tLoans WHERE loanID=" + product.loanID); 
+            loan = await this.sql.query("SELECT * FROM tLoans WHERE loanID=" + product.loanID);
+            loan = loan.recordset[0];
         }
         return { client,secondClient,type,cars,morgage,prati,loan };
 
