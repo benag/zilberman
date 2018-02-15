@@ -195,19 +195,19 @@
                             </div>
 
                             <div ng-show="insuranceForm.asset === '1'" class="col-md-1">
-                                <input class="zilberman-input" placeholder="קומה" ng-model="form.insuranceForm.morgage.floor">
+                                <input class="zilberman-input" placeholder="קומה" ng-model="form.insuranceForm.morgage.pFloor">
                             </div>
                             <div ng-show="insuranceForm.asset === '1'" class="col-md-1">
-                                <input class="zilberman-input" placeholder="מתוך" ng-model="form.insuranceForm.morgage.outOfFloor">
+                                <input class="zilberman-input" placeholder="מתוך" ng-model="form.insuranceForm.morgage.pOutOfFloor">
                             </div>
                             <div class="col-md-2">
-                                <input class="zilberman-input" placeholder="שטח בנוי במר" ng-model="form.insuranceForm.morgage.surface">
+                                <input class="zilberman-input" placeholder="שטח בנוי במר" ng-model="form.insuranceForm.morgage.pSurface">
                             </div>
                             <div class="col-md-2">
-                                <input class="zilberman-input" placeholder="עלות בנייה" ng-model="form.insuranceForm.morgage.cost">
+                                <input class="zilberman-input" placeholder="עלות בנייה" ng-model="form.insuranceForm.morgage.pBuildCost">
                             </div>
                             <div class="col-md-2">
-                                <input class="zilberman-input" placeholder="שוווי נכס" ng-model="form.insuranceForm.morgage.value">
+                                <input class="zilberman-input" placeholder="שוווי נכס" ng-model="form.insuranceForm.morgage.pPropertyValue">
                             </div>
 
                         </div>
@@ -293,7 +293,7 @@
                                         </select>
                                     </div>
                                     <div class="col-md-6">
-                                        <select class="zilberman-dropdown" ng-model="form.insuranceForm.cars[$index].manDate" placeholder="יצרן" name="asset-type" required>
+                                        <select class="zilberman-dropdown" ng-model="form.insuranceForm.cars[$index].carYear" placeholder="יצרן" name="asset-type" required>
                                             <option value="" disabled selected>שנת ייצור</option>
                                             <option value="2018">2018</option>
                                             <option value="2017">2017</option>
@@ -351,17 +351,17 @@
 
                             <div class="col-md-2">
                                 <datepicker date-format="dd/MM/yyyy">
-                                    <input placeholder="תאריך חידוש" class="zilberman-date" type="text" ng-model="form.insuranceForm.cars[$index].renue" id="date5">
+                                    <input placeholder="תאריך חידוש" class="zilberman-date" type="text" ng-model="form.insuranceForm.cars[$index].carRenewDate" id="date5">
                                 </datepicker>
 
                             </div>
                             <div class="col-md-3">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <input class="zilberman-input" placeholder="פרמיית חובה" ng-model="form.insuranceForm.cars[$index].must">
+                                        <input class="zilberman-input" placeholder="פרמיית חובה" ng-model="form.insuranceForm.cars[$index].carHovaPrem">
                                     </div>
                                     <div class="col-md-6">
-                                        <input class="zilberman-input" placeholder="פרמיית מקיף" ng-model="form.insuranceForm.cars[$index].around">
+                                        <input class="zilberman-input" placeholder="פרמיית מקיף" ng-model="form.insuranceForm.cars[$index].carMekifPrem">
                                     </div>
                                 </div>
                             </div>
@@ -369,7 +369,7 @@
                                 <div class="row">
 
                                     <div class="col-md-10">
-                                        <input class="zilberman-input" placeholder="מספר תביעות ב 3 שנים אחרונות" ng-model="form.insuranceForm.cars[$index].numsues">
+                                        <input class="zilberman-input" placeholder="מספר תביעות ב 3 שנים אחרונות" ng-model="form.insuranceForm.cars[$index].claimsCount">
                                     </div>
                                     <div class="col-md-1">
                                         <i style="cursor:pointer;" ng-click="omitCar($index)" class="material-icons">delete_sweep</i>

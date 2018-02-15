@@ -112,9 +112,9 @@ class newEntry {
             let cars = form.insuranceForm.cars;
             for (let car of cars){
                 carid++;
-                let carTypeID = 1, carYear = this.wrapDate(car.manDate), carRenewDate = this.wrapDate (car.renue ) ,
-                    carHovaPrem = this.wrapVal(car.must), carMekifPrem = this.wrapVal(car.around), carInsurer = 'טסט',
-                    claimsCount = this.wrapVal(car.numsues);
+                let carTypeID = 1, carYear = this.wrapDate(car.carYear), carRenewDate = this.wrapDate (car.carRenewDate ) ,
+                    carHovaPrem = this.wrapVal(car.carHovaPrem), carMekifPrem = this.wrapVal(car.carMekifPrem), carInsurer = 'טסט',
+                    claimsCount = this.wrapVal(car.claimsCount);
                 //TODO Fix claim count
                 let insert = `INSERT INTO tCarIns (carInsID, carTypeID, carYear, carRenewDate, carHovaPrem, carMekifPrem, carInsurer, claimsCount ) VALUES ( ${carid},${carTypeID} , ${carYear}, ${carRenewDate}, ${carHovaPrem}, ${carMekifPrem},'1',${claimsCount} )`;
                 let newCar = await this.sql.query(insert);
@@ -141,7 +141,7 @@ class newEntry {
             id = 0 ;
             localStorage.setItem('id', '0');
         }
-        let morgage = form.insuranceForm.morgage, pFloor = morgage.floor || 0, pOutOfFloor = morgage.outOfFloor || 0, pSurface = morgage.surface || 0, pBuildCost = morgage.cost || 0, pPropertyValue = morgage.value || 0;
+        let morgage = form.insuranceForm.morgage, pFloor = morgage.pFloor || 0, pOutOfFloor = morgage.pOutOfFloor || 0, pSurface = morgage.pSurface || 0, pBuildCost = morgage.pBuildCost || 0, pPropertyValue = morgage.pPropertyValue || 0;
         let insert = `INSERT INTO tProperty (propertyID, pFloor, pOutOfFloor, pSurface, pBuildCost, pPropertyValue)
                 VALUES ( ${id},'${pFloor}' , '${pOutOfFloor}', '${pSurface}', '${pBuildCost}','${pPropertyValue}')`;
         let newMorgage = await this.sql.query(insert);
