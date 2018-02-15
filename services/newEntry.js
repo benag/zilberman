@@ -301,20 +301,22 @@ class newEntry {
         if (!client || !client.recordset.length > 0){
             // main client doesnt exist create one
             client = await this.createClient(form);
-            secondClient = await this.createMate(form);
+            if (form.mate.cTaz1) secondClient = await this.createMate(form);
+            
            
         }else{
             // main client exist
             client = client.recordset[0].cTaz1;
             // is second client exist?
-            secondClient = await this.sql.query("SELECT * FROM tClients WHERE cTaz2 = " + form.mate.cTaz1);
-            if (!secondClient || !secondClient.recordset.length > 0) {
-                // if doesnt exist create it
-                secondClient = await this.createMate(form);
-            }else{
-                secondClient = secondClient.recordset[0].cTaz2;
-            }
-
+            if (form.mate.cTaz1) {
+                secondClient = await this.sql.query("SELECT * FROM tClients WHERE cTaz2 = " + form.mate.cTaz1);
+                if (!secondClient || !secondClient.recordset.length > 0) {
+                    // if doesnt exist create it
+                    secondClient = await this.createMate(form);
+                }else{
+                    secondClient = secondClient.recordset[0].cTaz2;
+                }
+            }            
         }
         if (client){
             let type = form.type;
