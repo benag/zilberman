@@ -1,5 +1,5 @@
-angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$location', '$state','leadService', 'global','Upload','$rootScope',
-    function($scope, $stateParams, $location, $state, leadService, global, Upload, $rootScope) {
+angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$location', '$state','leadService', 'global','Upload','$rootScope','$http',
+    function($scope, $stateParams, $location, $state, leadService, global, Upload, $rootScope, $http) {
 
         const mashkanta = 0;
         const rechev = 1;
@@ -24,8 +24,8 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
 
         let product = global.getProduct();
         if (product) {
-            $http.get('/product/' + product.pID, () => {
-                
+            $http.get('/product/' + product.pID, (data) => {
+                console.log(data.data);
             })
             
         }
