@@ -90,19 +90,20 @@ class newEntry {
     async updateClient (form) {
 
         let query = 'UPDATE tClients SET ';
-        let dbClient = this.sql.query(`SELECT * from tClients where cTaz1=${form.client.cTaz2} AND cTaz1 = cTaz2`);
+        let dbClient = await this.sql.query(`SELECT * from tClients where cTaz1=${form.client.cTaz2} AND cTaz1 = cTaz2`);
 
         
         if (dbClient && dbClient.recordset.length > 0){
             let client = dbClient.recordset[0];
             if (client.cTaz1 !== form.client.cTaz1) query += `SET cTaz1=${form.client.cTaz1}, cTaz2 = ${form.client.cTaz1} `;
+            this.sqlBuilder (dbClient, form,query );
+
+            query += ` WHERE cTaz1=${form.client.cTaz2}` 
+    
+           
+            let newClient = await this.sql.query(query);
         }
-        this.sqlBuilder (dbClient, form,query );
-
-        query += ` WHERE cTaz1=${form.client.cTaz2}` 
-
-       
-        let newClient = await this.sql.query(query);
+     
         return form.client.cTaz2;
 
 
