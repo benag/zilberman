@@ -70,14 +70,14 @@ class newEntry {
             if (field.indexOf('date') !==-1 || field.indexOf('Date') !==-1) val = this.wrapDate(val);
             if (field.indexOf('date') ===-1 && field.indexOf('Date') ===-1) val = this.wrapVal(val);
 
-            if (query.indexOf('SET') === -1) query += `SET ${field} = ${val}`;
-            if (query.indexOf('SET') !== -1) query += `${field} = ${val}`;
+            if (query.indexOf('SET') === -1) query = query + `SET ${field} = ${val}`;
+            if (query.indexOf('SET') !== -1) query = query +`${field} = ${val}`;
             return query;
         }
 
         for (let field in dbObject){
             if (field !== 'cTaz1' && field !== 'cTaz2'){
-                if (dbObject[field] !== form.client[field]) query += sqlFieledBuilder(query,field, form.client[field] )
+                if (dbObject[field] !== form.client[field]) query = sqlFieledBuilder(query,field, form.client[field] )
             }
         }
         return query;
