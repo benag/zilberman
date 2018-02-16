@@ -70,8 +70,8 @@ class newEntry {
             if (field.indexOf('date') !==-1 || field.indexOf('Date') !==-1) val = this.wrapDate(val);
             if (field.indexOf('date') ===-1 && field.indexOf('Date') ===-1) val = this.wrapVal(val);
 
-            if (query.indexOf('SET') === -1) query = query + ` SET ${field} = ${val}`;
-            if (query.indexOf('SET') !== -1) query = query +` ${field} = ${val}`;
+            if (query.indexOf('SET') === -1) query = query + ` SET ${field} = ${val},`;
+            if (query.indexOf('SET') !== -1) query = query +` ${field} = ${val},`;
             return query;
         }
 
@@ -102,8 +102,8 @@ class newEntry {
 
             query += ` WHERE cTaz1=${form.client.cTaz2}` 
     
-           let textQuery = "UPDATE tClients SET cFamily = 'tt', cTazDate = 01/01/2012 WHERE cTaz1=2222224";
-            let newClient = await this.sql.query(textQuery);
+           //let textQuery = "UPDATE tClients SET cFamily = 'tt', cTazDate = 01/01/2012 WHERE cTaz1=2222224";
+            let newClient = await this.sql.query(query);
         }
      
         return form.client.cTaz2;
