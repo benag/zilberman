@@ -62,10 +62,10 @@ class newEntry {
      * In the exception of cTaz1 and cTaz2.
      */
 
-    sqlBuilder (dbObject, form, query, startWithcolon) {
+    sqlBuilder (dbObject, form, query, startWithColon) {
         let sqlFieledBuilder = (query, field, val, startWithColon) => {
             val = this.wrapVal(val);
-            return query + ` ${ startWithcolon ? ',':'' } ${field} = ${val}`;
+            return query + ` ${ startWithColon ? ',':'' } ${field} = ${val}`;
         }
 
         for (let field in dbObject){
