@@ -79,6 +79,7 @@ class newEntry {
                 if (dbObject[field] !== form.client[field]) sqlFieledBuilder(query,field, form.client[field] )
             }
         }
+        return query;
 
     }
 
@@ -96,7 +97,7 @@ class newEntry {
         if (dbClient && dbClient.recordset.length > 0){
             let client = dbClient.recordset[0];
             if (client.cTaz1 !== form.client.cTaz1) query += `SET cTaz1=${form.client.cTaz1}, cTaz2 = ${form.client.cTaz1} `;
-            this.sqlBuilder (client, form,query );
+            query += this.sqlBuilder (client, form,query );
 
             query += ` WHERE cTaz1=${form.client.cTaz2}` 
     

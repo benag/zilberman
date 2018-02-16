@@ -37,6 +37,8 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
 
         $scope.setClient = (client) => {
             $scope.form.client = client;
+            $scope.form.client.cBDate = new Date().setTime($scope.form.client.cBDate).toString();
+            
         }
         $scope.setMate = (client) => {
             if (client) $scope.form.mate = client;
