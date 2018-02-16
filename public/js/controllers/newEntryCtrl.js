@@ -45,10 +45,12 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
             let type = p.type;
             if (type === 3){
                 $scope.insurance[1] = true;
+                $scope.form.type = 1;
                 $scope.form.insuranceForm.cars.push(p.cars);
             } 
             if (type === 1){
                 $scope.insurance[0] = true;
+                $scope.form.type = 0;
                 $scope.form.insuranceForm.morgage = p.morgage;
 
             } 
