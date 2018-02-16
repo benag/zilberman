@@ -39,6 +39,7 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
             $scope.form.client = client;
             let bDate =  new Date();
             var date = moment($scope.form.client.cBDate);
+            console.log(date.form('DD MM YYYY'));
             console.log(date);
             // console.log(Date.parse($scope.form.client.cBDate));
             // bDate.setTime($scope.form.client.cBDate);
