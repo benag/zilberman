@@ -37,18 +37,11 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
 
         $scope.setClient = (client) => {
             $scope.form.client = client;
-            let bDate =  new Date();
             var date = moment($scope.form.client.cBDate);
-            console.log(date.format('DD/MM/YYYY'));
-            console.log(date);
-            $scope.form.client.cBDate = date.format('DD/MM/YYYY')
-            // console.log(Date.parse($scope.form.client.cBDate));
-            // bDate.setTime($scope.form.client.cBDate);
-            // console.log(bDate.toString())
-            // console.log(bDate.getDate());
-            // console.log(bDate.getUTCDate());
-            //$scope.form.client.cBDate = bDate.getDate();
-            
+            let cTazDate = moment($scope.form.client.cTazDate); 
+            $scope.form.client.cBDate = date.format('DD/MM/YYYY');
+            $scope.form.client.cTazDate = cTazDate.format('DD/MM/YYYY');
+            $scope.form.cGender = String($scope.form.cGender); 
         }
         $scope.setMate = (client) => {
             if (client) $scope.form.mate = client;
