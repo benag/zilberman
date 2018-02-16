@@ -79,11 +79,6 @@ class newEntry {
 
     }
 
-    // sqlFiledBuilder (query, field, val) {
-
-    //     if (query.indexOf('SET') === -1) query += `SET ${field} = ${val}`;
-    //     if (query.indexOf('SET') !== -1) query += `${field} = ${val}`;
-    // }
     async updateClient (form) {
 
         let query = 'UPDATE tClients SET';
@@ -189,10 +184,7 @@ class newEntry {
         }
         
         
-        // let bankId = this.getNewId('bankid');
-        // let banks = await this.sql.query("select * from tBanks");
-        // console.log(banks);
-        //let bank = await this.sql.query(`insert into tBanks (bankNo, bankName) values (${bankId}, 'מיזרחיג')`);
+ 
         let loanID = this.wrapVal(id) , loanBank = 10 , loanValue = this.wrapVal( form.borrow.sum ),
         loanRate = this.wrapVal( form.borrow.intrest ) , loanYrsToPay = this.wrapVal (form.borrow.years),
         loanType = this.wrapVal(form.borrow.type);
@@ -252,11 +244,6 @@ class newEntry {
         let query = 'SELECT * FROM tProducts, tClients WHERE tProducts.pCli1 = tClients.cTaz1 ';
         let products = await this.sql.query(query);
         products = products.recordset;
-        // for (let product of products){
-        //     let cliId = product.pCli1;
-        //     let client = await this.getClients(cliId);
-        //     product.clientName = client.recordset[0].cName;
-        // }
         return products;
 
     }
