@@ -76,7 +76,7 @@ class newEntry {
 
         for (let field in dbObject){
             if (field !== 'cTaz1' && field !== 'cTaz2'){
-                if (dbObject[field] !== form[field]) sqlFieledBuilder(query,field, form[field] )
+                if (dbObject[field] !== form.client[field]) sqlFieledBuilder(query,field, form.client[field] )
             }
         }
 
