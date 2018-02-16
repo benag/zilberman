@@ -62,17 +62,15 @@ class newEntry {
      * In the exception of cTaz1 and cTaz2.
      */
 
-    sqlBuilder (dbObject, form, query) {
-        let sqlFieledBuilder = (query, field, val) => {
+    sqlBuilder (dbObject, form, query, startWithcolon) {
+        let sqlFieledBuilder = (query, field, val, startWithColon) => {
             val = this.wrapVal(val);
-            if (query.indexOf('SET') === -1) query = query + ` SET ${field} = ${val},`;
-            if (query.indexOf('SET') !== -1) query = query +` ${field} = ${val},`;
-            return query;
+            return query + ` ${ startWithcolon ? ',':'' } ${field} = ${val}`;
         }
 
         for (let field in dbObject){
             if (field !== 'cTaz1' && field !== 'cTaz2'){
-                if (dbObject[field] !== form.client[field]) query = sqlFieledBuilder(query,field, form.client[field] )
+                if (dbObject[field] !== form.client[field]) query = sqlFieledBuilder(query,field, form.client[field], startWithColon )
             }
         }
         return query;
@@ -83,12 +81,15 @@ class newEntry {
 
         let query = 'UPDATE tClients SET';
         let dbClient = await this.sql.query(`SELECT * from tClients where cTaz1=${form.client.cTaz2} AND cTaz1 = cTaz2`);
-
+        let startWithColon = true;
         
         if (dbClient && dbClient.recordset.length > 0){
             let client = dbClient.recordset[0];
-            if (client.cTaz1 !== form.client.cTaz1) query += `SET cTaz1=${form.client.cTaz1}, cTaz2 = ${form.client.cTaz1} `;
-            query = this.sqlBuilder (client, form,query );
+            if (client.cTaz1 !== form.client.cTaz1){
+                query += ` cTaz1=${form.client.cTaz1}, cTaz2 = ${form.client.cTaz1}, `;
+                startWithColon = false;
+            } 
+            query = this.sqlBuilder (client, form,query, startWithColon );
 
             query += ` WHERE cTaz1=${form.client.cTaz2}` 
     
