@@ -63,16 +63,19 @@ class newEntry {
      */
 
     sqlBuilder (dbObject, form, query, startWithColon) {
-        let sqlFieledBuilder = (query, field, val, startWithColon) => {
+        let sqlFieledBuilder = (query, field, val) => {
             val = this.wrapVal(val);
-            startWithColon ? query =  query + ` ,${field} = ${val}` : query =  query + ` ${field} = ${val}`;
+            index === 0 ? query =  query + ` ${field} = ${val}` : query =  query + ` ,${field} = ${val}`;
             return query;
         }
 
         for (let field in dbObject){
-            if (field !== 'cTaz1' && field !== 'cTaz2'){
-                if (dbObject[field] !== form.client[field]) query = sqlFieledBuilder(query,field, form.client[field], startWithColon );
-                startWithColon = true;
+            let index = 0;
+            if (field !== 'cTaz1' && field !== 'cTaz2'){    
+                if (dbObject[field] !== form.client[field]){
+                    query = sqlFieledBuilder(query,field, form.client[field]);
+                    index++;            
+                } 
             }
         }
         return query;
