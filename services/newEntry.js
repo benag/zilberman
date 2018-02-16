@@ -67,10 +67,10 @@ class newEntry {
 
     sqlBuilder (dbObject, form, query) {
         let sqlFieledBuilder = (query, field, val) => {
-            if (val.indexOf('date') !==-1 || val.indexOf('Date') !==-1) val = this.wrapDate(val);
-            if (val.indexOf('date') ===-1 && val.indexOf('Date') ===-1) val = this.wrapVal(val);
+            if (field.indexOf('date') !==-1 || field.indexOf('Date') !==-1) val = this.wrapDate(val);
+            if (field.indexOf('date') ===-1 && field.indexOf('Date') ===-1) val = this.wrapVal(val);
 
-            if (query.indexOf('SET') === -1) query += `SET ${field} = ${this.wrapVal(val)}`;
+            if (query.indexOf('SET') === -1) query += `SET ${field} = ${val}`;
             if (query.indexOf('SET') !== -1) query += `${field} = ${val}`;
         }
 
