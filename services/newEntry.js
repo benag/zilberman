@@ -68,9 +68,9 @@ class newEntry {
             index === 0 ? query =  query + ` ${field} = ${val}` : query =  query + ` ,${field} = ${val}`;
             return query;
         }
-
+        let index = 0;
         for (let field in dbObject){
-            let index = 0;
+            
             if (field !== 'cTaz1' && field !== 'cTaz2'){    
                 if (dbObject[field] !== form.client[field]){
                     query = sqlFieledBuilder(query,field, form.client[field],index);
