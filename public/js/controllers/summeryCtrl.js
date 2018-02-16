@@ -5,6 +5,7 @@ angular.module('ganim').controller('summeryCtrl', ['$scope', '$stateParams', '$l
         .then( (data) => {
             $scope.loading = false;
             $scope.products = data.data;
+            console.log($scope.products);
             $scope.products.forEach( function(p) {
      
                 if (p.pType === 1) p.pType = 'משכנתה';
