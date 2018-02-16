@@ -63,7 +63,7 @@ class newEntry {
      */
 
     sqlBuilder (dbObject, form, query, startWithColon) {
-        let sqlFieledBuilder = (query, field, val) => {
+        let sqlFieledBuilder = (query, field, val, index) => {
             val = this.wrapVal(val);
             index === 0 ? query =  query + ` ${field} = ${val}` : query =  query + ` ,${field} = ${val}`;
             return query;
@@ -73,7 +73,7 @@ class newEntry {
             let index = 0;
             if (field !== 'cTaz1' && field !== 'cTaz2'){    
                 if (dbObject[field] !== form.client[field]){
-                    query = sqlFieledBuilder(query,field, form.client[field]);
+                    query = sqlFieledBuilder(query,field, form.client[field],index);
                     index++;            
                 } 
             }
