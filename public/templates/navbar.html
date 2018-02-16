@@ -6,28 +6,28 @@
 
                     <ul class="nav nav-tabs" data-tabs="tabs">
                         <li ng-class="{'active':ifstate('newentry')}" >
-                            <div ng-click="state('newentry')"  data-toggle="tab">
+                            <a ng-click="state('newentry')"  data-toggle="tab">
                                 פנייה חדשה
                                 <div class="ripple-container"></div>
-                            </div>
+                            </a>
                         </li>
                         <li ng-class="{'active':ifstate('summery')}">
-                            <div ng-click="state('summery')" data-toggle="tab">
+                            <a ng-click="state('summery')" data-toggle="tab">
                                 הזמנות קיימות
                                 <div class="ripple-container"></div>
-                            </div>
+                            </a>
                         </li>
                         <li ng-class="{'active':ifstate('users')}">
-                            <div ng-click="state('summery')" data-toggle="tab">
+                            <a ng-click="state('summery')" data-toggle="tab">
                                 ניהול משתמשים
                                 <div class="ripple-container"></div>
-                            </div>
+                            </a>
                         </li>
                         <li ng-class="{'active':ifstate('login')}" class="pull-left">
-                            <div ng-click="state('login')" data-toggle="tab">
+                            <a ng-click="state('login')" data-toggle="tab">
                                 יציאה
                                 <div class="ripple-container"></div>
-                            </div>
+                            </a>
                         </li>
 
                     </ul>
