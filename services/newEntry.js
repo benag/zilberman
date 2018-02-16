@@ -70,8 +70,8 @@ class newEntry {
             if (field.indexOf('date') !==-1 || field.indexOf('Date') !==-1) val = this.wrapDate(val);
             if (field.indexOf('date') ===-1 && field.indexOf('Date') ===-1) val = this.wrapVal(val);
 
-            if (query.indexOf('SET') === -1) query = query + `SET ${field} = ${val}`;
-            if (query.indexOf('SET') !== -1) query = query +`${field} = ${val}`;
+            if (query.indexOf('SET') === -1) query = query + ` SET ${field} = ${val}`;
+            if (query.indexOf('SET') !== -1) query = query +` ${field} = ${val}`;
             return query;
         }
 
@@ -91,7 +91,7 @@ class newEntry {
     // }
     async updateClient (form) {
 
-        let query = 'UPDATE tClients SET ';
+        let query = 'UPDATE tClients SET';
         let dbClient = await this.sql.query(`SELECT * from tClients where cTaz1=${form.client.cTaz2} AND cTaz1 = cTaz2`);
 
         
