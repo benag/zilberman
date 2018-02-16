@@ -102,8 +102,8 @@ class newEntry {
 
             query += ` WHERE cTaz1=${form.client.cTaz2}` 
     
-           
-            let newClient = await this.sql.query(query);
+           let textQuery = "UPDATE tClients SET cFamily = 'tt' cTazDate = 01/01/2012 WHERE cTaz1=2222224";
+            let newClient = await this.sql.query(textQuery);
         }
      
         return form.client.cTaz2;
