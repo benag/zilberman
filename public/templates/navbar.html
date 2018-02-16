@@ -12,16 +12,22 @@
                             </div>
                         </li>
                         <li ng-class="{'active':ifstate('summery')}">
-                            <a ng-click="state('summery')" data-toggle="tab">
+                            <div ng-click="state('summery')" data-toggle="tab">
                                 הזמנות קיימות
                                 <div class="ripple-container"></div>
-                            </a>
+                            </div>
+                        </li>
+                        <li ng-class="{'active':ifstate('users')}">
+                            <div ng-click="state('summery')" data-toggle="tab">
+                                ניהול משתמשים
+                                <div class="ripple-container"></div>
+                            </div>
                         </li>
                         <li ng-class="{'active':ifstate('login')}" class="pull-left">
-                            <a ng-click="state('login')" data-toggle="tab">
+                            <div ng-click="state('login')" data-toggle="tab">
                                 יציאה
                                 <div class="ripple-container"></div>
-                            </a>
+                            </div>
                         </li>
 
                     </ul>
