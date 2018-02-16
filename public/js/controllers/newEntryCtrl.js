@@ -5,7 +5,7 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
         const rechev = 1;
         const privateData = 0;
         const insuranceTypes = 1;
-
+        $scope.isNew = true;
         $scope.format = 'dd/MM/yyyy';
         $scope.date = new Date();
         $scope.form = {};
@@ -24,6 +24,7 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
 
         let product = global.getProduct();
         if (product) {
+            $scope.isNew = false;
             $http.get('/product/' + product.pID).then((data) => {
                 console.log(data.data);
                 let product = data.data;
@@ -105,7 +106,7 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
             if (index === 3){
                 //$scope.convertType();
                 toastr.info('הפניה נשלחה לשרת');
-                leadService.save($scope.form, true)
+                leadService.save($scope.form, $scope.isNew)
                 .then( (done) => {
                     console.log(done);
                     if (done.data.status){

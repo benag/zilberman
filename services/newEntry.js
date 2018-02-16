@@ -60,31 +60,50 @@ class newEntry {
         return cTaz1;
     }
     
+    /**
+     * Get the client object iterate over it and crteate an update string
+     * In the exception of cTaz1 and cTaz2.
+     */
+
+    sqlBuilder (dbObject, form, query) {
+        let sqlFieledBuilder = (query, field, val) => {
+            if (val.indexOf('date') !==-1 || val.indexOf('Date') !==-1) val = this.wrapDate(val);
+            if (val.indexOf('date') ===-1 && val.indexOf('Date') ===-1) val = this.wrapVal(val);
+
+            if (query.indexOf('SET') === -1) query += `SET ${field} = ${this.wrapVal(val)}`;
+            if (query.indexOf('SET') !== -1) query += `${field} = ${val}`;
+        }
+
+        for (let field in dbObject){
+            if (field !== 'cTaz1' && field !== 'cTaz2'){
+                if (dbObject.field !== form.field) sqlFieledBuilder(query,field, form.field )
+            }
+        }
+
+    }
+
+    // sqlFiledBuilder (query, field, val) {
+
+    //     if (query.indexOf('SET') === -1) query += `SET ${field} = ${val}`;
+    //     if (query.indexOf('SET') !== -1) query += `${field} = ${val}`;
+    // }
     async updateClient (form) {
 
-               
-        // if (oldId) updateFielfds = "SET cTaz1="+
-        let cTaz1 = this.wrapVal(form.id) , cTaz2 = this.wrapVal(form.mate.id) , cName = this.wrapVal( form.firstName ) , cFamily = this.wrapVal( form.lastName ) , cGender = this.wrapVal (form.gender) ,
-            cMobile = this.wrapVal(form.mobile) , cPhone = this.wrapVal(form.phone), cEmail = this.wrapVal(form.email), cBDate = this.wrapDate(form.birthdate) ,
-            cTazDate= this.wrapDate (form.iddate ), cRemark = this.wrapVal(''), cSmoke = 0 , cQuitSmokeDate = this.wrapDate(form.smokingDate);
+        let query = 'UPDATE tClients SET ';
+        let dbClient = this.sql.query(`SELECT * from tClients where cTaz1=${form.client.cTaz2} AND cTaz1 = cTaz2`);
 
-        if (cTaz1 && ( cTaz2 === null || cTaz2 === undefined) ) cTaz2 = cTaz1;
-        let update = `UPDATE tClients SET cTaz2 = ${cTaz2},
-                        cName = ${cName},
-                        cFamily = ${cFamily},
-                        cGender = ${cGender},
-                        cMobile = ${cMobile},
-                        cPhone = ${cPhone},
-                        cEmail = ${cEmail},
-                        cBDate = ${cBDate},
-                        cTazDate = ${cTazDate},
-                        cRemark = ${cRemark},
-                        cSmoke = ${cSmoke} ,
-                        cQuitSmokeDate = ${cQuitSmokeDate})
-                WHERE cTaz1 = ${cTaz1})`;
+        
+        if (dbClient && dbClient.recordset.length > 0){
+            let client = dbClient.recordset[0];
+            if (client.cTaz1 !== form.client.cTaz1) query += `SET cTaz1=${form.client.cTaz1}, cTaz2 = ${form.client.cTaz1} `;
+        }
+        this.sqlBuilder (dbClient, form,query );
 
-        let newClient = await this.sql.query(update);
-        return cTaz1;
+        query += ` WHERE cTaz1=${form.client.cTaz2}` 
+
+       
+        let newClient = await this.sql.query(query);
+        return form.client.cTaz2;
 
 
 
@@ -337,18 +356,16 @@ class newEntry {
     // if client doesnt exist create one and mate if exist do nothing
     //create sub products and products
     async updateRecord (form) {
-        if (form.client.cTaz1 !== form.client.cTaz2){
-            // specific case were taz was changed TODO!1
-        }
-        this.updateClient(form);
-        this.updateMate(form);
-        let type = form.type;
-        if (type === this.CAR) cars = await this.UpdateCar( form, returnObj );
-        if (type === this.MORGAGE) morgage = await this.UpdateMorgage( form, returnObj );
-        if (type === this.PRAT) prati =await this.UpdatePart( form, returnObj );
-        if (type === this.DIRA) dira = await this.UpdateDira( form, returnObj );
+
+        await this.updateClient(form);
+        // this.updateMate(form);
+        // let type = form.type;
+        // if (type === this.CAR) cars = await this.UpdateCar( form, returnObj );
+        // if (type === this.MORGAGE) morgage = await this.UpdateMorgage( form, returnObj );
+        // if (type === this.PRAT) prati =await this.UpdatePart( form, returnObj );
+        // if (type === this.DIRA) dira = await this.UpdateDira( form, returnObj );
         
-        if (form.loan) loan = this.createOrUpdateLoan( form, returnObj );
+        // if (form.loan) loan = this.createOrUpdateLoan( form, returnObj );
 
 
     }
