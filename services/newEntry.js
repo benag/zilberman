@@ -232,14 +232,14 @@ class newEntry {
 
     async getProducts () {
 
-        let query = 'SELECT * FROM tProducts';
+        let query = 'SELECT * FROM tProducts, tClients WHERE tProducts.pCli1 = tClients.cTaz1 ';
         let products = await this.sql.query(query);
         products = products.recordset;
-        for (let product of products){
-            let cliId = product.pCli1;
-            let client = await this.getClients(cliId);
-            product.clientName = client.recordset[0].cName;
-        }
+        // for (let product of products){
+        //     let cliId = product.pCli1;
+        //     let client = await this.getClients(cliId);
+        //     product.clientName = client.recordset[0].cName;
+        // }
         return products;
 
     }
