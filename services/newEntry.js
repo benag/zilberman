@@ -100,7 +100,7 @@ class newEntry {
         let query = 'UPDATE tProperty SET';
         let dbMorgage = await this.sql.query(`SELECT * FROM tProperty WHERE propertyID=` + form.insuranceForm.morgage.propertyID);
         if (dbMorgage && dbMorgage.recordset.length > 0){
-            query = this.sqlBuilder (dbMorgage, form.insuranceForm.morgage, query );
+            query = this.sqlBuilder (dbMorgage.recordset[0], form.insuranceForm.morgage, query );
             query += ` WHERE propertyID=` + form.insuranceForm.morgage.propertyID;
 
             let newMorgage = await this.sql.query(query);
