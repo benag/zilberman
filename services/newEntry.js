@@ -68,7 +68,11 @@ class newEntry {
         
         let sqlFieledBuilder = (query, field, val, index) => {
             val = this.wrapVal(val);
-            index === 0 ? query =  query + ` ${field} = ${val}` : query =  query + ` ,${field} = ${val}`;
+            if (index === 0) {
+                query =  query + `SET ${field} = ${val}`;
+            }else{
+                query =  query + ` ,${field} = ${val}`;
+            }  
             return query;
         }
 
@@ -97,7 +101,7 @@ class newEntry {
     }
 
     async UpdateMorgage (form){
-        let query = 'UPDATE tProperty SET';
+        let query = 'UPDATE tProperty ';
         let dbMorgage = await this.sql.query(`SELECT * FROM tProperty WHERE propertyID=` + form.insuranceForm.morgage.propertyID);
         if (dbMorgage && dbMorgage.recordset.length > 0){
             query = this.sqlBuilder (dbMorgage.recordset[0], form.insuranceForm.morgage, query );
@@ -118,7 +122,7 @@ class newEntry {
             let cars = dbProducts.recordset.filtemapr( (product) => product.carInsID);
             for (let i=0; i<cars.length;i++){
                 let car = cars[i];
-                let query = 'UPDATE tProperty SET';
+                let query = 'UPDATE tProperty ';
                 let carDb = await this.sqlBuilder.query(`SELECT FROM tCarIns WHERE carInsID=${car}`);
                 query = this.sqlBuilder (carDb, form.insuranceForm.cars[i], query );
                 query += ` WHERE propertyID=` + form.insuranceForm.cars[i].carInsID;
@@ -131,7 +135,7 @@ class newEntry {
 
     }
     async updateMate (form) {
-        let query = 'UPDATE tClients SET';
+        let query = 'UPDATE tClients ';
         let dbClient;
 
         if (form.mate.id !== form.mate.cTaz2){
@@ -156,7 +160,7 @@ class newEntry {
 
     async updateClient (form) {
 
-        let query = 'UPDATE tClients SET';
+        let query = 'UPDATE tClients ';
         let dbClient = await this.sql.query(`SELECT * from tClients where cTaz1=${form.client.cTaz2} AND cTaz1 = cTaz2`);
         
         
@@ -416,12 +420,12 @@ class newEntry {
     // if client doesnt exist create one and mate if exist do nothing
     //create sub products and products
     async updateRecord (form) {
-
+        
         await this.updateClient(form);
         if (form.mate.cTaz1) await this.updateMate(form);
         let type = form.type;
         //if (type === this.CAR) cars = await this.UpdateCar( form, returnObj );
-        if (type === this.MORGAGE) morgage = await this.UpdateMorgage( form );
+        if (type === this.MORGAGE) await this.UpdateMorgage( form );
         // if (type === this.PRAT) prati =await this.UpdatePart( form, returnObj );
         // if (type === this.DIRA) dira = await this.UpdateDira( form, returnObj );
         
