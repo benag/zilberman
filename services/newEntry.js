@@ -69,13 +69,15 @@ class newEntry {
             index === 0 ? query =  query + ` ${field} = ${val}` : query =  query + ` ,${field} = ${val}`;
             return query;
         }
-        
+
         let index = 0;
         for (let field in dbObject){
             
             if (field !== 'cTaz1' && field !== 'cTaz2'){
                 if (field.indexOf('date') !== -1 || field.indexOf('Date') !== -1){
-                    if (!moment(dbObject[field]).isSame(form.client[field])){
+                    let dbDate = moment(dbObject[field]);
+                    
+                    if ( dbDate.format('DD/MM/YYYY') === form.client[field]) {
                         query = sqlFieledBuilder(query,field, form.client[field],index);
                         index++;            
                     }
