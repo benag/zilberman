@@ -340,7 +340,7 @@ class newEntry {
         if (pcli2) secondClient = (await this.sql.query("SELECT * from tClients WHERE cTaz2=" + pcli2)).recordset[0];
         if (type === 3){
             let carId = product.carInsID;
-            cars = await this.sql.query("SELECT * FROM tCarsIns WHERE carInsID=" + carId);
+            cars = await this.sql.query("SELECT * FROM tCarIns WHERE carInsID=" + carId);
             cars = cars.recordset[0];
         }
         if (type === 1){
