@@ -82,7 +82,7 @@ class newEntry {
                         index++;            
                     }
                 }else{
-                    if (dbObject[field] !== form.client[field]){
+                    if (dbObject[field] !== clientObj[field]){
                         query = sqlFieledBuilder(query,field, clientObj[field],index);
                         index++;            
                     }
