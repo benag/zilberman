@@ -1,6 +1,7 @@
 
 
 let mysql = require('./sqlService');
+let moment = require('moment');
 var LocalStorage = require('node-localstorage').LocalStorage;
 let localStorage = new LocalStorage('./scratch');
 
@@ -68,14 +69,23 @@ class newEntry {
             index === 0 ? query =  query + ` ${field} = ${val}` : query =  query + ` ,${field} = ${val}`;
             return query;
         }
+        
         let index = 0;
         for (let field in dbObject){
             
-            if (field !== 'cTaz1' && field !== 'cTaz2'){    
-                if (dbObject[field] !== form.client[field]){
-                    query = sqlFieledBuilder(query,field, form.client[field],index);
-                    index++;            
-                } 
+            if (field !== 'cTaz1' && field !== 'cTaz2'){
+                if (field.indexOf('date') !== -1 || field.indexOf('Date') !== -1){
+                    if (!moment(dbObject[field]).isSame(form.client[field])){
+                        query = sqlFieledBuilder(query,field, form.client[field],index);
+                        index++;            
+                    }
+                }else{
+                    if (dbObject[field] !== form.client[field]){
+                        query = sqlFieledBuilder(query,field, form.client[field],index);
+                        index++;            
+                    }
+                }
+                 
             }
         }
         return query;
