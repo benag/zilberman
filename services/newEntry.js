@@ -382,7 +382,7 @@ class newEntry {
         if (!client || !client.recordset.length > 0){
             // main client doesnt exist create one
             client = await this.createClient(form);
-            if (form.mate.cTaz1) secondClient = await this.createMate(form);
+            if (form.mate.cTaz2) secondClient = await this.createMate(form);
             
            
         }else{
