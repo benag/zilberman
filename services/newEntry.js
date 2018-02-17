@@ -64,6 +64,7 @@ class newEntry {
      */
 
     sqlBuilder (dbObject, clientObj, query) {
+        
         let sqlFieledBuilder = (query, field, val, index) => {
             val = this.wrapVal(val);
             index === 0 ? query =  query + ` ${field} = ${val}` : query =  query + ` ,${field} = ${val}`;
@@ -94,6 +95,40 @@ class newEntry {
 
     }
 
+    async UpdateMorgage (form, returnObj){
+        let query = 'UPDATE tProperty SET';
+        let dbMorgage = await this.sql.query(`SELECT * FROM tProperty WHERE propertyID=` + form.insuranceForm.morgage.propertyID);
+        if (dbMorgage && dbMorgage.recordset.length > 0){
+            query = this.sqlBuilder (dbMorgage, form.insuranceForm.morgage, query );
+            query += ` WHERE propertyID=` + form.insuranceForm.morgage.propertyID;
+
+            let newMorgage = await this.sql.query(query);
+        }
+        return form.insuranceForm.morgage.propertyID;
+        
+
+    }
+
+    async UpdateCars (form, returnObj){
+        
+        let newCars = [];
+        let dbProducts = await this.sql.query(`SELECT * FROM tProducts WHERE cTaz1=${form.client.cTaz2} AND pType=3`);
+        if (dbProducts && dbProducts.recordset.length > 0){
+            let cars = dbProducts.recordset.filtemapr( (product) => product.carInsID);
+            for (let i=0; i<cars.length;i++){
+                let car = cars[i];
+                let query = 'UPDATE tProperty SET';
+                let carDb = await this.sqlBuilder.query(`SELECT FROM tCarIns WHERE carInsID=${car}`);
+                query = this.sqlBuilder (carDb, form.insuranceForm.cars[i], query );
+                query += ` WHERE propertyID=` + form.insuranceForm.cars[i].carInsID;
+                await this.sqlBuilder.query(query);
+                newCars.push(car);
+            }
+        }
+        return newCars;
+        
+
+    }
     async updateMate (form) {
         let query = 'UPDATE tClients SET';
         let dbClient = await this.sql.query(`SELECT * from tClients where cTaz2=${form.mate.cTaz2} AND cTaz1 = ${form.client.cTaz2}`);
@@ -377,9 +412,9 @@ class newEntry {
 
         await this.updateClient(form);
         if (form.mate.cTaz1) await this.updateMate(form);
-        // let type = form.type;
-        // if (type === this.CAR) cars = await this.UpdateCar( form, returnObj );
-        // if (type === this.MORGAGE) morgage = await this.UpdateMorgage( form, returnObj );
+        let type = form.type;
+        //if (type === this.CAR) cars = await this.UpdateCar( form, returnObj );
+        if (type === this.MORGAGE) morgage = await this.UpdateMorgage( form, returnObj );
         // if (type === this.PRAT) prati =await this.UpdatePart( form, returnObj );
         // if (type === this.DIRA) dira = await this.UpdateDira( form, returnObj );
         
