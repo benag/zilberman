@@ -31,7 +31,8 @@ class newEntry {
    
 
     async createMate(form) {
-        let cTaz1 = this.wrapVal(form.client.cTaz1) , cTaz2 = this.wrapVal(form.mate.cTaz1) , cName = this.wrapVal( form.mate.cName ) , cFamily = this.wrapVal( form.mate.cFamily ) , cGender = this.wrapVal (form.mate.cGender),
+
+        let cTaz1 = this.wrapVal(form.client.cTaz1) , cTaz2 = this.wrapVal(form.mate.cTaz2) , cName = this.wrapVal( form.mate.cName ) , cFamily = this.wrapVal( form.mate.cFamily ) , cGender = this.wrapVal (form.mate.cGender),
             cMobile = this.wrapVal(form.mate.cMobile) , cPhone = this.wrapVal(form.mate.cPhone), cEmail = this.wrapVal(form.mate.cEmail), cBDate = this.wrapVal(form.mate.cBDate) ,
             cTazDate= this.wrapVal (form.mate.cTazDate ), cRemark = this.wrapVal(''), cSmoke = 0 , cQuitSmokeDate = this.wrapVal(form.mate.cQuitSmokeDate);
         
@@ -131,14 +132,20 @@ class newEntry {
     }
     async updateMate (form) {
         let query = 'UPDATE tClients SET';
-        let dbClient = await this.sql.query(`SELECT * from tClients where cTaz2=${form.mate.cTaz2} AND cTaz1 = ${form.client.cTaz2}`);
+        let dbClient;
+
+        if (form.mate.id !== form.mate.cTaz2){
+            dbClient = await this.sql.query(`SELECT * from tClients where cTaz2=${form.mate.id} AND cTaz1 = ${form.client.cTaz2}`);    
+        }else{
+            dbClient = await this.sql.query(`SELECT * from tClients where cTaz2=${form.mate.cTaz2} AND cTaz1 = ${form.client.cTaz2}`);
+        }
         
         if (dbClient && dbClient.recordset.length > 0){
             let mate = dbClient.recordset[0];
-            if (mate.cTaz2 === form.mate.cTaz2 && form.mate.cTaz1 !== form.mate.cTaz2) query += ` cTaz2 = ${form.mate.cTaz1}, `;
+            if (form.mate.cTaz2 !== form.mate.id) query += ` cTaz2 = ${form.mate.cTaz2}, `;
             query = this.sqlBuilder (mate, form.mate,query );
 
-            query += ` WHERE cTaz1=${form.mate.cTaz2}` 
+            query += ` WHERE cTaz2=${form.mate.id} AND cTaz1 = ${form.client.cTaz2}`;
     
            //let textQuery = "UPDATE tClients SET cFamily = 'tt', cTazDate = 01/01/2012 WHERE cTaz1=2222224";
             let newMate = await this.sql.query(query);

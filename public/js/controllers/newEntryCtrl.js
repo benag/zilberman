@@ -49,7 +49,8 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
             let cTazDate = moment($scope.form.mate.cTazDate); 
             $scope.form.mate.cBDate = date.format('DD/MM/YYYY');
             $scope.form.mate.cTazDate = cTazDate.format('DD/MM/YYYY');
-            $scope.form.mate.cGender = String($scope.form.mate.cGender); 
+            $scope.form.mate.cGender = String($scope.form.mate.cGender);
+            $scope.form.mate.id = $scope.form.mate.cTaz2; //in case taz is changed;
 
         }
         $scope.setProduct = (p) => {
