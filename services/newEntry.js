@@ -63,7 +63,7 @@ class newEntry {
      * In the exception of cTaz1 and cTaz2.
      */
 
-    sqlBuilder (dbObject, form, query, startWithColon) {
+    sqlBuilder (dbObject, clientObj, query) {
         let sqlFieledBuilder = (query, field, val, index) => {
             val = this.wrapVal(val);
             index === 0 ? query =  query + ` ${field} = ${val}` : query =  query + ` ,${field} = ${val}`;
@@ -77,13 +77,13 @@ class newEntry {
                 if (field.indexOf('date') !== -1 || field.indexOf('Date') !== -1){
                     let dbDate = moment(dbObject[field]);
                     
-                    if ( dbDate.format('DD/MM/YYYY') !== form.client[field]) {
-                        query = sqlFieledBuilder(query,field, form.client[field],index);
+                    if ( dbDate.format('DD/MM/YYYY') !== clientObj[field]) {
+                        query = sqlFieledBuilder(query,field, clientObj[field],index);
                         index++;            
                     }
                 }else{
                     if (dbObject[field] !== form.client[field]){
-                        query = sqlFieledBuilder(query,field, form.client[field],index);
+                        query = sqlFieledBuilder(query,field, clientObj[field],index);
                         index++;            
                     }
                 }
@@ -94,19 +94,34 @@ class newEntry {
 
     }
 
+    async updateMate (form) {
+        let query = 'UPDATE tClients SET';
+        let dbClient = await this.sql.query(`SELECT * from tClients where cTaz2=${form.mate.cTaz2} AND cTaz1 = ${form.client.cTaz2}`);
+        
+        if (dbClient && dbClient.recordset.length > 0){
+            let mate = dbClient.recordset[0];
+            if (mate.cTaz2 === form.mate.cTaz2 && form.mate.cTaz1 !== form.mate.cTaz2) query += ` cTaz2 = ${form.mate.cTaz1}, `;
+            query = this.sqlBuilder (mate, form.mate,query );
+
+            query += ` WHERE cTaz1=${form.mate.cTaz2}` 
+    
+           //let textQuery = "UPDATE tClients SET cFamily = 'tt', cTazDate = 01/01/2012 WHERE cTaz1=2222224";
+            let newMate = await this.sql.query(query);
+        }
+     
+        return form.mate.cTaz2;
+    }
+
     async updateClient (form) {
 
         let query = 'UPDATE tClients SET';
         let dbClient = await this.sql.query(`SELECT * from tClients where cTaz1=${form.client.cTaz2} AND cTaz1 = cTaz2`);
-        let startWithColon = true;
+        
         
         if (dbClient && dbClient.recordset.length > 0){
             let client = dbClient.recordset[0];
-            if (client.cTaz1 !== form.client.cTaz1){
-                query += ` cTaz1=${form.client.cTaz1}, cTaz2 = ${form.client.cTaz1}, `;
-                startWithColon = false;
-            } 
-            query = this.sqlBuilder (client, form,query, startWithColon );
+            if (client.cTaz1 !== form.client.cTaz1) query += ` cTaz1=${form.client.cTaz1}, cTaz2 = ${form.client.cTaz1}, `;
+            query = this.sqlBuilder (client, form,query );
 
             query += ` WHERE cTaz1=${form.client.cTaz2}` 
     
@@ -361,7 +376,7 @@ class newEntry {
     async updateRecord (form) {
 
         await this.updateClient(form);
-        // this.updateMate(form);
+        if (form.mate.cTaz1) await this.updateMate(form);
         // let type = form.type;
         // if (type === this.CAR) cars = await this.UpdateCar( form, returnObj );
         // if (type === this.MORGAGE) morgage = await this.UpdateMorgage( form, returnObj );
