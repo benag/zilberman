@@ -96,7 +96,7 @@ class newEntry {
 
     }
 
-    async UpdateMorgage (form, returnObj){
+    async UpdateMorgage (form){
         let query = 'UPDATE tProperty SET';
         let dbMorgage = await this.sql.query(`SELECT * FROM tProperty WHERE propertyID=` + form.insuranceForm.morgage.propertyID);
         if (dbMorgage && dbMorgage.recordset.length > 0){
@@ -228,7 +228,7 @@ class newEntry {
             id = 0 ;
             localStorage.setItem('id', '0');
         }
-        let morgage = form.insuranceForm.morgage, pFloor = morgage.pFloor || 0, pOutOfFloor = morgage.pOutOfFloor || 0, pSurface = morgage.pSurface || 0, pBuildCost = morgage.pBuildCost || 0, pPropertyValue = morgage.pPropertyValue || 0;
+        let morgage = form.insuranceForm.morgage, pFloor = this.wrapVal(morgage.pFloor), pOutOfFloor = this.wrapVal(morgage.pOutOfFloor), pSurface = this.wrapVal(morgage.pSurface), pBuildCost = this.wrapVal(morgage.pBuildCost), pPropertyValue = this.wrapVal(morgage.pPropertyValue);
         let insert = `INSERT INTO tProperty (propertyID, pFloor, pOutOfFloor, pSurface, pBuildCost, pPropertyValue)
                 VALUES ( ${id},'${pFloor}' , '${pOutOfFloor}', '${pSurface}', '${pBuildCost}','${pPropertyValue}')`;
         let newMorgage = await this.sql.query(insert);
@@ -316,7 +316,7 @@ class newEntry {
 
     async getProducts () {
 
-        let query = 'SELECT * FROM tProducts, tClients WHERE tProducts.pCli1 = tClients.cTaz1 ';
+        let query = 'SELECT * FROM tProducts, tClients WHERE tProducts.pCli1 = tClients.cTaz1 AND tClients.cTaz1 = tClients.cTaz2';
         let products = await this.sql.query(query);
         products = products.recordset;
         return products;
@@ -421,7 +421,7 @@ class newEntry {
         if (form.mate.cTaz1) await this.updateMate(form);
         let type = form.type;
         //if (type === this.CAR) cars = await this.UpdateCar( form, returnObj );
-        if (type === this.MORGAGE) morgage = await this.UpdateMorgage( form, returnObj );
+        if (type === this.MORGAGE) morgage = await this.UpdateMorgage( form );
         // if (type === this.PRAT) prati =await this.UpdatePart( form, returnObj );
         // if (type === this.DIRA) dira = await this.UpdateDira( form, returnObj );
         
