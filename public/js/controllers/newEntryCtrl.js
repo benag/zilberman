@@ -5,6 +5,7 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
         const rechev = 1;
         const privateData = 0;
         const insuranceTypes = 1;
+        $scope.loading = false;
         $scope.isNew = true;
         $scope.format = 'dd/MM/yyyy';
         $scope.date = new Date();
@@ -24,6 +25,7 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
 
         let product = global.getProduct();
         if (product) {
+            $scope.loading = true;
             $scope.isNew = false;
             $http.get('/product/' + product.pID).then((data) => {
                 console.log(data.data);
@@ -31,6 +33,7 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
                 $scope.setClient(product.client);
                 $scope.setMate(product.secondClient);        
                 $scope.setProduct(product);
+                $scope.loading = false;
             })
             
         }
