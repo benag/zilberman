@@ -50,7 +50,7 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
         }
         $scope.setMate = (client) => {
             if (client) $scope.form.mate = client;
-            var date = moment($scope.form.mate.cBDate);
+            let date = moment($scope.form.mate.cBDate);
             let cTazDate = moment($scope.form.mate.cTazDate); 
             $scope.form.mate.cBDate = date.format('DD/MM/YYYY');
             $scope.form.mate.cTazDate = cTazDate.format('DD/MM/YYYY');
@@ -64,7 +64,12 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
                 $scope.insurance[1] = true;
                 $scope.form.type = 1;
                 $scope.form.insuranceForm.cars = [];
-                $scope.form.insuranceForm.cars.push(p.cars);
+                $scope.form.insuranceForm.cars.concat(p.cars);
+                $scope.form.insuranceForm.cars.forEach( (car) => { 
+                    let date = moment(car.carRenewDate);
+                    car.carRenewDate = date.format('DD/MM/YYYY'); 
+                })
+                
             } 
             if (type === 1){
                 $scope.insurance[0] = true;
