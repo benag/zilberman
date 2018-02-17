@@ -77,7 +77,7 @@ class newEntry {
                 if (field.indexOf('date') !== -1 || field.indexOf('Date') !== -1){
                     let dbDate = moment(dbObject[field]);
                     
-                    if ( dbDate.format('DD/MM/YYYY') === form.client[field]) {
+                    if ( dbDate.format('DD/MM/YYYY') !== form.client[field]) {
                         query = sqlFieledBuilder(query,field, form.client[field],index);
                         index++;            
                     }
