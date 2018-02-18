@@ -28,6 +28,10 @@ class newEntry {
         if (value === null || value === undefined || value === '') return null;
         return `'${value}'`;
     };
+    wrapDate(value) {
+        if (value === null || value === undefined || value === '') return null;
+        return `${value}`;
+    };
    
 
     async createMate(form) {
@@ -47,8 +51,8 @@ class newEntry {
     async createClient(form) {
 
         let cTaz1 = this.wrapVal(form.client.cTaz1) , cTaz2 = this.wrapVal(form.mate.cTaz1) , cName = this.wrapVal( form.client.cName ) , cFamily = this.wrapVal( form.client.cFamily ) , cGender = this.wrapVal (form.client.cGender),
-            cMobile = this.wrapVal(form.client.cMobile) , cPhone = this.wrapVal(form.client.cPhone), cEmail = this.wrapVal(form.client.cEmail), cBDate = this.wrapVal(form.client.cBDate) ,
-            cTazDate= this.wrapVal (form.client.cTazDate ), cRemark = this.wrapVal(''), cSmoke = 0 , cQuitSmokeDate = this.wrapVal(form.client.cQuitSmokeDate);
+            cMobile = this.wrapVal(form.client.cMobile) , cPhone = this.wrapVal(form.client.cPhone), cEmail = this.wrapVal(form.client.cEmail), cBDate = this.wrapDate(form.client.cBDate) ,
+            cTazDate= this.wrapDate (form.client.cTazDate ), cRemark = this.wrapVal(''), cSmoke = 0 , cQuitSmokeDate = this.wrapDate(form.client.cQuitSmokeDate);
 
         cTaz2 = cTaz1;
 
