@@ -121,12 +121,12 @@ class newEntry {
         //if (dbProducts && dbProducts.recordset.length > 0){
             //let cars = dbProducts.recordset.filtemapr( (product) => product.carInsID);
             //for (let i=0; i<cars.length;i++){
-                let car = this.sql.query(`select from tcarIns where carInsID=${form.insuranceForm.cars[0].carInsID}`);
+                let car = await this.sql.query(`select from tcarIns where carInsID=${form.insuranceForm.cars[0].carInsID}`);
                 //let car = cars[i];
-                let query = 'UPDATE tProperty ';
+                let query = 'UPDATE tCarIns ';
                 //let carDb = await this.sqlBuilder.query(`SELECT FROM tCarIns WHERE carInsID=${car}`);
                 query = this.sqlBuilder (car, form.insuranceForm.cars[0], query );
-                query += ` WHERE propertyID=` + form.insuranceForm.cars[0].carInsID;
+                query += ` WHERE carInsID=` + form.insuranceForm.cars[0].carInsID;
                 await this.sqlBuilder.query(query);
                 newCars.push(car);
             //}
