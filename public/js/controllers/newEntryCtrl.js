@@ -33,6 +33,7 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
                 $scope.setClient(product.client);
                 $scope.setMate(product.secondClient);        
                 $scope.setProduct(product);
+                $scope.setLoan(product);
                 $scope.loading = false;
             })
             
@@ -85,8 +86,8 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
 
 
         }
-        $scope.setLoan = (client) => {
-            
+        $scope.setLoan = (product) => {
+            $scope.form.borrow = product.loan;
         }
 
 

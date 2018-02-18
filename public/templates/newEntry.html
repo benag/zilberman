@@ -446,7 +446,7 @@
                 </div>
                 <div class="row line-distance">
                     <div class="col-md-2">
-                        <select class="zilberman-dropdown" ng-model="form.borrow.type" placeholder="עישון" name="smoking" required>
+                        <select class="zilberman-dropdown" ng-model="form.borrow.loanType" placeholder="עישון" name="smoking" required>
                             <option value="" disabled selected>סוג הלוואה</option>
                             <option value="1">שפיצר</option>
                             <option value="2">בלון</option>
@@ -454,13 +454,13 @@
                     </div>
 
                     <div class="col-md-2">
-                        <input class="zilberman-input" placeholder="סכום הלוואה" ng-model="form.borrow.sum">
+                        <input class="zilberman-input" placeholder="סכום הלוואה" ng-model="form.borrow.loanValue">
                     </div>
                     <div class="col-md-2">
-                        <input class="zilberman-input" placeholder="ריבית" ng-model="form.borrow.intrest">
+                        <input class="zilberman-input" placeholder="ריבית" ng-model="form.borrow.loanRate">
                     </div>
                     <div class="col-md-2">
-                        <input class="zilberman-input" placeholder="מספר שנים נותרוו" ng-model="form.borrow.years">
+                        <input class="zilberman-input" placeholder="מספר שנים נותרוו" ng-model="form.borrow.loanYrsToPay">
                     </div>
                 </div>
 

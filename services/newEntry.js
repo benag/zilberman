@@ -114,6 +114,8 @@ class newEntry {
 
     }
 
+    
+
     async UpdateCar (form){
         
         let newCar;
@@ -260,6 +262,21 @@ class newEntry {
         return {};
     }
 
+
+    async updateLoan (form) {
+        let query = 'UPDATE tLoans ';
+        let dbLoanRecordset = await this.sql.query(`SELECT * from tLoans where loanID=${form.borrow.loanID}`);
+        
+        if (dbLoanRecordset && dbLoanRecordset.recordset.length >0){
+            
+            let loan = dbLoanRecordset.recordset[0];
+            let query = 'UPDATE tLoans ';
+            query = this.sqlBuilder (loan, form.borrow, query );
+            query += ` WHERE loanID=` + form.borrow.loanID;
+            await this.sql.query(query);
+            return loan.loanID;        
+        }
+    }
     async createLoan(form, returnObj) {
 
         let id = (localStorage.getItem('loanId'));
@@ -274,9 +291,9 @@ class newEntry {
         
         
  
-        let loanID = this.wrapVal(id) , loanBank = 10 , loanValue = this.wrapVal( form.borrow.sum ),
-        loanRate = this.wrapVal( form.borrow.intrest ) , loanYrsToPay = this.wrapVal (form.borrow.years),
-        loanType = this.wrapVal(form.borrow.type);
+        let loanID = this.wrapVal(id) , loanBank = 10 , loanValue = this.wrapVal( form.borrow.loanValue ),
+        loanRate = this.wrapVal( form.borrow.loanRate ) , loanYrsToPay = this.wrapVal (form.borrow.loanYrsToPay),
+        loanType = this.wrapVal(form.borrow.loanType);
 
 
         let insert = `INSERT INTO tLoans (loanID, loanBank, loanValue, loanRate, loanYrsToPay, loanType)
@@ -287,9 +304,7 @@ class newEntry {
         
 
     }
-    async updateLoan(){
-
-    }
+   
 
     async createProduct( client, secondClient,type, car, morgage, prati, dira, isloan,  loan, returnObj) {
 
@@ -439,7 +454,8 @@ class newEntry {
         // if (type === this.PRAT) prati =await this.UpdatePart( form, returnObj );
         // if (type === this.DIRA) dira = await this.UpdateDira( form, returnObj );
         
-        // if (form.loan) loan = this.createOrUpdateLoan( form, returnObj );
+         if (form.loan) loan = this.updateLoan( form );
+         return true;
 
 
     }
