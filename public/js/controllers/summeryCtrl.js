@@ -17,7 +17,7 @@ angular.module('ganim').controller('summeryCtrl', ['$scope', '$stateParams', '$l
                 })
             })
 
-        $scope.search = () => {
+        $scope.searchRecords = () => {
             $scope.loading = true;
             $http.get('/products/' + $scope.search)
                 .then( (data) => {
