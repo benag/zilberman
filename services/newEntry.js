@@ -367,9 +367,12 @@ class newEntry {
 
     }
 
-    async getProducts () {
+    async getProducts (like) {
 
-        let query = 'SELECT * FROM tProducts, tClients WHERE tProducts.pCli1 = tClients.cTaz1 AND tClients.cTaz1 = tClients.cTaz2 ORDER BY tProducts.pID';
+        let query;
+        like ? 
+        query = `SELECT * FROM tProducts, tClients WHERE tProducts.pCli1 = tClients.cTaz1 AND tClients.cTaz1 = tClients.cTaz2 AND tClients.cTaz1 LIKE ${like} OR tClients.cName LIKE ${like} OR tClients.cFamily LIKE ${like} ORDER BY tProducts.pID` :
+        query = 'SELECT * FROM tProducts, tClients WHERE tProducts.pCli1 = tClients.cTaz1 AND tClients.cTaz1 = tClients.cTaz2 ORDER BY tProducts.pID';
         let products = await this.sql.query(query);
         products = products.recordset;
         return products;

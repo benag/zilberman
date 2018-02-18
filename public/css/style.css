@@ -573,18 +573,21 @@ td {
     color:black;
     width:100%;
 }
+.zilberman-input:hover{
+    border-bottom: 2px solid #2676d0;
+}
 .nav-tabs {
-    background-color: #4F628E;
+    background-color: #0f4d9e;
     
 }
 .newEntry i {
-    color:black;
+    color:white;
 }
 .newEntry .content {
     margin-top:70px;
 }
 .newEntry .nav-pills.nav-pills-warning > li.active > a, .nav-pills.nav-pills-warning > li.active > a:focus, .nav-pills.nav-pills-warning > li.active > a:hover{
-    background-color: #4F628E;
+    background-color: #2676d0;
     color:white!important;
 }
 .nav-tabs>li{
@@ -643,7 +646,26 @@ input:-ms-input-placeholder {
     color:white;
     text-align: center;
 }
+.loader{
+    position: fixed;
+    width: 100px;
+    height: 100px;
+    top: 50%;
+    left: 50%;
+    margin-top: -50px; 
+    margin-left: -50px;
+    z-index:1000;
+}
 
+.search-btn{
+    margin-right: 5px;
+    background-color: #2676d0;
+    color: white;
+    border: none;
+    width: 55px;
+    height: 30px;
+
+}
 /* css for mobile */
 
 @media (min-width: 320px) and (max-width: 480px) {

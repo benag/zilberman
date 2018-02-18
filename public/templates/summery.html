@@ -8,7 +8,7 @@
         <div class="row ">תפקיד:</div>
 
         <div class="row">
-            <label>חיפוש</label><input ng-model="search" type="text"><button>חפש</button>
+            <input ng-model="search" type="text"><button class="search-btn">חיפוש</button>
         </div>
         <div class="row" style="margin-top:20px;">
             <table class="table col-md-12 table-hover">
@@ -50,7 +50,7 @@
                     <td>{{}}</td>
                 </tr>
             </table>
-            <img width="100" style="position:fixed; right:40%" ng-show="loading" src="/img/giphy.gif">
+            <img class="loader" ng-show="loading" src="/img/giphy.gif">
         </div>
 
     </div>
