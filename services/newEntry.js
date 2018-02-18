@@ -106,7 +106,7 @@ class newEntry {
                  
             }
         }
-        return query;
+        return {query,index};
 
     }
 
@@ -114,10 +114,13 @@ class newEntry {
         let query = 'UPDATE tProperty ';
         let dbMorgage = await this.sql.query(`SELECT * FROM tProperty WHERE propertyID=` + form.insuranceForm.morgage.propertyID);
         if (dbMorgage && dbMorgage.recordset.length > 0){
-            query = this.sqlBuilder (dbMorgage.recordset[0], form.insuranceForm.morgage, query );
-            query += ` WHERE propertyID=` + form.insuranceForm.morgage.propertyID;
-
-            let newMorgage = await this.sql.query(query);
+            let build = this.sqlBuilder (dbMorgage.recordset[0], form.insuranceForm.morgage, query );
+            if (build.index > 0 ) {
+                query = build.query;
+                query += ` WHERE propertyID=` + form.insuranceForm.morgage.propertyID;
+                let newMorgage = await this.sql.query(query);
+            }
+            
         }
         return form.insuranceForm.morgage.propertyID;
         
@@ -138,9 +141,13 @@ class newEntry {
                 if (carRecordSet && carRecordSet.recordset.length > 0){
                     let car = carRecordSet.recordset[0];
                     let query = 'UPDATE tCarIns ';
-                    query = this.sqlBuilder (car, form.insuranceForm.cars[0], query );
-                    query += ` WHERE carInsID=` + form.insuranceForm.cars[0].carInsID;
-                    await this.sql.query(query);
+                    let build = this.sqlBuilder (car, form.insuranceForm.cars[0], query );
+                    if (build.index > 0){
+                        query = (this.sqlBuilder (car, form.insuranceForm.cars[0], query )).query;
+                        query += ` WHERE carInsID=` + form.insuranceForm.cars[0].carInsID;
+                        await this.sql.query(query);
+                    }
+                    
                     return car.carInsID;        
                 }
                 //let car = cars[i];
@@ -169,10 +176,11 @@ class newEntry {
         if (dbClient && dbClient.recordset.length > 0){
             let mate = dbClient.recordset[0];
             if (form.mate.cTaz2 !== form.mate.id) query += ` cTaz2 = ${form.mate.cTaz2}, `;
-            query = this.sqlBuilder (mate, form.mate,query );
-
-            query += ` WHERE cTaz2=${form.mate.id} AND cTaz1 = ${form.client.cTaz2}`;
-    
+            let build = this.sqlBuilder (mate, form.mate,query );
+            if (build.index > 0) {
+                query = this.sqlBuilder (mate, form.mate,query );
+                query += ` WHERE cTaz2=${form.mate.id} AND cTaz1 = ${form.client.cTaz2}`;
+            }
            //let textQuery = "UPDATE tClients SET cFamily = 'tt', cTazDate = 01/01/2012 WHERE cTaz1=2222224";
             let newMate = await this.sql.query(query);
         }
@@ -189,12 +197,13 @@ class newEntry {
         if (dbClient && dbClient.recordset.length > 0){
             let client = dbClient.recordset[0];
             if (client.cTaz1 !== form.client.cTaz1) query += ` cTaz1=${form.client.cTaz1}, cTaz2 = ${form.client.cTaz1}, `;
-            query = this.sqlBuilder (client, form.client,query );
-
-            query += ` WHERE cTaz1=${form.client.cTaz2}` 
-    
-           //let textQuery = "UPDATE tClients SET cFamily = 'tt', cTazDate = 01/01/2012 WHERE cTaz1=2222224";
-            let newClient = await this.sql.query(query);
+            let build = this.sqlBuilder (client, form.client,query );
+            if (build.index > 0) {
+                query = build.query;
+                query += ` WHERE cTaz1=${form.client.cTaz2}` 
+                //let textQuery = "UPDATE tClients SET cFamily = 'tt', cTazDate = 01/01/2012 WHERE cTaz1=2222224";
+                let newClient = await this.sql.query(query);
+            }
         }
      
         return form.client.cTaz2;
@@ -282,9 +291,13 @@ class newEntry {
             
             let loan = dbLoanRecordset.recordset[0];
             let query = 'UPDATE tLoans ';
-            query = this.sqlBuilder (loan, form.borrow, query );
-            query += ` WHERE loanID=` + form.borrow.loanID;
-            await this.sql.query(query);
+            let build = this.sqlBuilder (loan, form.borrow, query );
+            if (build.index > 0){
+                query = build.query;
+                query += ` WHERE loanID=` + form.borrow.loanID;
+                await this.sql.query(query);
+            }
+            
             return loan.loanID;        
         }
     }
