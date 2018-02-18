@@ -95,25 +95,21 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
             
         }
 
-        $scope.items = ['item1', 'item2', 'item3'];
-
-        $scope.animationsEnabled = true;
-
         $scope.openCarModal = (docs) => {
             
-            var parentElem = parentSelector ? 
-            angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+            var parentElem = undefined;
+
             var modalInstance = $uibModal.open({
-                animation: $scope.animationsEnabled,
+                animation: true,
                 ariaLabelledBy: 'modal-title',
                 ariaDescribedBy: 'modal-body',
                 templateUrl: 'myModalContent.html',
                 controller: 'ModalInstanceCtrl',
-                size: size,
-                appendTo: parentElem,
+                size: undefined,
+                appendTo: undefined,
                 resolve: {
                     items: function () {
-                        return $scope.items;
+                        return docs;
                     }
                 }
             });
