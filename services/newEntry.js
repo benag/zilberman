@@ -341,10 +341,10 @@ class newEntry {
         type = this.convertType(type);
         if (secondClient === undefined) secondClient = client;
 
-        morgage = this.wrapVal(morgage);
-        loan = this.wrapVal(loan);
-        prati = this.wrapVal(prati);
-        let CarDB = this.wrapVal(newCar);
+        morgage = this.wrapNum(morgage);
+        loan = this.wrapNum(loan);
+        prati = this.wrapNum(prati);
+        let CarDB = this.wrapNum(newCar);
         let insert = `INSERT INTO tProducts (pID, pCli1, pCli2, pType, propertyID, loanID, pratInsID, carInsID)
                 VALUES (${pid},${client},${secondClient},${type}, ${morgage},${loan},${prati},${CarDB} )`;
         let newProduct = await this.sql.query(insert);
