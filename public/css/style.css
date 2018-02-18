@@ -631,6 +631,8 @@ input:-ms-input-placeholder {
     margin-bottom: 125px;
 }
 .filesList{
-    text-align: left;
     list-style: none;
+}
+.item-a{
+    color:black;
 }
