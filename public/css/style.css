@@ -651,5 +651,18 @@ input:-ms-input-placeholder {
     .mobile-container{
         padding-top: 13vh!important;
     }
+    .card-ganim-login{
+        width: 325px;
+        height: 380px;
+    }
+    .login-btn{
+        width: 275px;
+        height: 45px;
+        line-height: 15px;
+        /* font-size: 18px; */
+        background-color: #32A1AA!important;
+        font-family: sans-serif;
+        font-weight: bold;
+    }
     
   }

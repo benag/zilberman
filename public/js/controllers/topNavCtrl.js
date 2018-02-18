@@ -3,7 +3,7 @@ angular.module('ganim').controller('topNavCtrl', ['$scope', '$stateParams', '$lo
 
         
         $scope.state = (state) => {
-            $state.go(state);
+            $state.go(state,{ reload: true });
         };
 
         $scope.ifstate = (state) => {
