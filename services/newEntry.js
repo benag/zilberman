@@ -424,7 +424,7 @@ class newEntry {
         await this.updateClient(form);
         if (form.mate.cTaz1) await this.updateMate(form);
         let type = form.type;
-        if (type === this.CAR) cars = await this.UpdateCar( form, returnObj );
+        if (type === this.CAR) await this.UpdateCar( form );
         if (type === this.MORGAGE) await this.UpdateMorgage( form );
         // if (type === this.PRAT) prati =await this.UpdatePart( form, returnObj );
         // if (type === this.DIRA) dira = await this.UpdateDira( form, returnObj );
