@@ -8,7 +8,7 @@ angular.module('ganim').controller('usersCtrl', ['$scope', '$stateParams', '$loc
         })
 
         $scope.sendLink = function(phone) {
-            $http.post('/users/link',{phone:phone})
+            $http.post('/user/link',{phone:phone})
             .then( () => {
                 toastr.info('לינק נשלח');
             })
