@@ -1,15 +1,15 @@
 angular.module('ganim').controller('carModalCtrl', function ($uibModalInstance, items) {
-    var $ctrl = this;
-    $ctrl.items = items;
-    $ctrl.selected = {
-      item: $ctrl.items[0]
+    
+    $scope.items = items;
+    $scope.selected = {
+      item: $scope.items[0]
     };
   
-    $ctrl.ok = function () {
-      $uibModalInstance.close($ctrl.selected.item);
+    $scope.ok = function () {
+      $uibModalInstance.close($scope.selected.item);
     };
   
-    $ctrl.cancel = function () {
+    $scope.cancel = function () {
       $uibModalInstance.dismiss('cancel');
     };
   });
