@@ -468,7 +468,7 @@ class newEntry {
     }
     // if client doesnt exist create one and mate if exist do nothing
     //create sub products and products
-    async updateRecord (form) {
+    async updateRecord (form, returnObj) {
         
         await this.updateClient(form);
         if (form.mate.cTaz1) await this.updateMate(form);
@@ -479,6 +479,7 @@ class newEntry {
         // if (type === this.DIRA) dira = await this.UpdateDira( form, returnObj );
         
          if (form.borrow.loanType) await this.updateLoan( form );
+         returnObj.msg.push('הפניה עודכנה בהצלחה');
          return true;
 
 
@@ -502,7 +503,7 @@ class newEntry {
             if (newRecord){
                 product = await this.newRecord(form,returnObj);                
             }else{
-                product = await this.updateRecord(form,returnObj);                
+                product = await this.updateRecord(form,returnObj);              
             } 
         
             

@@ -87,8 +87,11 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
 
         }
         $scope.setLoan = (product) => {
-            $scope.form.borrow = product.loan;
-            $scope.form.borrow.loanType = String($scope.form.borrow.loanType);
+            if (product && product.loan){
+                $scope.form.borrow = product.loan;
+                $scope.form.borrow.loanType = String($scope.form.borrow.loanType);
+            }
+            
         }
 
 
