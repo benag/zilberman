@@ -114,22 +114,23 @@ class newEntry {
 
     }
 
-    async UpdateCars (form, returnObj){
+    async UpdateCar (form){
         
-        let newCars = [];
-        let dbProducts = await this.sql.query(`SELECT * FROM tProducts WHERE cTaz1=${form.client.cTaz2} AND pType=3`);
-        if (dbProducts && dbProducts.recordset.length > 0){
-            let cars = dbProducts.recordset.filtemapr( (product) => product.carInsID);
-            for (let i=0; i<cars.length;i++){
-                let car = cars[i];
+        // let newCars = [];
+        //let dbProducts = await this.sql.query(`SELECT * FROM tProducts WHERE cTaz1=${form.client.cTaz2} AND pType=3`);
+        //if (dbProducts && dbProducts.recordset.length > 0){
+            //let cars = dbProducts.recordset.filtemapr( (product) => product.carInsID);
+            //for (let i=0; i<cars.length;i++){
+                let car = this.sql.query(`select from tcarIns where carInsID=${form.insuranceForm.cars[0].carInsID}`);
+                //let car = cars[i];
                 let query = 'UPDATE tProperty ';
-                let carDb = await this.sqlBuilder.query(`SELECT FROM tCarIns WHERE carInsID=${car}`);
-                query = this.sqlBuilder (carDb, form.insuranceForm.cars[i], query );
-                query += ` WHERE propertyID=` + form.insuranceForm.cars[i].carInsID;
+                //let carDb = await this.sqlBuilder.query(`SELECT FROM tCarIns WHERE carInsID=${car}`);
+                query = this.sqlBuilder (car, form.insuranceForm.cars[0], query );
+                query += ` WHERE propertyID=` + form.insuranceForm.cars[0].carInsID;
                 await this.sqlBuilder.query(query);
                 newCars.push(car);
-            }
-        }
+            //}
+        //}
         return newCars;
         
 
