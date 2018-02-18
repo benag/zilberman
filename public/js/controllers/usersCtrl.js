@@ -2,13 +2,13 @@ angular.module('ganim').controller('usersCtrl', ['$scope', '$stateParams', '$loc
     function($scope, $stateParams, $location, $state, $http) {
 
         $scope.loading = true;
-
+        $scope.phone = ''
         $http.get('/users').then((data) => {
             $scope.users = data.data;
         })
 
         $scope.sendLink = function(phone) {
-            $http.post('/user/link',{phone:phone})
+            $http.post('/user/link',{phone:$scope.phone})
             .then( () => {
                 toastr.info('לינק נשלח');
             })
