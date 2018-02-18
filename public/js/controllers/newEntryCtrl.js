@@ -95,7 +95,42 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
             
         }
 
+        $scope.items = ['item1', 'item2', 'item3'];
 
+        $scope.animationsEnabled = true;
+
+        $scope.openCarModal = (docs) => {
+            
+            var parentElem = parentSelector ? 
+            angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+            var modalInstance = $uibModal.open({
+                animation: $scope.animationsEnabled,
+                ariaLabelledBy: 'modal-title',
+                ariaDescribedBy: 'modal-body',
+                templateUrl: 'myModalContent.html',
+                controller: 'ModalInstanceCtrl',
+                size: size,
+                appendTo: parentElem,
+                resolve: {
+                    items: function () {
+                        return $scope.items;
+                    }
+                }
+            });
+      
+            modalInstance.result.then(function (selectedItem) {
+                $scope.selected = selectedItem;
+            }, function () {
+                //$log.info('Modal dismissed at: ' + new Date());
+            });
+        }
+
+        $scope.showFiles = (index) => {
+            $http.get(`/car/files/${$scope.form.insuranceForm.cars[index].carInsId}`)
+            .then( (data) => {
+                $scope.openCarModal(data.data);
+            })
+        }
         $scope.uploadCarDoc = (carId) => {
             toastr.info('מעלה טופס מכונית לשרת');
             let url = 'http://'+ '18.221.178.131:3000' +'/cardoc';

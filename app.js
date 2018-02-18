@@ -55,36 +55,6 @@ const passport = require('passport');
 
 
 
-//mssql://username:password@localhost/database
-//const sql = require('mssql');
-//console.log('outside');
-//const dbconfig = {
-//    user: 'lead_server',
-//    password: 'jo98^Hu%',
-//    server: '62.219.187.1', // You can use 'localhost\\instance' to connect to named instance
-//    port: 3306,
-//    database: 'ZIL_LEADS'
-//
-//};
-//var connect = async function () {
-//    //try {
-//    //    let pool = await sql.connect(dbconfig);
-//    //    let result1 = await pool.request()
-//    //        .query('select * from LeadsClient');
-//    //
-//    //    console.log(result1)
-//    //
-//    //    } catch (err) {
-//    //        console.log(err);
-//    //    // ... error checks
-//    //}
-//};
-//connect();
-
-//sql.on('error', err => {
-//    console.log(err);// ... error handler
-//});
-
 
 var app = module.exports = express.createServer();
 
@@ -222,6 +192,19 @@ app.delete('/user/:id', (req, res)=>{
             console.log(err);
         })
 });
+
+app.get(`/car/files/:id`, async (req, res) => {
+    let carId = req.params.id;
+    let folderPath = "C:\\projects\\dashboard\\public\\uploads"+ "\\" + carId;
+    fs.readdir(folderPath, function(err, items) {
+        console.log(items);
+     
+        for (var i=0; i<items.length; i++) {
+            console.log(items[i]);
+        }
+    });
+    res.json(items);
+})
 
 app.post('/cardoc/:id', upload.single('file'), function (req, res, next) {
     // req.file is the `avatar` file
