@@ -478,7 +478,7 @@ class newEntry {
         // if (type === this.PRAT) prati =await this.UpdatePart( form, returnObj );
         // if (type === this.DIRA) dira = await this.UpdateDira( form, returnObj );
         
-         if (form.borrow.loanType) loan = this.updateLoan( form );
+         if (form.borrow.loanType) await this.updateLoan( form );
          return true;
 
 
