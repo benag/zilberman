@@ -209,10 +209,10 @@ app.get(`/car/files/:id`, async (req, res) => {
     let folderPath = "C:\\projects\\dashboard\\public\\uploads"+ "\\" + carId;
     fs.readdir(folderPath, function(err, items) {
         console.log(items);
-     
-        for (var i=0; i<items.length; i++) {
-            console.log(items[i]);
-        }
+        
+        // for (var i=0; i<items.length; i++) {
+        //     console.log(items[i]);
+        // }
         res.json(items);
     });
     
