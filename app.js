@@ -202,8 +202,9 @@ app.get(`/car/files/:id`, async (req, res) => {
         for (var i=0; i<items.length; i++) {
             console.log(items[i]);
         }
+        res.json(items);
     });
-    res.json(items);
+    
 })
 
 app.post('/cardoc/:id', upload.single('file'), function (req, res, next) {

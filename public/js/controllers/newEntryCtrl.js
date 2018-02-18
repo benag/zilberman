@@ -126,7 +126,7 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
         }
 
         $scope.showFiles = (index) => {
-            $http.get(`/car/files/${$scope.form.insuranceForm.cars[index].carInsId}`)
+            $http.get(`/car/files/${$scope.form.insuranceForm.cars[index].carInsID}`)
             .then( (data) => {
                 $scope.openCarModal(data.data);
             })
