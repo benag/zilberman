@@ -1,4 +1,4 @@
-angular.module('ganim').controller('carModalCtrl', function ($uibModalInstance, items) {
+angular.module('ganim').controller('carModalCtrl', function ($uibModalInstance, $scope, items) {
     
     $scope.items = items;
     $scope.selected = {
