@@ -31,8 +31,8 @@ var express = require('express'),
           // - Write to all logs with level `info` and below to `combined.log` 
           // - Write all logs error (and below) to `error.log`.
           //
-          new winston.transports.File({ filename: 'error.log', level: 'error' }),
-          new winston.transports.File({ filename: 'combined.log' })
+          new winston.transports.File({ filename: './public/logs/error.log', level: 'error' }),
+          new winston.transports.File({ filename: './public/logs/combined.log' })
         ]
       });
       
@@ -161,6 +161,17 @@ app.post('/user', (req, res)=>{
     }).catch(function(err){
 
     })
+});
+
+app.post('/user/link', (req, res) => {
+    let phone = req.body.phone;
+    userCtrl.sendLink(phone)
+    .then( (didSend) => {
+        res.json(didSend);
+    }).catch( (err) => {
+        res.status(400);
+    })
+
 });
 
 app.post('/user/activate', async (req, res) => {

@@ -18,7 +18,8 @@ var app = angular.module('ganim', ['ui.router','vsGoogleAutocomplete','ngFileUpl
         name: 'newentry',
         url: '/newentry',
         views: {
-            //"left-pane": { templateUrl: "templates/left-pane.html", controller: 'leftPaneController'},
+            
+            "top": { templateUrl: "templates/navbar.html", controller: 'topNavCtrl'},
             "main": { templateUrl: "templates/newEntry.html", controller: 'newEntryCtrl' }
         }
     };
@@ -26,8 +27,16 @@ var app = angular.module('ganim', ['ui.router','vsGoogleAutocomplete','ngFileUpl
         name: 'summery',
         url: '/summery',
         views: {
-            //"left-pane": { templateUrl: "templates/left-pane.html", controller: 'leftPaneController'},
+            "top": { templateUrl: "templates/navbar.html", controller: 'topNavCtrl'},
             "main": { templateUrl: "templates/summery.html", controller: 'summeryCtrl' }
+        }
+    };
+    var users = {
+        name: 'users',
+        url: '/users',
+        views: {
+            "top": { templateUrl: "templates/navbar.html", controller: 'topNavCtrl'},
+            "main": { templateUrl: "templates/users.html", controller: 'usersCtrl' }
         }
     };
 
@@ -35,13 +44,14 @@ var app = angular.module('ganim', ['ui.router','vsGoogleAutocomplete','ngFileUpl
         name: 'login',
         url: '/login',
         views: {
+
             "main": { templateUrl: "templates/login.html", controller: 'loginCtrl' }
         }
 
     };
 
     $stateProvider.state(login);
-    //$stateProvider.state(main);
+    $stateProvider.state(users);
     $stateProvider.state(newentery);
     $stateProvider.state(summery);
     $urlRouterProvider.otherwise('/login');

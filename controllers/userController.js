@@ -3,6 +3,9 @@
 
 let mongoose = require('mongoose');
 let User = mongoose.model('User');
+let mysql = require('./sqlService');
+var LocalStorage = require('node-localstorage').LocalStorage;
+let localStorage = new LocalStorage('./scratch');
 var nexmo = require('../services/nexmo');
 const jwt = require('jsonwebtoken'),
     crypto = require('crypto'),
@@ -13,6 +16,7 @@ class userController {
 
     constructor(app){
         this.init();
+        this.sql = new mysql();
 
     }
 
@@ -29,12 +33,12 @@ class userController {
 
     setUserInfo (user) {
         return {
-            _id: user._id,
-            name: user.name,
-            lastName: user.lastName,
-            email: user.email,
-            role: user.role,
-            img: user.img
+            uID: user.uID,
+            uName: user.uName,
+            uFamily: user.uFamily,
+            uEmail: user.uEmail,
+            uMobile: user.uMobile
+            
         };
 
     }
@@ -46,6 +50,16 @@ class userController {
         });
     }
 
+    sendLink (phone) {
+        let usrMng = JSON.parse(localStorage.getItem('userMng'));
+        if (!usrMng) {
+            usrMng = [];
+        }
+        usrMng.push({phone:phone,date:Date.now()});
+        let link = `http://18.221.178.131:3000/register.html?phone=${phone}`;
+        let returnSMS = nexmo.sms(phone, link );
+
+    }
     async register (req, res, next) {
         // Check for registration errors
         let _this = this;
@@ -58,12 +72,12 @@ class userController {
 
 
         // Return error if no email provided
-        if (!email) {
-            return res.status(422).send({ error: 'You must enter an email address.'});
+        if (!email || !phone) {
+            return res.status(422).send({ error: 'חסר אימייל או טלפון'});
         }
 
 
-        //let existingUser = await User.findOne({phone:phone}).exec();
+        let existingUser = await this.sql.query(`select * from tUsersAndRoles where phone= ${phone}`);
         let existingUser = false;
         // If user is not unique, return error
         if (existingUser) {
@@ -77,28 +91,29 @@ class userController {
 
             let userInfo = _this.setUserInfo(existingUser);
             return res.status(201).json({
-                token: 'JWT ' + _this.generateToken({_id:userInfo._id}),
+                token: 'JWT ' + _this.generateToken({uID:userInfo.uID}),
                 user: userInfo
             });
             //return res.json({ code:100, error: 'That email address is already in use.' });
         }
 
         let user = {
-            email: email,
-            password: password,
-            name: name,
-            phone:phone
+            uEmail: email,
+            uPassword: password,
+            uName: name,
+            uFamily:lastName,
+            uMobile:phone
 
         };
 
         let dbUser = _this.saveUser(user);
-        let randomCode = Math.floor(1000 + Math.random() * 9000);
-        let returnSMS = nexmo.sms(user.phone, 'Your code is ' + randomCode );
+        //let randomCode = Math.floor(1000 + Math.random() * 9000);
+        //let returnSMS = nexmo.sms(user.phone, 'Your code is ' + randomCode );
         //user.save(function(err, user) {
         //    if (err) { return next(err); }
         let userInfo = _this.setUserInfo(dbUser);
         res.status(201).json({
-            token: 'JWT ' + _this.generateToken({_id:user._id}),
+            token: 'JWT ' + _this.generateToken({uID:user.uID}),
             user: userInfo
         });
         //});
@@ -109,6 +124,7 @@ class userController {
         return {};
     }
     async saveUser (user) {
+        this.sql.query("insert into tUsersAndRoles ()")
         return user;
     }
 

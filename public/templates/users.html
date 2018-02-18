@@ -1,0 +1,62 @@
+<div class="main-container">
+
+        <!-- <div ng-include="'templates/navbar.html'"></div> -->
+    
+        <!--<img class="main-back" src="img/background.jpg">-->
+        <div class="main-links container users">
+           
+            <div class="row">
+                <p class="col-md-3">
+                       <br/> הכנס מספרי טלפון של סוכן ,
+                        לינק חיבור למערכת ישלח לסוכן
+                </p>
+            </div>
+            
+            <div class="row">
+                <input ng-model="phones" type="text"><button class="brn brn-info">שלח לינק</button>
+            </div>
+
+            <div class="row" style="margin-top:20px;">
+                    <table class="table col-md-12 table-hover">
+                        <tr class="table-header">
+                            <th>
+                                מזהה
+                            </th>
+                            <th>
+                                שם סוכן
+                            </th>
+                            <th>
+                                סטטוס
+                            </th>
+                            <th>
+                                קוד תפקיד
+                            </th>
+                            <th>
+                                מספר נייד
+                            </th>
+                            <th>
+                                אימייל
+                            </th>
+                            <th>
+                                מזהה הסניף
+                            </th>
+                            <th>
+                                מזהה מנהל החברה    
+                            </th>
+                            <th>
+                                    פעולות   
+                            </th>
+                        </tr>
+                        <tr style="cursor:pointer;" ng-click="goToClient($index)" ng-repeat=" product in products track by $index">
+                          
+                        </tr>
+                    </table>
+                <img width="100" style="position:fixed; right:40%" ng-show="loading" src="/img/giphy.gif">
+            </div>
+    
+        </div>
+    
+    
+    </div>
+    
+    

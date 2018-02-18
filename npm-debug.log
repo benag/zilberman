@@ -1,9 +1,5 @@
 0 info it worked if it ends with ok
-1 verbose cli [ '/usr/local/heroku/bin/node',
-1 verbose cli   '/usr/local/bin/npm',
-1 verbose cli   'install',
-1 verbose cli   'winston',
-1 verbose cli   '--save-dev' ]
+1 verbose cli [ '/usr/local/heroku/bin/node', '/usr/local/bin/npm', 'install' ]
 2 info using npm@3.10.8
 3 info using node@v9.2.0
 4 verbose stack Error: Cannot find module 'internal/util/types'
@@ -19,7 +15,7 @@
 4 verbose stack     at tryModuleLoad (module.js:503:12)
 5 verbose cwd /home/ben/projects/zilberman/dashboard
 6 error Linux 4.4.0-104-generic
-7 error argv "/usr/local/heroku/bin/node" "/usr/local/bin/npm" "install" "winston" "--save-dev"
+7 error argv "/usr/local/heroku/bin/node" "/usr/local/bin/npm" "install"
 8 error node v9.2.0
 9 error npm  v3.10.8
 10 error code MODULE_NOT_FOUND

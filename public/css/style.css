@@ -636,3 +636,17 @@ input:-ms-input-placeholder {
 .item-a{
     color:black;
 }
+.footer-register {
+    text-align: center;
+}
+
+
+/* css for mobile */
+
+@media (min-width: 320px) and (max-width: 480px) {
+  
+    .mobile-container{
+        padding-top: 13vh!important;
+    }
+    
+  }
