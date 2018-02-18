@@ -1,5 +1,5 @@
-angular.module('ganim').controller('usersCtrl', ['$scope', '$stateParams', '$location', '$state',
-    function($scope, $stateParams, $location, $state) {
+angular.module('ganim').controller('usersCtrl', ['$scope', '$stateParams', '$location', '$state','$http',
+    function($scope, $stateParams, $location, $state, $http) {
 
         $scope.loading = true;
 
