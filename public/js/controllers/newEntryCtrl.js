@@ -104,7 +104,7 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
                 ariaLabelledBy: 'modal-title',
                 ariaDescribedBy: 'modal-body',
                 templateUrl: 'myModalContent.html',
-                controller: 'newEntryCtrl',
+                controller: 'carModalCtrl',
                 size: undefined,
                 appendTo: undefined,
                 resolve: {
