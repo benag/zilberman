@@ -95,7 +95,7 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
             
         }
 
-        $scope.openCarModal = (docs) => {
+        $scope.openCarModal = (docs, car) => {
             
             var parentElem = undefined;
 
@@ -110,7 +110,8 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
                 resolve: {
                     items: function () {
                         return docs;
-                    }
+                    },
+                    car: () => { return car}
                 }
             });
       
@@ -124,7 +125,7 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
         $scope.showFiles = (index) => {
             $http.get(`/car/files/${$scope.form.insuranceForm.cars[index].carInsID}`)
             .then( (data) => {
-                $scope.openCarModal(data.data);
+                $scope.openCarModal(data.data, $scope.form.insuranceForm.cars[index].carInsID);
             })
         }
         $scope.uploadCarDoc = (carId) => {

@@ -630,3 +630,7 @@ input:-ms-input-placeholder {
 .summery table{
     margin-bottom: 125px;
 }
+.filesList{
+    text-align: left;
+    list-style: none;
+}
