@@ -24,14 +24,20 @@ class newEntry {
 
     };
 
-    wrapVal(value) {
+    wrapVal (value) {
         if (value === null || value === undefined || value === '') return null;
         return `'${value}'`;
     };
-    wrapDate(value) {
+
+    wrapDate (value) {
         if (value === null || value === undefined || value === '') return null;
         return `${value}`;
     };
+
+    wrapNum (value) {
+        if (value === null || value === undefined || value === '') return null;
+        return value;
+    }
    
 
     async createMate(form) {
@@ -248,7 +254,8 @@ class newEntry {
             id = 0 ;
             localStorage.setItem('id', '0');
         }
-        let morgage = form.insuranceForm.morgage, pFloor = form.insuranceForm.morgage.pFloor, pOutOfFloor = form.insuranceForm.morgage.pOutOfFloor, pSurface = form.insuranceForm.morgage.pSurface, pBuildCost = form.insuranceForm.pBuildCost, pPropertyValue = form.insuranceForm.pPropertyValue;
+        let morgage = this.wrapNum(form.insuranceForm.morgage), pFloor = this.wrapNum(form.insuranceForm.morgage.pFloor), pOutOfFloor = this.wrapNum(form.insuranceForm.morgage.pOutOfFloor), pSurface = this.wrapNum(form.insuranceForm.morgage.pSurface),
+         pBuildCost = this.wrapNum(form.insuranceForm.pBuildCost), pPropertyValue = this.wrapNum(form.insuranceForm.pPropertyValue);
         let insert = `INSERT INTO tProperty (propertyID, pFloor, pOutOfFloor, pSurface, pBuildCost, pPropertyValue)
                 VALUES ( ${id},'${pFloor}' , '${pOutOfFloor}', '${pSurface}', '${pBuildCost}','${pPropertyValue}')`;
         let newMorgage = await this.sql.query(insert);
