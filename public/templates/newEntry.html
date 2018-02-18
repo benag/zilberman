@@ -371,7 +371,7 @@
                                     <div class="col-md-10">
                                         <input class="zilberman-input" placeholder="מספר תביעות ב 3 שנים אחרונות" ng-model="form.insuranceForm.cars[$index].claimsCount">
                                     </div>
-                                    <div class="col-md-1">
+                                    <div ng-show="isNew" class="col-md-1">
                                         <i style="cursor:pointer;" ng-click="omitCar($index)" class="material-icons">delete_sweep</i>
                                     </div>
                                     <div ng-show="!isNew" ng-click="showFiles($index)" class="col-md-1">
