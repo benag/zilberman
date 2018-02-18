@@ -369,7 +369,7 @@ class newEntry {
 
     async getProducts () {
 
-        let query = 'SELECT * FROM tProducts, tClients WHERE tProducts.pCli1 = tClients.cTaz1 AND tClients.cTaz1 = tClients.cTaz2 ORDERBY tProducts. LIMIT 100';
+        let query = 'SELECT * FROM tProducts, tClients WHERE tProducts.pCli1 = tClients.cTaz1 AND tClients.cTaz1 = tClients.cTaz2 ORDERBY tProducts.pID LIMIT 100';
         let products = await this.sql.query(query);
         products = products.recordset;
         return products;
