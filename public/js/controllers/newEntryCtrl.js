@@ -1,5 +1,5 @@
-angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$location', '$state','leadService', 'global','Upload','$rootScope','$http',
-    function($scope, $stateParams, $location, $state, leadService, global, Upload, $rootScope, $http) {
+angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$location', '$state','leadService', 'global','Upload','$rootScope','$http','$uibModal',
+    function($scope, $stateParams, $location, $state, leadService, global, Upload, $rootScope, $http, $uibModal) {
 
         const mashkanta = 0;
         const rechev = 1;
