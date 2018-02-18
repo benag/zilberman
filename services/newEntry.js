@@ -178,7 +178,7 @@ class newEntry {
             if (form.mate.cTaz2 !== form.mate.id) query += ` cTaz2 = ${form.mate.cTaz2}, `;
             let build = this.sqlBuilder (mate, form.mate,query );
             if (build.index > 0) {
-                query = this.sqlBuilder (mate, form.mate,query );
+                query =  build.query;
                 query += ` WHERE cTaz2=${form.mate.id} AND cTaz1 = ${form.client.cTaz2}`;
             }
            //let textQuery = "UPDATE tClients SET cFamily = 'tt', cTazDate = 01/01/2012 WHERE cTaz1=2222224";
