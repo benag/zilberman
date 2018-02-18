@@ -116,22 +116,31 @@ class newEntry {
 
     async UpdateCar (form){
         
+        let newCar;
         // let newCars = [];
         //let dbProducts = await this.sql.query(`SELECT * FROM tProducts WHERE cTaz1=${form.client.cTaz2} AND pType=3`);
         //if (dbProducts && dbProducts.recordset.length > 0){
             //let cars = dbProducts.recordset.filtemapr( (product) => product.carInsID);
             //for (let i=0; i<cars.length;i++){
-                let car = await this.sql.query(`select * from tCarIns where carInsID=${form.insuranceForm.cars[0].carInsID}`);
+                let carRecordSet = await this.sql.query(`select * from tCarIns where carInsID=${form.insuranceForm.cars[0].carInsID}`);
+                if (carRecordSet && carRecordSet.recordset.length > 0){
+                    let car = carRecordSet.recordset[0];
+                    let query = 'UPDATE tCarIns ';
+                    query = this.sqlBuilder (car, form.insuranceForm.cars[0], query );
+                    query += ` WHERE carInsID=` + form.insuranceForm.cars[0].carInsID;
+                    await this.sqlBuilder.query(query);
+                    return car.carInsID;        
+                }
                 //let car = cars[i];
-                let query = 'UPDATE tCarIns ';
-                //let carDb = await this.sqlBuilder.query(`SELECT FROM tCarIns WHERE carInsID=${car}`);
-                query = this.sqlBuilder (car, form.insuranceForm.cars[0], query );
-                query += ` WHERE carInsID=` + form.insuranceForm.cars[0].carInsID;
-                await this.sqlBuilder.query(query);
-                newCars.push(car);
+                // let query = 'UPDATE tCarIns ';
+                // //let carDb = await this.sqlBuilder.query(`SELECT FROM tCarIns WHERE carInsID=${car}`);
+                // query = this.sqlBuilder (car, form.insuranceForm.cars[0], query );
+                // query += ` WHERE carInsID=` + form.insuranceForm.cars[0].carInsID;
+                // await this.sqlBuilder.query(query);
+                // newCars.push(car);
             //}
         //}
-        return newCars;
+        //return newCar;
         
 
     }
