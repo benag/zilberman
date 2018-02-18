@@ -128,7 +128,7 @@ class newEntry {
                     let query = 'UPDATE tCarIns ';
                     query = this.sqlBuilder (car, form.insuranceForm.cars[0], query );
                     query += ` WHERE carInsID=` + form.insuranceForm.cars[0].carInsID;
-                    await this.sqlBuilder.query(query);
+                    await this.sql.query(query);
                     return car.carInsID;        
                 }
                 //let car = cars[i];
