@@ -485,13 +485,13 @@
             <div class="modal-body" id="modal-body">
                 <ul class="filesList">
                     <li ng-repeat="item in items">
-                        <a ng-href="http://18.221.178.131:3000/{{car}}/{{item}}" download>{{ item }}</a>
+                        <a ng-href="http://18.221.178.131:3000/uploads/{{car}}/{{item}}" download>{{ item }}</a>
                     </li>
                 </ul>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
-                <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+                <!-- <button class="btn btn-primary" type="button" ng-click="ok()">OK</button> -->
+                <button class="btn btn-warning" type="button" ng-click="cancel()">סגור</button>
             </div>
         </script>
         
