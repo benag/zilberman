@@ -372,12 +372,12 @@ class newEntry {
         let query;
         if (like) {
             if (typeof like === 'number'){
-                query = `SELECT * FROM tProducts, tClients WHERE tProducts.pCli1 = tClients.cTaz1 AND tClients.cTaz1 = tClients.cTaz2 AND tClients.cTaz1 LIKE ${like} ORDER BY tProducts.pID`;
+                query = `SELECT TOP(100) * FROM tProducts, tClients WHERE tProducts.pCli1 = tClients.cTaz1 AND tClients.cTaz1 = tClients.cTaz2 AND tClients.cTaz1 LIKE ${like} ORDER BY tProducts.pID`;
             }else{
-                query = `SELECT * FROM tProducts, tClients WHERE tProducts.pCli1 = tClients.cTaz1 AND tClients.cTaz1 = tClients.cTaz2 AND tClients.cName LIKE '${like}' OR tClients.cFamily LIKE '${like}' ORDER BY tProducts.pID`; 
+                query = `SELECT TOP(100) * FROM tProducts, tClients WHERE tProducts.pCli1 = tClients.cTaz1 AND tClients.cTaz1 = tClients.cTaz2 AND tClients.cName LIKE '${like}' OR tClients.cFamily LIKE '${like}' ORDER BY tProducts.pID`; 
             }
         }else{
-            query = 'SELECT * FROM tProducts, tClients WHERE tProducts.pCli1 = tClients.cTaz1 AND tClients.cTaz1 = tClients.cTaz2 ORDER BY tProducts.pID';
+            query = 'SELECT TOP(100) * FROM tProducts, tClients WHERE tProducts.pCli1 = tClients.cTaz1 AND tClients.cTaz1 = tClients.cTaz2 ORDER BY tProducts.pID';
         } 
         let products = await this.sql.query(query);
         products = products.recordset;
