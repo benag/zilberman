@@ -168,9 +168,29 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
             $scope.cars.splice(index,1);
         };
 
+        $scope.validate = () => {
+            if (!$scope.form.client.cTaz1 || $scope.form.client.cTaz1.length > 9){
+                toastr.error('תז ראשי אינה נכונה');
+                return false;
+            } 
+            if (!$scope.form.client.cName){
+                toastr.error('יש למלה שם');
+                return false;
+            }
+            if (!$scope.form.client.cFamily){
+                toastr.error(' יש למלה שם משפחה');
+                return false;
+            }
+            if (!$scope.form.client.cFamily){
+                toastr.error(' יש למלה שם משפחה');
+                return false;
+            }
+
+        }
         $scope.click = (index) => {
             if (index === 3){
                 //$scope.convertType();
+                if (!$scope.validate()) return;
                 toastr.info('הפניה נשלחה לשרת');
                 leadService.save($scope.form, $scope.isNew)
                 .then( (done) => {
