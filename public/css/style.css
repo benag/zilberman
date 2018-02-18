@@ -639,7 +639,10 @@ input:-ms-input-placeholder {
 .footer-register {
     text-align: center;
 }
-
+.footer-text{
+    color:white;
+    text-align: center;
+}
 
 /* css for mobile */
 

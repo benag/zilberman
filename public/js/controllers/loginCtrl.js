@@ -1,7 +1,7 @@
 angular.module('ganim').controller('loginCtrl', ['$scope', '$stateParams', '$location', '$state', 'global', 'userMng', '$timeout',
     function($scope, $stateParams, $location, $state, global, userMng, $http) {
 
-
+        $('#footer').hide();
         $scope.user = {};
         $scope.user.email ='';
         $scope.sms = false;

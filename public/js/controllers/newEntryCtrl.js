@@ -1,6 +1,7 @@
 angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$location', '$state','leadService', 'global','Upload','$rootScope','$http','$uibModal',
     function($scope, $stateParams, $location, $state, leadService, global, Upload, $rootScope, $http, $uibModal) {
 
+        $('#footer').show();
         const mashkanta = 0;
         const rechev = 1;
         const privateData = 0;
