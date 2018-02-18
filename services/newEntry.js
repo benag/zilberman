@@ -248,7 +248,7 @@ class newEntry {
             id = 0 ;
             localStorage.setItem('id', '0');
         }
-        let morgage = form.insuranceForm.morgage, pFloor = this.wrapVal(form.insuranceForm.morgage.pFloor), pOutOfFloor = this.wrapVal(form.insuranceForm.morgage.pOutOfFloor), pSurface = this.wrapVal(form.insuranceForm.morgage.pSurface), pBuildCost = this.wrapVal(form.insuranceForm.pBuildCost), pPropertyValue = this.wrapVal(form.insuranceForm.pPropertyValue);
+        let morgage = form.insuranceForm.morgage, pFloor = form.insuranceForm.morgage.pFloor, pOutOfFloor = form.insuranceForm.morgage.pOutOfFloor, pSurface = form.insuranceForm.morgage.pSurface, pBuildCost = form.insuranceForm.pBuildCost, pPropertyValue = form.insuranceForm.pPropertyValue;
         let insert = `INSERT INTO tProperty (propertyID, pFloor, pOutOfFloor, pSurface, pBuildCost, pPropertyValue)
                 VALUES ( ${id},'${pFloor}' , '${pOutOfFloor}', '${pSurface}', '${pBuildCost}','${pPropertyValue}')`;
         let newMorgage = await this.sql.query(insert);
