@@ -576,6 +576,9 @@ td {
 .zilberman-input:hover{
     border-bottom: 2px solid #2676d0;
 }
+.zilberman-dropdown:hover{
+    border-bottom: 2px solid #2676d0;
+}
 .nav-tabs {
     background-color: #0f4d9e;
     

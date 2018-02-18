@@ -352,7 +352,7 @@ class newEntry {
             newCar = null;
         }
         type = this.convertType(type);
-        if (secondClient === undefined) secondClient = client;
+        if (secondClient === undefined) secondClient = null;
 
         morgage = this.wrapNum(morgage);
         loan = this.wrapNum(loan);
