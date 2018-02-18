@@ -3,7 +3,7 @@
 
 let mongoose = require('mongoose');
 let User = mongoose.model('User');
-let mysql = require('./sqlService');
+let mysql = require('../services/sqlService');
 var LocalStorage = require('node-localstorage').LocalStorage;
 let localStorage = new LocalStorage('./scratch');
 var nexmo = require('../services/nexmo');
@@ -78,7 +78,7 @@ class userController {
 
 
         let existingUser = await this.sql.query(`select * from tUsersAndRoles where phone= ${phone}`);
-        let existingUser = false;
+        // let existingUser = false;
         // If user is not unique, return error
         if (existingUser) {
             //if (existingUser.phone !== phone) existingUser.phone = phone;
