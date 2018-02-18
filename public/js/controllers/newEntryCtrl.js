@@ -67,7 +67,8 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
                 $scope.form.insuranceForm.cars = [];
                 $scope.form.insuranceForm.cars.push(p.cars);
                 let date = moment($scope.form.insuranceForm.cars[0].carRenewDate);
-                $scope.form.insuranceForm.cars[0].carRenewDate = date.format('DD/MM/YYYY'); 
+                $scope.form.insuranceForm.cars[0].carRenewDate = date.format('DD/MM/YYYY');
+                
                 // $scope.form.insuranceForm.cars.forEach( (car) => { 
                 //     let date = moment(car.carRenewDate);
                 //     car.carRenewDate = date.format('DD/MM/YYYY'); 
