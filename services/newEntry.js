@@ -349,7 +349,7 @@ class newEntry {
                 VALUES (${pid},${client},${secondClient},${type}, ${morgage},${loan},${prati},${CarDB} )`;
         let newProduct = await this.sql.query(insert);
 
-        loan = this.wrapVal(loan);
+        //loan = this.wrapVal(loan);
         return {productId:pid, type, morgage,loan,prati,newCar};
 
     }
@@ -446,7 +446,7 @@ class newEntry {
             if (type === this.PRAT) prati =await this.createPart( form, returnObj );
             if (type === this.DIRA) dira = await this.createDira( form, returnObj );
         }
-        if (form.borrow.type !== undefined) loan = await this.createLoan( form, returnObj );
+        if (form.borrow.loanType !== undefined) loan = await this.createLoan( form, returnObj );
 
         product = await this.createProduct(client,secondClient, form.type, cars, morgage, prati, dira, form.loan,  loan, returnObj);
 
