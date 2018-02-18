@@ -249,6 +249,14 @@ app.get('/clients', async function(req, res){
         res.status(400);
     }
 });
+app.get('/products', async function(req, res){
+    try{
+        let result = await newEntry.getProducts();
+        res.json(result);
+    }catch(err){
+        res.status(400);
+    }
+});
 app.get('/products/:like', async function(req, res){
     try{
         let result = await newEntry.getProducts(req.params.like);
