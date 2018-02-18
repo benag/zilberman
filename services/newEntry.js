@@ -121,7 +121,7 @@ class newEntry {
         //if (dbProducts && dbProducts.recordset.length > 0){
             //let cars = dbProducts.recordset.filtemapr( (product) => product.carInsID);
             //for (let i=0; i<cars.length;i++){
-                let car = await this.sql.query(`select from tcarIns where carInsID=${form.insuranceForm.cars[0].carInsID}`);
+                let car = await this.sql.query(`select from tCarIns where carInsID=${form.insuranceForm.cars[0].carInsID}`);
                 //let car = cars[i];
                 let query = 'UPDATE tCarIns ';
                 //let carDb = await this.sqlBuilder.query(`SELECT FROM tCarIns WHERE carInsID=${car}`);
