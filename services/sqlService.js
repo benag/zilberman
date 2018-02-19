@@ -29,7 +29,7 @@ class sqlService {
         try {
             console.log(statement);
             if (!this.pool){
-                //this.sql.close();
+                sql.close();
                 this.pool = await sql.connect(this.dbconfig);
             } 
             let result1 = await this.pool.request()
