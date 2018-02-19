@@ -122,16 +122,18 @@ class userController {
 
         };
 
-        let dbUser = _this.saveUser(user);
+        _this.saveUser(user, (backuser) =>{
+            res.status(201).json({
+                token: 'JWT ' + _this.generateToken({uID:user.uID}),
+                user: user
+            });
+        });
         //let randomCode = Math.floor(1000 + Math.random() * 9000);
         //let returnSMS = nexmo.sms(user.phone, 'Your code is ' + randomCode );
         //user.save(function(err, user) {
         //    if (err) { return next(err); }
         //let userInfo = _this.setUserInfo(dbUser);
-        res.status(201).json({
-            token: 'JWT ' + _this.generateToken({uID:user.uID}),
-            user: user
-        });
+        
         //});
 
     }
@@ -140,7 +142,7 @@ class userController {
         return {};
     }
 
-    async saveUser (user) {
+    async saveUser (user, cb) {
         
         const SALT_FACTOR = 5;
         bcrypt.genSalt(SALT_FACTOR, function(err, salt) {
@@ -150,18 +152,18 @@ class userController {
                 user.password = hash;
                 await this.sql.query(`insert into tUsersAndRoles (uID, uPassword, uStatus, uName, uFamily, uRole, uMobile, uEmail )
                 VALUES ( ${id}, '${user.uPassword}', 1, '${user.uName}', '${user.uFamily}', 1, '${user.uMobile}','${user.uEmail}' )`);                
-                return user;
+                cb(user);
             });
         });
 
     }
 
-    // async comparePasswords (candidatePassword, cb) {
-    //     bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
-    //         if (err) { return cb(err); }
-    //         cb(null, isMatch);
-    //     });
-    // }
+    comparePasswords (candidatePassword, cb) {
+        bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
+            if (err) { return cb(err); }
+            cb(null, isMatch);
+        });
+    }
 
     async getUserByPhone (phone) {
         return User.findOne({phone:phone}).exec();
@@ -243,11 +245,19 @@ class userController {
     login (req, res, next) {
 
         let userInfo = this.setUserInfo(req.user);
-
-        res.status(200).json({
-            token: 'JWT ' + this.generateToken({_id:req.user._id}),
-            user: userInfo
-        });
+        let password = req.user.password;
+        _this.comparePasswords(password,(isMatch) => {
+            if (isMatch){
+                res.status(200).json({
+                    token: 'JWT ' + this.generateToken({_id:req.user._id}),
+                    user: userInfo
+                });
+            }else{
+                res.status(400);
+            }
+            
+        })
+        
     }
 
 
