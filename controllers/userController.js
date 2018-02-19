@@ -53,9 +53,11 @@ class userController {
     sendLink (phone) {
         let usrMng = JSON.parse(localStorage.getItem('userMng'));
         if (!usrMng) {
-            usrMng = [];
+            usrMng = {};
         }
-        usrMng.push({phone:phone,date:Date.now()});
+        //usrMng.push({phone:phone,date:Date.now()});
+        usrMng[phone] = Date.now();
+        localStorage.setItem('userMng', JSON.stringify(usrMng));
         let link = `http://18.221.178.131:3000/register.html?phone=${phone}`;
         let returnSMS = nexmo.sms(phone, link );
 

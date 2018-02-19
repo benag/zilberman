@@ -12,7 +12,7 @@ nexmoService.sms = function (toPhone, msg){
     let phoneNoZero = '972' + toPhone.substring(1);
     //972526749884
     return new Promise(function (fulfill, reject) {
-        nexmo.message.sendSms('ZILBERMAN', toPhone, msg, {}, (err, res) => {
+        nexmo.message.sendSms('ZILBERMAN', phoneNoZero, msg, {}, (err, res) => {
             if (err) reject(err);
             fulfill(res);
         });
