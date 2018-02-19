@@ -108,7 +108,11 @@ app.post('/register', (req, res, next) => {
 
 // Login route
 //requireLogin
-app.post('/login', requireLogin, (req, res, next) => {
+// app.post('/login', requireLogin, (req, res, next) => {
+//     //let mng = new userCtrl();
+//     userCtrl.login(req, res, next);
+// });
+app.post('/login', (req, res, next) => {
     //let mng = new userCtrl();
     userCtrl.login(req, res, next);
 });
