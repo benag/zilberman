@@ -193,6 +193,7 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
                 toastr.error('מספר טלפון אינו תקין ');
                 return false;
             }
+            return true;
 
         }
         $scope.click = (index) => {
