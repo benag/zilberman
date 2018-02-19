@@ -146,7 +146,7 @@ class userController {
     saveUser (user, cb) {
         
         const SALT_FACTOR = 5;
-        let _this = this;s
+        let _this = this;
         bcrypt.genSalt(SALT_FACTOR, function(err, salt) {
             if (err) return next(err);
             bcrypt.hash(user.password, salt, null, async function(err, hash) {
