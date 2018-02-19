@@ -93,7 +93,7 @@ class userController {
         }
 
 
-        let existingUser = await this.sql.query(`select * from tUsersAndRoles where phone= ${phone}`);
+        let existingUser = await this.sql.query(`select * from tUsersAndRoles where uPhone= ${phone}`);
         // let existingUser = false;
         // If user is not unique, return error
         if (existingUser) {
