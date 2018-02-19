@@ -4,6 +4,7 @@ angular.module('ganim').controller('usersCtrl', ['$scope', '$stateParams', '$loc
         $scope.loading = true;
         $scope.phone = ''
         $http.get('/users').then((data) => {
+            $scope.loading = false;
             $scope.users = data.data;
         })
 
