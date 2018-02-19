@@ -2,7 +2,7 @@
 "use strict";
 
 const passport = require('passport'),
-    userService = require('../services/userService'),
+    //userService = require('../services/userService'),
     mysql = require('../services/sqlService');
     config = require('./default'),
     JwtStrategy = require('passport-jwt').Strategy,
@@ -18,12 +18,12 @@ const localLogin = new LocalStrategy(localOptions, async function(req, email, pa
 
     let dbUser = await sql.query(`select * from tUsersAndRoles where uMobile=${email}`);
     if (!dbUser || dbUser.recordset.length ==0) return done(null, false,{ error: 'Your login details could not be verified. Please try again.' });
-    user.comparePassword(password, function(err, isMatch) {
-        if (err) { return done(err); }
-        if (!isMatch) { return done(null, false, { error: "Your login details could not be verified. Please try again." }); }
+    // userService.comparePassword(password, function(err, isMatch) {
+    //     if (err) { return done(err); }
+    //     if (!isMatch) { return done(null, false, { error: "Your login details could not be verified. Please try again." }); }
 
-        return done(null, user);
-    });
+    //     return done(null, user);
+    // });
     // User.findOne({ email: email }, function(err, user) {
     //     if(err) { return done(err); }
     //     if(!user) { return done(null, false, { error: 'Your login details could not be verified. Please try again.' }); }
