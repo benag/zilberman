@@ -16,8 +16,8 @@ const localOptions = { usernameField: 'email', passReqToCallback: true };
 const sql = new mysql();
 const localLogin = new LocalStrategy(localOptions, async function(req, email, password, done) {
 
-    let dbUser = await sql.query(`select * from tUsersAndRoles where uMobile=${email}`);
-    if (!dbUser || dbUser.recordset.length ==0) return done(null, false,{ error: 'Your login details could not be verified. Please try again.' });
+    // let dbUser = await sql.query(`select * from tUsersAndRoles where uMobile=${email}`);
+    // if (!dbUser || dbUser.recordset.length ==0) return done(null, false,{ error: 'Your login details could not be verified. Please try again.' });
     // userService.comparePassword(password, function(err, isMatch) {
     //     if (err) { return done(err); }
     //     if (!isMatch) { return done(null, false, { error: "Your login details could not be verified. Please try again." }); }
