@@ -6,6 +6,7 @@ angular.module('ganim').controller('usersCtrl', ['$scope', '$stateParams', '$loc
         $http.get('/users').then((data) => {
             $scope.loading = false;
             $scope.users = data.data;
+            console.log($scope.users);
         })
 
         $scope.sendLink = function(phone) {

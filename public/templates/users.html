@@ -38,17 +38,17 @@
                                 אימייל
                             </th>
                             <th>
-                                מזהה הסניף
-                            </th>
-                            <th>
-                                מזהה מנהל החברה    
-                            </th>
-                            <th>
-                                    פעולות   
+                                פעולות   
                             </th>
                         </tr>
-                        <tr style="cursor:pointer;" ng-click="goToClient($index)" ng-repeat=" product in products track by $index">
-                          
+                        <tr style="cursor:pointer;" ng-click="goToClient($index)" ng-repeat=" user in users track by $index">
+                          <td>{{user.uID}}</td>
+                          <td>{{user.uName + user.uFamily}}</td>
+                          <td>{{user.uStatus}}</td>
+                          <td>{{}}</td>
+                          <td>{{user.uMobile}}</td>
+                          <td>{{user.uEmail}}</td>
+                          <td></td>
                         </tr>
                     </table>
                 <img width="100" class="loader" ng-show="loading" src="/img/giphy.gif">
