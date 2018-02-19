@@ -116,7 +116,7 @@ class userController {
         let user = {
             uEmail: email,
             uPassword: password,
-            uName: name,
+            uName: firstName,
             uFamily:lastName,
             uMobile:phone
 
