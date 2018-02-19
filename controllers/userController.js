@@ -149,9 +149,9 @@ class userController {
         let _this = this;
         bcrypt.genSalt(SALT_FACTOR, function(err, salt) {
             if (err) return next(err);
-            bcrypt.hash(user.password, salt, null, async function(err, hash) {
+            bcrypt.hash(user.uPassword, salt, null, async function(err, hash) {
                 if (err) return false;
-                user.password = hash;
+                user.uPassword = hash;
                 await _this.sql.query(`insert into tUsersAndRoles (uID, uPassword, uStatus, uName, uFamily, uRole, uMobile, uEmail )
                 VALUES ( ${id}, '${user.uPassword}', 1, '${user.uName}', '${user.uFamily}', 1, '${user.uMobile}','${user.uEmail}' )`);                
                 cb(user);
