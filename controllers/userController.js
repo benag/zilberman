@@ -142,15 +142,16 @@ class userController {
         return {};
     }
 
-    async saveUser (user, cb) {
+    saveUser (user, cb) {
         
         const SALT_FACTOR = 5;
+        let _this = this;s
         bcrypt.genSalt(SALT_FACTOR, function(err, salt) {
             if (err) return next(err);
-            bcrypt.hash(user.password, salt, null, function(err, hash) {
+            bcrypt.hash(user.password, salt, null, async function(err, hash) {
                 if (err) return false;
                 user.password = hash;
-                await this.sql.query(`insert into tUsersAndRoles (uID, uPassword, uStatus, uName, uFamily, uRole, uMobile, uEmail )
+                await _this.sql.query(`insert into tUsersAndRoles (uID, uPassword, uStatus, uName, uFamily, uRole, uMobile, uEmail )
                 VALUES ( ${id}, '${user.uPassword}', 1, '${user.uName}', '${user.uFamily}', 1, '${user.uMobile}','${user.uEmail}' )`);                
                 cb(user);
             });
