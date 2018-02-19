@@ -4,6 +4,7 @@
 let mongoose = require('mongoose');
 let User = mongoose.model('User');
 let mysql = require('../services/sqlService');
+let bcrypt = require('bcrypt-nodejs');
 var LocalStorage = require('node-localstorage').LocalStorage;
 let localStorage = new LocalStorage('./scratch');
 let moment = require('moment');
