@@ -185,12 +185,12 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
                 toastr.error(' יש לבחור מגדר');
                 return false;
             }
-            if (!form.client.cMobile || form.client.cMobile < 10){
+            if (!$scope.form.client.cMobile || $scope.form.client.cMobile < 10){
                 toastr.error(' מספר טלפון נייד לא תקין');
                 return false;
             }
-            if (!form.client.cPhone || form.client.cPhone < 10){
-                toastr.error(' מספר טלפון ');
+            if (!$scope.form.client.cPhone || $scope.form.client.cPhone < 10){
+                toastr.error('מספר טלפון אינו תקין ');
                 return false;
             }
 
