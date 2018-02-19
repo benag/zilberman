@@ -52,7 +52,7 @@ angular.module('ganim').controller('loginCtrl', ['$scope', '$stateParams', '$loc
         };
 
         $scope.enterSMS = () => {
-            if ($scope.user.sms === $scope.smsData){
+            if ($scope.user.sms === String($scope.smsData)){
                 $state.go('newentry');
             }else{
                 toastr.error('קוד סמס שגוי');
