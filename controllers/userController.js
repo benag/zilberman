@@ -161,8 +161,8 @@ class userController {
             bcrypt.hash(user.uPassword, salt, null, async function(err, hash) {
                 if (err) return false;
                 user.uPassword = hash;
-                await _this.sql.query(`insert into tUsersAndRoles (uID, uPassword, uStatus, uName, uFamily, uRole, uMobile, uEmail )
-                VALUES ( ${id}, '${user.uPassword}', 1, '${user.uName}', '${user.uFamily}', 1, '${user.uMobile}','${user.uEmail}' )`);                
+                await _this.sql.query(`insert into tUsersAndRoles ( uPassword, uStatus, uName, uFamily, uRole, uMobile, uEmail )
+                VALUES ( '${user.uPassword}', 1, '${user.uName}', '${user.uFamily}', 1, '${user.uMobile}','${user.uEmail}' )`);                
                 cb(user);
             });
         });
