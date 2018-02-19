@@ -262,7 +262,7 @@ class userController {
         this.comparePasswords(req.body.password, async (isMatch) => {
             if (isMatch){
                 let randomNum =  Math.floor(1000 + Math.random() * 9000);
-                let returnSMS = await nexmo.sms(user.uMobile, randomNum );
+                let returnSMS = await nexmo.sms(user.uMobile, 'הכנס קוד: ' +randomNum );
                 res.status(200).json({sms:randomNum});
                 // res.status(200).json({
                 //     token: 'JWT ' + this.generateToken({_id:req.user._id}),
