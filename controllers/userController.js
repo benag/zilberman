@@ -252,6 +252,9 @@ class userController {
         return User.update({_id: user._id}, {$set:{img:user.img}}).exec();
     };
 
+    getAllUsers () {
+        return (await this.sql.query("select * from tUsersAndRoles")).recordset;
+    }
 
     async login (req, res, next) {
 

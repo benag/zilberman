@@ -146,6 +146,14 @@ app.get('/user/phone/:phone', async (req, res) => {
     }
 });
 
+app.get('/users', async (req, res) => {
+    try{
+        let users = await userCtrl.getAllUsers();
+        return res.json(users);
+    }catch(err){
+        res.status(400).send(err.message);
+    }
+})
 app.get('/user/:by/:filter/:multiple', async (req,res) => {
 
     try{
