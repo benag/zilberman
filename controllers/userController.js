@@ -253,10 +253,10 @@ class userController {
     };
 
 
-    login (req, res, next) {
+    async login (req, res, next) {
 
         //let userInfo = this.setUserInfo(req.user);
-        let dbUser  = this.sql.query(`select * from tUsersAndRoles where uEmail=${req.body.email}`);
+        let dbUser  = await this.sql.query(`select * from tUsersAndRoles where uEmail=${req.body.email}`);
         if (!dbUser || dbUser.recordset.length === 0) return res.status(400);
         let user = dbUser.recordset[0];
         let password = req.user.password;
