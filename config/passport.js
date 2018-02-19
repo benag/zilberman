@@ -2,7 +2,7 @@
 "use strict";
 
 const passport = require('passport'),
-    userService = require('./services/userService'),
+    userService = require('../services/userService'),
     mysql = require('../services/sqlService');
     config = require('./default'),
     JwtStrategy = require('passport-jwt').Strategy,
