@@ -145,7 +145,15 @@ class userController {
     }
 
     saveUser (user, cb) {
-        
+        let id = (localStorage.getItem('uid'));
+        id = parseInt(id);
+        if (id !== undefined && !isNaN(id)) {
+            id++;
+            localStorage.setItem('uid', String(id));
+        }else{
+            id = 0 ;
+            localStorage.setItem('uid', '0');
+        }
         const SALT_FACTOR = 5;
         let _this = this;
         bcrypt.genSalt(SALT_FACTOR, function(err, salt) {
