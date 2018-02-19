@@ -159,6 +159,7 @@
                         let data = {firstName:$('.firstName').val(), lastName:$('.lastName').val(), email:$('.email').val(),password:$('.password').val(), phone:phone};
                         $.post('/register', data)
                         .then((data)=> {
+                            toastr.info('משתמש נוצר בהצלחה');
                             //swal('הרישום בוצע בהצלחה');
                         })
                     }

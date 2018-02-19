@@ -51,8 +51,25 @@ angular.module('ganim').controller('loginCtrl', ['$scope', '$stateParams', '$loc
             })
         };
 
+        $scope.enterSMS = () => {
+            if ($scope.user.sms === $scope.smsData){
+                $state.go('newentry');
+            }else{
+                toastr.error('קוד סמס שגוי');
+            }
+            
+        };
+
         $scope.login = function(){
-            if ($scope.user.email === 'admin' && $scope.user.password) $state.go('newentry');
+            if ($scope.user.email === 'admin' && $scope.user.password === 'admin') $state.go('newentry');
+            $http.post('/login', {email:$scope.user.email ,password:$scope.user.password})
+            .then((data) => {
+                $scope.sms = true;
+                $scope.smsData = data.data.sms;
+                
+            }).catch((err)=>{
+
+            })
             //authService.login()
             //.then( () => {
             //    $scope.sms = true;

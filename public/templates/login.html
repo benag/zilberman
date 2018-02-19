@@ -57,8 +57,8 @@
                                             </span>
                                         <div class="form-group label-floating">
                                             <label class="control-label label-rtl">הכנס קוד סמס</label>
-                                            <input type="password" ng-model="user.password" class="form-control black-line sms-code">
-                                            <button class="btn btn-sml">הכנס</button>
+                                            <input type="password" ng-model="user.sms" class="form-control black-line sms-code">
+                                            <button ng-click="enterSMS()" class="btn btn-sml">הכנס</button>
                                         </div>
                                     </div>
                                     <div ng-show="!sms" class="footer text-center">

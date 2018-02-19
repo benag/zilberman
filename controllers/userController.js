@@ -255,14 +255,20 @@ class userController {
 
     login (req, res, next) {
 
-        let userInfo = this.setUserInfo(req.user);
+        //let userInfo = this.setUserInfo(req.user);
+        let dbUser  = this.sql.query(`select * from tUsersAndRoles where uEmail=${req.user.email}`);
+        if (!dbUser || dbUser.recordset.length === 0) return res.status(400);
+        let user = dbUser.recordset[0];
         let password = req.user.password;
         _this.comparePasswords(password,(isMatch) => {
             if (isMatch){
-                res.status(200).json({
-                    token: 'JWT ' + this.generateToken({_id:req.user._id}),
-                    user: userInfo
-                });
+                let randomNum =  Math.floor(1000 + Math.random() * 9000);
+                let returnSMS = await nexmo.sms(user.uMobile, randomNum );
+                res.status(200).json({sms:randomNum});
+                // res.status(200).json({
+                //     token: 'JWT ' + this.generateToken({_id:req.user._id}),
+                //     user: userInfo
+                // });
             }else{
                 res.status(400);
             }
