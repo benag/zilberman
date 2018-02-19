@@ -73,7 +73,8 @@ class userController {
         let email = req.body.email;
         let phone = req.body.phone;
         let password = req.body.password;
-        let name = req.body.name;
+        let firstName = req.body.firstName;
+        let lastName = req.body.firstName;
 
 
         // check for live url
