@@ -4,7 +4,7 @@
 const passport = require('passport'),
     //userService = require('../services/userService'),
     mysql = require('../services/sqlService');
-    config = require('./default'),
+    //config = require('./default'),
     JwtStrategy = require('passport-jwt').Strategy,
     ExtractJwt = require('passport-jwt').ExtractJwt,
     LocalStrategy = require('passport-local');
