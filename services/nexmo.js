@@ -7,7 +7,7 @@ var nexmo = new Nexmo({
 
 var nexmoService = {};
 
-nexmoService.sms = function (toPhone, msg){
+nexmoService.sms = async function (toPhone, msg){
 
     let phoneNoZero = '972' + toPhone.substring(1);
     //972526749884

@@ -9,9 +9,12 @@ angular.module('ganim').controller('usersCtrl', ['$scope', '$stateParams', '$loc
 
         $scope.sendLink = function(phone) {
             $http.post('/user/link',{phone:$scope.phone})
-            .then( () => {
+            .then( (data) => {
                 toastr.info('לינק נשלח');
+            }).catch( (err) => {
+                toastr.error('תקלה בשליחת סמס');
             })
+        
         }
 
 
