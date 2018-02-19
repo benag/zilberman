@@ -2,7 +2,15 @@ angular.module('ganim').controller('topNavCtrl', ['$scope', '$stateParams', '$lo
     function($scope, $stateParams, $location, $state) {
 
         $scope.isMobile = () => {
-            return window.screen.width < 800;
+            return window.innerWidth < 600
+            //return window.screen.width < 800;
+        }
+        $scope.mngText= 'ניהול משתמשים';
+
+        $scope.shoeMng = () => {
+            if (window.innerWidth < 600) $scope.mngText= 'ניהול' ;
+            if (window.innerWidth > 600) $scope.mngText= 'ניהול משתמשים' ;
+            return true;
         }
         $scope.state = (state) => {
             console.log($state.current);
