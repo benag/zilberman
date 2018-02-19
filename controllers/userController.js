@@ -6,6 +6,7 @@ let User = mongoose.model('User');
 let mysql = require('../services/sqlService');
 var LocalStorage = require('node-localstorage').LocalStorage;
 let localStorage = new LocalStorage('./scratch');
+let moment = require('moment');
 var nexmo = require('../services/nexmo');
 const jwt = require('jsonwebtoken'),
     crypto = require('crypto'),
@@ -64,6 +65,7 @@ class userController {
 
     }
     async register (req, res, next) {
+
         // Check for registration errors
         let _this = this;
         console.log(_this);
@@ -73,6 +75,17 @@ class userController {
         let password = req.body.password;
         let name = req.body.name;
 
+
+        // check for live url
+
+        let usrMng = JSON.parse(localStorage.getItem('userMng'));
+        if (!usrMng) {
+            usrMng = {};
+        }
+        let activeDateOfPhone = usrMng[phone];
+        if (!activeDateOfPhone) res.status(400);
+        let howManyHours = moment(Date.now()).diff(activeDateOfPhone,'hours');
+        if ( howManyHours >24 ) res.status(400);
 
         // Return error if no email provided
         if (!email || !phone) {
@@ -114,10 +127,10 @@ class userController {
         //let returnSMS = nexmo.sms(user.phone, 'Your code is ' + randomCode );
         //user.save(function(err, user) {
         //    if (err) { return next(err); }
-        let userInfo = _this.setUserInfo(dbUser);
+        //let userInfo = _this.setUserInfo(dbUser);
         res.status(201).json({
             token: 'JWT ' + _this.generateToken({uID:user.uID}),
-            user: userInfo
+            user: user
         });
         //});
 
@@ -126,10 +139,29 @@ class userController {
     async findUser (id) {
         return {};
     }
+
     async saveUser (user) {
-        this.sql.query("insert into tUsersAndRoles ()")
-        return user;
+        
+        const SALT_FACTOR = 5;
+        bcrypt.genSalt(SALT_FACTOR, function(err, salt) {
+            if (err) return next(err);
+            bcrypt.hash(user.password, salt, null, function(err, hash) {
+                if (err) return false;
+                user.password = hash;
+                await this.sql.query(`insert into tUsersAndRoles (uID, uPassword, uStatus, uName, uFamily, uRole, uMobile, uEmail )
+                VALUES ( ${id}, '${user.uPassword}', 1, '${user.uName}', '${user.uFamily}', 1, '${user.uMobile}','${user.uEmail}' )`);                
+                return user;
+            });
+        });
+
     }
+
+    // async comparePasswords (candidatePassword, cb) {
+    //     bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
+    //         if (err) { return cb(err); }
+    //         cb(null, isMatch);
+    //     });
+    // }
 
     async getUserByPhone (phone) {
         return User.findOne({phone:phone}).exec();
