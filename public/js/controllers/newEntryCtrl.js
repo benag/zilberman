@@ -181,8 +181,16 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
                 toastr.error(' יש למלה שם משפחה');
                 return false;
             }
-            if (!$scope.form.client.cFamily){
-                toastr.error(' יש למלה שם משפחה');
+            if (!$scope.form.client.cGender){
+                toastr.error(' יש לבחור מגדר');
+                return false;
+            }
+            if (!form.client.cMobile || form.client.cMobile < 10){
+                toastr.error(' מספר טלפון נייד לא תקין');
+                return false;
+            }
+            if (!form.client.cPhone || form.client.cPhone < 10){
+                toastr.error(' מספר טלפון ');
                 return false;
             }
 
