@@ -96,7 +96,7 @@ class userController {
         let existingUser = await this.sql.query(`select * from tUsersAndRoles where uMobile= ${phone}`);
         // let existingUser = false;
         // If user is not unique, return error
-        if (existingUser) {
+        if (existingUser && existingUser.recordset.length > 0) {
             //if (existingUser.phone !== phone) existingUser.phone = phone;
             ////if (existingUser.email !== email) existingUser.email = email;
             //try{
@@ -105,7 +105,7 @@ class userController {
             //    console.log(err);
             //}
 
-            let userInfo = _this.setUserInfo(existingUser);
+            let userInfo = _this.setUserInfo(existingUser.recordset[0]);
             return res.status(201).json({
                 token: 'JWT ' + _this.generateToken({uID:userInfo.uID}),
                 user: userInfo
