@@ -253,7 +253,8 @@ class userController {
     };
 
     async getAllUsers () {
-        return (await this.sql.query("select * from tUsersAndRoles")).recordset;
+        let users = await this.sql.query("select * from tUsersAndRoles");
+        return users.recordset;
     }
 
     async login (req, res, next) {
