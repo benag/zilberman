@@ -313,9 +313,8 @@ class newEntry {
             localStorage.setItem('loanId', '0');
         }
         
-        
  
-        let loanID = this.wrapVal(id) , loanBank = 10 , loanValue = this.wrapVal( form.borrow.loanValue ),
+        let loanID = this.wrapVal(id) , loanBank = this.wrapVal(form.borrow.loanBank) , loanValue = this.wrapVal( form.borrow.loanValue ),
         loanRate = this.wrapVal( form.borrow.loanRate ) , loanYrsToPay = this.wrapVal (form.borrow.loanYrsToPay),
         loanType = this.wrapVal(form.borrow.loanType);
 

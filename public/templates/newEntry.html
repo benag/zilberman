@@ -6,8 +6,8 @@
 
 
     <div class="entry-form container">
-        <div class="row nav-center">
-            <ul class="col-md-6 col-md-offset-6 col-xs-12 nav nav-pills nav-pills-warning nav-pills-icons" role="tablist">
+        <div class="row nav-center align-brakets">
+            <ul class="col-md-6 col-md-offset-6 nav nav-pills nav-pills-warning nav-pills-icons" role="tablist">
                 <!--
     color-classes: "nav-pills-primary", "nav-pills-info", "nav-pills-success", "nav-pills-warning","nav-pills-danger"
 -->
@@ -174,7 +174,7 @@
                             </div>
                         </div>
                         <div ng-show="form.mate.cTaz1" class="row line-distance ">
-                            <select class="zilberman-dropdown col-md-3" ng-model="form.mate.cSmoke" placeholder="עישון" name="smoking-mate" required>
+                            <select class="zilberman-dropdown col-md-3 col-xs-12" ng-model="form.mate.cSmoke" placeholder="עישון" name="smoking-mate" required>
                                 <option value="" disabled selected> האם בת הזוג עשנ בעבר?</option>
                                 <option value="0">כן</option>
                                 <option value="1">ולא עישנתי בעבר</option>
@@ -395,14 +395,14 @@
                     </div>
                     <div ng-show="insurance[2]" class="row">
                         <div  class="row line-distance">
-                            <div class="col-md-2">
+                            <div class="col-md-2 col-xs-12">
                                 <input  class="zilberman-input" placeholder="תז" ng-model="form.client.cTaz1">
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-2 col-xs-12">
                                 <input class="zilberman-input" placeholder="שם פרטי" ng-model="form.client.cName">
                             </div>
 
-                            <div  class="col-md-2">
+                            <div  class="col-md-2 col-xs-12">
                                 <input class="zilberman-input" placeholder="שם משפחה" ng-model="form.client.cFamily">
                                 <!--<input class="zilberman-input" placeholder="תז" ng-model="4">-->
                             </div>
@@ -432,14 +432,14 @@
             <!-- הלוואת -->
             <div ng-show="show[2]" id="description-3">
                 <div  class="row line-distance">
-                    <div class="col-md-2">
+                    <div class="col-md-2 col-xs-12">
                         <input  class="zilberman-input" placeholder="תז" ng-model="form.client.cTaz1">
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-2 col-xs-12">
                         <input class="zilberman-input" placeholder="שם פרטי" ng-model="form.client.cName">
                     </div>
 
-                    <div  class="col-md-2">
+                    <div  class="col-md-2 col-xs-12">
                         <input class="zilberman-input" placeholder="שם משפחה" ng-model="form.client.cFamily">
                         <!--<input class="zilberman-input" placeholder="תז" ng-model="4">-->
                     </div>
@@ -453,14 +453,33 @@
                         </select>
                     </div>
 
-                    <div class="col-md-2">
+                    <div class="col-md-2 col-xs-12">
                         <input class="zilberman-input" placeholder="סכום הלוואה" ng-model="form.borrow.loanValue">
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-2 col-xs-12">
                         <input class="zilberman-input" placeholder="ריבית" ng-model="form.borrow.loanRate">
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-2 col-xs-12">
                         <input class="zilberman-input" placeholder="מספר שנים נותרוו" ng-model="form.borrow.loanYrsToPay">
+                    </div>
+                    <div class="col-md-2 col-xs-12">
+                        <select class="zilberman-dropdown" ng-model="form.borrow.loanBank" placeholder="בנק מלווה" name="asset-type" required>
+                            <option value="" disabled selected> בנק</option>
+                            <option value="4">בנק יהב</option>
+                            <option value="10">בנק לאומי</option>
+                            <option value="11">בנק דיסקונט</option>
+                            <option value="12">בנק הפועלים</option>
+                            <option value="13">בנק אגוד</option>
+                            <option value="14">בנק אוצר החייל</option>
+                            <option value="17">בנק מרכנתיל דיסקונט</option>
+                            <option value="20">בנק מזרחי טפחות</option>
+                            <option value="30">בנק למסחר</option>
+                            <option value="31">בנק בינלאומי</option>
+                            <option value="46">בנק מסד</option>
+                            <option value="54">בנק ירושלים</option>
+                            <option value="68">בנק דקסיה</option>
+
+                        </select>                      
                     </div>
                 </div>
 
