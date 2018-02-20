@@ -30,7 +30,7 @@ class newEntry {
     };
 
     wrapDate (value) {
-        if (value === null || value === undefined || value === '') return null;
+        if (value === null || value === undefined || value === '' || value.indexOf('Invalid Date') !==-1) return null;
         return `${value}`;
     };
 
