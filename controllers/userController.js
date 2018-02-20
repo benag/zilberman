@@ -17,7 +17,7 @@ const jwt = require('jsonwebtoken'),
 class userController {
 
     constructor(app){
-        this.init();
+        //this.init();
         this.sql = new mysql();
 
     }
@@ -314,6 +314,6 @@ class userController {
 
 };
 
-const userContrl  = new userController();
-module.exports = userContrl;
+
+module.exports = new userController();
 

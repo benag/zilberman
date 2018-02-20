@@ -28,16 +28,8 @@ class sqlService {
     async query ( statement )  {
         try {
             console.log(statement);
-            // new sql.ConnectionPool(this.dbconfig).connect().then(pool => {
-            //     return pool.query(statement)
-            // }).then(result => {
-            //     console.dir(result)
-            //     return result;
-            // }).catch(err => {
-            //     // ... error checks
-            // })
             if (!this.pool){
-                //sql.close();
+                sql.close();
                 this.pool = await sql.connect(this.dbconfig);
             } 
             let result1 = await this.pool.request()
