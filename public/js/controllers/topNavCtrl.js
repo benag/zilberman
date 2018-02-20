@@ -14,7 +14,7 @@ angular.module('ganim').controller('topNavCtrl', ['$scope', '$stateParams', '$lo
         }
         $scope.state = (state) => {
             console.log($state.current);
-            if (state === 'newentry') global.resetUser();
+            if (state === 'newentry') global.resetProduct();
             $state.go(state,{},{ reload: true });
         };
 
