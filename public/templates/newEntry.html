@@ -233,7 +233,7 @@
                             <div class="col-md-3">
                                 <div class="row">
                                     <div class="col-md-6 col-xs-12">
-                                        <select class="zilberman-dropdown" ng-model="form.insuranceForm.cars[$index].manufacture" placeholder="יצרן" name="asset-type" required>
+                                        <select class="zilberman-dropdown" ng-model="form.insuranceForm.cars[$index].carTypeID" placeholder="יצרן" name="asset-type" required>
                                             <option value="" disabled selected>יצרן</option>
                                             <option value="1">אאודי</option>
                                             <option value="227">אברת'</option>
@@ -369,8 +369,24 @@
                             <div class="col-md-3 col-xs-12">
                                 <div class="row">
 
-                                    <div class="col-md-10">
-                                        <input class="zilberman-input" placeholder="מספר תביעות ב 3 שנים אחרונות" ng-model="form.insuranceForm.cars[$index].claimsCount">
+                                    <div class="col-md-9">
+                                        <input class="zilberman-input" placeholder="תביעות ב 3 שנים אחרונות" ng-model="form.insuranceForm.cars[$index].claimsCount">
+                                    </div>
+                                    <div class="col-md-1">
+                                        <select class="zilberman-dropdown" ng-model="form.insuranceForm.cars[$index].carInsurer" placeholder="חברה מבטחת" name="asset-type" required>
+                                            <option value="" disabled selected>חברה מבטחת</option>
+                                            <option value="1">כלל</option>
+                                            <option value="2">מגדל</option>
+                                            <option value="3">מנורה</option>
+                                            <option value="4">הראל</option>
+                                            <option value="5">הפניקס</option>
+                                            <option value="6">שומרה</option>
+                                            <option value="7">איילון</option>
+                                            <option value="8">הכשרה</option>
+                                            <option value="9">ביטוח חקלאי</option>
+                                            <option value="10">קש</option>
+                                            <option value="11">ביטוח ישיר</option>
+                                        </select>
                                     </div>
                                     <div ng-show="isNew" class="col-md-1">
                                         <i style="cursor:pointer;" ng-click="omitCar($index)" class="material-icons">delete_sweep</i>

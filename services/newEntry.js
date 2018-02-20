@@ -74,6 +74,49 @@ class newEntry {
         return returnObj;
 
     }
+    // if client doesnt exist create one and mate if exist do nothing
+    //create sub products and products
+    async newRecord (form, returnObj){
+        let cars,client, secondClient, morgage, prati, dira, loan, product;
+        // does client already exist?
+        client = await this.sql.query("SELECT * FROM tClients WHERE cTaz2 = " + form.client.cTaz1);
+        if (!client || !client.recordset.length > 0){
+            // main client doesnt exist create one
+            client = await this.createClient(form);
+            if (form.mate.cTaz2) secondClient = await this.createMate(form);
+            
+           
+        }else{
+
+            returnObj.msg('לקוח קיים במערכת');
+            throw new err('לקוח קיים');
+                        // // main client exist
+            // client = client.recordset[0].cTaz1;
+            // // is second client exist?
+            // if (form.mate.cTaz1) {
+            //     secondClient = await this.sql.query("SELECT * FROM tClients WHERE cTaz2 = " + form.mate.cTaz1);
+            //     if (!secondClient || !secondClient.recordset.length > 0) {
+            //         // if doesnt exist create it
+            //         secondClient = await this.createMate(form);
+            //     }else{
+            //         secondClient = secondClient.recordset[0].cTaz2;
+            //     }
+            // }            
+        }
+        if (client){
+            let type = form.type;
+            if (type === this.CAR) cars = await this.createCar( form, returnObj );
+            if (type === this.MORGAGE) morgage = await this.createMorgage( form, returnObj );
+            if (type === this.PRAT) prati =await this.createPart( form, returnObj );
+            if (type === this.DIRA) dira = await this.createDira( form, returnObj );
+        }
+        if (form.borrow.loanType !== undefined) loan = await this.createLoan( form, returnObj );
+
+        product = await this.createProduct(client,secondClient, form.type, cars, morgage, prati, dira, form.loan,  loan, returnObj);
+
+        return product;
+
+    }
 
     async createMate(form) {
 
@@ -113,8 +156,8 @@ class newEntry {
             let cars = form.insuranceForm.cars;
             for (let car of cars){
                 carid++;
-                let carTypeID = 1, carYear = this.wrapVal(car.carYear), carRenewDate = this.wrapVal (car.carRenewDate ) ,
-                    carHovaPrem = this.wrapVal(car.carHovaPrem), carMekifPrem = this.wrapVal(car.carMekifPrem), carInsurer = 'טסט',
+                let carTypeID = this.wrapNum(car.carTypeID), carYear = this.wrapVal(car.carYear), carRenewDate = this.wrapVal (car.carRenewDate ) ,
+                    carHovaPrem = this.wrapVal(car.carHovaPrem), carMekifPrem = this.wrapVal(car.carMekifPrem), carInsurer = this.wrapVal(car.carInsurer),
                     claimsCount = this.wrapVal(car.claimsCount);
                 //TODO Fix claim count
                 let insert = `INSERT INTO tCarIns (carInsID, carTypeID, carYear, carRenewDate, carHovaPrem, carMekifPrem, carInsurer, claimsCount ) VALUES ( ${carid},${carTypeID} , ${carYear}, ${carRenewDate}, ${carHovaPrem}, ${carMekifPrem},'1',${claimsCount} )`;
@@ -415,7 +458,7 @@ class newEntry {
                 query = `SELECT TOP(100) * FROM tProducts, tClients WHERE tProducts.pCli1 = tClients.cTaz1 AND tClients.cTaz1 = tClients.cTaz2 AND tClients.cName LIKE '${like}' OR tClients.cFamily LIKE '${like}' ORDER BY tProducts.pID`; 
             }
         }else{
-            query = 'SELECT TOP(100) * FROM tProducts, tClients WHERE tProducts.pCli1 = tClients.cTaz1 AND tClients.cTaz1 = tClients.cTaz2 ORDER BY tProducts.pID';
+            query = 'SELECT * FROM tProducts, tClients WHERE tProducts.pCli1 = tClients.cTaz1 AND tClients.cTaz1 = tClients.cTaz2 ORDER BY tProducts.pID';
         } 
         let products = await this.sql.query(query);
         products = products.recordset;
@@ -473,47 +516,8 @@ class newEntry {
    
    
 
-    // if client doesnt exist create one and mate if exist do nothing
-    //create sub products and products
-    async newRecord (form, returnObj){
-        let cars,client, secondClient, morgage, prati, dira, loan, product;
-        // does client already exist?
-        client = await this.sql.query("SELECT * FROM tClients WHERE cTaz2 = " + form.client.cTaz1);
-        if (!client || !client.recordset.length > 0){
-            // main client doesnt exist create one
-            client = await this.createClient(form);
-            if (form.mate.cTaz2) secondClient = await this.createMate(form);
-            
-           
-        }else{
-            // main client exist
-            client = client.recordset[0].cTaz1;
-            // is second client exist?
-            if (form.mate.cTaz1) {
-                secondClient = await this.sql.query("SELECT * FROM tClients WHERE cTaz2 = " + form.mate.cTaz1);
-                if (!secondClient || !secondClient.recordset.length > 0) {
-                    // if doesnt exist create it
-                    secondClient = await this.createMate(form);
-                }else{
-                    secondClient = secondClient.recordset[0].cTaz2;
-                }
-            }            
-        }
-        if (client){
-            let type = form.type;
-            if (type === this.CAR) cars = await this.createCar( form, returnObj );
-            if (type === this.MORGAGE) morgage = await this.createMorgage( form, returnObj );
-            if (type === this.PRAT) prati =await this.createPart( form, returnObj );
-            if (type === this.DIRA) dira = await this.createDira( form, returnObj );
-        }
-        if (form.borrow.loanType !== undefined) loan = await this.createLoan( form, returnObj );
-
-        product = await this.createProduct(client,secondClient, form.type, cars, morgage, prati, dira, form.loan,  loan, returnObj);
-
-        return product;
-
-    }
-    // if client doesnt exist create one and mate if exist do nothing
+    
+    // if client doesnt exist create one and matreturnObje if exist do nothing
     //create sub products and products
     async updateRecord (form, returnObj) {
         
