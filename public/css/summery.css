@@ -12,6 +12,7 @@
     .main-links {
         position: absolute;
         top: 16vh;
+        right:0vw;
         font-size: 16px;
     }
     table{
