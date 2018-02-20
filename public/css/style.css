@@ -737,6 +737,11 @@ input:-ms-input-placeholder {
         margin-top:70px;
         padding-right:0px;
     }
-    
+    .search-btn{
+        margin-right: 10px;
+    }
+    .link-btn{
+        margin-right: 10px;
+    }
     
   }
