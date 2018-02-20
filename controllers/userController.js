@@ -253,7 +253,7 @@ class userController {
     };
 
     async getAllUsers () {
-        let users = await this.sql.query("select * from tUsersAndRoles");
+        let users = await this.sql.query("select uName, UFamily, uRole,uStatus, uMobile,uEmail from tUsersAndRoles");
         return users.recordset;
     }
 

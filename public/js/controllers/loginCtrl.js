@@ -8,6 +8,7 @@ angular.module('ganim').controller('loginCtrl', ['$scope', '$stateParams', '$loc
         $scope.showLogin = true;
         let $page = $('.full-page');
         let image_src = $page.data('image');
+        global.resetUser();
 
         if(image_src !== undefined){
             let image_container = '<div class="full-page-background" style="background-image: url(' + image_src + ') "/>';
