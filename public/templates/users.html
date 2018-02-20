@@ -43,13 +43,13 @@
                         </tr>
                         <tr style="cursor:pointer;" ng-click="goToClient($index)" ng-repeat=" user in users track by $index">
                           <!-- <td>{{user.uID}}</td> -->
-                          <td><input type="text" ng-model="user.uName + user.uFamily"></td>
-                          <td><input type="text" ng-model="user.uStatus"></td>
+                          <td><input type="text" class="input-table" ng-model="user.uName + user.uFamily"></td>
+                          <td><input type="text" class="input-table" ng-model="user.uStatus"></td>
                           <td>{{}}</td>
-                          <td><input type="text" ng-model="user.uMobile"></td>
-                          <td><input type="text" ng-model="user.uEmail"></td>
-                          <td style="background-color:2676d0">
-                              <span>עדכן</span>>
+                          <td><input type="text" class="input-table" ng-model="user.uMobile"></td>
+                          <td><input type="text" class="input-table" ng-model="user.uEmail"></td>
+                          <td ng-click="update($index)" style="background-color:2676d0">
+                              <span>עדכן</span>
                           </td>
                         </tr>
                     </table>
