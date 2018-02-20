@@ -447,6 +447,11 @@ class newEntry {
 
     }
 
+    async getAllUsers () {
+        let users = await this.sql.query("select uName, UFamily, uRole,uStatus, uMobile,uEmail from tUsersAndRoles");
+        return users.recordset;
+    }
+    
     async getProducts (like) {
 
         let query;

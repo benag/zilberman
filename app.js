@@ -148,7 +148,7 @@ app.get('/user/phone/:phone', async (req, res) => {
 
 app.get('/users', async (req, res) => {
     try{
-        let users = await userCtrl.getAllUsers();
+        let users = await newEntry.getAllUsers();
         return res.json(users);
     }catch(err){
         res.status(400).send(err.message);

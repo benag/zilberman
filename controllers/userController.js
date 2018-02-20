@@ -252,10 +252,10 @@ class userController {
         return User.update({_id: user._id}, {$set:{img:user.img}}).exec();
     };
 
-    async getAllUsers () {
-        let users = await this.sql.query("select uName, UFamily, uRole,uStatus, uMobile,uEmail from tUsersAndRoles");
-        return users.recordset;
-    }
+    // async getAllUsers () {
+    //     let users = await this.sql.query("select uName, UFamily, uRole,uStatus, uMobile,uEmail from tUsersAndRoles");
+    //     return users.recordset;
+    // }
 
     async login (req, res, next) {
 
