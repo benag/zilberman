@@ -16,12 +16,12 @@
                 <input ng-model="phone" type="text"><button ng-click="sendLink()" class="link-btn">שלח לינק</button>
             </div>
 
-            <div class="row" style="margin-top:20px;">
+            <div class="row" style="margin-top:20px;overflow-x:auto;">
                     <table class="table col-md-12 table-hover">
                         <tr class="table-header">
-                            <th>
+                            <!-- <th>
                                 מזהה
-                            </th>
+                            </th> -->
                             <th>
                                 שם סוכן
                             </th>
@@ -42,7 +42,7 @@
                             </th>
                         </tr>
                         <tr style="cursor:pointer;" ng-click="goToClient($index)" ng-repeat=" user in users track by $index">
-                          <td>{{user.uID}}</td>
+                          <!-- <td>{{user.uID}}</td> -->
                           <td>{{user.uName + user.uFamily}}</td>
                           <td>{{user.uStatus}}</td>
                           <td>{{}}</td>
