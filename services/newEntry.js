@@ -88,7 +88,7 @@ class newEntry {
            
         }else{
 
-            returnObj.msg('לקוח קיים במערכת');
+            returnObj.msg.push('לקוח קיים במערכת');
             throw new err('לקוח קיים');
                         // // main client exist
             // client = client.recordset[0].cTaz1;
@@ -451,7 +451,7 @@ class newEntry {
         let users = await this.sql.query("select uName, UFamily, uRole,uStatus, uMobile,uEmail from tUsersAndRoles");
         return users.recordset;
     }
-    
+
     async getProducts (like) {
 
         let query;
