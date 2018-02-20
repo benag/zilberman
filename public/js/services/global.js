@@ -14,6 +14,12 @@ angular.module('ganim').factory('global',function($state, $timeout, $location, $
         resetProduct: () => {
             this.product = undefined;
         },
+        setUser: (user) => {
+            this.user = user;
+        },
+        getUser: () => {
+            return this.user;
+        },
         getMachine: function(){
             return $location.host() + ':' + $location.port();
         },

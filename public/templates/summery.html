@@ -4,8 +4,8 @@
 
     <!--<img class="main-back" src="img/background.jpg">-->
     <div class="main-links container summery">
-        <div class="row ">שם:</div>
-        <div class="row ">תפקיד:</div>
+        <div class="row ">שם: {{user.name}}</div>
+        <div class="row ">תפקיד: {{user.role}}</div>
 
         <div class="row">
             <input ng-model="search" type="text"/><button ng-click="searchRecords()" class="search-btn">חיפוש</button>

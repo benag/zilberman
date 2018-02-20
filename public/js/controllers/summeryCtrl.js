@@ -2,7 +2,7 @@ angular.module('ganim').controller('summeryCtrl', ['$scope', '$stateParams', '$l
     function($scope, $stateParams, $location, $state, $http, global) {
         $scope.loading = true;
         $scope.search = '' ;
-
+        $scope.user  = global.getUser();
         $http.get('/products')
             .then( (data) => {
                 $scope.loading = false;
