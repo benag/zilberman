@@ -1,5 +1,5 @@
-angular.module('ganim').controller('topNavCtrl', ['$scope', '$stateParams', '$location', '$state',
-    function($scope, $stateParams, $location, $state) {
+angular.module('ganim').controller('topNavCtrl', ['$scope', '$stateParams', '$location', '$state', 'global',
+    function($scope, $stateParams, $location, $state, global) {
 
         $scope.isMobile = () => {
             return window.innerWidth < 600
@@ -14,6 +14,7 @@ angular.module('ganim').controller('topNavCtrl', ['$scope', '$stateParams', '$lo
         }
         $scope.state = (state) => {
             console.log($state.current);
+            if (state === 'newentry') global.resetUser();
             $state.go(state,{},{ reload: true });
         };
 
