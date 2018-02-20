@@ -96,10 +96,10 @@ app.configure('production', function(){
 app.get('/', routes.index);
 
 
-app.post('/register', (req, res, next) => {
+app.post('/register', (req, res) => {
     //let mng = new userCtrl();
     try{
-        userCtrl.register(req, res, next);
+        userCtrl.register(req, res);
     }catch(err){
         console.log(err);
     }
