@@ -51,15 +51,17 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
             
         }
         $scope.setMate = (client) => {
-            if (client) $scope.form.mate = client;
-            let date = moment($scope.form.mate.cBDate);
-            let cTazDate = moment($scope.form.mate.cTazDate); 
-            $scope.form.mate.cBDate = date.format('DD/MM/YYYY');
-            $scope.form.mate.cTazDate = cTazDate.format('DD/MM/YYYY');
-            $scope.form.mate.cGender = String($scope.form.mate.cGender);
-            $scope.form.mate.id = $scope.form.mate.cTaz2; //in case taz is changed;
-
+            if (client){
+                $scope.form.mate = client;
+                let date = moment($scope.form.mate.cBDate);
+                let cTazDate = moment($scope.form.mate.cTazDate); 
+                $scope.form.mate.cBDate = date.format('DD/MM/YYYY');
+                $scope.form.mate.cTazDate = cTazDate.format('DD/MM/YYYY');
+                $scope.form.mate.cGender = String($scope.form.mate.cGender);
+                $scope.form.mate.id = $scope.form.mate.cTaz2; //in case taz is changed;
+            } 
         }
+        
         $scope.setProduct = (p) => {
             let type = p.type;
             if (type === 3){
@@ -92,6 +94,7 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
             if (product && product.loan){
                 $scope.form.borrow = product.loan;
                 $scope.form.borrow.loanType = String($scope.form.borrow.loanType);
+                $scope.form.borrow.loanBank = String($scope.form.borrow.loanBank);
             }
             
         }

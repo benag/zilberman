@@ -39,6 +39,41 @@ class newEntry {
         return value;
     }
    
+    async save (form, newRecord) {
+
+        let returnObj = {status:true, msg:[]};
+        let client = null,secondClient = null, cars = null, morgage = null, prati = null, dira = null, loan = null, product = null;
+        try{
+            if (!form.client.cTaz1) {
+                returnObj.status = false;
+                returnObj.msg.push('חסר תעודת זהות');
+                return returnObj;
+            }
+            if (form.type === undefined || form.type === null) {
+                returnObj.status = false;
+                returnObj.msg.push('חסר סוג הפניה');
+                return returnObj;
+            }
+            
+            if (newRecord){
+                logger.info(`creating record with form: ${JSON.stringify(form)}`);
+                product = await this.newRecord(form,returnObj);                
+            }else{
+                logger.info(`updating record with form: ${JSON.stringify(form)}`);
+                product = await this.updateRecord(form,returnObj);              
+            } 
+        
+            
+
+        }catch(err){
+            console.log(err);
+            returnObj.status = false;
+            returnObj.msg.push('תקלה בשמירת הפניה');
+        }
+        returnObj.product = product;
+        return returnObj;
+
+    }
 
     async createMate(form) {
 
@@ -67,6 +102,64 @@ class newEntry {
 
         let newClient = await this.sql.query(insert);
         return cTaz1;
+    }
+
+    async createCar(form, returnObj) {
+
+
+        let carid = this.getNewId('carid');
+        let newCars = [];
+        try{
+            let cars = form.insuranceForm.cars;
+            for (let car of cars){
+                carid++;
+                let carTypeID = 1, carYear = this.wrapVal(car.carYear), carRenewDate = this.wrapVal (car.carRenewDate ) ,
+                    carHovaPrem = this.wrapVal(car.carHovaPrem), carMekifPrem = this.wrapVal(car.carMekifPrem), carInsurer = 'טסט',
+                    claimsCount = this.wrapVal(car.claimsCount);
+                //TODO Fix claim count
+                let insert = `INSERT INTO tCarIns (carInsID, carTypeID, carYear, carRenewDate, carHovaPrem, carMekifPrem, carInsurer, claimsCount ) VALUES ( ${carid},${carTypeID} , ${carYear}, ${carRenewDate}, ${carHovaPrem}, ${carMekifPrem},'1',${claimsCount} )`;
+                let newCar = await this.sql.query(insert);
+                newCars.push(carid);
+                returnObj.msg.push('נוצר מוצר מסוג רכב');
+            }
+            localStorage.setItem('carid', String(carid));
+        }catch(err){
+            returnObj.status = false;
+        }
+
+        return newCars;
+
+    }
+  
+    async createMorgage(form, returnObj) {
+
+        let id = (localStorage.getItem('id'));
+        id = parseInt(id);
+        if (id !== undefined && !isNaN(id)) {
+            id++;
+            localStorage.setItem('id', String(id));
+        }else{
+            id = 0 ;
+            localStorage.setItem('id', '0');
+        }
+        
+        let morgage = this.wrapNum(form.insuranceForm.morgage), pFloor = this.wrapNum(form.insuranceForm.morgage.pFloor), pOutOfFloor = this.wrapNum(form.insuranceForm.morgage.pOutOfFloor), pSurface = this.wrapNum(form.insuranceForm.morgage.pSurface),
+         pBuildCost = this.wrapNum(form.insuranceForm.pBuildCost), pPropertyValue = this.wrapNum(form.insuranceForm.pPropertyValue);
+        let insert = `INSERT INTO tProperty (propertyID, pFloor, pOutOfFloor, pSurface, pBuildCost, pPropertyValue)
+                VALUES ( ${id},${pFloor} , ${pOutOfFloor}, ${pSurface}, ${pBuildCost},${pPropertyValue})`;
+        let newMorgage = await this.sql.query(insert);
+        returnObj.msg.push('נוצר מוצר מסוג משכנתא');
+        return id;
+
+    }
+
+    async createPart(form, returnObj) {
+        return {};
+    }
+
+    async createDira(form, returnObj) {
+        //form.insuranceForm.dira.diraType
+        return {};
     }
     
     /**
@@ -225,62 +318,7 @@ class newEntry {
         }
     }
 
-    async createCar(form, returnObj) {
-
-
-        let carid = this.getNewId('carid');
-        let newCars = [];
-        try{
-            let cars = form.insuranceForm.cars;
-            for (let car of cars){
-                carid++;
-                let carTypeID = 1, carYear = this.wrapVal(car.carYear), carRenewDate = this.wrapVal (car.carRenewDate ) ,
-                    carHovaPrem = this.wrapVal(car.carHovaPrem), carMekifPrem = this.wrapVal(car.carMekifPrem), carInsurer = 'טסט',
-                    claimsCount = this.wrapVal(car.claimsCount);
-                //TODO Fix claim count
-                let insert = `INSERT INTO tCarIns (carInsID, carTypeID, carYear, carRenewDate, carHovaPrem, carMekifPrem, carInsurer, claimsCount ) VALUES ( ${carid},${carTypeID} , ${carYear}, ${carRenewDate}, ${carHovaPrem}, ${carMekifPrem},'1',${claimsCount} )`;
-                let newCar = await this.sql.query(insert);
-                newCars.push(carid);
-                returnObj.msg.push('נוצר מוצר מסוג רכב');
-            }
-            localStorage.setItem('carid', String(carid));
-        }catch(err){
-            returnObj.status = false;
-        }
-
-        return newCars;
-
-    }
   
-    async createMorgage(form, returnObj) {
-
-        let id = (localStorage.getItem('id'));
-        id = parseInt(id);
-        if (id !== undefined && !isNaN(id)) {
-            id++;
-            localStorage.setItem('id', String(id));
-        }else{
-            id = 0 ;
-            localStorage.setItem('id', '0');
-        }
-        let morgage = this.wrapNum(form.insuranceForm.morgage), pFloor = this.wrapNum(form.insuranceForm.morgage.pFloor), pOutOfFloor = this.wrapNum(form.insuranceForm.morgage.pOutOfFloor), pSurface = this.wrapNum(form.insuranceForm.morgage.pSurface),
-         pBuildCost = this.wrapNum(form.insuranceForm.pBuildCost), pPropertyValue = this.wrapNum(form.insuranceForm.pPropertyValue);
-        let insert = `INSERT INTO tProperty (propertyID, pFloor, pOutOfFloor, pSurface, pBuildCost, pPropertyValue)
-                VALUES ( ${id},${pFloor} , ${pOutOfFloor}, ${pSurface}, ${pBuildCost},${pPropertyValue})`;
-        let newMorgage = await this.sql.query(insert);
-        returnObj.msg.push('נוצר מוצר מסוג משכנתא');
-        return id;
-
-    }
-
-    async createPart(form, returnObj) {
-        return {};
-    }
-
-    async createDira(form, returnObj) {
-        //form.insuranceForm.dira.diraType
-        return {};
-    }
 
 
     async updateLoan (form) {
@@ -493,39 +531,7 @@ class newEntry {
 
 
     }
-    async save (form, newRecord) {
-
-        let returnObj = {status:true, msg:[]};
-        let client = null,secondClient = null, cars = null, morgage = null, prati = null, dira = null, loan = null, product = null;
-        try{
-            if (!form.client.cTaz1) {
-                returnObj.status = false;
-                returnObj.msg.push('חסר תעודת זהות');
-                return returnObj;
-            }
-            if (form.type === undefined || form.type === null) {
-                returnObj.status = false;
-                returnObj.msg.push('חסר סוג הפניה');
-                return returnObj;
-            }
-            
-            if (newRecord){
-                product = await this.newRecord(form,returnObj);                
-            }else{
-                product = await this.updateRecord(form,returnObj);              
-            } 
-        
-            
-
-        }catch(err){
-            console.log(err);
-            returnObj.status = false;
-            returnObj.msg.push('תקלה בשמירת הפניה');
-        }
-        returnObj.product = product;
-        return returnObj;
-
-    }
+    
 }
 
 module.exports = new newEntry();
