@@ -16,7 +16,7 @@ const jwt = require('jsonwebtoken'),
 
 class userController {
 
-    constructor(app){
+    constructor(){
         //this.init();
         this.sql = new mysql();
 
@@ -65,7 +65,7 @@ class userController {
         return returnSMS;
 
     }
-    async register (req, res, next) {
+    async register (req, res) {
 
         // Check for registration errors
         let _this = this;
