@@ -122,10 +122,10 @@ class newEntry {
 
         let cTaz1 = this.wrapVal(form.client.cTaz1) , cTaz2 = this.wrapVal(form.mate.cTaz2) , cName = this.wrapVal( form.mate.cName ) , cFamily = this.wrapVal( form.mate.cFamily ) , cGender = this.wrapVal (form.mate.cGender),
             cMobile = this.wrapVal(form.mate.cMobile) , cPhone = this.wrapVal(form.mate.cPhone), cEmail = this.wrapVal(form.mate.cEmail), cBDate = this.wrapDate(form.mate.cBDate) ,
-            cTazDate= this.wrapDate (form.mate.cTazDate ), cRemark = this.wrapVal(''), cSmoke = 0 , cQuitSmokeDate = this.wrapDate(form.mate.cQuitSmokeDate);
+            cTazDate= this.wrapDate (form.mate.cTazDate ), cRemark = this.wrapVal(''), cSmoke = this.wrapNum(form.mate.cTazDate) , cQuitSmokeDate = this.wrapDate(form.mate.cQuitSmokeDate);
         
         let insert = `INSERT INTO tClients (cTaz1, cTaz2, cName, cFamily, cGender, cMobile, cPhone, cEmail, cBDate, cTazDate,cRemark, cSmoke, cQuitSmokeDate)
-                VALUES ( ${cTaz1} , ${cTaz2}, ${cName}, ${cFamily}, ${cGender} , ${cMobile},${cPhone}, ${cEmail}, ${cBDate}, ${cTazDate}, ${cRemark}, 1, ${cQuitSmokeDate} )`;
+                VALUES ( ${cTaz1} , ${cTaz2}, ${cName}, ${cFamily}, ${cGender} , ${cMobile},${cPhone}, ${cEmail}, ${cBDate}, ${cTazDate}, ${cRemark}, ${cSmoke}, ${cQuitSmokeDate} )`;
 
         let newClient = await this.sql.query(insert);
         return form.mate.cTaz2;
@@ -136,12 +136,12 @@ class newEntry {
 
         let cTaz1 = this.wrapVal(form.client.cTaz1) , cTaz2 = this.wrapVal(form.mate.cTaz1) , cName = this.wrapVal( form.client.cName ) , cFamily = this.wrapVal( form.client.cFamily ) , cGender = this.wrapVal (form.client.cGender),
             cMobile = this.wrapVal(form.client.cMobile) , cPhone = this.wrapVal(form.client.cPhone), cEmail = this.wrapVal(form.client.cEmail), cBDate = this.wrapDate(form.client.cBDate) ,
-            cTazDate= this.wrapDate (form.client.cTazDate ), cRemark = this.wrapVal(''), cSmoke = 0 , cQuitSmokeDate = this.wrapDate(form.client.cQuitSmokeDate);
+            cTazDate= this.wrapDate (form.client.cTazDate ), cRemark = this.wrapVal(''), cSmoke = this.wrapNum(form.client.cTazDate) , cQuitSmokeDate = this.wrapDate(form.client.cQuitSmokeDate);
 
         cTaz2 = cTaz1;
 
         let insert = `INSERT INTO tClients (cTaz1, cTaz2, cName, cFamily, cGender, cMobile, cPhone, cEmail, cBDate, cTazDate,cRemark, cSmoke, cQuitSmokeDate)
-                VALUES ( ${cTaz1} , ${cTaz2}, ${cName}, ${cFamily}, ${cGender} , ${cMobile},${cPhone}, ${cEmail}, ${cBDate}, ${cTazDate}, ${cRemark}, 1, ${cQuitSmokeDate} )`;
+                VALUES ( ${cTaz1} , ${cTaz2}, ${cName}, ${cFamily}, ${cGender} , ${cMobile},${cPhone}, ${cEmail}, ${cBDate}, ${cTazDate}, ${cRemark}, ${cSmoke}, ${cQuitSmokeDate} )`;
 
         let newClient = await this.sql.query(insert);
         return cTaz1;
