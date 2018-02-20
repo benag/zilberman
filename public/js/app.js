@@ -61,11 +61,7 @@ var app = angular.module('ganim', ['ui.router','vsGoogleAutocomplete','ngFileUpl
 
 
     $rootScope.$on('$locationChangeSuccess', (event, toState, toStateParams) => {
-        //let user = global.getUserData();
-        //if (!user) $state.go('login');
-        //$rootScope.currentState = toState.split('/');
-        //$rootScope.currentState  = $rootScope.currentState.pop();
-
-
+        let user = global.getUser();
+        if (!user.email) $state.go('login');
     });
 });
