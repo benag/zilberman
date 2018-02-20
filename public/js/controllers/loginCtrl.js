@@ -72,7 +72,7 @@ angular.module('ganim').controller('loginCtrl', ['$scope', '$stateParams', '$loc
                 $scope.smsData = data.data.sms;
                 
                 }).catch((err)=>{
-
+                    toastr.error('שם משתמש או ססמא שגויים');
                 })
             } 
         }

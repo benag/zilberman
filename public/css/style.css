@@ -588,6 +588,7 @@ td {
 }
 .newEntry .content {
     margin-top:70px;
+    padding-right:100px;
 }
 .newEntry .nav-pills.nav-pills-warning > li.active > a, .nav-pills.nav-pills-warning > li.active > a:focus, .nav-pills.nav-pills-warning > li.active > a:hover{
     background-color: #2676d0;

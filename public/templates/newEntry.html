@@ -5,9 +5,9 @@
     <!--<img class="main-back" src="img/background.jpg">-->
 
 
-    <div class="entry-form container">
+    <div class="container-fluid">
         <div class="row nav-center align-brakets">
-            <ul class="col-md-6 col-md-offset-6 nav nav-pills nav-pills-warning nav-pills-icons" role="tablist">
+            <ul class="nav nav-pills nav-pills-warning nav-pills-icons" role="tablist">
                 <!--
     color-classes: "nav-pills-primary", "nav-pills-info", "nav-pills-success", "nav-pills-warning","nav-pills-danger"
 -->
@@ -38,14 +38,14 @@
             <div  ng-show="show[0]" id="description-1">
 
                 <div class="row">
-                    <div class="col-md-2 col-xs-12 mobile-row">
+                    <div class="col-md-1 col-xs-12 mobile-row">
                         <input  class="zilberman-input" placeholder="תז" ng-model="form.client.cTaz1">
                     </div>
-                    <div class="col-md-2 col-xs-12 mobile-row">
+                    <div class="col-md-1 col-xs-12 mobile-row">
                         <input class="zilberman-input" placeholder="שם פרטי" ng-model="form.client.cName">
                     </div>
 
-                    <div  class="col-md-2 col-xs-12 mobile-row">
+                    <div  class="col-md-1 col-xs-12 mobile-row">
                         <input class="zilberman-input" placeholder="שם משפחה" ng-model="form.client.cFamily">
                         <!--<input class="zilberman-input" placeholder="תז" ng-model="4">-->
                     </div>
@@ -56,27 +56,27 @@
                             <option value="2" class="zilberman-option">נקבה</option>
                         </select>
                     </div>
-                    <div  class="col-md-2 col-xs-12 mobile-row">
+                    <div  class="col-md-1 col-xs-12 mobile-row">
                         <input class="zilberman-input" placeholder="טלפון נייד" ng-model="form.client.cMobile">
                     </div>
-                    <div  class="col-md-2 col-xs-12 mobile-row">
+                    <div  class="col-md-1 col-xs-12 mobile-row">
                         <input class="zilberman-input" placeholder="טלפון נוסף" ng-model="form.client.cPhone">
                     </div>
                 </div>
 
                 <br/><br/>
                 <div class="row">
-                    <div class="col-md-2 col-xs-12">
+                    <div class="col-md-1 col-xs-12">
                         <input  class="zilberman-input" placeholder="אימייל" ng-model="form.client.cEmail">
                     </div>
-                    <div class="col-md-2 col-xs-12">
+                    <div class="col-md-1 col-xs-12">
                         <datepicker class="date-pick-zilberm" date-format="dd/MM/yyyy">
                             <input placeholder="תאריך לידה" class="zilberman-date" type="text" ng-model="form.client.cBDate">
                         </datepicker>
                         <!--<input placeholder="תאריך לידה" class="zilberman-date" type="text" onfocus="(this.type='date', this.placeholder='')" onblur="(this.type='text', this.placeholder='תאריך לידה')" ng-model="form.birthdate" id="date">-->
                         <!--<input placeholder="תאריך לידה" class="zilberman-date" type="text" onfocus="(this.type='date', this.placeholder='')" onblur="(this.type='text', this.placeholder='תאריך לידה')" ng-model="form.birthdate" id="date">-->
                     </div>
-                    <div class="col-md-3 col-xs-12">
+                    <div class="col-md-1 col-xs-12">
                         <datepicker class="date-pick-zilberm" date-format="dd/MM/yyyy">
                             <input placeholder="תאריך הנפקת תז" class="zilberman-date" type="text" ng-model="form.client.cTazDate">
                         </datepicker>
@@ -350,50 +350,63 @@
 
                             </div>
 
-                            <div class="col-md-2 col-xs-12">
+                            <!-- <div class="col-md-2 col-xs-12">
                                 <datepicker date-format="dd/MM/yyyy">
                                     <input placeholder="תאריך חידוש" class="zilberman-date" type="text" ng-model="form.insuranceForm.cars[$index].carRenewDate" id="date5">
                                 </datepicker>
 
-                            </div>
-                            <div class="col-md-3 col-xs-12">
+                            </div> -->
+                            <div class="col-md-4 col-xs-12">
+                                
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
+                                        <datepicker date-format="dd/MM/yyyy">
+                                            <input placeholder="תאריך חידוש" class="zilberman-date" type="text" ng-model="form.insuranceForm.cars[$index].carRenewDate" id="date5">
+                                        </datepicker>
+                                    </div>
+                                    <div class="col-md-4">
                                         <input class="zilberman-input" placeholder="פרמיית חובה" ng-model="form.insuranceForm.cars[$index].carHovaPrem">
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <input class="zilberman-input" placeholder="פרמיית מקיף" ng-model="form.insuranceForm.cars[$index].carMekifPrem">
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3 col-xs-12">
+                            <div class="col-md-4 col-xs-12">
                                 <div class="row">
 
-                                    <div class="col-md-8">
+                                    <div class="col-md-6">
                                         <input class="zilberman-input" placeholder="תביעות ב 3 שנים אחרונות" ng-model="form.insuranceForm.cars[$index].claimsCount">
                                     </div>
-                                    <div class="col-md-2">
-                                        <select class="zilberman-dropdown" ng-model="form.insuranceForm.cars[$index].carInsurer" placeholder="חברה מבטחת" name="asset-type" required>
-                                            <option value="" disabled selected>חברה מבטחת</option>
-                                            <option value="1">כלל</option>
-                                            <option value="2">מגדל</option>
-                                            <option value="3">מנורה</option>
-                                            <option value="4">הראל</option>
-                                            <option value="5">הפניקס</option>
-                                            <option value="6">שומרה</option>
-                                            <option value="7">איילון</option>
-                                            <option value="8">הכשרה</option>
-                                            <option value="9">ביטוח חקלאי</option>
-                                            <option value="10">קש</option>
-                                            <option value="11">ביטוח ישיר</option>
-                                        </select>
+                                    <div class="col-md-4">
+                                        <div class="row">
+                                            <div class="col-md-10">
+                                                <select class="zilberman-dropdown" ng-model="form.insuranceForm.cars[$index].carInsurer" placeholder="חברה מבטחת" name="asset-type" required>
+                                                        <option value="" disabled selected>חברה מבטחת</option>
+                                                        <option value="1">כלל</option>
+                                                        <option value="2">מגדל</option>
+                                                        <option value="3">מנורה</option>
+                                                        <option value="4">הראל</option>
+                                                        <option value="5">הפניקס</option>
+                                                        <option value="6">שומרה</option>
+                                                        <option value="7">איילון</option>
+                                                        <option value="8">הכשרה</option>
+                                                        <option value="9">ביטוח חקלאי</option>
+                                                        <option value="10">קש</option>
+                                                        <option value="11">ביטוח ישיר</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div ng-show="isNew">
+                                                    <i style="cursor:pointer;" ng-click="omitCar($index)" class="material-icons">delete_sweep</i>
+                                                </div>
+                                                <div ng-show="!isNew">
+                                                    <i style="cursor:pointer;" ng-click="showFiles($index)" class="material-icons">note_add</i>
+                                                </div>
+                                            </div>
+                                        </div>                                        
                                     </div>
-                                    <div ng-show="isNew" class="col-md-1">
-                                        <i style="cursor:pointer;" ng-click="omitCar($index)" class="material-icons">delete_sweep</i>
-                                    </div>
-                                    <div ng-show="!isNew" class="col-md-1">
-                                        <i style="cursor:pointer;" ng-click="showFiles($index)" class="material-icons">note_add</i>
-                                    </div>
+                                    
                                     <!-- <div ng-show="!isNew" ng-click="showFiles($index)" class="col-md-1">
                                         <i style="cursor:pointer;" ng-show="file" ng-click="" class="material-icons">delete_sweep</i>
                                     </div> -->
