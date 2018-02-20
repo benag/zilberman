@@ -44,12 +44,12 @@
                         <tr style="cursor:pointer;" ng-click="goToClient($index)" ng-repeat=" user in users track by $index">
                           <!-- <td>{{user.uID}}</td> -->
                           <td><input type="text" ng-model="user.uName + user.uFamily"></td>
-                          <td>{{user.uStatus}}</td>
+                          <td><input type="text" ng-model="user.uStatus"></td>
                           <td>{{}}</td>
-                          <td>{{user.uMobile}}</td>
-                          <td>{{user.uEmail}}</td>
-                          <td>
-                              <buttton class="search-btn">עדכן</buttton>
+                          <td><input type="text" ng-model="user.uMobile"></td>
+                          <td><input type="text" ng-model="user.uEmail"></td>
+                          <td style="background-color:2676d0">
+                              <span>עדכן</span>>
                           </td>
                         </tr>
                     </table>
