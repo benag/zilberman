@@ -95,6 +95,14 @@ app.configure('production', function(){
 
 app.get('/', routes.index);
 
+app.post('/user/update', async (req, res) => {
+    try{
+        await userCtrl.updateUser(req.body);
+        res.send(true);
+    }catch(err){
+        res.status(400);
+    }
+})
 
 app.post('/register', (req, res) => {
     //let mng = new userCtrl();

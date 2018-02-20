@@ -238,9 +238,21 @@ class userController {
 
     async updateUser (user) {
         try{
-            var userModel = new User(user);
-            //userModel.profession =  profession._id;
-            return User.update({_id: user._id}, userModel, {upsert: true}).exec()
+            // let uID = user.uID;
+            // let update = false;
+            // let query = "update tUsersAndRoles SET";
+            // let userDB = (await this.sql.query(`select * from tUsersAdnRoles whwre uID=${uID}`)).recordset[0];
+            // if (user.uMobile !== userDB.uMobile){
+            //     query = query + " uMobile=" + user.uMobile;
+            // } 
+            // if (user.uEmail !== userDB.uEmal){
+            //     query = query + " uEmail=" + user.uEmail;
+            // } 
+            // if (user.uName !== userDB.uName){
+            //     userDB.uName =  user.uName;
+            // } 
+            // if (user.uFamily !== userDB.uFamily) userDB.uFamily =  user.uFamily;
+            // this.sql.query(`update tUsersAndRoles SET `)
         }catch(err){
             console.log(err);
             throw err;
