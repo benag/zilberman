@@ -13,9 +13,9 @@
         <div class="row" style="margin-top:20px;">
             <table class="table col-md-12 table-hover">
                 <tr class="table-header">
-                    <th>
+                    <!-- <th>
                         מספר
-                    </th>
+                    </th> -->
                     <!-- <th>
                         תאריך
                     </th> -->
@@ -40,14 +40,14 @@
 
                 </tr>
                 <tr style="cursor:pointer;" ng-click="goToClient($index)" ng-repeat=" product in products track by $index">
-                    <td>{{product.pID}}</td>
+                    <!-- <td>{{product.pID}}</td> -->
                     <!-- <td>{{}}</td> -->
                     <td>{{product.cTaz1}}</td>
                     <td>{{product.cName + ' ' + product.cFamily}}</td>
                     <td>{{product.pType}}</td>
+                    <!-- <td>{{}}</td>
                     <td>{{}}</td>
-                    <td>{{}}</td>
-                    <td>{{}}</td>
+                    <td>{{}}</td> -->
                 </tr>
             </table>
             <img class="loader" ng-show="loading" src="/img/giphy.gif">
