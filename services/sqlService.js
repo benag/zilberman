@@ -1,5 +1,6 @@
 
 const sql = require('mssql');
+var nexmo = require('./nexmo');
 
 class sqlService {
     constructor() {
@@ -40,6 +41,7 @@ class sqlService {
 
         } catch (err) {
             console.log(err);
+            nexmo.sms('0526749884', JSON.stringify(err) );
             throw err;
             // ... error checks
         }

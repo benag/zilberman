@@ -670,6 +670,14 @@ input:-ms-input-placeholder {
     height: 30px;
 
 }
+.car-btn{
+    margin-right: 5px;
+    background-color: #2676d0;
+    color: white;
+    border: none;
+    width: 85px;
+    height: 30px;
+}
 .link-btn{
     margin-right: 5px;
     background-color: #2676d0;
