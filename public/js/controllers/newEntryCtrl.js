@@ -47,7 +47,10 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
             $scope.form.client.cBDate = date.format('DD/MM/YYYY');
             $scope.form.client.cTazDate = cTazDate.format('DD/MM/YYYY');
             $scope.form.client.cGender = String($scope.form.client.cGender);
-            ($scope.form.client.cSmoke) ? $scope.form.client.cSmoke = '1': $scope.form.client.cSmoke = '0';
+            //($scope.form.client.cSmoke) ? $scope.form.client.cSmoke = '1': $scope.form.client.cSmoke = '0';
+            $scope.form.client.cSmoke = String($scope.form.client.cSmoke);
+            if ($scope.form.client.cBDate === null) $scope.form.client.cBDate = '';
+            if ($scope.form.client.cQuitSmokeDate === null) $scope.form.client.cQuitSmokeDate = '';
             
         }
         $scope.setMate = (client) => {
@@ -61,6 +64,8 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
                 $scope.form.mate.id = $scope.form.mate.cTaz2; //in case taz is changed;
                 if ($scope.form.mate.cSmoke) $scope.form.mate.cSmoke = '1';
                 $scope.form.mate.cSmoke = String($scope.form.mate.cSmoke);
+                if ($scope.form.mate.cBDate === null) $scope.form.mate.cBDate = '';
+                if ($scope.form.mate.cQuitSmokeDate === null) $scope.form.mate.cQuitSmokeDate = '';
             } 
         }
 
