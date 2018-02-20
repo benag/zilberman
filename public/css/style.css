@@ -733,6 +733,10 @@ input:-ms-input-placeholder {
     .align-brakets{
         margin-right: 8%;
     }
+    .newEntry .content {
+        margin-top:70px;
+        padding-right:0px;
+    }
     
     
   }
