@@ -59,6 +59,8 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
                 $scope.form.mate.cTazDate = cTazDate.format('DD/MM/YYYY');
                 $scope.form.mate.cGender = String($scope.form.mate.cGender);
                 $scope.form.mate.id = $scope.form.mate.cTaz2; //in case taz is changed;
+                if ($scope.form.mate.cSmoke) $scope.form.mate.cSmoke = '1';
+                $scope.form.mate.cSmoke = String($scope.form.mate.cSmoke);
             } 
         }
 
