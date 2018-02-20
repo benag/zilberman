@@ -65,22 +65,16 @@ angular.module('ganim').controller('loginCtrl', ['$scope', '$stateParams', '$loc
             if ($scope.user.email === 'admin' && $scope.user.password === 'admin'){
                 global.setUser({name:'admin',email:'admin', role:'סוכן'});
                 $state.go('newentry');
-            } 
-            
-            $http.post('/login', {email:$scope.user.email ,password:$scope.user.password})
+            }else{
+                $http.post('/login', {email:$scope.user.email ,password:$scope.user.password})
             .then((data) => {
                 $scope.sms = true;
                 $scope.smsData = data.data.sms;
                 
-            }).catch((err)=>{
+                }).catch((err)=>{
 
-            })
-            //authService.login()
-            //.then( () => {
-            //    $scope.sms = true;
-            //})
-
-
+                })
+            } 
         }
     }
 ]);
