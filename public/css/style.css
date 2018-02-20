@@ -404,7 +404,7 @@
     background-color: lightgrey!important;
 }
 .nav-expand{
-    min-width: 100px;!important;
+    min-width: 100px!important;
 }
 tr td {
     word-wrap:break-word;

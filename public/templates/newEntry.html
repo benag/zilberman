@@ -169,24 +169,23 @@
                                 <datepicker date-format="dd/MM/yyyy">
                                     <input placeholder="תאריך הפסקה" class="zilberman-date" type="text" ng-model="form.client.cQuitSmokeDate" >
                                 </datepicker>
-
-
+                            </div>
+                            <div ng-show="form.mate.cTaz2" >
+                                <div class="col-md-2 col-xs-12">
+                                    <select class="zilberman-dropdown col-md-3 col-xs-12" ng-model="form.mate.cSmoke" placeholder="עישון" name="smoking-mate" required>
+                                            <option value="" disabled selected> האם בת הזוג עשנה בעבר?</option>
+                                            <option value="0">כן</option>
+                                            <option value="1">ולא עישנתי בעבר</option>
+                                            <option value="2">הפסקתי לעשן</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="col-md-1 col-xs-12" ng-show="form.mate.cSmoke === '2'">
+                                    <input placeholder="תאריך הפסקה" class="zilberman-date" type="text" onfocus="(this.type='date', this.placeholder='')" onblur="(this.type='text', this.placeholder='תאריך הפסקה')" ng-model="form.mate.cQuitSmokeDate" id="date">
+                                </div>
                             </div>
                         </div>
-                        <div ng-show="form.mate.cTaz2" class="row line-distance ">
-                            <div class="col-md-2 col-xs-12">
-                                <select class="zilberman-dropdown col-md-3 col-xs-12" ng-model="form.mate.cSmoke" placeholder="עישון" name="smoking-mate" required>
-                                        <option value="" disabled selected> האם בת הזוג עשנה בעבר?</option>
-                                        <option value="0">כן</option>
-                                        <option value="1">ולא עישנתי בעבר</option>
-                                        <option value="2">הפסקתי לעשן</option>
-                                </select>
-                            </div>
-                            
-                            <div class="col-md-1 col-xs-12" ng-show="form.mate.cSmoke === '2'">
-                                <input placeholder="תאריך הפסקה" class="zilberman-date" type="text" onfocus="(this.type='date', this.placeholder='')" onblur="(this.type='text', this.placeholder='תאריך הפסקה')" ng-model="form.mate.cQuitSmokeDate" id="date">
-                            </div>
-                        </div>
+                      
                         <div class="row line-distance">
                            
                             <div class="col-md-1 col-xs-12">
