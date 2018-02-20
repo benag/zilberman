@@ -181,7 +181,10 @@
                                 </div>
                                 
                                 <div class="col-md-1 col-xs-12" ng-show="form.mate.cSmoke === '2'">
-                                    <input placeholder="תאריך הפסקה" class="zilberman-date" type="text" onfocus="(this.type='date', this.placeholder='')" onblur="(this.type='text', this.placeholder='תאריך הפסקה')" ng-model="form.mate.cQuitSmokeDate" id="date">
+                                        <datepicker date-format="dd/MM/yyyy">
+                                            <input placeholder="תאריך הפסקה" class="zilberman-date" type="text" ng-model="form.mate.cQuitSmokeDate" >
+                                        </datepicker>
+                                    
                                 </div>
                             </div>
                         </div>
