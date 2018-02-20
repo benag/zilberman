@@ -56,10 +56,10 @@ class newEntry {
             }
             
             if (newRecord){
-                logger.info(`creating record with form: ${JSON.stringify(form)}`);
+                //logger.info(`creating record with form: ${JSON.stringify(form)}`);
                 product = await this.newRecord(form,returnObj);                
             }else{
-                logger.info(`updating record with form: ${JSON.stringify(form)}`);
+                //logger.info(`updating record with form: ${JSON.stringify(form)}`);
                 product = await this.updateRecord(form,returnObj);              
             } 
         
