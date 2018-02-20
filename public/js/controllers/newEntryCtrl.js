@@ -61,7 +61,7 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
                 $scope.form.mate.id = $scope.form.mate.cTaz2; //in case taz is changed;
             } 
         }
-        
+
         $scope.setProduct = (p) => {
             let type = p.type;
             if (type === 3){
@@ -82,6 +82,7 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
                 $scope.insurance[0] = true;
                 $scope.form.type = 0;
                 $scope.form.insuranceForm.morgage = p.morgage;
+                $scope.form.insuranceForm.morgage.pType = String($scope.form.insuranceForm.morgage.pType);
 
             } 
             if (type === 2) $scope.insurance[3] = true;
