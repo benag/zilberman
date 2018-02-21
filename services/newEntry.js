@@ -160,7 +160,7 @@ class newEntry {
                     carHovaPrem = this.wrapVal(car.carHovaPrem), carMekifPrem = this.wrapVal(car.carMekifPrem), carInsurer = this.wrapVal(car.carInsurer),
                     claimsCount = this.wrapVal(car.claimsCount);
                 //TODO Fix claim count
-                let insert = `INSERT INTO tCarIns (carInsID, carTypeID, carYear, carRenewDate, carHovaPrem, carMekifPrem, carInsurer, claimsCount ) VALUES ( ${carid},${carTypeID} , ${carYear}, ${carRenewDate}, ${carHovaPrem}, ${carMekifPrem},'1',${claimsCount} )`;
+                let insert = `INSERT INTO tCarIns (carInsID, carTypeID, carYear, carRenewDate, carHovaPrem, carMekifPrem, carInsurer, claimsCount ) VALUES ( ${carid},${carTypeID} , ${carYear}, ${carRenewDate}, ${carHovaPrem}, ${carMekifPrem},${carInsurer},${claimsCount} )`;
                 let newCar = await this.sql.query(insert);
                 newCars.push(carid);
                 returnObj.msg.push('נוצר מוצר מסוג רכב');
