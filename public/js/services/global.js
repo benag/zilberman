@@ -1,10 +1,12 @@
-angular.module('ganim').factory('global',function($state, $timeout, $location, $q){
+angular.module('ganim').factory('global',function($state, $timeout, $location, $q, $httpProvider){
     return {
 
-        user:{},
         product: undefined,
         token:'',
 
+        getMachine: function(){
+            return $location.host() + ':' + $location.port();
+        },
         getProduct: () => {
             return this.product;
         },
@@ -14,11 +16,15 @@ angular.module('ganim').factory('global',function($state, $timeout, $location, $
         resetProduct: () => {
             this.product = undefined;
         },
+        setToken: (token) =>{
+            window.localStorage.setItem('zilbermanToken',token );
+            $httpProvider.defaults.headers.common['Authorization'] = token;
+        },
         setUser: (user) => {
-            this.user = user;
+            window.localStorage.setItem('user',user );
         },
         getUser: () => {
-            return this.user;
+            return window.localStorage.getItem('user');
         },
         resetUser: () => {
             this.user = {};

@@ -9,6 +9,11 @@ var express = require('express'),
     nexmo = require('./services/nexmo'),
     newEntry = require('./services/newEntry'),
     multer  = require('multer');
+    const passportService = require('./config/passport');
+    const passport = require('passport');
+    const requireAuth = passport.authenticate('jwt', { session: false });
+    const requireLogin = passport.authenticate('local', { session: false });
+
 
 
 
@@ -50,8 +55,7 @@ var express = require('express'),
 var upload = multer({ storage: storage });
 
 require('./models/users.model.js');
-const passportService = require('./config/passport');
-const passport = require('passport');
+
 
 
 
@@ -59,8 +63,7 @@ const passport = require('passport');
 var app = module.exports = express.createServer();
 
 const userCtrl = require('./controllers/userController.js');
-const requireAuth = passport.authenticate('jwt', { session: false });
-const requireLogin = passport.authenticate('local', { session: false });
+
 
 // Configuration
 
@@ -154,7 +157,7 @@ app.get('/user/phone/:phone', async (req, res) => {
     }
 });
 
-app.get('/users', async (req, res) => {
+app.get('/users',requireAuth, async (req, res) => {
     try{
         let users = await newEntry.getAllUsers();
         return res.json(users);
