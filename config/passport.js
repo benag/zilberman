@@ -1,7 +1,7 @@
 
 "use strict";
 
-const passport = require('passport'),
+let passport = require('passport'),
     //userService = require('../services/userService'),
     mysql = require('../services/sqlService'),
     config = require('./default'),
@@ -13,7 +13,7 @@ const passport = require('passport'),
 
 //const localOptions = { usernameField: 'email', passwordField: 'email', passReqToCallback: true };
 const localOptions = { usernameField: 'email', passReqToCallback: true };
-const sql = new mysql();
+let sql = new mysql();
 const localLogin = new LocalStrategy(localOptions, async function(req, email, password, done) {
 
     // let dbUser = await sql.query(`select * from tUsersAndRoles where uMobile=${email}`);
