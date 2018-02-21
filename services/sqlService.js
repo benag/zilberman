@@ -33,8 +33,9 @@ class sqlService {
                 sql.close();
                 this.pool = await sql.connect(this.dbconfig);
             } 
-            let result1 = await this.pool.request()
-                .query(statement);
+            let request = await this.pool.request();
+            console.log(request);
+            let result1 = request.query(statement);
 
             console.log(result1);
             return result1;
