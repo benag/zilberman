@@ -17,6 +17,10 @@ angular.module('ganim').factory('global',function($state, $timeout, $location, $
             this.product = undefined;
         },
         setToken: (token) =>{
+            return window.localStorage.getItem('zilbermanToken');
+            // $httpProvider.defaults.headers.common['Authorization'] = token;
+        },
+        getToken: (token) =>{
             window.localStorage.setItem('zilbermanToken',token );
             // $httpProvider.defaults.headers.common['Authorization'] = token;
         },
