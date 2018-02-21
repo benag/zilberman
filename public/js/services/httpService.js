@@ -8,7 +8,7 @@ angular.module('ganim').factory('httpService',function($state, $timeout, $http, 
             headers : {
               Authorization: global.getToken()
             },
-            url: global.getMachine() + url
+            url: url
           };
 
         return $http(req)
@@ -26,7 +26,7 @@ angular.module('ganim').factory('httpService',function($state, $timeout, $http, 
           headers : {
             Authorization: global.getToken()
           },
-          url: global.getMachine() + url
+          url: url
         };
   
         if (headers) req.headers = headers;
