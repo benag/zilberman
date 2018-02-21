@@ -7,7 +7,9 @@ angular.module('ganim').controller('usersCtrl', ['$scope', '$stateParams', '$loc
             $scope.loading = false;
             $scope.users = data.data;
             $scope.users.forEach((user) => {
-                user.uRole = String(user.uRole);sty
+                user.uRole = String(user.uRole);
+                user.name = user.uName + ' ' + user.uFamily;
+                user.uStatus = String(user.uStatus);
             })
             console.log($scope.users);
         })

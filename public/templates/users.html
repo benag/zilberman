@@ -23,11 +23,9 @@
                                 מזהה
                             </th> -->
                             <th>
-                                שם פרטי
+                                שם
                             </th>
-                            <th>
-                                 שם משפחה
-                            </th>
+                            
                             <th>
                                 סטטוס
                             </th>
@@ -46,9 +44,16 @@
                         </tr>
                         <tr style="cursor:pointer;" ng-click="goToClient($index)" ng-repeat=" user in users track by $index">
                           <!-- <td>{{user.uID}}</td> -->
-                          <td><input type="text" class="input-table" ng-model="user.uName"></td>
-                          <td><input type="text" class="input-table" ng-model="user.uFamily"></td>
-                          <td><input type="text" class="input-table" ng-model="user.uStatus"></td>
+                          <td><input type="text" class="input-table" ng-model="user.name"></td>
+                          <td>
+                                <select class="input-select" ng-model="user.uStatus">
+                                    <option value="0">לא פעיל</option>
+                                    <option value="1">פעיל</option>
+                                </select>
+                          </td>
+                          <td>
+                               <input type="text" class="input-table" ng-model="user.uStatus">
+                          </td>
                           <td>
                               <select class="input-select" ng-model="user.uRole">
                                   <option value="0">סוכן</option>

@@ -242,17 +242,29 @@ class userController {
             let uID = user.uID;
             let update = false;
             let query = "update tUsersAndRoles SET";
+            let addColon = false;
             let userDB = (await this.sql.query(`select * from tUsersAdnRoles whwre uID=${uID}`)).recordset[0];
             if (!userDB || userDB.recordset.length == 0 ) throw new err();
             if (user.uMobile !== userDB.uMobile){
                 query = query + " uMobile=" + user.uMobile;
+                addColon = true;
             } 
-            if (user.uEmail !== userDB.uEmal){
-                query = query + " uEmail=" + user.uEmail;
+            if (user.uEmail !== userDB.uEmail){
+                addColon ? query = query + " ,uEmail=" + user.uEmail : query = query + " uEmail=" + user.uEmail;
+                addColon = true;
             } 
-            if (user.uName !== userDB.uName){
-                userDB.uName =  user.uName;
+            if (user.name !== (userDB.uName + ' ' + userDB.uFamily)){
+                addColon ? query = query + " ,uName=" + user.uName  + " ,uFamily=" + user.uFamily : query = query + " uName=" + user.uName  + " ,uFamily=" + user.uFamily
+                addColon = true;
             } 
+            if (user.uRole !== userDB.uRole){
+                addColon ? query = query + " ,uRole=" + user.uRole : query = query + " uRole=" + user.uRole ;
+            }
+
+            query = query + " WHERE uID="+user.uID;
+            console.log(query);
+            let updated = await this.sql.query(query);
+            return updated;
             // if (user.uFamily !== userDB.uFamily) userDB.uFamily =  user.uFamily;
             // this.sql.query(`update tUsersAndRoles SET `)
         }catch(err){
