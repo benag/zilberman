@@ -31,7 +31,7 @@ class sqlService {
             console.log(statement);
             if (!this.pool){
                 sql.close();
-                this.pool = await sql.ConnectionPool(this.dbconfig);
+                this.pool = await new sql.ConnectionPool(this.dbconfig);
             } 
             let result1 = await this.pool.request()
                 .query(statement);
