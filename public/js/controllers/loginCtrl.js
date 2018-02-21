@@ -70,8 +70,8 @@ angular.module('ganim').controller('loginCtrl', ['$scope', '$stateParams', '$loc
             .then((data) => {
                 $scope.sms = true;
                 $scope.smsData = data.data.sms;
-                global.setUser(data.user);
-                global.setToken(data.token);
+                global.setUser(data.data.user);
+                global.setToken(data.data.token);
                 
                 }).catch((err)=>{
                     toastr.error('שם משתמש או ססמא שגויים');
