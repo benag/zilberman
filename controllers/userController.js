@@ -170,7 +170,7 @@ class userController {
     }
 
     comparePasswords (candidatePassword,dbPassworwd, cb) {
-        bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
+        bcrypt.compare(candidatePassword, dbPassworwd, function(err, isMatch) {
             if (err) { return cb(err); }
             cb(null, isMatch);
         });
