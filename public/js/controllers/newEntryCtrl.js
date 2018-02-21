@@ -80,6 +80,7 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
                 $scope.form.insuranceForm.cars[0].carRenewDate = date.format('DD/MM/YYYY');
                 $scope.form.insuranceForm.cars[0].carTypeID = String($scope.form.insuranceForm.cars[0].carTypeID);
                 $scope.form.insuranceForm.cars[0].carInsurer = String($scope.form.insuranceForm.cars[0].carInsurer);
+                $scope.form.insuranceForm.cars[0].carYear = String($scope.form.insuranceForm.cars[0].carYear);
                 
                 
                 // $scope.form.insuranceForm.cars.forEach( (car) => { 
