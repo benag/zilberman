@@ -1,5 +1,5 @@
-angular.module('ganim').controller('loginCtrl', ['$scope', '$stateParams', '$location', '$state', 'global', 'userMng', '$http','$httpProvider',
-    function($scope, $stateParams, $location, $state, global, userMng, $http, $httpProvider) {
+angular.module('ganim').controller('loginCtrl', ['$scope', '$stateParams', '$location', '$state', 'global', 'userMng', '$http',
+    function($scope, $stateParams, $location, $state, global, userMng, $http) {
 
         $('#footer').hide();
         $scope.user = {};
