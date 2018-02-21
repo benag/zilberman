@@ -297,7 +297,7 @@ class userController {
                 //res.status(200).json({sms:randomNum});
                 res.status(200).json({
                     token: 'JWT ' + this.generateToken({uID:user.uID}),
-                    user: userInfo,
+                    user: returnUser,
                     sms:randomNum
                 });
             }else{
