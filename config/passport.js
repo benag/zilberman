@@ -59,8 +59,8 @@ jwtOptions.secretOrKey = config.secret;
 // Setting up JWT login strategy
     const jwtLogin = new JwtStrategy(jwtOptions, async function(payload, done) {
         try{
-            let userRecordSet = (await sql.query("select * from tUsersAndRoles where uID =" + payload.uID)).recordset[0];
-            if (userRecordSet && userRecordSet.length > 0){
+            let user = (await sql.query("select * from tUsersAndRoles where uID =" + payload.uID)).recordset[0];
+            if (user){
                 done(null, user);
             }else{
                 done(null, false);
