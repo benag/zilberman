@@ -16,6 +16,7 @@ angular.module('ganim').factory('httpService',function($state, $timeout, $http, 
             return data.data;
           }).catch(function(err){
             console.log(err);
+            if (err.data === 'Unauthorized') $state.go('login');
           })
       },
   
@@ -37,7 +38,8 @@ angular.module('ganim').factory('httpService',function($state, $timeout, $http, 
           return data.data;
         }).catch(function(err){
           console.log(err);
-          throw err;
+          if (err.data === 'Unauthorized') $state.go('login');
+          //throw err;
         })
       }
     }
