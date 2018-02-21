@@ -21,10 +21,10 @@ angular.module('ganim').factory('global',function($state, $timeout, $location, $
             // $httpProvider.defaults.headers.common['Authorization'] = token;
         },
         setUser: (user) => {
-            window.localStorage.setItem('user',user );
+            window.localStorage.setItem('user',JSON.stringify(user) );
         },
         getUser: () => {
-            return window.localStorage.getItem('user');
+            return JSON.parse(window.localStorage.getItem('user'));
         },
         resetUser: () => {
             this.user = {};
