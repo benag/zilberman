@@ -296,7 +296,7 @@ class userController {
                 let returnSMS = await nexmo.sms(user.uMobile, 'הכנס קוד: ' +randomNum );
                 //res.status(200).json({sms:randomNum});
                 res.status(200).json({
-                    token: 'JWT ' + this.generateToken({uID:req.user.uID}),
+                    token: 'JWT ' + this.generateToken({uID:user.uID}),
                     user: userInfo,
                     sms:randomNum
                 });
