@@ -15,12 +15,12 @@ angular.module('ganim').controller('usersCtrl', ['$scope', '$stateParams', '$loc
         })
 
         $scope.upadte = (index) =>{
-            // $http.post('/user/update', $scope.usersp[index])
-            // .then(() =>{
-            //     toastr.info('משתמש עודכן');
-            // }).catch( (err) => {
-            //     toastr.error('תקלה בעדכון משתמש');
-            // })
+            $http.post('/user/update', $scope.user[index])
+            .then(() =>{
+                toastr.info('משתמש עודכן');
+            }).catch( (err) => {
+                toastr.error('תקלה בעדכון משתמש');
+            })
         }
         $scope.sendLink = function(phone) {
             $http.post('/user/link',{phone:$scope.phone})
