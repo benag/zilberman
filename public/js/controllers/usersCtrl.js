@@ -1,9 +1,9 @@
-angular.module('ganim').controller('usersCtrl', ['$scope', '$stateParams', '$location', '$state','$http',
-    function($scope, $stateParams, $location, $state, $http) {
+angular.module('ganim').controller('usersCtrl', ['$scope', '$stateParams', '$location', '$state','httpService',
+    function($scope, $stateParams, $location, $state, httpService) {
 
         $scope.loading = true;
         $scope.phone = ''
-        $http.get('/users').then((data) => {
+        httpService.get('/users').then((data) => {
             $scope.loading = false;
             $scope.users = data.data;
             $scope.users.forEach((user) => {
@@ -15,7 +15,7 @@ angular.module('ganim').controller('usersCtrl', ['$scope', '$stateParams', '$loc
         })
 
         $scope.upadte = (index) =>{
-            $http.post('/user/update', $scope.user[index])
+            httpService.post('/user/update', $scope.user[index])
             .then(() =>{
                 toastr.info('משתמש עודכן');
             }).catch( (err) => {
@@ -23,7 +23,7 @@ angular.module('ganim').controller('usersCtrl', ['$scope', '$stateParams', '$loc
             })
         }
         $scope.sendLink = function(phone) {
-            $http.post('/user/link',{phone:$scope.phone})
+            httpService.post('/user/link',{phone:$scope.phone})
             .then( (data) => {
                 toastr.info('לינק נשלח');
             }).catch( (err) => {

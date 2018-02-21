@@ -1,9 +1,9 @@
-angular.module('ganim').controller('summeryCtrl', ['$scope', '$stateParams', '$location', '$state','$http', 'global',
-    function($scope, $stateParams, $location, $state, $http, global) {
+angular.module('ganim').controller('summeryCtrl', ['$scope', '$stateParams', '$location', '$state','httpService', 'global',
+    function($scope, $stateParams, $location, $state, httpService, global) {
         $scope.loading = true;
         $scope.search = '' ;
         $scope.user  = global.getUser();
-        $http.get('/products')
+        httpService.get('/products')
             .then( (data) => {
                 $scope.loading = false;
                 $scope.products = data.data;
@@ -19,7 +19,7 @@ angular.module('ganim').controller('summeryCtrl', ['$scope', '$stateParams', '$l
 
         $scope.searchRecords = () => {
             $scope.loading = true;
-            $http.get('/products/' + $scope.search)
+            httpService.get('/products/' + $scope.search)
                 .then( (data) => {
                     $scope.loading = false;
                     $scope.products = data.data;

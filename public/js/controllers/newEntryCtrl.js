@@ -1,5 +1,5 @@
-angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$location', '$state','leadService', 'global','Upload','$rootScope','$http','$uibModal',
-    function($scope, $stateParams, $location, $state, leadService, global, Upload, $rootScope, $http, $uibModal) {
+angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$location', '$state','leadService', 'global','Upload','$rootScope','httpService','$uibModal',
+    function($scope, $stateParams, $location, $state, leadService, global, Upload, $rootScope, httpService, $uibModal) {
 
         $('#footer').show();
         const mashkanta = 0;
@@ -28,7 +28,7 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
         if (product) {
             $scope.loading = true;
             $scope.isNew = false;
-            $http.get('/product/' + product.pID).then((data) => {
+            httpService.get('/product/' + product.pID).then((data) => {
                 console.log(data.data);
                 let product = data.data;
                 $scope.setClient(product.client);
@@ -139,7 +139,7 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
         }
 
         $scope.showFiles = (index) => {
-            $http.get(`/car/files/${$scope.form.insuranceForm.cars[index].carInsID}`)
+            httpService.get(`/car/files/${$scope.form.insuranceForm.cars[index].carInsID}`)
             .then( (data) => {
                 $scope.openCarModal(data.data, $scope.form.insuranceForm.cars[index].carInsID);
             })
