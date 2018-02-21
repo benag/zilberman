@@ -670,6 +670,16 @@ input:-ms-input-placeholder {
     height: 30px;
 
 }
+.sms-btn{
+    margin-right: 5px;
+    background-color: #2676d0;
+    color: white;
+    border: none;
+    width: 55px;
+    height: 30px;
+    position: relative;
+    top:10px;
+}
 .car-btn{
     margin-right: 5px;
     background-color: #2676d0;
