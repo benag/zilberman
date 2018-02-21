@@ -698,6 +698,10 @@ input:-ms-input-placeholder {
     background-color: transparent;
     border: none;
 }
+.input-select{
+    background-color: transparent;
+    border: none;
+}
 /* css for mobile */
 
 @media (min-width: 320px) and (max-width: 480px) {

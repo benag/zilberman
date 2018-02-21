@@ -6,6 +6,9 @@ angular.module('ganim').controller('usersCtrl', ['$scope', '$stateParams', '$loc
         $http.get('/users').then((data) => {
             $scope.loading = false;
             $scope.users = data.data;
+            $scope.users.forEach((user) => {
+                user.uRole = String(user.uRole);sty
+            })
             console.log($scope.users);
         })
 
