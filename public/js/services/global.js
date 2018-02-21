@@ -31,7 +31,7 @@ angular.module('ganim').factory('global',function($state, $timeout, $location, $
             return JSON.parse(window.localStorage.getItem('user'));
         },
         resetUser: () => {
-            this.user = {};
+            window.localStorage.setItem('user',JSON.stringify({}));
         },
         getMachine: function(){
             return $location.host() + ':' + $location.port();
