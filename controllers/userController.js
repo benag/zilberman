@@ -169,7 +169,7 @@ class userController {
 
     }
 
-    comparePasswords (candidatePassword, cb) {
+    comparePasswords (candidatePassword,dbPassworwd, cb) {
         bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
             if (err) { return cb(err); }
             cb(null, isMatch);
@@ -290,7 +290,7 @@ class userController {
         if (!dbUser || dbUser.recordset.length === 0) return res.status(400);
         let user = dbUser.recordset[0];
         let returnUser = this.setUserInfo(user);
-        this.comparePasswords(req.body.password, async (isMatch) => {
+        this.comparePasswords(req.body.password,user.password, async (isMatch) => {
             if (isMatch){
                 let randomNum =  Math.floor(1000 + Math.random() * 9000);
                 let returnSMS = await nexmo.sms(user.uMobile, 'הכנס קוד: ' +randomNum );
