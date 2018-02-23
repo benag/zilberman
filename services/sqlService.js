@@ -26,15 +26,18 @@ class sqlService {
     }
 
     async query(statement){
-        sql.connect(this.dbconfig, err => {
+        return new Promise(function (fulfill, reject){
+            sql.connect(this.dbconfig, err => {
 
-            new sql.Request().query(statement, (err, result) => {
-                return result;
+                new sql.Request().query(statement, (err, result) => {
+                    fulfill(result);
+                })
+            })
+            sql.on('error', err => {
+                reject(err);
             })
         })
-        sql.on('error', err => {
-            // ... error handler
-        })
+        
 
     }
 
