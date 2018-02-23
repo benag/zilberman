@@ -10,6 +10,11 @@ class sqlService {
             server: '62.219.187.1', // You can use 'localhost\\instance' to connect to named instance
             port: 3306,
             database: 'ZIL_LEADS',
+            pool: {
+                max: 10,
+                min: 0,
+                idleTimeoutMillis: 100000,
+            },
             options: {
                 encrypt: true // Use this if you're on Windows Azure
             }
@@ -65,25 +70,29 @@ class sqlService {
 
             if (!this.pool) {
                 sql.close();
-                this.pool = await sql.ConnectionPool(this.dbconfig);
+                this.pool = await sql.connect(this.dbconfig);
             }
             // this.pool.connect(err => {
             //     console.log(err);
             // })
-            let request = await this.pool.request();
+            //let request = await this.pool.request();
             // if (!request.connectionPool.domain) request = await this.pool.request();
-            console.log(request);
+            //console.log(request);
             let result1;
             // result1 = request.query(statement);
             // console.log(result1);
             // return result1;
             return new Promise((fulfill, reject) => {
-                request.query(statement)
-                .then( (result) => {
-                    return fulfill(result);
-                }).catch((err)=>{
-                    console.log(err);
+                this.pool.request()
+                .then((request) =>{
+                    request.query(statement)
+                    .then( (result) => {
+                        return fulfill(result);
+                    }).catch((err)=>{
+                        console.log(err);
+                    })    
                 })
+                
                 
             })
             // return new Promise((fulfill, reject) => {
