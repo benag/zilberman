@@ -32,10 +32,13 @@ class sqlService {
         try {
             console.log(statement);
             this.pool = await sql.connect(this.dbconfig);
-            // if (!this.pool) {
-            //     sql.close();
-            //     this.pool = await sql.connect(this.dbconfig);
-            // }
+            this.pool.connect(err => {
+                    console.log(err);
+                })
+                // if (!this.pool) {
+                //     sql.close();
+                //     this.pool = await sql.connect(this.dbconfig);
+                // }
             let request = await this.pool.request();
             console.log(request);
             let result1 = request.query(statement);
