@@ -59,21 +59,26 @@ class sqlService {
     // }
 
     async query(statement) {
-        sql.connect(this.dbconfig)
-        .then(function () {
-            // Function to retrieve all the data - Start
-            new sql.Request()
-                .query(statement)
-                .then(function (dbData) {
-                    // if (dbData == null || dbData.length === 0)
-                    //     return;
-                    // console.dir('All the courses');
-                    console.dir(dbData);
+
+        return new Promise((fulfill, reject) => {
+            sql.connect(this.dbconfig)
+            .then(function () {
+                // Function to retrieve all the data - Start
+                new sql.Request()
+                    .query(statement)
+                    .then(function (dbData) {
+                        // if (dbData == null || dbData.length === 0)
+                        //     return;
+                        // console.dir('All the courses');
+                        console.dir(dbData);
+                        fulfill(dbData);
+                        
+                    })
+                    .catch(function (error) {
+                        console.dir(error);
+                    });
                 })
-                .catch(function (error) {
-                    console.dir(error);
-                });
-            })
+        })        
     }
 
     // async query(statement) {
