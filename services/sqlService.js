@@ -26,8 +26,9 @@ class sqlService {
     }
 
     async query(statement){
+        let that = this;
         return new Promise(function (fulfill, reject){
-            sql.connect(this.dbconfig, err => {
+            sql.connect(that.dbconfig, err => {
 
                 new sql.Request().query(statement, (err, result) => {
                     fulfill(result);
