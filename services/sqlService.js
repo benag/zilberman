@@ -31,10 +31,11 @@ class sqlService {
     async query(statement) {
         try {
             console.log(statement);
-            if (!this.pool) {
-                sql.close();
-                this.pool = await new sql.ConnectionPool(this.dbconfig);
-            }
+            this.pool = await sql.connect(this.dbconfig);
+            // if (!this.pool) {
+            //     sql.close();
+            //     this.pool = await sql.connect(this.dbconfig);
+            // }
             let request = await this.pool.request();
             console.log(request);
             let result1 = request.query(statement);
