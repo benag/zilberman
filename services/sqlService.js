@@ -26,7 +26,7 @@ class sqlService {
     }
 
     async query(statement){
-        sql.connect(config, err => {
+        sql.connect(this.config, err => {
 
             new sql.Request().query(statement, (err, result) => {
                 return result;
