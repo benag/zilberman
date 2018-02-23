@@ -10,11 +10,6 @@ class sqlService {
             server: '62.219.187.1', // You can use 'localhost\\instance' to connect to named instance
             port: 3306,
             database: 'ZIL_LEADS',
-            pool: {
-                max: 10,
-                min: 0,
-                idleTimeoutMillis: 100000,
-            },
             options: {
                 encrypt: true // Use this if you're on Windows Azure
             }
@@ -64,52 +59,69 @@ class sqlService {
     // }
 
     async query(statement) {
-        try {
-            console.log(statement);
-
-
-            if (!this.pool) {
-                sql.close();
-                this.pool = await sql.connect(this.dbconfig);
-            }
-            // this.pool.connect(err => {
-            //     console.log(err);
-            // })
-            //let request = await this.pool.request();
-            // if (!request.connectionPool.domain) request = await this.pool.request();
-            //console.log(request);
-            let result1;
-            // result1 = request.query(statement);
-            // console.log(result1);
-            // return result1;
-            return new Promise((fulfill, reject) => {
-                this.pool.request()
-                .then((request) =>{
-                    request.query(statement)
-                    .then( (result) => {
-                        return fulfill(result);
-                    }).catch((err)=>{
-                        console.log(err);
-                    })    
+        sql.connect(this.dbconfig)
+        .then(function () {
+            // Function to retrieve all the data - Start
+            new sql.Request()
+                .query(statement)
+                .then(function (dbData) {
+                    // if (dbData == null || dbData.length === 0)
+                    //     return;
+                    // console.dir('All the courses');
+                    console.dir(dbData);
                 })
-                
-                
+                .catch(function (error) {
+                    console.dir(error);
+                });
             })
-            // return new Promise((fulfill, reject) => {
-            //     setTimeout(async () => {
-            //         result1 = await request.query(statement);
-            //         console.log(result1);
-            //         return fulfill(result1);
-            //     }, 100)
-            // });
-
-        } catch (err) {
-            console.log(err);
-            nexmo.sms('0526749884', JSON.stringify(err));
-            throw err;
-            // ... error checks
-        }
     }
+
+    // async query(statement) {
+    //     try {
+    //         console.log(statement);
+
+
+    //         if (!this.pool) {
+    //             sql.close();
+    //             this.pool = await sql.connect(this.dbconfig);
+    //         }
+    //         // this.pool.connect(err => {
+    //         //     console.log(err);
+    //         // })
+    //         let request = await this.pool.request();
+    //         // if (!request.connectionPool.domain) request = await this.pool.request();
+    //         console.log(request);
+    //         let result1;
+    //         // result1 = request.query(statement);
+    //         // console.log(result1);
+    //         // return result1;
+    //         return new Promise((fulfill, reject) => {
+    //             request.query(statement)
+    //             .then( (result) => {
+    //                 return fulfill(result);
+    //             }).catch((err)=>{
+    //                 console.log(err);
+    //             })
+                
+    //         })
+    //         // return new Promise((fulfill, reject) => {
+    //         //     setTimeout(async () => {
+    //         //         result1 = await request.query(statement);
+    //         //         console.log(result1);
+    //         //         return fulfill(result1);
+    //         //     }, 100)
+    //         // });
+            
+
+            
+
+    //     } catch (err) {
+    //         console.log(err);
+    //         nexmo.sms('0526749884', JSON.stringify(err));
+    //         throw err;
+    //         // ... error checks
+    //     }
+    // }
 }
 
 module.exports = sqlService;
