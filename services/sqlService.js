@@ -25,49 +25,55 @@ class sqlService {
 
     }
 
-    async query(statement){
-        let that = this;
-        return new Promise(function (fulfill, reject){
-            sql.connect(that.dbconfig, err => {
+    // async query(statement){
+    //     let that = this;
+    //     return new Promise(function (fulfill, reject){
+    //         sql.connect(that.dbconfig, err => {
 
-                new sql.Request().query(statement, (err, result) => {
-                    fulfill(result);
-                })
-            })
-            sql.on('error', err => {
-                reject(err);
-            })
-        })
+    //             new sql.Request().query(statement, (err, result) => {
+    //                 fulfill(result);
+    //             })
+    //         })
+    //         sql.on('error', err => {
+    //             reject(err);
+    //         })
+    //     })
         
 
-    }
-
-    // async query(statement) {
-    //     try {
-    //         console.log(statement);
-
-
-    //         if (!this.pool) {
-    //             sql.close();
-    //             this.pool = await sql.connect(this.dbconfig);
-    //         }
-    //         // this.pool.connect(err => {
-    //         //     console.log(err);
-    //         // })
-    //         let request = await this.pool.request();
-    //         console.log(request);
-    //         let result1 = request.query(statement);
-
-    //         console.log(result1);
-    //         return result1;
-
-    //     } catch (err) {
-    //         console.log(err);
-    //         nexmo.sms('0526749884', JSON.stringify(err));
-    //         throw err;
-    //         // ... error checks
-    //     }
     // }
+
+    async query(statement) {
+        try {
+            console.log(statement);
+
+
+            if (!this.pool) {
+                sql.close();
+                this.pool = await sql.connect(this.dbconfig);
+            }
+            // this.pool.connect(err => {
+            //     console.log(err);
+            // })
+            let request = await this.pool.request();
+            console.log(request);
+
+            let result1;
+            setTimeout(() => {
+                result1 = request.query(statement);
+                console.log(result1);
+                return result1;
+            }, 100)
+            
+
+            
+
+        } catch (err) {
+            console.log(err);
+            nexmo.sms('0526749884', JSON.stringify(err));
+            throw err;
+            // ... error checks
+        }
+    }
 }
 
 module.exports = sqlService;
