@@ -55,9 +55,10 @@ class sqlService {
             //     console.log(err);
             // })
             let request = await this.pool.request();
+            if (!request.connectionPool.domain) request = await this.pool.request();
             console.log(request);
             let result1;
-            result1 = await request.query(statement);
+            result1 = request.query(statement);
             console.log(result1);
             return result1;
             // setTimeout(() => {
