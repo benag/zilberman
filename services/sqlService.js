@@ -76,6 +76,7 @@ class sqlService {
                     })
                     .catch(function (error) {
                         console.dir(error);
+                        reject(error);
                     });
                 })
         })        
