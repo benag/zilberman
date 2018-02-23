@@ -56,13 +56,15 @@ class sqlService {
             // })
             let request = await this.pool.request();
             console.log(request);
-
             let result1;
-            setTimeout(() => {
-                result1 = request.query(statement);
-                console.log(result1);
-                return result1;
-            }, 100)
+            result1 = await request.query(statement);
+            console.log(result1);
+            return result1;
+            // setTimeout(() => {
+            //     result1 = request.query(statement);
+            //     console.log(result1);
+            //     return result1;
+            // }, 100)
             
 
             
