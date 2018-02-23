@@ -61,7 +61,7 @@ class sqlService {
     async query(statement) {
 
         return new Promise((fulfill, reject) => {
-            new sql.ConnectionPool(config).connect().then(pool => {
+            new sql.ConnectionPool(this.dbconfig).connect().then(pool => {
                 return pool.request().query(statement)
                 }).then(result => {
                   fulfill(result);
