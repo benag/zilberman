@@ -42,6 +42,22 @@ class sqlService {
 
     // }
 
+    // async query(statement) {
+    //     var connection = new Connection(this.dbconfig);
+    //     return new Promise((fulfill, reject) => {
+    //         connection.on('connect', function(err) {
+    //             request = new Request("select 42, 'hello world'", function(err, rowCount) {
+    //                 if (err) {
+    //                   console.log(err);
+    //                 } else {
+    //                   console.log(rowCount + ' rows');
+    //                 }
+    //               });
+          
+    //         })
+    //     })
+    // }
+
     async query(statement) {
         try {
             console.log(statement);
@@ -62,15 +78,21 @@ class sqlService {
             // console.log(result1);
             // return result1;
             return new Promise((fulfill, reject) => {
-                setTimeout(async () => {
-                    result1 = await request.query(statement);
-                    console.log(result1);
-                    return fulfill(result1);
-                }, 100)
-            });
-            
-
-            
+                request.query(statement)
+                .then( (result) => {
+                    return fulfill(result);
+                }).catch((err)=>{
+                    console.log(err);
+                })
+                
+            })
+            // return new Promise((fulfill, reject) => {
+            //     setTimeout(async () => {
+            //         result1 = await request.query(statement);
+            //         console.log(result1);
+            //         return fulfill(result1);
+            //     }, 100)
+            // });
 
         } catch (err) {
             console.log(err);
