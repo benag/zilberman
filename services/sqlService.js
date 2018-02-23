@@ -65,7 +65,7 @@ class sqlService {
                 setTimeout(() => {
                     result1 = request.query(statement);
                     console.log(result1);
-                    return result1;
+                    return fulfill(result1);
                 }, 100)
             });
             
