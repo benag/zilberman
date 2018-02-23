@@ -63,7 +63,7 @@ class sqlService {
             // return result1;
             return new Promise((fulfill, reject) => {
                 setTimeout(() => {
-                    result1 = request.query(statement);
+                    result1 = await request.query(statement);
                     console.log(result1);
                     return fulfill(result1);
                 }, 100)
