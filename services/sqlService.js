@@ -65,7 +65,7 @@ class sqlService {
 
             if (!this.pool) {
                 sql.close();
-                this.pool = await sql.connect(this.dbconfig);
+                this.pool = await sql.ConnectionPool(this.dbconfig);
             }
             // this.pool.connect(err => {
             //     console.log(err);
