@@ -60,7 +60,7 @@
                     <div  class="col-md-1 col-xs-12 mobile-row">
                         <input class="zilberman-input" placeholder="טלפון נוסף" ng-model="form.client.cPhone">
                     </div>
-                    <div class="col-md-1 col-xs-12">
+                    <div class="col-md-2 col-xs-12">
                         <input  class="zilberman-input" placeholder="אימייל" ng-model="form.client.cEmail">
                     </div>
                     <div class="col-md-1 col-xs-12">
@@ -71,16 +71,16 @@
                         <!--<input placeholder="תאריך לידה" class="zilberman-date" type="text" onfocus="(this.type='date', this.placeholder='')" onblur="(this.type='text', this.placeholder='תאריך לידה')" ng-model="form.birthdate" id="date">-->
                     </div>
                     <div class="col-md-1 col-xs-12">
-                        <!-- <datepicker class="date-pick-zilberm" date-format="dd/MM/yyyy"> -->
-                            <input placeholder="תאריך הנפקת תז" class="zilberman-date" type="text" ng-model="form.client.cTazDate">
-                        <!-- </datepicker> -->
-                        <!--<input placeholder="תאריך הנפקת תז" class="zilberman-date" type="text" onfocus="(this.type='date', this.placeholder='')" onblur="(this.type='text', this.placeholder='תאריך הנפקת תז')" ng-model="form.iddate" id="iddate">-->
+                        <input placeholder="תאריך הנפקת תז" class="zilberman-date" type="text" ng-model="form.client.cTazDate">
+                    </div>
+                    <div class="col-md-1 col-xs-12">
+                        <i style="cursor:pointer;" ng-click="resetClient()" class="material-icons">delete_sweep</i>
                     </div>
                 </div>
 
                
             
-                <div class="row mate" ng-click="widgetExpanded = !widgetExpanded">+ פרטי בן/בת זוג</div>
+                <div class="row mate" ng-click="openMate()">+ פרטי בן/בת זוג</div>
                 <div class="mate-below" ng-slide-down="widgetExpanded"  duration="0.3">
                     <div class="row" >
                         <div class="col-md-1 col-xs-12">
@@ -108,7 +108,7 @@
                         <div  class="col-md-1 col-xs-12">
                             <input class="zilberman-input" placeholder="טלפון נוסף" ng-model="form.mate.cPhone">
                         </div>
-                        <div class="col-md-1 col-xs-12">
+                        <div class="col-md-2 col-xs-12">
                             <input  class="zilberman-input" placeholder="אימייל" ng-model="form.mate.cEmail">
                         </div>
                         <div class="col-md-1 col-xs-12">
@@ -120,6 +120,9 @@
                             <datepicker class="date-pick-zilberm" date-format="dd/MM/yyyy">
                                 <input placeholder="תאריך הנפקת תז" class="zilberman-date" type="text" ng-model="form.mate.cTazDate">
                             </datepicker>
+                        </div>
+                        <div class="col-md-1 col-xs-12">
+                            <i style="cursor:pointer;" ng-click="resetMate()" class="material-icons">delete_sweep</i>
                         </div>
                     </div>
                     
@@ -227,6 +230,9 @@
                         <div class="col-md-1 col-xs-12">
                             <input class="zilberman-input" placeholder="שוווי נכס" ng-model="form.insuranceForm.morgage.pPropertyValue">
                         </div>
+                        <div class="col-md-1 col-xs-12">
+                            <i style="cursor:pointer;" ng-click="resetMorgage()" class="material-icons">delete_sweep</i>
+                        </div>
 
                     </div>
                     <div id="description-3">
@@ -280,6 +286,10 @@
         
                                 </select>                      
                             </div>
+                            <div class="col-md-1 col-xs-12">
+                                <i style="cursor:pointer;" ng-click="resetLoan()" class="material-icons">delete_sweep</i>
+                            </div>
+
                         </div>
         
                     </div>

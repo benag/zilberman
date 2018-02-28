@@ -40,6 +40,7 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
             
         }
 
+
         $scope.setClient = (client) => {
             $scope.form.client = client;
             var date = moment($scope.form.client.cBDate);
@@ -110,7 +111,10 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
             }
             
         }
-
+        $scope.openMate = () => {
+            $scope.widgetExpanded = !$scope.widgetExpanded;
+            $scope.form.mate.cFamily = $scope.form.client.cFamily 
+        }
         $scope.openCarModal = (docs, car) => {
             
             var parentElem = undefined;
@@ -182,7 +186,18 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
         $scope.omitCar = (index) => {
             $scope.cars.splice(index,1);
         };
-
+        $scope.resetClient = () => {
+            $scope.form.client = {};
+        };
+        $scope.resetMate = () => {
+            $scope.form.mate = {};
+        };
+        $scope.resetLoan = () => {
+            $scope.form.borrow = {};
+        };
+        $scope.resetMorgage = () => {
+            $scope.insuranceForm.morgage = {};
+        };
         $scope.validate = () => {
             if (!$scope.form.client.cTaz1 || $scope.form.client.cTaz1.length > 9){
                 toastr.error('תז ראשי אינה נכונה');

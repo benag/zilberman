@@ -1,3 +1,6 @@
+body{
+    overflow-x: hidden;
+}
 .sidebarhb{
     position:fixed!important;
     left:calc(100% - 250px)!important;
