@@ -6,11 +6,9 @@
 
 
     <div class="container-fluid">
-        <div class="row nav-center align-brakets">
+        <!-- <div class="row nav-center align-brakets">
             <ul class="nav nav-pills nav-pills-warning nav-pills-icons" role="tablist">
-                <!--
-    color-classes: "nav-pills-primary", "nav-pills-info", "nav-pills-success", "nav-pills-warning","nav-pills-danger"
--->
+             
                 <li class="active">
                     <a ng-click="click(0)" role="tab" data-toggle="tab">
                         <i class="material-icons">info</i> פרטים אישיים
@@ -32,7 +30,7 @@
                     </a>
                 </li>
             </ul>
-        </div>
+        </div> -->
         <img width="100" class="loader" ng-show="loading" src="/img/giphy.gif">
         <div class="content">
             <div  ng-show="show[0]" id="description-1">
@@ -62,27 +60,26 @@
                     <div  class="col-md-1 col-xs-12 mobile-row">
                         <input class="zilberman-input" placeholder="טלפון נוסף" ng-model="form.client.cPhone">
                     </div>
-                </div>
-
-                <br/><br/>
-                <div class="row">
                     <div class="col-md-1 col-xs-12">
                         <input  class="zilberman-input" placeholder="אימייל" ng-model="form.client.cEmail">
                     </div>
                     <div class="col-md-1 col-xs-12">
-                        <datepicker class="date-pick-zilberm" date-format="dd/MM/yyyy">
+                        <!-- <datepicker class="date-pick-zilberm" date-format="dd/MM/yyyy"> -->
                             <input placeholder="תאריך לידה" class="zilberman-date" type="text" ng-model="form.client.cBDate">
-                        </datepicker>
+                        <!-- </datepicker> -->
                         <!--<input placeholder="תאריך לידה" class="zilberman-date" type="text" onfocus="(this.type='date', this.placeholder='')" onblur="(this.type='text', this.placeholder='תאריך לידה')" ng-model="form.birthdate" id="date">-->
                         <!--<input placeholder="תאריך לידה" class="zilberman-date" type="text" onfocus="(this.type='date', this.placeholder='')" onblur="(this.type='text', this.placeholder='תאריך לידה')" ng-model="form.birthdate" id="date">-->
                     </div>
                     <div class="col-md-1 col-xs-12">
-                        <datepicker class="date-pick-zilberm" date-format="dd/MM/yyyy">
+                        <!-- <datepicker class="date-pick-zilberm" date-format="dd/MM/yyyy"> -->
                             <input placeholder="תאריך הנפקת תז" class="zilberman-date" type="text" ng-model="form.client.cTazDate">
-                        </datepicker>
+                        <!-- </datepicker> -->
                         <!--<input placeholder="תאריך הנפקת תז" class="zilberman-date" type="text" onfocus="(this.type='date', this.placeholder='')" onblur="(this.type='text', this.placeholder='תאריך הנפקת תז')" ng-model="form.iddate" id="iddate">-->
                     </div>
                 </div>
+
+               
+            
                 <div class="row mate" ng-click="widgetExpanded = !widgetExpanded">+ פרטי בן/בת זוג</div>
                 <div class="mate-below" ng-slide-down="widgetExpanded"  duration="0.3">
                     <div class="row" >
@@ -111,9 +108,6 @@
                         <div  class="col-md-1 col-xs-12">
                             <input class="zilberman-input" placeholder="טלפון נוסף" ng-model="form.mate.cPhone">
                         </div>
-                    </div>
-                    <br/><br/>
-                    <div class="row">
                         <div class="col-md-1 col-xs-12">
                             <input  class="zilberman-input" placeholder="אימייל" ng-model="form.mate.cEmail">
                         </div>
@@ -128,10 +122,432 @@
                             </datepicker>
                         </div>
                     </div>
+                    
+                </div>
+                <div class="row aphnia">
+                    <span class="aphnia-text">סוג הפניה</span>
+                </div>
+                <div class="row">
+                    <div class="row">
+                        <input ng-model="insurance[0]" ng-click="setInsurance(0)" class="zilberman-checkbox" type="checkbox">ביטוח משכנתא
+                    </div>
+                    <div class="row">
+                        <input ng-model="insurance[3]" ng-click="setInsurance(3)" class="zilberman-checkbox" type="checkbox">תיק ביטוח פרטי
+                    </div>
+                    <div class="row">
+                        <input ng-model="insurance[1]" ng-click="setInsurance(1)" class="zilberman-checkbox" type="checkbox">ביטוח רכב
+                    </div>
+                    <div class="row">
+                        <input ng-model="insurance[2]"  ng-click="setInsurance(2)" class="zilberman-checkbox" type="checkbox">ביטוח דירה
+                    </div>
+                </div>
+                <!-- ביטוח משכנתא-->
+                <div ng-show="insurance[0]" >
+                    <!-- <div  class="row line-distance">
+                        <div class="col-md-1 col-xs-12">
+                            <input  class="zilberman-input" placeholder="תז" ng-model="form.client.cTaz1">
+                        </div>
+                        <div class="col-md-1 col-xs-12">
+                            <input class="zilberman-input" placeholder="שם פרטי" ng-model="form.client.cName">
+                        </div>
+
+                        <div  class="col-md-1 col-xs-12">
+                            <input class="zilberman-input" placeholder="שם משפחה" ng-model="form.client.cFamily">
+                   
+                        </div>
+                    </div> -->
+                    <div class="row line-distance">
+                        
+                        <div class="col-md-2 col-xs-12">
+                            <div class="row">
+                                <div class="col-md-7 col-xs-12">
+                                    <select class="zilberman-dropdown" ng-model="form.client.cSmoke" placeholder="עישון" name="smoking" required>
+                                        <option value="" disabled selected>האם עישנת בעבר?</option>
+                                        <option value="1">כן</option>
+                                        <option value="0">לא ולא עישנתי בעבר </option>
+                                        <option value="2">הפסקתי לעשן</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-5 col-xs-12">
+                                    <div  ng-show="form.client.cSmoke === '2'">
+                                        <!-- <datepicker date-format="dd/MM/yyyy"> -->
+                                            <input placeholder="תאריך הפסקה" class="zilberman-date" type="text" ng-model="form.client.cQuitSmokeDate" >
+                                        <!-- </datepicker> -->
+                                    </div>
+                                </div>
+                                    
+                            </div>
+                            
+                        </div>
+
+
+                        
+                        <div ng-show="form.mate.cTaz2" >
+                            <div class="col-md-2 col-xs-12">
+                                <select class="zilberman-dropdown col-md-3 col-xs-12" ng-model="form.mate.cSmoke" placeholder="עישון" name="smoking-mate" required>
+                                        <option value="" disabled selected> האם בת הזוג עשנה בעבר?</option>
+                                        <option value="1">כן</option>
+                                        <option value="0">לא ולא עישנתי בעבר</option>
+                                        <option value="2">הפסקתי לעשן</option>
+                                </select>
+                            </div>
+                            
+                            <div class="col-md-1 col-xs-12" ng-show="form.mate.cSmoke === '2'">
+                                    <datepicker date-format="dd/MM/yyyy">
+                                        <input placeholder="תאריך הפסקה" class="zilberman-date" type="text" ng-model="form.mate.cQuitSmokeDate" >
+                                    </datepicker>
+                                
+                            </div>
+                        </div>
+                    </div>
+                  
+                    <div class="row line-distance">
+                       
+                        <div class="col-md-1 col-xs-12">
+                            <select class="zilberman-dropdown" ng-model="form.insuranceForm.morgage.pType" placeholder="סוג הנכס" name="asset-type" required>
+                                <option value="" disabled selected> סוג הנכס</option>
+                                <option value="1">בתהליך בנייה</option>
+                                <option value="2">בית משותף</option>
+                                <option value="3">בית פרטי</option>
+                            </select>
+                        </div>
+
+                        <div ng-show="form.insuranceForm.morgage.pType === '2'" class="col-md-1 col-xs-12">
+                            <input class="zilberman-input" placeholder="קומה" ng-model="form.insuranceForm.morgage.pFloor">
+                        </div>
+                        <div ng-show="form.insuranceForm.morgage.pType === '2'" class="col-md-1 col-xs-12">
+                            <input class="zilberman-input" placeholder="מתוך" ng-model="form.insuranceForm.morgage.pOutOfFloor">
+                        </div>
+                        <div class="col-md-1 col-xs-12">
+                            <input class="zilberman-input" placeholder="שטח בנוי במר" ng-model="form.insuranceForm.morgage.pSurface">
+                        </div>
+                        <div class="col-md-1 col-xs-12">
+                            <input class="zilberman-input" placeholder="עלות בנייה" ng-model="form.insuranceForm.morgage.pBuildCost">
+                        </div>
+                        <div class="col-md-1 col-xs-12">
+                            <input class="zilberman-input" placeholder="שוווי נכס" ng-model="form.insuranceForm.morgage.pPropertyValue">
+                        </div>
+
+                    </div>
+                    <div id="description-3">
+                        <!-- <div  class="row line-distance">
+                            <div class="col-md-1 col-xs-12">
+                                <input  class="zilberman-input" placeholder="תז" ng-model="form.client.cTaz1">
+                            </div>
+                            <div class="col-md-1 col-xs-12">
+                                <input class="zilberman-input" placeholder="שם פרטי" ng-model="form.client.cName">
+                            </div>
+        
+                            <div  class="col-md-1 col-xs-12">
+                                <input class="zilberman-input" placeholder="שם משפחה" ng-model="form.client.cFamily">
+                            
+                            </div>
+                        </div> -->
+                        <div class="row line-distance">
+                            <div class="col-md-1">
+                                <select class="zilberman-dropdown" ng-model="form.borrow.loanType" placeholder="עישון"  required>
+                                    <option value="" disabled selected>סוג הלוואה</option>
+                                    <option value="1">שפיצר</option>
+                                    <option value="2">בלון</option>
+                                </select>
+                            </div>
+        
+                            <div class="col-md-1 col-xs-12">
+                                <input class="zilberman-input" placeholder="סכום הלוואה" ng-model="form.borrow.loanValue">
+                            </div>
+                            <div class="col-md-1 col-xs-12">
+                                <input class="zilberman-input" placeholder="ריבית" ng-model="form.borrow.loanRate">
+                            </div>
+                            <div class="col-md-1 col-xs-12">
+                                <input class="zilberman-input" placeholder="מספר שנים נותרוו" ng-model="form.borrow.loanYrsToPay">
+                            </div>
+                            <div class="col-md-1 col-xs-12">
+                                <select class="zilberman-dropdown" ng-model="form.borrow.loanBank" placeholder="בנק מלווה" name="asset-type" required>
+                                    <option value="" disabled selected> בנק</option>
+                                    <option value="4">בנק יהב</option>
+                                    <option value="10">בנק לאומי</option>
+                                    <option value="11">בנק דיסקונט</option>
+                                    <option value="12">בנק הפועלים</option>
+                                    <option value="13">בנק אגוד</option>
+                                    <option value="14">בנק אוצר החייל</option>
+                                    <option value="17">בנק מרכנתיל דיסקונט</option>
+                                    <option value="20">בנק מזרחי טפחות</option>
+                                    <option value="30">בנק למסחר</option>
+                                    <option value="31">בנק בינלאומי</option>
+                                    <option value="46">בנק מסד</option>
+                                    <option value="54">בנק ירושלים</option>
+                                    <option value="68">בנק דקסיה</option>
+        
+                                </select>                      
+                            </div>
+                        </div>
+        
+                    </div>
+                    <div class="row col-md-offset-10 col-md-1">
+                        <button ng-click="save()" class="btn btn-info pull-left">שמור</button>
+                    </div>
+                    
                 </div>
 
+                <!--רכב -->
+                <div ng-show="insurance[1]" class="row">
+                    <!-- <div  class="row line-distance">
+                        <div class="col-md-1 col-xs-12">
+                            <input  class="zilberman-input" placeholder="תז" ng-model="form.client.cTaz1">
+                        </div>
+                        <div class="col-md-1 col-xs-12">
+                            <input class="zilberman-input" placeholder="שם פרטי" ng-model="form.client.cName">
+                        </div>
+
+                        <div  class="col-md-1 _720kb-datepicker-calendar-dayscol-xs-12">
+                            <input class="zilberman-input" placeholder="שם משפחה" ng-model="form.client.cFamily">
+                          
+                        </div>
+                    </div> -->
+                    <div ng-repeat="car in form.insuranceForm.cars track by $index" class="row line-distance">
+
+                        <div class="col-md-2">
+                            <div class="row">
+                                <div class="col-md-6 col-xs-12">
+                                    <select class="zilberman-dropdown" ng-model="form.insuranceForm.cars[$index].carTypeID" placeholder="יצרן" name="asset-type" required>
+                                        <option value="" disabled selected>יצרן</option>
+                                        <option value="1">אאודי</option>
+                                        <option value="227">אברת'</option>
+                                        <option value="2">אוטוביאנקי</option>
+                                        <option value="3">אולדסמוביל</option>
+                                        <option value="4">אוסטין</option>
+                                        <option value="5">אופל</option>
+                                        <option value="195">אינפיניטי</option>
+                                        <option value="264">אל.טי.איי</option>
+                                        <option value="6">אלפא-רומאו</option>
+                                        <option value="203">אם. ג'י. / MG</option>
+                                        <option value="250">אסטון מרטין</option>
+                                        <option value="7">ב.מ.וו</option>
+                                        <option value="8">ביואיק</option>
+                                        <option value="10">ג'יאו - Geo</option>
+                                        <option value="273">גי'פ / Jeep</option>
+                                        <option value="238">גרייט וול</option>
+                                        <option value="255">דאצ'יה</option>
+                                        <option value="11">דודג'</option>
+                                        <option value="12">דייהו</option>
+                                        <option value="13">דייהטסו</option>
+                                        <option value="14">הונדה</option>
+                                        <option value="15">וולוו</option>
+                                        <option value="16">טויוטה</option>
+                                        <option value="18">יגואר</option>
+                                        <option value="19">יונדאי</option>
+                                        <option value="20">לאדה</option>
+                                        <option value="156">לינקולן</option>
+                                        <option value="21">לנציה</option>
+                                        <option value="163">לקסוס</option>
+                                        <option value="22">מאזדה</option>
+                                        <option value="224">מזראטי</option>
+                                        <option value="187">מיני</option>
+                                        <option value="23">מיצובישי</option>
+                                        <option value="24">מרצדס</option>
+                                        <option value="25">ניסאן</option>
+                                        <option value="26">סאאב</option>
+                                        <option value="278">סאנגיונג</option>
+                                        <option value="27">סובארו</option>
+                                        <option value="28">סוזוקי</option>
+                                        <option value="29">סיאט</option>
+                                        <option value="30">סיטרואן</option>
+                                        <option value="32">סמארט</option>
+                                        <option value="31">סקודה</option>
+                                        <option value="34">פולקסווגן</option>
+                                        <option value="35">פונטיאק</option>
+                                        <option value="36">פורד</option>
+                                        <option value="37">פורשה</option>
+                                        <option value="38">פיאט</option>
+                                        <option value="33">פיג'ו</option>
+                                        <option value="225">פרארי</option>
+                                        <option value="39">קאדילק</option>
+                                        <option value="40">קיה</option>
+                                        <option value="41">קרייזלר</option>
+                                        <option value="42">רובר</option>
+                                        <option value="43">רנו</option>
+                                        <option value="44">שברולט</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 col-xs-12">
+                                    <select class="zilberman-dropdown" ng-model="form.insuranceForm.cars[$index].carYear" placeholder="יצרן" name="asset-type" required>
+                                        <option value="" disabled selected>שנת ייצור</option>
+                                        <option value="2018">2018</option>
+                                        <option value="2017">2017</option>
+                                        <option value="2016">2016</option>
+                                        <option value="2015">2015</option>
+                                        <option value="2014">2014</option>
+                                        <option value="2013">2013</option>
+                                        <option value="2012">2012</option>
+                                        <option value="2011">2011</option>
+                                        <option value="2010">2010</option>
+                                        <option value="2009">2009</option>
+                                        <option value="2008">2008</option>
+                                        <option value="2007">2007</option>
+                                        <option value="2006">2006</option>
+                                        <option value="2005">2005</option>
+                                        <option value="2004">2004</option>
+                                        <option value="2003">2003</option>
+                                        <option value="2002">2002</option>
+                                        <option value="2001">2001</option>
+                                        <option value="2000">2000</option>
+                                        <option value="1999">1999</option>
+                                        <option value="1998">1998</option>
+                                        <option value="1997">1997</option>
+                                        <option value="1996">1996</option>
+                                        <option value="1995">1995</option>
+                                        <option value="1994">1994</option>
+                                        <option value="1993">1993</option>
+                                        <option value="1992">1992</option>
+                                        <option value="1991">1991</option>
+                                        <option value="1990">1990</option>
+                                        <option value="1989">1989</option>
+                                        <option value="1988">1988</option>
+                                        <option value="1987">1987</option>
+                                        <option value="1986">1986</option>
+                                        <option value="1985">1985</option>
+                                        <option value="1984">1984</option>
+                                        <option value="1983">1983</option>
+                                        <option value="1982">1982</option>
+                                        <option value="1981">1981</option>
+                                        <option value="1980">1980</option>
+                                        <option value="1979">1979</option>
+                                        <option value="1978">1978</option>
+                                        <option value="1977">1977</option>
+                                        <option value="1976">1976</option>
+                                        <option value="1975">1975</option>
+                                        <option value="1974">1974</option>
+                                        <option value="1973">1973</option>
+                                        <option value="1972">1972</option>
+                                        <option value="1971">1971</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- <div class="col-md-2 col-xs-12">
+                            <datepicker date-format="dd/MM/yyyy">
+                                <input placeholder="תאריך חידוש" class="zilberman-date" type="text" ng-model="form.insuranceForm.cars[$index].carRenewDate" id="date5">
+                            </datepicker>
+
+                        </div> -->
+                        <div class="col-md-3 col-xs-12">
+                            
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <datepicker date-format="dd/MM/yyyy">
+                                        <input placeholder="תאריך חידוש" class="zilberman-date" type="text" ng-model="form.insuranceForm.cars[$index].carRenewDate" id="date5">
+                                    </datepicker>
+                                </div>
+                                <div class="col-md-4">
+                                    <input class="zilberman-input" placeholder="פרמיית חובה" ng-model="form.insuranceForm.cars[$index].carHovaPrem">
+                                </div>
+                                <div class="col-md-4">
+                                    <input class="zilberman-input" placeholder="פרמיית מקיף" ng-model="form.insuranceForm.cars[$index].carMekifPrem">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5 col-xs-12">
+                            <div class="row">
+
+                                <div class="col-md-4">
+                                    <input class="zilberman-input" placeholder="תביעות ב 3 שנים אחרונות" ng-model="form.insuranceForm.cars[$index].claimsCount">
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="row">
+                                        <div class="col-md-9">
+                                            <select class="zilberman-dropdown" ng-model="form.insuranceForm.cars[$index].carInsurer" placeholder="חברה מבטחת" name="asset-type" required>
+                                                <option value="" disabled selected>חברה מבטחת</option>
+                                                <option value="1">כלל</option>
+                                                <option value="2">מגדל</option>
+                                                <option value="3">מנורה</option>
+                                                <option value="4">הראל</option>
+                                                <option value="5">הפניקס</option>
+                                                <option value="6">שומרה</option>
+                                                <option value="7">איילון</option>
+                                                <option value="8">הכשרה</option>
+                                                <option value="9">ביטוח חקלאי</option>
+                                                <option value="10">קש</option>
+                                                <option value="11">ביטוח ישיר</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <div ng-show="isNew">
+                                                <i style="cursor:pointer;" ng-click="omitCar($index)" class="material-icons">delete_sweep</i>
+                                            </div>
+                                            <div ng-show="!isNew">
+                                                <i style="cursor:pointer;" ng-click="showFiles($index)" class="material-icons">note_add</i>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <button ngf-select="carDoc($file, $invalidFiles)" accept="image/*" ngf-max-height="2000" ngf-max-size="1MB" class="car-btn">
+                                                צרף קבצים
+                                            </button>
+                                        </div>
+                                    </div>                                        
+                                </div>
+                                
+                                <!-- <div ng-show="!isNew" ng-click="showFiles($index)" class="col-md-1">
+                                    <i style="cursor:pointer;" ng-show="file" ng-click="" class="material-icons">delete_sweep</i>
+                                </div> -->
+                            </div>
+
+                        </div>
+                    </div>
+                    <div ng-show="isNew"class="row">
+                        <button ng-click="add()" class="btn btn-info">הוסף רכב</button>
+                    </div>
+                    <div class="row col-md-offset-10 col-md-1">
+                            <button ng-click="save()" class="btn btn-info pull-left">שמור</button>
+                    </div>
+                    <!-- <div ng-show="isNew" class="row">
+                       
+                    </div> -->
+                </div>
+                <div ng-show="insurance[2]" class="row">
+                    <!-- <div  class="row line-distance">
+                        <div class="col-md-1 col-xs-12">
+                            <input  class="zilberman-input" placeholder="תז" ng-model="form.client.cTaz1">
+                        </div>
+                        <div class="col-md-1 col-xs-12">
+                            <input class="zilberman-input" placeholder="שם פרטי" ng-model="form.client.cName">
+                        </div>
+
+                        <div  class="col-md-1 col-xs-12">
+                            <input class="zilberman-input" placeholder="שם משפחה" ng-model="form.client.cFamily">
+                            
+                        </div>
+                    </div> -->
+                    <div class="row line-distance">
+                        <div class="col-md-2">
+                            <select class="zilberman-dropdown" ng-model="form.insuranceForm.dira.diraType" placeholder="עישון"  required>
+                                <option value="" disabled selected>סוג ביטוח נידרש</option>
+                                <option value="0">מבנה+תכולה</option>
+                                <option value="1">מבנה</option>
+                                <option value="2">תכולה בלבד</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div ng-show="insurance[3]" class="row">
+                    <div class="row line-distance">
+                        <div class="col-md-2">
+                                <input class="zilberman-input" placeholder="פרמייה משוערת היום" ng-model="form.insuranceForm.prati.carHovaPrem">
+                        </div>
+                    </div>
+                    <div class="row col-md-offset-10 col-md-1">
+                            <button ng-click="save()" class="btn btn-info pull-left">שמור</button>
+                    </div>
+                </div>
+
+                
+
+
             </div>
-            <div ng-show="show[1]" id="description-2">
+            <!-- <div ng-show="show[1]" id="description-2">
                 <div class="row types-insurance">
                     <input type="checkbox" ng-model="insurance[0]" ng-click="setInsurance(0)">  משכנתא
                     <input type="checkbox" ng-model="insurance[1]" ng-click="setInsurance(1)">  רכב
@@ -139,389 +555,18 @@
                     <input type="checkbox" ng-model="insurance[3]" ng-click="setInsurance(3)">  פרטי
                 </div>
                 <div class="insurence-content">
-                    <!-- משכנתתא -->
-                    <div ng-show="insurance[0]" >
-                        <div  class="row line-distance">
-                            <div class="col-md-1 col-xs-12">
-                                <input  class="zilberman-input" placeholder="תז" ng-model="form.client.cTaz1">
-                            </div>
-                            <div class="col-md-1 col-xs-12">
-                                <input class="zilberman-input" placeholder="שם פרטי" ng-model="form.client.cName">
-                            </div>
-
-                            <div  class="col-md-1 col-xs-12">
-                                <input class="zilberman-input" placeholder="שם משפחה" ng-model="form.client.cFamily">
-                                <!--<input class="zilberman-input" placeholder="תז" ng-model="4">-->
-                            </div>
-                        </div>
-                        <div class="row line-distance">
-                            <div class="col-md-2 col-xs-12">
-                                <select class="zilberman-dropdown" ng-model="form.client.cSmoke" placeholder="עישון" name="smoking" required>
-                                    <option value="" disabled selected>האם עישנת בעבר?</option>
-                                    <option value="1">כן</option>
-                                    <option value="0">לא עישנתי בעבר</option>
-                                    <option value="2">הפסקתי לעשן</option>
-                                </select>
-                            </div>
-
-
-                            <div class="col-md-1 col-xs-12" ng-show="form.client.cSmoke === '2'">
-                                <datepicker date-format="dd/MM/yyyy">
-                                    <input placeholder="תאריך הפסקה" class="zilberman-date" type="text" ng-model="form.client.cQuitSmokeDate" >
-                                </datepicker>
-                            </div>
-                            <div ng-show="form.mate.cTaz2" >
-                                <div class="col-md-2 col-xs-12">
-                                    <select class="zilberman-dropdown col-md-3 col-xs-12" ng-model="form.mate.cSmoke" placeholder="עישון" name="smoking-mate" required>
-                                            <option value="" disabled selected> האם בת הזוג עשנה בעבר?</option>
-                                            <option value="1">כן</option>
-                                            <option value="0">ולא עישנתי בעבר</option>
-                                            <option value="2">הפסקתי לעשן</option>
-                                    </select>
-                                </div>
-                                
-                                <div class="col-md-1 col-xs-12" ng-show="form.mate.cSmoke === '2'">
-                                        <datepicker date-format="dd/MM/yyyy">
-                                            <input placeholder="תאריך הפסקה" class="zilberman-date" type="text" ng-model="form.mate.cQuitSmokeDate" >
-                                        </datepicker>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                      
-                        <div class="row line-distance">
-                           
-                            <div class="col-md-1 col-xs-12">
-                                <select class="zilberman-dropdown" ng-model="form.insuranceForm.morgage.pType" placeholder="סוג הנכס" name="asset-type" required>
-                                    <option value="" disabled selected> סוג הנכס</option>
-                                    <option value="1">בתהליך בנייה</option>
-                                    <option value="2">בית משותף</option>
-                                    <option value="3">בית פרטי</option>
-                                </select>
-                            </div>
-
-                            <div ng-show="form.insuranceForm.morgage.pType === '2'" class="col-md-1 col-xs-12">
-                                <input class="zilberman-input" placeholder="קומה" ng-model="form.insuranceForm.morgage.pFloor">
-                            </div>
-                            <div ng-show="form.insuranceForm.morgage.pType === '2'" class="col-md-1 col-xs-12">
-                                <input class="zilberman-input" placeholder="מתוך" ng-model="form.insuranceForm.morgage.pOutOfFloor">
-                            </div>
-                            <div class="col-md-1 col-xs-12">
-                                <input class="zilberman-input" placeholder="שטח בנוי במר" ng-model="form.insuranceForm.morgage.pSurface">
-                            </div>
-                            <div class="col-md-1 col-xs-12">
-                                <input class="zilberman-input" placeholder="עלות בנייה" ng-model="form.insuranceForm.morgage.pBuildCost">
-                            </div>
-                            <div class="col-md-1 col-xs-12">
-                                <input class="zilberman-input" placeholder="שוווי נכס" ng-model="form.insuranceForm.morgage.pPropertyValue">
-                            </div>
-
-                        </div>
-                    </div>
-                    <!-- רכב -->
-                    <div ng-show="insurance[1]" class="row">
-                        <div  class="row line-distance">
-                            <div class="col-md-1 col-xs-12">
-                                <input  class="zilberman-input" placeholder="תז" ng-model="form.client.cTaz1">
-                            </div>
-                            <div class="col-md-1 col-xs-12">
-                                <input class="zilberman-input" placeholder="שם פרטי" ng-model="form.client.cName">
-                            </div>
-
-                            <div  class="col-md-1 _720kb-datepicker-calendar-dayscol-xs-12">
-                                <input class="zilberman-input" placeholder="שם משפחה" ng-model="form.client.cFamily">
-                                <!--<input class="zilberman-input" placeholder="תז" ng-model="4">-->
-                            </div>
-                        </div>
-                        <div ng-repeat="car in form.insuranceForm.cars track by $index" class="row line-distance">
-
-                            <div class="col-md-2">
-                                <div class="row">
-                                    <div class="col-md-6 col-xs-12">
-                                        <select class="zilberman-dropdown" ng-model="form.insuranceForm.cars[$index].carTypeID" placeholder="יצרן" name="asset-type" required>
-                                            <option value="" disabled selected>יצרן</option>
-                                            <option value="1">אאודי</option>
-                                            <option value="227">אברת'</option>
-                                            <option value="2">אוטוביאנקי</option>
-                                            <option value="3">אולדסמוביל</option>
-                                            <option value="4">אוסטין</option>
-                                            <option value="5">אופל</option>
-                                            <option value="195">אינפיניטי</option>
-                                            <option value="264">אל.טי.איי</option>
-                                            <option value="6">אלפא-רומאו</option>
-                                            <option value="203">אם. ג'י. / MG</option>
-                                            <option value="250">אסטון מרטין</option>
-                                            <option value="7">ב.מ.וו</option>
-                                            <option value="8">ביואיק</option>
-                                            <option value="10">ג'יאו - Geo</option>
-                                            <option value="273">גי'פ / Jeep</option>
-                                            <option value="238">גרייט וול</option>
-                                            <option value="255">דאצ'יה</option>
-                                            <option value="11">דודג'</option>
-                                            <option value="12">דייהו</option>
-                                            <option value="13">דייהטסו</option>
-                                            <option value="14">הונדה</option>
-                                            <option value="15">וולוו</option>
-                                            <option value="16">טויוטה</option>
-                                            <option value="18">יגואר</option>
-                                            <option value="19">יונדאי</option>
-                                            <option value="20">לאדה</option>
-                                            <option value="156">לינקולן</option>
-                                            <option value="21">לנציה</option>
-                                            <option value="163">לקסוס</option>
-                                            <option value="22">מאזדה</option>
-                                            <option value="224">מזראטי</option>
-                                            <option value="187">מיני</option>
-                                            <option value="23">מיצובישי</option>
-                                            <option value="24">מרצדס</option>
-                                            <option value="25">ניסאן</option>
-                                            <option value="26">סאאב</option>
-                                            <option value="278">סאנגיונג</option>
-                                            <option value="27">סובארו</option>
-                                            <option value="28">סוזוקי</option>
-                                            <option value="29">סיאט</option>
-                                            <option value="30">סיטרואן</option>
-                                            <option value="32">סמארט</option>
-                                            <option value="31">סקודה</option>
-                                            <option value="34">פולקסווגן</option>
-                                            <option value="35">פונטיאק</option>
-                                            <option value="36">פורד</option>
-                                            <option value="37">פורשה</option>
-                                            <option value="38">פיאט</option>
-                                            <option value="33">פיג'ו</option>
-                                            <option value="225">פרארי</option>
-                                            <option value="39">קאדילק</option>
-                                            <option value="40">קיה</option>
-                                            <option value="41">קרייזלר</option>
-                                            <option value="42">רובר</option>
-                                            <option value="43">רנו</option>
-                                            <option value="44">שברולט</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-6 col-xs-12">
-                                        <select class="zilberman-dropdown" ng-model="form.insuranceForm.cars[$index].carYear" placeholder="יצרן" name="asset-type" required>
-                                            <option value="" disabled selected>שנת ייצור</option>
-                                            <option value="2018">2018</option>
-                                            <option value="2017">2017</option>
-                                            <option value="2016">2016</option>
-                                            <option value="2015">2015</option>
-                                            <option value="2014">2014</option>
-                                            <option value="2013">2013</option>
-                                            <option value="2012">2012</option>
-                                            <option value="2011">2011</option>
-                                            <option value="2010">2010</option>
-                                            <option value="2009">2009</option>
-                                            <option value="2008">2008</option>
-                                            <option value="2007">2007</option>
-                                            <option value="2006">2006</option>
-                                            <option value="2005">2005</option>
-                                            <option value="2004">2004</option>
-                                            <option value="2003">2003</option>
-                                            <option value="2002">2002</option>
-                                            <option value="2001">2001</option>
-                                            <option value="2000">2000</option>
-                                            <option value="1999">1999</option>
-                                            <option value="1998">1998</option>
-                                            <option value="1997">1997</option>
-                                            <option value="1996">1996</option>
-                                            <option value="1995">1995</option>
-                                            <option value="1994">1994</option>
-                                            <option value="1993">1993</option>
-                                            <option value="1992">1992</option>
-                                            <option value="1991">1991</option>
-                                            <option value="1990">1990</option>
-                                            <option value="1989">1989</option>
-                                            <option value="1988">1988</option>
-                                            <option value="1987">1987</option>
-                                            <option value="1986">1986</option>
-                                            <option value="1985">1985</option>
-                                            <option value="1984">1984</option>
-                                            <option value="1983">1983</option>
-                                            <option value="1982">1982</option>
-                                            <option value="1981">1981</option>
-                                            <option value="1980">1980</option>
-                                            <option value="1979">1979</option>
-                                            <option value="1978">1978</option>
-                                            <option value="1977">1977</option>
-                                            <option value="1976">1976</option>
-                                            <option value="1975">1975</option>
-                                            <option value="1974">1974</option>
-                                            <option value="1973">1973</option>
-                                            <option value="1972">1972</option>
-                                            <option value="1971">1971</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <!-- <div class="col-md-2 col-xs-12">
-                                <datepicker date-format="dd/MM/yyyy">
-                                    <input placeholder="תאריך חידוש" class="zilberman-date" type="text" ng-model="form.insuranceForm.cars[$index].carRenewDate" id="date5">
-                                </datepicker>
-
-                            </div> -->
-                            <div class="col-md-3 col-xs-12">
-                                
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <datepicker date-format="dd/MM/yyyy">
-                                            <input placeholder="תאריך חידוש" class="zilberman-date" type="text" ng-model="form.insuranceForm.cars[$index].carRenewDate" id="date5">
-                                        </datepicker>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <input class="zilberman-input" placeholder="פרמיית חובה" ng-model="form.insuranceForm.cars[$index].carHovaPrem">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <input class="zilberman-input" placeholder="פרמיית מקיף" ng-model="form.insuranceForm.cars[$index].carMekifPrem">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-5 col-xs-12">
-                                <div class="row">
-
-                                    <div class="col-md-4">
-                                        <input class="zilberman-input" placeholder="תביעות ב 3 שנים אחרונות" ng-model="form.insuranceForm.cars[$index].claimsCount">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="row">
-                                            <div class="col-md-9">
-                                                <select class="zilberman-dropdown" ng-model="form.insuranceForm.cars[$index].carInsurer" placeholder="חברה מבטחת" name="asset-type" required>
-                                                        <option value="" disabled selected>חברה מבטחת</option>
-                                                        <option value="1">כלל</option>
-                                                        <option value="2">מגדל</option>
-                                                        <option value="3">מנורה</option>
-                                                        <option value="4">הראל</option>
-                                                        <option value="5">הפניקס</option>
-                                                        <option value="6">שומרה</option>
-                                                        <option value="7">איילון</option>
-                                                        <option value="8">הכשרה</option>
-                                                        <option value="9">ביטוח חקלאי</option>
-                                                        <option value="10">קש</option>
-                                                        <option value="11">ביטוח ישיר</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-1">
-                                                <div ng-show="isNew">
-                                                    <i style="cursor:pointer;" ng-click="omitCar($index)" class="material-icons">delete_sweep</i>
-                                                </div>
-                                                <div ng-show="!isNew">
-                                                    <i style="cursor:pointer;" ng-click="showFiles($index)" class="material-icons">note_add</i>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-1">
-                                                <button ngf-select="carDoc($file, $invalidFiles)" accept="image/*" ngf-max-height="2000" ngf-max-size="1MB" class="car-btn">
-                                                    צרף קבצים
-                                                </button>
-                                            </div>
-                                        </div>                                        
-                                    </div>
-                                    
-                                    <!-- <div ng-show="!isNew" ng-click="showFiles($index)" class="col-md-1">
-                                        <i style="cursor:pointer;" ng-show="file" ng-click="" class="material-icons">delete_sweep</i>
-                                    </div> -->
-                                </div>
-
-                            </div>
-                        </div>
-                        <div ng-show="isNew"class="row">
-                            <button ng-click="add()" class="btn btn-info">הוסף רכב</button>
-                        </div>
-                        <!-- <div ng-show="isNew" class="row">
-                           
-                        </div> -->
-                    </div>
-                    <div ng-show="insurance[2]" class="row">
-                        <div  class="row line-distance">
-                            <div class="col-md-1 col-xs-12">
-                                <input  class="zilberman-input" placeholder="תז" ng-model="form.client.cTaz1">
-                            </div>
-                            <div class="col-md-1 col-xs-12">
-                                <input class="zilberman-input" placeholder="שם פרטי" ng-model="form.client.cName">
-                            </div>
-
-                            <div  class="col-md-1 col-xs-12">
-                                <input class="zilberman-input" placeholder="שם משפחה" ng-model="form.client.cFamily">
-                                <!--<input class="zilberman-input" placeholder="תז" ng-model="4">-->
-                            </div>
-                        </div>
-                        <div class="row line-distance">
-                            <div class="col-md-2">
-                                <select class="zilberman-dropdown" ng-model="form.insuranceForm.dira.diraType" placeholder="עישון"  required>
-                                    <option value="" disabled selected>סוג מבנה</option>
-                                    <option value="0">מבנה+תכולה</option>
-                                    <option value="1">מבנה</option>
-                                    <option value="2">תכולה בלבד</option>
-                                </select>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div ng-show="insurance[3]" class="row">
-
-                    </div>
+              
+                    
+                   
 
                 </div>
 
 
 
 
-            </div>
+            </div> -->
             <!-- הלוואת -->
-            <div ng-show="show[2]" id="description-3">
-                <div  class="row line-distance">
-                    <div class="col-md-1 col-xs-12">
-                        <input  class="zilberman-input" placeholder="תז" ng-model="form.client.cTaz1">
-                    </div>
-                    <div class="col-md-1 col-xs-12">
-                        <input class="zilberman-input" placeholder="שם פרטי" ng-model="form.client.cName">
-                    </div>
-
-                    <div  class="col-md-1 col-xs-12">
-                        <input class="zilberman-input" placeholder="שם משפחה" ng-model="form.client.cFamily">
-                        <!--<input class="zilberman-input" placeholder="תז" ng-model="4">-->
-                    </div>
-                </div>
-                <div class="row line-distance">
-                    <div class="col-md-1">
-                        <select class="zilberman-dropdown" ng-model="form.borrow.loanType" placeholder="עישון"  required>
-                            <option value="" disabled selected>סוג הלוואה</option>
-                            <option value="1">שפיצר</option>
-                            <option value="2">בלון</option>
-                        </select>
-                    </div>
-
-                    <div class="col-md-1 col-xs-12">
-                        <input class="zilberman-input" placeholder="סכום הלוואה" ng-model="form.borrow.loanValue">
-                    </div>
-                    <div class="col-md-1 col-xs-12">
-                        <input class="zilberman-input" placeholder="ריבית" ng-model="form.borrow.loanRate">
-                    </div>
-                    <div class="col-md-1 col-xs-12">
-                        <input class="zilberman-input" placeholder="מספר שנים נותרוו" ng-model="form.borrow.loanYrsToPay">
-                    </div>
-                    <div class="col-md-1 col-xs-12">
-                        <select class="zilberman-dropdown" ng-model="form.borrow.loanBank" placeholder="בנק מלווה" name="asset-type" required>
-                            <option value="" disabled selected> בנק</option>
-                            <option value="4">בנק יהב</option>
-                            <option value="10">בנק לאומי</option>
-                            <option value="11">בנק דיסקונט</option>
-                            <option value="12">בנק הפועלים</option>
-                            <option value="13">בנק אגוד</option>
-                            <option value="14">בנק אוצר החייל</option>
-                            <option value="17">בנק מרכנתיל דיסקונט</option>
-                            <option value="20">בנק מזרחי טפחות</option>
-                            <option value="30">בנק למסחר</option>
-                            <option value="31">בנק בינלאומי</option>
-                            <option value="46">בנק מסד</option>
-                            <option value="54">בנק ירושלים</option>
-                            <option value="68">בנק דקסיה</option>
-
-                        </select>                      
-                    </div>
-                </div>
-
-            </div>
+           
             <!--<div ng-show="show[3]" id="description-4">-->
             <!--</div>-->
 
@@ -530,7 +575,7 @@
 
 
 
-            </div>
+        </div>
 
     </div>
 

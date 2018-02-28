@@ -211,6 +211,32 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
             return true;
 
         }
+
+        $scope.save = () => {
+            if (!$scope.validate()) return;
+            toastr.info('הפניה נשלחה לשרת');
+            leadService.save($scope.form, $scope.isNew)
+                .then((done) => {
+                    console.log(done);
+                    if (done.data.status) {
+                        if ($scope.form.type === 1 && $scope.file) {
+                            $scope.uploadCarDoc(done.data.product.newCar);
+                        }
+                        done.data.msg.forEach(msg => {
+                            toastr.info(msg);
+                        })
+                    } else {
+                        done.data.msg.forEach(msg => {
+                            toastr.error(msg);
+                        })
+                        toastr.error('תקלה בשמירת ההפניה', 'תקלה');
+                    }
+                }).catch((err) => {
+                    console.log(err);
+                    toastr.error('תקלה בשמירת ההפניה', 'תקלה');
+                })
+        }
+
         $scope.click = (index) => {
             if (index === 3){
                 //$scope.convertType();

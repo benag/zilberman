@@ -38,11 +38,11 @@
                                                 <i class="material-icons">email</i>
                                             </span>
                                         <div class="form-group label-floating">
-                                            <label class="control-label label-rtl">אימייל</label>
-                                            <input type="text" ng-model="user.email" class="form-control black-line">
+                                            <label class="control-label label-rtl">ת"ז</label>
+                                            <input type="text" ng-model="user.id" class="form-control black-line">
                                         </div>
                                     </div>
-                                    <div dir="rtl" ng-show="!sms" class="input-group input-rtl">
+                                    <div dir="rtl" class="input-group input-rtl">
                                             <span class="input-group-addon">
                                                 <i class="material-icons">lock_outline</i>
                                             </span>
@@ -51,23 +51,24 @@
                                             <input type="password" ng-model="user.password" class="form-control black-line">
                                         </div>
                                     </div>
-                                    <div ng-show="sms" dir="rtl" class="input-group input-rtl">
-                                            <span class="input-group-addon">
-                                                <i class="material-icons">lock_outline</i>
-                                            </span>
-                                        <div class="form-group label-floating">
-                                            <label class="control-label label-rtl">הכנס קוד סמס</label>
-                                            <input type="password" ng-model="user.sms" class="form-control black-line sms-code">
-                                            <button ng-click="enterSMS()" class="sms-btn">הכנס</button>
-                                        </div>
+                                    <div  dir="rtl" class="input-group input-rtl">
+                                        <span class="input-group-addon">
+                                            <i class="material-icons">lock_outline</i>
+                                        </span>
+                                    <div class="form-group label-floating">
+                                        <label class="control-label label-rtl">או הכנס קוד סמס</label>
+                                        <input type="password" ng-model="user.sms" class="form-control black-line sms-code">
+                                        <button ng-click="enterSMS()" class="sms-btn">שלח לי קוד</button>
                                     </div>
-                                    <div ng-show="!sms" class="footer text-center">
-                                        <button ng-click="login()" class="btn btn-lg login-btn">כניסה</button>
-                                    </div>
+                                    
+                                </div>
+                                <div class="footer text-center">
+                                    <button ng-click="login()" class="btn btn-lg login-btn">כניסה</button>
+                                </div>
 
                                     <!--<div class="register-link" ><a ng-click="changeToRegister()">אנה רישמו אותי</a></div>-->
-                                </div>
-                                <div ng-show="!showLogin" class="card-content">
+                               
+                                <!-- <div ng-show="!showLogin" class="card-content">
 
                                     <div dir="rtl" class="input-group input-rtl">
                                             <span class="input-group-addon">
@@ -120,7 +121,7 @@
                                     </div>
 
                                     <div class="register-link" ><a ng-click="changeToLogin()">כניסה</a></div>
-                                </div>
+                                </div> -->
 
                             </div>
                         </div>

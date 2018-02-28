@@ -11,44 +11,47 @@
             <input ng-model="search" type="text"/><button ng-click="searchRecords()" class="search-btn">חיפוש</button>
         </div>
         <div class="row" style="margin-top:20px;">
-            <table class="table col-md-12 table-hover">
-                <tr class="table-header">
-                    <!-- <th>
-                        מספר
-                    </th> -->
-                    <!-- <th>
-                        תאריך
-                    </th> -->
-                    <th>
-                        תז
-                    </th>
-                    <th>
-                        שם מבוטח
-                    </th>
-                    <th>
-                        סוג פניה
-                    </th>
-                    <!-- <th>
-                        חודש תגמול
-                    </th>
-                    <th>
-                        סכום תגמול
-                    </th>
-                    <th>
-                        סטטוס
-                    </th> -->
-
-                </tr>
-                <tr style="cursor:pointer;" ng-click="goToClient($index)" ng-repeat=" product in products track by $index">
-                    <!-- <td>{{product.pID}}</td> -->
-                    <!-- <td>{{}}</td> -->
+            <table class="table col-md-12 table-hover" ts-wrapper>
+                <thead>
+                    <tr class="table-header">
+                        <th>
+                            מס LEAD
+                        </th>
+                        <th>
+                            תאריך יצירה
+                        </th>
+                        <th>
+                            תז + שם מבוטח ראשי
+                        </th>
+                        <th>
+                            סוג הפניה
+                        </th>
+                        <th>
+                            חודש תגמול
+                        </th>
+                        <th>
+                            סכום תגמול
+                        </th>
+                        <th>
+                            סטטוס LEAD
+                        </th>
+                        <th>
+                            הערות
+                        </th>
+    
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    <!-- <tr style="cursor:pointer;" ng-click="goToClient($index)" ng-repeat=" product in products track by $index" ts-repeat>
+                    
                     <td>{{product.cTaz1}}</td>
                     <td>{{product.cName + ' ' + product.cFamily}}</td>
                     <td>{{product.pType}}</td>
-                    <!-- <td>{{}}</td>
-                    <td>{{}}</td>
-                    <td>{{}}</td> -->
-                </tr>
+                    
+                </tr> -->
+                </tbody>
+                
             </table>
             <img class="loader" ng-show="loading" src="/img/giphy.gif">
         </div>

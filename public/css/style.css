@@ -587,8 +587,9 @@ td {
     color:white;
 }
 .newEntry .content {
-    margin-top:70px;
+    margin-top:145px;
     padding-right:100px;
+    /* overflow-y: auto; */
 }
 .newEntry .nav-pills.nav-pills-warning > li.active > a, .nav-pills.nav-pills-warning > li.active > a:focus, .nav-pills.nav-pills-warning > li.active > a:hover{
     background-color: #2676d0;
@@ -675,7 +676,7 @@ input:-ms-input-placeholder {
     background-color: #2676d0;
     color: white;
     border: none;
-    width: 55px;
+    width: 85px;
     height: 30px;
     position: relative;
     top:10px;
@@ -711,6 +712,16 @@ input:-ms-input-placeholder {
 .input-select{
     background-color: transparent;
     border: none;
+}
+.aphnia{
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
+.aphnia-text{
+    font-size:20px;
+}
+.zilberman-checkbox{
+    margin-left:5px!important;
 }
 /* css for mobile */
 
@@ -761,5 +772,6 @@ input:-ms-input-placeholder {
     .link-btn{
         margin-right: 10px;
     }
+
     
   }

@@ -2,3 +2,5 @@
 node_modules/
 public/lib
 public/uploads/
+combined.log
+error.log
