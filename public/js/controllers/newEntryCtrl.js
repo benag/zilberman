@@ -70,6 +70,7 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
             } 
         }
 
+        
         $scope.setProduct = (p) => {
             let type = p.type;
             if (type === 3){
@@ -112,14 +113,31 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
             
         }
         $scope.openMate = () => {
-            $scope.widgetExpanded = !$scope.widgetExpanded;
+            $scope.widgetExpanded= !$scope.widgetExpanded;
             $scope.form.mate.cFamily = $scope.form.client.cFamily 
         }
         $scope.validateNextStep = () => {
-            if (!$scope.form.client.cTaz1 || $scope.form.client.cTaz1.length > 9 || isNaN($scope.form.client.cTaz1)) return toastr.error('תז אינה תקינה');
-            if (!$scope.form.client.cName || !isNaN($scope.form.client.cName)) return toastr.error('יש למלא שם פרטי');
-            if (!$scope.form.client.cFamily || !isNaN($scope.form.client.cFamily)) return toastr.error('יש למלא שם משפחה');
-            if (!$scope.form.client.cTaz1 || $scope.form.client.cTaz1.length > 9 || isNaN(num)) return toastr.error('תז אינה תקינה');
+            let msg = '';
+            if (!$scope.form.client.cTaz1 || $scope.form.client.cTaz1.length > 9 || isNaN($scope.form.client.cTaz1)) msg = 'תז אינה תקינה';
+            if (!$scope.form.client.cName || !isNaN($scope.form.client.cName)) msg = 'יש למלא שם פרטי';
+            if (!$scope.form.client.cFamily || !isNaN($scope.form.client.cFamily)) msg ='יש למלא שם משפחה';
+            if (!$scope.form.client.cMobile || $scope.form.client.cMobile.length < 8 ) msg = 'מספר טלפון סלולרי אינו תקין';
+            if (!$scope.form.client.cPhone || $scope.form.client.cPhone.length < 8) msg = 'מספר טלפון אינו תקין';
+            if (!$scope.form.client.cEmail || !$scope.form.client.cEmail.indexOf('@') === -1) msg = 'אימייל אינו תקין';
+            if ($scope.widgetExpanded){
+                if (!$scope.form.mate.cTaz1 || $scope.form.mate.cTaz1.length > 9 || isNaN($scope.form.client.cTaz1)) msg = 'תז אינה תקינה';
+                if (!$scope.form.mate.cName || !isNaN($scope.form.mate.cName)) msg = 'יש למלא שם פרטי';
+                if (!$scope.form.mate.cFamily || !isNaN($scope.form.mate.cFamily)) msg = 'יש למלא שם משפחה';
+                if (!$scope.form.mate.cMobile || $scope.form.mate.cMobile.length < 8) msg = 'מספר טלפון סלולרי אינו תקין';
+                if (!$scope.form.mate.cPhone || $scope.form.mate.cPhone.length < 8) msg = 'מספר טלפון אינו תקין';
+                if (!$scope.form.mate.cEmail || !$scope.form.mate.cEmail.indexOf('@') === -1) msg = 'אימייל אינו תקין';
+            }
+            if (msg !== ''){
+                toastr.error(msg);
+                return false;
+            }
+            return true; 
+            
         }
 
         $scope.openCarModal = (docs, car) => {
@@ -179,10 +197,15 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
 
 
         $scope.add = () => {
-            if ($scope.cars.length <= 3) $scope.cars.push({});
+            
+            if ($scope.form.insuranceForm.cars.length <= 3) $scope.form.insuranceForm.cars.push({});
         };
 
         $scope.setInsurance = function(index) {
+            if (!$scope.validateNextStep()){
+                for (let i = 0; i < $scope.insurance.length; i++) $scope.insurance[i] = false;
+                return;
+            } 
             for (let i = 0 ; i < $scope.insurance.length ;i++  ) {
                 (i === index) ? $scope.insurance[i] = true : $scope.insurance[i] = false;
             }

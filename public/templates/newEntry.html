@@ -37,14 +37,14 @@
 
                 <div class="row">
                     <div class="col-md-1 col-xs-12 mobile-row">
-                        <input  ng-class="{'inputMust': !form.client.cTaz1}" class="zilberman-input" placeholder="תז" ng-model="form.client.cTaz1">
+                        <input  ng-class="{'inputMust': !form.client.cTaz1}" restrict-to="[0-9]" ng-pattern="onlyNumbers" class="zilberman-input" placeholder="תז" ng-model="form.client.cTaz1">
                     </div>
                     <div class="col-md-1 col-xs-12 mobile-row">
-                        <input ng-class="{'inputMust': !form.client.cName}" class="zilberman-input" placeholder="שם פרטי" ng-model="form.client.cName">
+                        <input ng-class="{'inputMust': !form.client.cName}" restrict-to="[\u0590-\u05fe \ ]" class="zilberman-input" placeholder="שם פרטי" ng-model="form.client.cName">
                     </div>
 
                     <div  class="col-md-1 col-xs-12 mobile-row">
-                        <input class="zilberman-input" ng-class="{'inputMust': !form.client.cFamily}" placeholder="שם משפחה" ng-model="form.client.cFamily">
+                        <input class="zilberman-input" restrict-to="[\u0590-\u05fe \ ]" ng-class="{'inputMust': !form.client.cFamily}" placeholder="שם משפחה" ng-model="form.client.cFamily">
                         <!--<input class="zilberman-input" placeholder="תז" ng-model="4">-->
                     </div>
                     <div class="col-md-1 col-xs-12 mobile-row">
@@ -55,23 +55,23 @@
                         </select>
                     </div>
                     <div  class="col-md-1 col-xs-12 mobile-row">
-                        <input class="zilberman-input"  ng-class="{'inputMust': !form.client.cMobile}" placeholder="טלפון נייד" ng-model="form.client.cMobile">
+                        <input class="zilberman-input" restrict-to="[0-9, -]" ng-class="{'inputMust': !form.client.cMobile}" placeholder="טלפון נייד" ng-model="form.client.cMobile">
                     </div>
                     <div  class="col-md-1 col-xs-12 mobile-row">
-                        <input class="zilberman-input" ng-class="{'inputMust': !form.client.cPhone}" placeholder="טלפון נוסף" ng-model="form.client.cPhone">
+                        <input class="zilberman-input" restrict-to="[0-9, -]" ng-class="{'inputMust': !form.client.cPhone}" placeholder="טלפון נוסף" ng-model="form.client.cPhone">
                     </div>
                     <div class="col-md-2 col-xs-12">
                         <input  class="zilberman-input" ng-class="{'inputMust': !form.client.cEmail}" placeholder="אימייל" ng-model="form.client.cEmail">
                     </div>
                     <div class="col-md-1 col-xs-12">
                         <!-- <datepicker class="date-pick-zilberm" date-format="dd/MM/yyyy"> -->
-                            <input placeholder="תאריך לידה" class="zilberman-date" type="text" ng-model="form.client.cBDate">
+                            <input placeholder="תאריך לידה" restrict-to="[0-9, \/]" class="zilberman-date" type="text" ng-model="form.client.cBDate">
                         <!-- </datepicker> -->
                         <!--<input placeholder="תאריך לידה" class="zilberman-date" type="text" onfocus="(this.type='date', this.placeholder='')" onblur="(this.type='text', this.placeholder='תאריך לידה')" ng-model="form.birthdate" id="date">-->
                         <!--<input placeholder="תאריך לידה" class="zilberman-date" type="text" onfocus="(this.type='date', this.placeholder='')" onblur="(this.type='text', this.placeholder='תאריך לידה')" ng-model="form.birthdate" id="date">-->
                     </div>
                     <div class="col-md-1 col-xs-12">
-                        <input placeholder="תאריך הנפקת תז" class="zilberman-date" type="text" ng-model="form.client.cTazDate">
+                        <input placeholder="תאריך הנפקת תז"  restrict-to="[0-9, \/]" class="zilberman-date" type="text" ng-model="form.client.cTazDate">
                     </div>
                     <div class="col-md-1 col-xs-12">
                         <i style="cursor:pointer;" ng-click="resetClient()" class="material-icons">delete_sweep</i>
@@ -84,14 +84,14 @@
                 <div class="mate-below" ng-slide-down="widgetExpanded"  duration="0.3">
                     <div class="row" >
                         <div class="col-md-1 col-xs-12">
-                            <input ng-class="{'inputMust': !form.mate.cTaz2}" class="zilberman-input" placeholder="תז" ng-model="form.mate.cTaz2">
+                            <input ng-class="{'inputMust': !form.mate.cTaz2}" restrict-to="[0-9]" class="zilberman-input" placeholder="תז" ng-model="form.mate.cTaz2">
                         </div>
                         <div class="col-md-1 col-xs-12">
-                            <input ng-class="{'inputMust': !form.mate.cName}" class="zilberman-input" placeholder="שם פרטי" ng-model="form.mate.cName">
+                            <input ng-class="{'inputMust': !form.mate.cName}" restrict-to="[\u0590-\u05fe \ ]" class="zilberman-input" placeholder="שם פרטי" ng-model="form.mate.cName">
                         </div>
 
                         <div  class="col-md-1 col-xs-12">
-                            <input class="zilberman-input" ng-class="{'inputMust': !form.mate.cFamily}" placeholder="שם משפחה" ng-model="form.mate.cFamily">
+                            <input class="zilberman-input" restrict-to="[\u0590-\u05fe \ ]" ng-class="{'inputMust': !form.mate.cFamily}" placeholder="שם משפחה" ng-model="form.mate.cFamily">
                             <!--<input class="zilberman-input" placeholder="תז" ng-model="4">-->
                         </div>
                         <div class="col-md-1 col-xs-12">
@@ -103,23 +103,23 @@
                             </select>
                         </div>
                         <div  class="col-md-1 col-xs-12">
-                            <input class="zilberman-input" ng-class="{'inputMust': !form.mate.cMobile}" placeholder="טלפון נייד" ng-model="form.mate.cMobile">
+                            <input class="zilberman-input" restrict-to="[0-9, -]" ng-class="{'inputMust': !form.mate.cMobile}" placeholder="טלפון נייד" ng-model="form.mate.cMobile">
                         </div>
                         <div  class="col-md-1 col-xs-12">
-                            <input class="zilberman-input" placeholder="טלפון נוסף" ng-model="form.mate.cPhone">
+                            <input class="zilberman-input" restrict-to="[0-9, -]" placeholder="טלפון נוסף" ng-model="form.mate.cPhone">
                         </div>
                         <div class="col-md-2 col-xs-12">
                             <input  class="zilberman-input" ng-class="{'inputMust': !form.mate.cEmail}" placeholder="אימייל" ng-model="form.mate.cEmail">
                         </div>
                         <div class="col-md-1 col-xs-12">
                             <datepicker class="date-pick-zilberm" date-format="dd/MM/yyyy">
-                                <input placeholder="תאריך לידה" class="zilberman-date" type="text" ng-model="form.mate.cBDate">
+                                <input placeholder="תאריך לידה" restrict-to="[0-9, \/]" class="zilberman-date" type="text" ng-model="form.mate.cBDate">
                             </datepicker>
                         </div>
                         <div class="col-md-1 col-xs-12">
-                            <datepicker class="date-pick-zilberm" date-format="dd/MM/yyyy">
-                                <input placeholder="תאריך הנפקת תז" class="zilberman-date" type="text" ng-model="form.mate.cTazDate">
-                            </datepicker>
+                            <!-- <datepicker class="date-pick-zilberm" date-format="dd/MM/yyyy"> -->
+                                <input placeholder="תאריך הנפקת תז" restrict-to="[0-9, \/]" class="zilberman-date" type="text" ng-model="form.mate.cTazDate">
+                            <!-- </datepicker> -->
                         </div>
                         <div class="col-md-1 col-xs-12">
                             <i style="cursor:pointer;" ng-click="resetMate()" class="material-icons">delete_sweep</i>
@@ -135,7 +135,7 @@
                         <input ng-model="insurance[0]" ng-click="setInsurance(0)" class="zilberman-checkbox" type="checkbox">ביטוח משכנתא
                     </div>
                     <div class="row">
-                        <input ng-model="insurance[3]" ng-click="setInsurance(3)" class="zilberman-checkbox" type="checkbox">תיק ביטוח פרטי
+                        <input ng-model="insurance[3]" ng-click="setInsurance(3)" class="zilberman-checkbox" type="checkbox">תיק ביטוחי פרט
                     </div>
                     <div class="row">
                         <input ng-model="insurance[1]" ng-click="setInsurance(1)" class="zilberman-checkbox" type="checkbox">ביטוח רכב
@@ -146,19 +146,19 @@
                 </div>
                 <!-- ביטוח משכנתא-->
                 <div ng-show="insurance[0]" >
-                    <!-- <div  class="row line-distance">
+                    <div  class="row line-distance">
                         <div class="col-md-1 col-xs-12">
-                            <input  class="zilberman-input" placeholder="תז" ng-model="form.client.cTaz1">
+                            <input  class="zilberman-input" placeholder="תז" restrict-to="[0-9]" ng-model="form.client.cTaz1">
                         </div>
                         <div class="col-md-1 col-xs-12">
-                            <input class="zilberman-input" placeholder="שם פרטי" ng-model="form.client.cName">
+                            <input class="zilberman-input" restrict-to="[\u0590-\u05fe \ ]" placeholder="שם פרטי" ng-model="form.client.cName">
                         </div>
 
                         <div  class="col-md-1 col-xs-12">
-                            <input class="zilberman-input" placeholder="שם משפחה" ng-model="form.client.cFamily">
+                            <input class="zilberman-input" restrict-to="[\u0590-\u05fe \ ]" placeholder="שם משפחה" ng-model="form.client.cFamily">
                    
                         </div>
-                    </div> -->
+                    </div>
                     <div class="row line-distance">
                         
                         <div class="col-md-2 col-xs-12">
@@ -174,7 +174,7 @@
                                 <div class="col-md-5 col-xs-12">
                                     <div  ng-show="form.client.cSmoke === '2'">
                                         <!-- <datepicker date-format="dd/MM/yyyy"> -->
-                                            <input placeholder="תאריך הפסקה" class="zilberman-date" type="text" ng-model="form.client.cQuitSmokeDate" >
+                                            <input placeholder="תאריך הפסקה" restrict-to="[0-9, \/]" class="zilberman-date" type="text" ng-model="form.client.cQuitSmokeDate" >
                                         <!-- </datepicker> -->
                                     </div>
                                 </div>
@@ -197,7 +197,7 @@
                             
                             <div class="col-md-1 col-xs-12" ng-show="form.mate.cSmoke === '2'">
                                     <datepicker date-format="dd/MM/yyyy">
-                                        <input placeholder="תאריך הפסקה" class="zilberman-date" type="text" ng-model="form.mate.cQuitSmokeDate" >
+                                        <input placeholder="תאריך הפסקה" restrict-to="[0-9, \/]" class="zilberman-date" type="text" ng-model="form.mate.cQuitSmokeDate" >
                                     </datepicker>
                                 
                             </div>
@@ -216,19 +216,19 @@
                         </div>
 
                         <div ng-show="form.insuranceForm.morgage.pType === '2'" class="col-md-1 col-xs-12">
-                            <input class="zilberman-input" placeholder="קומה" ng-model="form.insuranceForm.morgage.pFloor">
+                            <input class="zilberman-input" restrict-to="[0-9]" placeholder="קומה" ng-model="form.insuranceForm.morgage.pFloor">
                         </div>
                         <div ng-show="form.insuranceForm.morgage.pType === '2'" class="col-md-1 col-xs-12">
-                            <input class="zilberman-input" placeholder="מתוך" ng-model="form.insuranceForm.morgage.pOutOfFloor">
+                            <input class="zilberman-input" restrict-to="[0-9]" placeholder="מתוך" ng-model="form.insuranceForm.morgage.pOutOfFloor">
                         </div>
                         <div class="col-md-1 col-xs-12">
-                            <input class="zilberman-input" placeholder="שטח בנוי במר" ng-model="form.insuranceForm.morgage.pSurface">
+                            <input class="zilberman-input" restrict-to="[0-9]" placeholder="שטח בנוי במר" ng-model="form.insuranceForm.morgage.pSurface">
                         </div>
                         <div class="col-md-1 col-xs-12">
-                            <input class="zilberman-input" placeholder="עלות בנייה" ng-model="form.insuranceForm.morgage.pBuildCost">
+                            <input class="zilberman-input" restrict-to="[0-9]" placeholder="עלות בנייה" ng-model="form.insuranceForm.morgage.pBuildCost">
                         </div>
                         <div class="col-md-1 col-xs-12">
-                            <input class="zilberman-input" placeholder="שוווי נכס" ng-model="form.insuranceForm.morgage.pPropertyValue">
+                            <input class="zilberman-input" restrict-to="[0-9]" placeholder="שווי נכס" ng-model="form.insuranceForm.morgage.pPropertyValue">
                         </div>
                         <div class="col-md-1 col-xs-12">
                             <i style="cursor:pointer;" ng-click="resetMorgage()" class="material-icons">delete_sweep</i>
@@ -259,13 +259,13 @@
                             </div>
         
                             <div class="col-md-1 col-xs-12">
-                                <input class="zilberman-input" placeholder="סכום הלוואה" ng-model="form.borrow.loanValue">
+                                <input class="zilberman-input" restrict-to="[0-9]" placeholder="סכום הלוואה" ng-model="form.borrow.loanValue">
                             </div>
                             <div class="col-md-1 col-xs-12">
-                                <input class="zilberman-input" placeholder="ריבית" ng-model="form.borrow.loanRate">
+                                <input class="zilberman-input" restrict-to="[0-9 .]" placeholder="ריבית" ng-model="form.borrow.loanRate">
                             </div>
                             <div class="col-md-1 col-xs-12">
-                                <input class="zilberman-input" placeholder="מספר שנים נותרוו" ng-model="form.borrow.loanYrsToPay">
+                                <input class="zilberman-input" restrict-to="[0-9 .]" placeholder="מספר שנים נותרוו" ng-model="form.borrow.loanYrsToPay">
                             </div>
                             <div class="col-md-1 col-xs-12">
                                 <select class="zilberman-dropdown" ng-model="form.borrow.loanBank" placeholder="בנק מלווה" name="asset-type" required>
@@ -300,20 +300,20 @@
                 </div>
 
                 <!--רכב -->
-                <div ng-show="insurance[1]" class="row">
-                    <!-- <div  class="row line-distance">
+                <div ng-show="insurance[1]"  class="row">
+                    <div class="row line-distance">
                         <div class="col-md-1 col-xs-12">
-                            <input  class="zilberman-input" placeholder="תז" ng-model="form.client.cTaz1">
+                            <input class="zilberman-input" placeholder="תז" restrict-to="[0-9]" ng-model="form.client.cTaz1">
                         </div>
                         <div class="col-md-1 col-xs-12">
-                            <input class="zilberman-input" placeholder="שם פרטי" ng-model="form.client.cName">
+                            <input class="zilberman-input" restrict-to="[\u0590-\u05fe \ ]" placeholder="שם פרטי" ng-model="form.client.cName">
                         </div>
-
-                        <div  class="col-md-1 _720kb-datepicker-calendar-dayscol-xs-12">
-                            <input class="zilberman-input" placeholder="שם משפחה" ng-model="form.client.cFamily">
-                          
+                    
+                        <div class="col-md-1 col-xs-12">
+                            <input class="zilberman-input" restrict-to="[\u0590-\u05fe \ ]" placeholder="שם משפחה" ng-model="form.client.cFamily">
+                    
                         </div>
-                    </div> -->
+                    </div>
                     <div ng-repeat="car in form.insuranceForm.cars track by $index" class="row line-distance">
 
                         <div class="col-md-2">
@@ -447,14 +447,14 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <datepicker date-format="dd/MM/yyyy">
-                                        <input placeholder="תאריך חידוש" class="zilberman-date" type="text" ng-model="form.insuranceForm.cars[$index].carRenewDate" id="date5">
+                                        <input placeholder="תאריך חידוש" restrict-to="[0-9, \/]" class="zilberman-date" type="text" ng-model="form.insuranceForm.cars[$index].carRenewDate" id="date5">
                                     </datepicker>
                                 </div>
                                 <div class="col-md-4">
-                                    <input class="zilberman-input" placeholder="פרמיית חובה" ng-model="form.insuranceForm.cars[$index].carHovaPrem">
+                                    <input class="zilberman-input" restrict-to="[0-9]" placeholder="פרמיית חובה" ng-model="form.insuranceForm.cars[$index].carHovaPrem">
                                 </div>
                                 <div class="col-md-4">
-                                    <input class="zilberman-input" placeholder="פרמיית מקיף" ng-model="form.insuranceForm.cars[$index].carMekifPrem">
+                                    <input class="zilberman-input" restrict-to="[0-9]" placeholder="פרמיית מקיף" ng-model="form.insuranceForm.cars[$index].carMekifPrem">
                                 </div>
                             </div>
                         </div>
@@ -462,7 +462,7 @@
                             <div class="row">
 
                                 <div class="col-md-4">
-                                    <input class="zilberman-input" placeholder="תביעות ב 3 שנים אחרונות" ng-model="form.insuranceForm.cars[$index].claimsCount">
+                                    <input class="zilberman-input" restrict-to="[0-9]" placeholder="תביעות ב 3 שנים אחרונות" ng-model="form.insuranceForm.cars[$index].claimsCount">
                                 </div>
                                 <div class="col-md-4">
                                     <div class="row">
@@ -516,19 +516,19 @@
                     </div> -->
                 </div>
                 <div ng-show="insurance[2]" class="row">
-                    <!-- <div  class="row line-distance">
+                    <div class="row line-distance">
                         <div class="col-md-1 col-xs-12">
-                            <input  class="zilberman-input" placeholder="תז" ng-model="form.client.cTaz1">
+                            <input class="zilberman-input" placeholder="תז" restrict-to="[0-9]" ng-model="form.client.cTaz1">
                         </div>
                         <div class="col-md-1 col-xs-12">
-                            <input class="zilberman-input" placeholder="שם פרטי" ng-model="form.client.cName">
+                            <input class="zilberman-input" restrict-to="[\u0590-\u05fe \ ]" placeholder="שם פרטי" ng-model="form.client.cName">
                         </div>
-
-                        <div  class="col-md-1 col-xs-12">
-                            <input class="zilberman-input" placeholder="שם משפחה" ng-model="form.client.cFamily">
-                            
+                    
+                        <div class="col-md-1 col-xs-12">
+                            <input class="zilberman-input" restrict-to="[\u0590-\u05fe \ ]" placeholder="שם משפחה" ng-model="form.client.cFamily">
+                    
                         </div>
-                    </div> -->
+                    </div>
                     <div class="row line-distance">
                         <div class="col-md-2">
                             <select class="zilberman-dropdown" ng-model="form.insuranceForm.dira.diraType" placeholder="עישון"  required>
@@ -545,7 +545,7 @@
                 <div ng-show="insurance[3]" class="row">
                     <div class="row line-distance">
                         <div class="col-md-2">
-                                <input class="zilberman-input" placeholder="פרמייה משוערת היום" ng-model="form.insuranceForm.prati.carHovaPrem">
+                                <input class="zilberman-input" restrict-to="[0-9]" placeholder="פרמייה משוערת היום" ng-model="form.insuranceForm.prati.carHovaPrem">
                         </div>
                     </div>
                     <div class="row col-md-offset-10 col-md-1">
