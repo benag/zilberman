@@ -20,7 +20,7 @@ angular.module('ganim').controller('loginCtrl', ['$scope', '$stateParams', '$loc
             $('.card').removeClass('card-hidden');
         }, 700);
 
-
+        
         $scope.validateAndContinue = function(){
             // 1. look for local storage with date. if exist go to next else ask for validation, or registration
             userMng.getUser($scope.user.email, $scope.user.password )

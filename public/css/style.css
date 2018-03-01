@@ -727,7 +727,9 @@ input:-ms-input-placeholder {
     margin-left:5px!important;
 }
 /* css for mobile */
-
+.inputMust {
+    border-bottom: 1px solid red;
+}
 @media (min-width: 320px) and (max-width: 480px) {
   
     .mobile-container{

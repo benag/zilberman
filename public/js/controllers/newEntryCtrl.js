@@ -115,6 +115,13 @@ angular.module('ganim').controller('newEntryCtrl', ['$scope', '$stateParams', '$
             $scope.widgetExpanded = !$scope.widgetExpanded;
             $scope.form.mate.cFamily = $scope.form.client.cFamily 
         }
+        $scope.validateNextStep = () => {
+            if (!$scope.form.client.cTaz1 || $scope.form.client.cTaz1.length > 9 || isNaN($scope.form.client.cTaz1)) return toastr.error('תז אינה תקינה');
+            if (!$scope.form.client.cName || !isNaN($scope.form.client.cName)) return toastr.error('יש למלא שם פרטי');
+            if (!$scope.form.client.cFamily || !isNaN($scope.form.client.cFamily)) return toastr.error('יש למלא שם משפחה');
+            if (!$scope.form.client.cTaz1 || $scope.form.client.cTaz1.length > 9 || isNaN(num)) return toastr.error('תז אינה תקינה');
+        }
+
         $scope.openCarModal = (docs, car) => {
             
             var parentElem = undefined;

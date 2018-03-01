@@ -37,14 +37,14 @@
 
                 <div class="row">
                     <div class="col-md-1 col-xs-12 mobile-row">
-                        <input  class="zilberman-input" placeholder="תז" ng-model="form.client.cTaz1">
+                        <input  ng-class="{'inputMust': !form.client.cTaz1}" class="zilberman-input" placeholder="תז" ng-model="form.client.cTaz1">
                     </div>
                     <div class="col-md-1 col-xs-12 mobile-row">
-                        <input class="zilberman-input" placeholder="שם פרטי" ng-model="form.client.cName">
+                        <input ng-class="{'inputMust': !form.client.cName}" class="zilberman-input" placeholder="שם פרטי" ng-model="form.client.cName">
                     </div>
 
                     <div  class="col-md-1 col-xs-12 mobile-row">
-                        <input class="zilberman-input" placeholder="שם משפחה" ng-model="form.client.cFamily">
+                        <input class="zilberman-input" ng-class="{'inputMust': !form.client.cFamily}" placeholder="שם משפחה" ng-model="form.client.cFamily">
                         <!--<input class="zilberman-input" placeholder="תז" ng-model="4">-->
                     </div>
                     <div class="col-md-1 col-xs-12 mobile-row">
@@ -55,13 +55,13 @@
                         </select>
                     </div>
                     <div  class="col-md-1 col-xs-12 mobile-row">
-                        <input class="zilberman-input" placeholder="טלפון נייד" ng-model="form.client.cMobile">
+                        <input class="zilberman-input"  ng-class="{'inputMust': !form.client.cMobile}" placeholder="טלפון נייד" ng-model="form.client.cMobile">
                     </div>
                     <div  class="col-md-1 col-xs-12 mobile-row">
-                        <input class="zilberman-input" placeholder="טלפון נוסף" ng-model="form.client.cPhone">
+                        <input class="zilberman-input" ng-class="{'inputMust': !form.client.cPhone}" placeholder="טלפון נוסף" ng-model="form.client.cPhone">
                     </div>
                     <div class="col-md-2 col-xs-12">
-                        <input  class="zilberman-input" placeholder="אימייל" ng-model="form.client.cEmail">
+                        <input  class="zilberman-input" ng-class="{'inputMust': !form.client.cEmail}" placeholder="אימייל" ng-model="form.client.cEmail">
                     </div>
                     <div class="col-md-1 col-xs-12">
                         <!-- <datepicker class="date-pick-zilberm" date-format="dd/MM/yyyy"> -->
@@ -84,14 +84,14 @@
                 <div class="mate-below" ng-slide-down="widgetExpanded"  duration="0.3">
                     <div class="row" >
                         <div class="col-md-1 col-xs-12">
-                            <input  class="zilberman-input" placeholder="תז" ng-model="form.mate.cTaz2">
+                            <input ng-class="{'inputMust': !form.mate.cTaz2}" class="zilberman-input" placeholder="תז" ng-model="form.mate.cTaz2">
                         </div>
                         <div class="col-md-1 col-xs-12">
-                            <input class="zilberman-input" placeholder="שם פרטי" ng-model="form.mate.cName">
+                            <input ng-class="{'inputMust': !form.mate.cName}" class="zilberman-input" placeholder="שם פרטי" ng-model="form.mate.cName">
                         </div>
 
                         <div  class="col-md-1 col-xs-12">
-                            <input class="zilberman-input" placeholder="שם משפחה" ng-model="form.mate.cFamily">
+                            <input class="zilberman-input" ng-class="{'inputMust': !form.mate.cFamily}" placeholder="שם משפחה" ng-model="form.mate.cFamily">
                             <!--<input class="zilberman-input" placeholder="תז" ng-model="4">-->
                         </div>
                         <div class="col-md-1 col-xs-12">
@@ -103,13 +103,13 @@
                             </select>
                         </div>
                         <div  class="col-md-1 col-xs-12">
-                            <input class="zilberman-input" placeholder="טלפון נייד" ng-model="form.mate.cMobile">
+                            <input class="zilberman-input" ng-class="{'inputMust': !form.mate.cMobile}" placeholder="טלפון נייד" ng-model="form.mate.cMobile">
                         </div>
                         <div  class="col-md-1 col-xs-12">
                             <input class="zilberman-input" placeholder="טלפון נוסף" ng-model="form.mate.cPhone">
                         </div>
                         <div class="col-md-2 col-xs-12">
-                            <input  class="zilberman-input" placeholder="אימייל" ng-model="form.mate.cEmail">
+                            <input  class="zilberman-input" ng-class="{'inputMust': !form.mate.cEmail}" placeholder="אימייל" ng-model="form.mate.cEmail">
                         </div>
                         <div class="col-md-1 col-xs-12">
                             <datepicker class="date-pick-zilberm" date-format="dd/MM/yyyy">
