@@ -59,7 +59,7 @@ class sqlService {
     // }
 
     async query(statement) {
-
+        console.log(statement);
         return new Promise((fulfill, reject) => {
             new sql.ConnectionPool(this.dbconfig).connect().then(pool => {
                 return pool.request().query(statement)
