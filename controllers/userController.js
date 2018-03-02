@@ -309,7 +309,7 @@ class userController {
 
         if (req.body.sms){
             //let now = moment();
-            var diffHours = Math.abs(user.smsCreatedAt - Date.now())) / 36e5;
+            var diffHours = Math.abs(user.smsCreatedAt - Date.now()) / 36e5;
             // let created = moment(user.smsCreatedAt);
             // let now = moment(Date.now());
             // let diffHours = created.diff(now,'hours');
