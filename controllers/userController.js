@@ -283,11 +283,11 @@ class userController {
     //     return users.recordset;
     // }
 
-    async sendSMS (req) {
+    async sendSMS (phone) {
         let randomNum = Math.floor(1000 + Math.random() * 9000);
         //randomNum = String(randomNum);
-        await this.sql.query(`update tUsersAndRoles set uSmsCode = ${randomNum}, smsCreatedAt = ${Date.now()} where uPhone=${req.body.phone}`);
-        let returnSMS = await nexmo.sms(req.body.phone, 'הכנס קוד: ' + randomNum);
+        await this.sql.query(`update tUsersAndRoles set uSmsCode = ${randomNum}, smsCreatedAt = ${Date.now()} where uPhone=${phone}`);
+        let returnSMS = await nexmo.sms(phone, 'הכנס קוד: ' + randomNum);
                 
 
     }
