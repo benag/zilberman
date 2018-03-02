@@ -96,7 +96,7 @@ angular.module('ganim').controller('loginCtrl', ['$scope', '$stateParams', '$loc
                 return;
            }else{
                $scope.attempts++;
-               $http.post('/login', { id: $scope.user.id, password: $scope.user.password })
+               $http.post('/login', { id: $scope.user.id, password: $scope.user.password, sms: $scope.user.sms })
                    .then((data) => {
                        global.setUser(data.data.user);
                        global.setToken(data.data.token);
