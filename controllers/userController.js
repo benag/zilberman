@@ -330,7 +330,7 @@ class userController {
                     user: returnUser,
                 });
             }else{
-                if (dbUser.uLoginAttempts === 4){
+                if (dbUUser.uLoginAttempts === 4){
                     // already 4 attempts tried loack user and update login attemptes
                     await this.sql.query(`update tUsersAndRoles set uLoginAttempts=5, uStatus=3 where uID = ${user.uID}`);
                 }else{
