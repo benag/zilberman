@@ -309,7 +309,7 @@ class userController {
 
         if (req.body.sms){
             let now = moment();
-            let created = moment(user.uSmsDate);
+            let created = moment(user.smsCreatedAt);
             let diffHours = moment.duration(now.diff(created)).asHours();
         
             if (req.body.sms === user.uSmsCode && diffHours < 24){
@@ -338,7 +338,7 @@ class userController {
                     let attempts = user.uLoginAttempts +1;
                     await this.sql.query(`update tUsersAndRoles set uLoginAttempts=${attempts} where uID = ${user.uID}`);
                 }
-                res.status(400).send('wrong password');
+                res.status(400).send('ססמא שגויה');
             }
             
         })
