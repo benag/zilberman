@@ -310,6 +310,7 @@ class userController {
         if (req.body.sms){
             let now = moment();
             let created = moment(user.smsCreatedAt);
+            let now = moment(Date.now());
             let diffHours = moment.duration(now.diff(created)).asHours();
         
             if (req.body.sms === user.uSmsCode && diffHours < 24){
@@ -318,7 +319,7 @@ class userController {
                     user: returnUser,
                 });
             }else{
-                return res.status(400).send('קוד סמס שוגי או עברו מעל 24 שעות');
+                return res.status(400).send('קוד סמס שגוי או עברו מעל 24 שעות');
             }
         }
 
