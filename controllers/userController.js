@@ -311,7 +311,8 @@ class userController {
             //let now = moment();
             let created = moment(user.smsCreatedAt);
             let now = moment(Date.now());
-            let diffHours = moment.duration(now.diff(created)).asHours();
+            let diffHours = now.diff(created,'hours');
+            //let diffHours = moment.duration(now.diff(created)).asHours();
         
             if (req.body.sms === user.uSmsCode && diffHours < 24){
                 res.status(200).json({
