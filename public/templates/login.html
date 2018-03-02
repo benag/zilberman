@@ -58,13 +58,14 @@
                                     <div class="form-group label-floating">
                                         <label class="control-label label-rtl">או הכנס קוד סמס</label>
                                         <input type="password" ng-model="user.sms" class="form-control black-line sms-code">
-                                        <button ng-click="enterSMS()" class="sms-btn">שלח לי קוד</button>
+                                        <button ng-click="sendCode()" class="sms-btn">שלח לי קוד</button>
                                     </div>
                                     
                                 </div>
                                 <div class="footer text-center">
                                     <button ng-click="login()" class="btn btn-lg login-btn">כניסה</button>
                                 </div>
+                                <span>מספר נסיונות: {{attempts}}/5</span>
 
                                     <!--<div class="register-link" ><a ng-click="changeToRegister()">אנה רישמו אותי</a></div>-->
                                

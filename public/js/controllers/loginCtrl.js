@@ -8,6 +8,7 @@ angular.module('ganim').controller('loginCtrl', ['$scope', '$stateParams', '$loc
         $scope.showLogin = true;
         let $page = $('.full-page');
         let image_src = $page.data('image');
+        $scope.attempts = 0;
         global.resetUser();
 
         if(image_src !== undefined){
@@ -61,21 +62,52 @@ angular.module('ganim').controller('loginCtrl', ['$scope', '$stateParams', '$loc
             
         };
 
+        $scope.sendCode = () => {
+            swal({
+                title: 'שליחת קוד לנייד',                
+               
+                html: '<input type="text" class="form-control" id="smsPhone" placeholder="הכנס מספר טלפון נייד">',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'שלח',
+                cancelButtonText: 'בטל',
+                confirmButtonClass: 'btn btn-success',
+                cancelButtonClass: 'btn btn-danger',
+                buttonsStyling: false,
+                reverseButtons: true
+            }).then((result) => {
+                if (result) {
+                    $.post('/sms', { phone: $('#smsPhone').val()})
+                    .then((data) => {
+
+                    })                    
+                } else if ( result.dismiss === swal.DismissReason.cancel)
+                {
+                   
+                }
+            })
+        }
         $scope.login = function(){
            if ($scope.user.id === 'admin' && $scope.user.password === 'admin'){
+
+               global.setUser({ uName: 'admin', uFamily: 'admin', uEmail:'admin'});
                 $state.go('newentry');
                 return;
+           }else{
+               $scope.attempts++;
+               $http.post('/login', { id: $scope.user.id, password: $scope.user.password })
+                   .then((data) => {
+                       $scope.sms = true;
+                       $scope.smsData = data.data.sms;
+                       global.setUser(data.data.user);
+                       global.setToken(data.data.token);
+
+                   }).catch((err) => {
+                       toastr.error('שם משתמש או ססמא שגויים');
+                   }) 
            }
-            $http.post('/login', {id:$scope.user.id ,password:$scope.user.password})
-            .then((data) => {
-                $scope.sms = true;
-                $scope.smsData = data.data.sms;
-                global.setUser(data.data.user);
-                global.setToken(data.data.token);
-                
-                }).catch((err)=>{
-                    toastr.error('שם משתמש או ססמא שגויים');
-                })
+            
             
         }
     }

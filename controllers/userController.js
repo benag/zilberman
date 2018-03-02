@@ -283,13 +283,45 @@ class userController {
     //     return users.recordset;
     // }
 
+    async sendSMS (req) {
+        let randomNum = Math.floor(1000 + Math.random() * 9000);
+        await this.sql.query(`insert into tUsersAndRoles (uSmsCode, uSmsDate) values (${randomNum}, ${Date.now()})`);
+        let returnSMS = await nexmo.sms(user.uMobile, 'הכנס קוד: ' + randomNum);
+                
+
+    }
+
     async login (req, res, next) {
 
-        //let userInfo = this.setUserInfo(req.user);
-        let dbUser  = await this.sql.query(`select * from tUsersAndRoles where ID='${req.body.id}'`);
-        if (!dbUser || dbUser.recordset.length === 0) return res.status(400);
+        // get user
+        let dbUser  = await this.sql.query(`select * from tUsersAndRoles where uTaz='${req.body.id}'`);
+
+        // no user found 
+        if (!dbUser || dbUser.recordset.length === 0) return res.status(400).json('משתמש לא נמצא');     
         let user = dbUser.recordset[0];
         let returnUser = this.setUserInfo(user);
+
+        if (user.status === 2) return res.status(400).send('משתמש נעול');
+
+        // login by sms
+
+        if (req.body.sms){
+            let now = moment();
+            let created = moment(user.uSmsDate);
+            let diffHours = moment.duration(now.diff(created)).asHours();
+        
+            if (req.body.sms === user.uSmsCode && diffHours < 24){
+                res.status(200).json({
+                    token: 'JWT ' + this.generateToken({ uID: user.uID }),
+                    user: returnUser,
+                });
+            }else{
+                return res.status(400).send('קוד סמס שוגי או עברו מעל 24 שעות');
+            }
+        }
+
+        // login by password
+        
         this.comparePasswords(req.body.password, user.uPassword, async (err, isMatch) => {
             if (isMatch){
                 let randomNum =  Math.floor(1000 + Math.random() * 9000);
@@ -298,10 +330,16 @@ class userController {
                 res.status(200).json({
                     token: 'JWT ' + this.generateToken({uID:user.uID}),
                     user: returnUser,
-                    sms:randomNum
                 });
             }else{
-                res.status(400);
+                if (dbUser.uLoginAttempts === 4){
+                    // already 4 attempts tried loack user and update login attemptes
+                    await this.sql.query(`update tUsersAndRoles set uLoginAttempts=5, uStatus=2 where uID = ${user.uID}`);
+                }else{
+                    let attempts = user.uLoginAttempts +1;
+                    await this.sql.query(`update tUsersAndRoles set uLoginAttempts=${attempts} where uID = ${user.uID}`);
+                }
+                res.status(400).send('wrong password');
             }
             
         })

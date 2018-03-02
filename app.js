@@ -132,6 +132,17 @@ app.post('/verify', requireAuth, (req, res) => {
     res.json('OK');
 })
 
+app.post('/sms', async (req, res) => {
+    try{
+        await userCtrl.sendSMS(req.body.phone);
+        return res.send('OK');
+    }catch(err){
+        return res.status(400);
+    }
+    
+
+});
+
 app.get('/sms', (req, res) => {
     nexmo.sms('972526749884', 'test').then( response => {console.log(response); res.send('sent')})
         .catch(err => res.status(400).send('Error sending sms'));
