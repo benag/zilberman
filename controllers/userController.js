@@ -39,7 +39,8 @@ class userController {
             uName: user.uName,
             uFamily: user.uFamily,
             uEmail: user.uEmail,
-            uMobile: user.uMobile
+            uMobile: user.uMobile,
+            uRole: user.uRole
             
         };
 
