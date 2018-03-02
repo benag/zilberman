@@ -315,7 +315,7 @@ class userController {
             // let diffHours = created.diff(now,'hours');
             //let diffHours = moment.duration(now.diff(created)).asHours();
         
-            if (req.body.sms === user.uSmsCode && diffHours < 24){
+            if (req.body.sms === String(user.uSmsCode) && diffHours < 24){
                 res.status(200).json({
                     token: 'JWT ' + this.generateToken({ uID: user.uID }),
                     user: returnUser,
