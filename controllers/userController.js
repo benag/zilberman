@@ -294,7 +294,7 @@ class userController {
     async login (req, res, next) {
 
         // get user
-        let dbUser  = await this.sql.query(`select * from tUsersAndRoles where uTaz=${req.body.id}`);
+        let dbUser  = await this.sql.query(`select * from tUsersAndRoles where uTaz='${req.body.id}'`);
 
         // no user found 
         if (!dbUser || dbUser.recordset.length === 0) return res.status(400).json('משתמש לא נמצא');     
