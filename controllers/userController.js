@@ -308,7 +308,7 @@ class userController {
         // login by sms
 
         if (req.body.sms){
-            let now = moment();
+            //let now = moment();
             let created = moment(user.smsCreatedAt);
             let now = moment(Date.now());
             let diffHours = moment.duration(now.diff(created)).asHours();
