@@ -286,7 +286,7 @@ class userController {
     async sendSMS (req) {
         let randomNum = Math.floor(1000 + Math.random() * 9000);
         //randomNum = String(randomNum);
-        await this.sql.query(`insert into tUsersAndRoles (uSmsCode, smsCreatedAt) values (${randomNum}, ${Date.now()})`);
+        await this.sql.query(`update tUsersAndRoles set uSmsCode = ${randomNum}, smsCreatedAt = ${Date.now()})`);
         let returnSMS = await nexmo.sms(user.uMobile, 'הכנס קוד: ' + randomNum);
                 
 
