@@ -301,8 +301,8 @@ class userController {
         let user = dbUser.recordset[0];
         let returnUser = this.setUserInfo(user);
 
-        if (user.status === 3) return res.status(400).send('משתמש נעול');
-        if (user.status === 2) return res.status(400).send('משתמש מוקפא');
+        if (user.uStatus === 3) return res.status(400).send('משתמש נעול');
+        if (user.uStatus === 2) return res.status(400).send('משתמש מוקפא');
 
         // login by sms
 
@@ -325,9 +325,6 @@ class userController {
         
         this.comparePasswords(req.body.password, user.uPassword, async (err, isMatch) => {
             if (isMatch){
-                let randomNum =  Math.floor(1000 + Math.random() * 9000);
-                let returnSMS = await nexmo.sms(user.uMobile, 'הכנס קוד: ' +randomNum );
-                //res.status(200).json({sms:randomNum});
                 res.status(200).json({
                     token: 'JWT ' + this.generateToken({uID:user.uID}),
                     user: returnUser,

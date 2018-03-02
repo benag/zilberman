@@ -100,6 +100,8 @@ angular.module('ganim').controller('loginCtrl', ['$scope', '$stateParams', '$loc
                    .then((data) => {
                        global.setUser(data.data.user);
                        global.setToken(data.data.token);
+                       $state.go('newentry');
+
 
                    }).catch((err) => {
                        toastr.error('שם משתמש או ססמא שגויים');
