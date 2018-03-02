@@ -104,7 +104,7 @@ angular.module('ganim').controller('loginCtrl', ['$scope', '$stateParams', '$loc
 
 
                    }).catch((err) => {
-                       toastr.error('שם משתמש או ססמא שגויים');
+                       err.data ? toastr.error(err.data) : toastr.error('שם משתמש או ססמא שגויים');
                    }) 
            }
             
