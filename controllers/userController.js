@@ -301,7 +301,8 @@ class userController {
         let user = dbUser.recordset[0];
         let returnUser = this.setUserInfo(user);
 
-        if (user.status === 2) return res.status(400).send('משתמש נעול');
+        if (user.status === 3) return res.status(400).send('משתמש נעול');
+        if (user.status === 2) return res.status(400).send('משתמש מוקפא');
 
         // login by sms
 
@@ -334,7 +335,7 @@ class userController {
             }else{
                 if (dbUser.uLoginAttempts === 4){
                     // already 4 attempts tried loack user and update login attemptes
-                    await this.sql.query(`update tUsersAndRoles set uLoginAttempts=5, uStatus=2 where uID = ${user.uID}`);
+                    await this.sql.query(`update tUsersAndRoles set uLoginAttempts=5, uStatus=3 where uID = ${user.uID}`);
                 }else{
                     let attempts = user.uLoginAttempts +1;
                     await this.sql.query(`update tUsersAndRoles set uLoginAttempts=${attempts} where uID = ${user.uID}`);

@@ -91,15 +91,13 @@ angular.module('ganim').controller('loginCtrl', ['$scope', '$stateParams', '$loc
         $scope.login = function(){
            if ($scope.user.id === 'admin' && $scope.user.password === 'admin'){
 
-               global.setUser({ uName: 'admin', uFamily: 'admin', uEmail:'admin'});
+               global.setUser({ uName: 'admin', uFamily: 'admin', uEmail:'admin', uRole:2});
                 $state.go('newentry');
                 return;
            }else{
                $scope.attempts++;
                $http.post('/login', { id: $scope.user.id, password: $scope.user.password })
                    .then((data) => {
-                       $scope.sms = true;
-                       $scope.smsData = data.data.sms;
                        global.setUser(data.data.user);
                        global.setToken(data.data.token);
 

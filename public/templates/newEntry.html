@@ -251,11 +251,15 @@
                         </div> -->
                         <div class="row line-distance">
                             <div class="col-md-1">
-                                <select class="zilberman-dropdown" ng-model="form.borrow.loanType" placeholder="עישון"  required>
+                                <select class="zilberman-dropdown" ng-model="form.borrow.loanType" required>
                                     <option value="" disabled selected>סוג הלוואה</option>
                                     <option value="1">שפיצר</option>
                                     <option value="2">בלון</option>
+                                    <option value="3">הזן מסלול נוסף</option>
                                 </select>
+                            </div>
+                            <div  ng-show="form.borrow.loanType === 3" class="col-md-1">
+                                <input class="zilberman-input" type="text" placeholder="מסלול הלוואה">
                             </div>
         
                             <div class="col-md-1 col-xs-12">
@@ -265,7 +269,7 @@
                                 <input class="zilberman-input" restrict-to="[0-9 .]" placeholder="ריבית" ng-model="form.borrow.loanRate">
                             </div>
                             <div class="col-md-1 col-xs-12">
-                                <input class="zilberman-input" restrict-to="[0-9 .]" placeholder="מספר שנים נותרוו" ng-model="form.borrow.loanYrsToPay">
+                                <input class="zilberman-input" restrict-to="[0-9 .]" placeholder="מספר שנים שנותרו" ng-model="form.borrow.loanYrsToPay">
                             </div>
                             <div class="col-md-1 col-xs-12">
                                 <select class="zilberman-dropdown" ng-model="form.borrow.loanBank" placeholder="בנק מלווה" name="asset-type" required>
@@ -538,6 +542,9 @@
                                 <option value="2">תכולה בלבד</option>
                             </select>
                         </div>
+                    </div>
+                    <div class="row col-md-offset-10 col-md-1">
+                        <button ng-click="save()" class="btn btn-info pull-left">שמור</button>
                     </div>
 
                 </div>

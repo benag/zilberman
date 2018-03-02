@@ -5,11 +5,22 @@ angular.module('ganim').controller('topNavCtrl', ['$scope', '$stateParams', '$lo
             return window.innerWidth < 600
             //return window.screen.width < 800;
         }
-        $scope.mngText= 'ניהול משתמשים';
+        $scope.user = global.getUser();
+        $scope.msgText = 'ניהול משתמשים';
+        $scope.msgText1 = 'הפניות קיימות בסניף';
+        $scope.msgText2 = 'הפניות קיימות בחברה';
 
         $scope.shoeMng = () => {
-            if (window.innerWidth < 600) $scope.mngText= 'ניהול' ;
-            if (window.innerWidth > 600) $scope.mngText= 'ניהול משתמשים' ;
+            if (window.innerWidth < 600){
+                $scope.mngText = 'ניהול';
+                $scope.msgText2 = 'הפניות בחברה';
+                $scope.msgText1 = 'הפניות בסניף';
+            } 
+            if (window.innerWidth > 600){
+                $scope.mngText = 'ניהול משתמשים';
+                $scope.msgText1 = 'הפניות קיימות בסניף';
+                $scope.msgText2 = 'הפניות קיימות בחברה';
+            } 
             return true;
         }
         $scope.state = (state) => {
